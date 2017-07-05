@@ -12,13 +12,13 @@ git clone https://git.coding.net/annlmj/aaa.git
 git add .
 git commit -m "建立代码仓库"
 git push
+git tag 0.0.1
+git push --tag //到github上更新release
 pod spec create name
 ///touch name.podspec
 vim name.podspec
 pod lib lint name.podspec -allow-warnings
 pod lib lint --verbose
-git tag 0.0.1
-git push --tag //到github上更新release
 pod trunk register 2829969299@qq.com 'yangyueguang' -description='薛超'
 pod trunk me
 pod spec lint --allow-warnings
