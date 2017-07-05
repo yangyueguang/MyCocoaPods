@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name         = "XJSONKit"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = "Yes ,this is my Summary is A short description of XJSON"
   s.frameworks = 'UIKit'
-  s.requires_arc = true
+ # s.requires_arc = true
   s.platform = :ios
   s.ios.deployment_target = '8.0'
   s.description  = "this is the description you know ? yes ,so ,what do you want to do?Yes you are right"

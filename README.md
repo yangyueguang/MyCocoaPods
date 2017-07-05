@@ -1,23 +1,19 @@
 # MyCocoaPods
 这是我所有自己上传和使用的cocoapods集合
 http://www.cocoachina.com/ios/20160415/15939.html
-创建podspec文件
-在Github上创建release版本
-注册CocoaPods账号
-上传代码到CocoaPods
-检验是否上传成功
-更新框架版本
+
+#创建github项目=》创建本地podspec文件=》github上release版本=》注册CocoaPods账号=》上传代码到cocoapods=》更新框架版本
+
 ```
-git clone https://git.coding.net/annlmj/aaa.git 
+git clone https://github/xx.git
 git add .
 git commit -m "建立代码仓库"
 git push
 git tag 0.0.1
-git push --tag //到github上更新release
-pod spec create name
-///touch name.podspec
+git push --tag //到github上更新release #给源代码打版本标签，与podspec文件中version一致即可
+pod spec create name //touch name.podspec
 vim name.podspec
-echo "3.0" > .swift-version
+echo "3.0" > .swift-version 如果swift版本不对的话s.dependency "SDWebImage", "~> 3.7.1"
 pod lib lint name.podspec --allow-warnings
 pod lib lint --verbose
 pod trunk register 2829969299@qq.com 'yangyueguang' -description='薛超'
@@ -26,7 +22,13 @@ pod spec lint --allow-warnings
 pod trunk COMMAND
 pod trunk push name.podspec  --allow-warnings
 pod repo update
+pod search name
 ```
+#error
+#http://www.jianshu.com/p/e5209ac6ce6b
+#http://www.cocoachina.com/ios/20160415/15939.html
+
+
 
 手势返回导航控制器，首次支持pod安装 pod ‘GRBNavigation’<br>
 网上的JSONKit导入项目中经常报21个错，因此我修复了错误之后把它以XJSONKit的名字上传到podspec上了，以后可以用 
