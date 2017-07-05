@@ -1,6 +1,7 @@
 # MyCocoaPods
 这是我所有自己上传和使用的cocoapods集合
-http://www.cocoachina.com/ios/20160415/15939.html
+#help http://www.cocoachina.com/ios/20160415/15939.html
+#error http://www.jianshu.com/p/e5209ac6ce6b
 
 #创建github项目=》创建本地podspec文件=》github上release版本=》注册CocoaPods账号=》上传代码到cocoapods=》更新框架版本
 
@@ -24,10 +25,6 @@ pod trunk push name.podspec  --allow-warnings
 pod repo update
 pod search name
 ```
-#error
-#http://www.jianshu.com/p/e5209ac6ce6b
-#http://www.cocoachina.com/ios/20160415/15939.html
-
 
 
 手势返回导航控制器，首次支持pod安装 pod ‘GRBNavigation’<br>
