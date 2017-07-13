@@ -1,6 +1,6 @@
 
 #import <UIKit/UIKit.h>
-@interface KKNavigationController : UINavigationController
+@interface RGBNavigationController : UINavigationController
 @property (nonatomic,strong) UIPanGestureRecognizer *recognizer;
 @property (nonatomic,retain) NSMutableArray *screenShotsList;
 // 默认为特效开启
