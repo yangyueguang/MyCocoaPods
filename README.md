@@ -46,6 +46,10 @@ s.source_files  = "GRBNavigationKit"
 # s.requires_arc = true
 # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
 # s.dependency "JSONKit", "~> 1.4"
+    s.subspec 'JSONKit' do |js|
+    js.source_files = 'GRBNavigationKit/JSONKit'
+    js.requires_arc = false
+    end
     s.subspec 'VRPlayer' do |ss|
     ss.source_files = 'GRBNavigationKit/VRPlayer'
     # ss.public_header_files = 'VRPlayer/*.h'
