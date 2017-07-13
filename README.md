@@ -1,11 +1,11 @@
 # MyCocoaPods
 这是我所有自己上传和使用的cocoapods集合
 
-#help http://www.cocoachina.com/ios/20160415/15939.html
+help http://www.cocoachina.com/ios/20160415/15939.html
 
-#error http://www.jianshu.com/p/e5209ac6ce6b
+error http://www.jianshu.com/p/e5209ac6ce6b
 
-#podspec
+# podspec
 
 ```
 Pod::Spec.new do |s|
@@ -81,15 +81,12 @@ pod repo update
 pod search name
 ```
 
-
+# `pod 'GRBNavigationKit', '~> 0.0.5'`
 手势返回导航控制器，首次支持pod安装 pod ‘GRBNavigation’<br>
-网上的JSONKit导入项目中经常报21个错，因此我修复了错误之后把它以XJSONKit的名字上传到podspec上了，以后可以用 
-`pod 'XJSONKit'`
-来代替
-`pod 'JSONKit' `
+网上的JSONKit导入项目中经常报21个错，因此我修复了错误之后把它以XJSONKit的名字上传到podspec上了，以后可以用 `pod 'XJSONKit'`来代替`pod 'JSONKit' `
 
 
-# 1  RepositoryBranch
+# RepositoryBranch
 ## 这是只克隆一个仓库中的某个文件夹或某个分支到本地进行修改并上传的说明。
 ```
 Desktop super$ mkdir devops
