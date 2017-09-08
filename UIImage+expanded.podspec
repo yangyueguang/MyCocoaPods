@@ -13,5 +13,5 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/yangyueguang/MyCocoaPods.git", :tag => "#{s.version}" }
   s.source_files  = 'Category/UIImage+expanded.{h,m}'
 #, "GestureNavi/*.{h,m}"
-  # s.dependency "JSONKit", "~> 1.4"
+  s.dependency "SDWebImage"
 end
