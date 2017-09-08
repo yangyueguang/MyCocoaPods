@@ -1,0 +1,6 @@
+framework module UIView_expanded {
+  umbrella header "UIView+expanded-umbrella.h"
+
+  export *
+  module * { export * }
+}

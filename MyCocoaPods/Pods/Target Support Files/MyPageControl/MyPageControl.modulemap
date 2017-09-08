@@ -1,0 +1,6 @@
+framework module MyPageControl {
+  umbrella header "MyPageControl-umbrella.h"
+
+  export *
+  module * { export * }
+}

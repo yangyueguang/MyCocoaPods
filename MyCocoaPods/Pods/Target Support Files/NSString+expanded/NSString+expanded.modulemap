@@ -1,0 +1,6 @@
+framework module NSString_expanded {
+  umbrella header "NSString+expanded-umbrella.h"
+
+  export *
+  module * { export * }
+}

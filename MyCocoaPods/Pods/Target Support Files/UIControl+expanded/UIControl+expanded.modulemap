@@ -1,0 +1,6 @@
+framework module UIControl_expanded {
+  umbrella header "UIControl+expanded-umbrella.h"
+
+  export *
+  module * { export * }
+}

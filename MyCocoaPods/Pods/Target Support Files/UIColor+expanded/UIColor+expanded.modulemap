@@ -1,0 +1,6 @@
+framework module UIColor_expanded {
+  umbrella header "UIColor+expanded-umbrella.h"
+
+  export *
+  module * { export * }
+}

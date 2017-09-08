@@ -7,9 +7,21 @@ pod 'MJRefresh', '~> 3.1.0'
 pod 'AFNetworking', '~> 3.0'                         #轻量级网络请求                   https://github.com/AFNetworking/AFNetworking
 #以下是我的CocoaPods
 pod 'GRBNavigationKit'
-
-
-
+pod 'MyPageControl'
+pod 'NSData+expanded'
+pod 'NSDate+expanded'
+pod 'NSDictionary+expanded'
+pod 'NSMutableArray+expanded'
+pod 'NSObject+expanded'
+pod 'NSString+expanded'
+pod 'SDDataCache'
+pod 'UIColor+expanded'
+pod 'UIControl+expanded'
+pod 'UIImage+expanded'
+pod 'UILabel+expanded'
+pod 'UIView+expanded'
+pod 'UIView+AutoLayout'
+#pod 'Foundation'
 
 
 

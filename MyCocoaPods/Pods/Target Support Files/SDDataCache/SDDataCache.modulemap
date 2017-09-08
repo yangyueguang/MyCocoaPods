@@ -1,0 +1,6 @@
+framework module SDDataCache {
+  umbrella header "SDDataCache-umbrella.h"
+
+  export *
+  module * { export * }
+}

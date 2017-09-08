@@ -14,24 +14,74 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - GRBNavigationKit (0.0.5):
+    - GRBNavigationKit/JSONKit (= 0.0.5)
+    - GRBNavigationKit/VRPlayer (= 0.0.5)
+  - GRBNavigationKit/JSONKit (0.0.5)
+  - GRBNavigationKit/VRPlayer (0.0.5)
   - MJRefresh (3.1.12)
+  - MyPageControl (0.0.7)
+  - NSData+expanded (0.0.7)
+  - NSDate+expanded (0.0.7)
+  - NSDictionary+expanded (0.0.7)
+  - NSMutableArray+expanded (0.0.7)
+  - NSObject+expanded (0.0.7)
+  - NSString+expanded (0.0.7)
+  - SDDataCache (0.0.6)
   - SDWebImage (4.1.0):
     - SDWebImage/Core (= 4.1.0)
   - SDWebImage/Core (4.1.0)
   - SVProgressHUD (0.9)
+  - UIColor+expanded (0.0.7)
+  - UIControl+expanded (0.0.7)
+  - UIImage+expanded (0.0.7):
+    - SDWebImage
+  - UILabel+expanded (0.0.7)
+  - UIView+AutoLayout (2.0.1)
+  - UIView+expanded (0.0.7)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - GRBNavigationKit
   - MJRefresh (~> 3.1.0)
+  - MyPageControl
+  - NSData+expanded
+  - NSDate+expanded
+  - NSDictionary+expanded
+  - NSMutableArray+expanded
+  - NSObject+expanded
+  - NSString+expanded
+  - SDDataCache
   - SDWebImage
   - SVProgressHUD (= 0.9)
+  - UIColor+expanded
+  - UIControl+expanded
+  - UIImage+expanded
+  - UILabel+expanded
+  - UIView+AutoLayout
+  - UIView+expanded
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  GRBNavigationKit: 069402786f3f0b4666627b5b117b500821605ffb
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  MyPageControl: e0d9847f81fd78f0abc59b29fa1251a723d649df
+  NSData+expanded: 749f1528e71796fe371ee23e015463080ec28bf1
+  NSDate+expanded: a5bed4d679c7a1f251ec572b61de45fff61551c0
+  NSDictionary+expanded: 4814fae12fb9de389a710814e76b0479a6483a2e
+  NSMutableArray+expanded: 41890278d308ac4ed198d28afd6986b06c2955fe
+  NSObject+expanded: d9961b530f16963a733a9ca0631caef30a004160
+  NSString+expanded: 569fab225f433648ae287e1f306bbdf17ded369f
+  SDDataCache: 47d245c7b68bd0ca2a01d4756a424efa4874d06b
   SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
   SVProgressHUD: 7038ae9d6a0bd2c87560d2699eba642eef82d41e
+  UIColor+expanded: 4d3c7169b98342afd1640656e353db2ad7b7ea3e
+  UIControl+expanded: da0928bcfe65ed3c1ea5de262a86598eb14418f6
+  UIImage+expanded: 3c5bf5bfb23dd45919588f2dd678fa49759809a7
+  UILabel+expanded: 58b7ff89b69473f3d8e09a64833d9f54b73ba21f
+  UIView+AutoLayout: 9eb76d5e72974e5b96c0350624d8f17ddb405ee0
+  UIView+expanded: e5373ea12416969a036061cb05c3de05bccf81f1
 
-PODFILE CHECKSUM: 321ad5230cfab4549c17976019c0a50dde49596b
+PODFILE CHECKSUM: 042602b7f2c43328cc6e561d0480c4091e91b442
 
 COCOAPODS: 1.2.1
