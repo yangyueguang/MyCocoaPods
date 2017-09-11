@@ -21,7 +21,7 @@ s.homepage     = "https://github.com/yangyueguang/MyCocoaPods"
 # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 s.license      = "MIT"
 # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
-s.author             = { "yangyueguang" => "2829969299@qq.com" }
+s.author             = { "yangyueguang" => "邮箱" }
 # Or just: s.author    = ""
 # s.authors            = { "" => "" }
 # s.social_media_url   = "http://twitter.com/"
@@ -72,7 +72,7 @@ vim name.podspec
 echo "3.0" > .swift-version 如果swift版本不对的话s.dependency "SDWebImage", "~> 3.7.1"
 pod lib lint name.podspec --allow-warnings
 pod lib lint --verbose
-pod trunk register 2829969299@qq.com 'yangyueguang' -description='薛超'
+pod trunk register 邮箱 'yangyueguang' -description='薛超'
 pod trunk me
 pod spec lint --allow-warnings
 pod trunk COMMAND

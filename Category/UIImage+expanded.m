@@ -5,6 +5,17 @@
 CGFloat DegreesToRadians_afd(CGFloat degrees) {return degrees * M_PI / 180;};
 CGFloat RadiansToDegrees_afd(CGFloat radians) {return radians * 180/M_PI;};
 @implementation UIImage (expanded)
+//通过颜色来生成一个纯色图片
++ (UIImage *)imageFromColor:(UIColor *)color size:(CGSize )aSize{
+    CGRect rect = CGRectMake(0, 0,aSize.width, aSize.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
 // 画水印
 - (UIImage *) imageWithWaterMask:(UIImage*)mask inRect:(CGRect)rect
 {

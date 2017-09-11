@@ -2,7 +2,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImage (expanded)
-
+///通过颜色来生成一个纯色图片
++ (UIImage *)imageFromColor:(UIColor *)color size:(CGSize )aSize;
 - (UIImage *)imageAtRect:(CGRect)rect;
 
 - (UIImage *)imageByScalingProportionallyToMinimumSize:(CGSize)targetSize;
