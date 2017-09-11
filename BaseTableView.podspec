@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BaseTableView"
-  s.version      = "0.0.8"
+  s.version      = "0.0.9"
   s.summary      = "Yes ,this is my Summary is A short description of KNavigate."
   s.frameworks = 'UIKit','Foundation'
   s.requires_arc = true
