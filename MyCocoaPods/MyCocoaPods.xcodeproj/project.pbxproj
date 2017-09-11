@@ -13,6 +13,7 @@
 		BF4C10221F62E23500E8234D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4C10201F62E23500E8234D /* Main.storyboard */; };
 		BF4C10241F62E23500E8234D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF4C10231F62E23500E8234D /* Assets.xcassets */; };
 		BF4C10271F62E23500E8234D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4C10251F62E23500E8234D /* LaunchScreen.storyboard */; };
+		BF5B9AA01F66CADE00ECB3EC /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9A9F1F66CADE00ECB3EC /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		BF4C10231F62E23500E8234D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF4C10261F62E23500E8234D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF4C10281F62E23500E8234D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF5B9A9F1F66CADE00ECB3EC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CC2365036460F451E73D4822 /* Pods_MyCocoaPods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyCocoaPods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -71,6 +73,7 @@
 			children = (
 				BF4C101C1F62E23500E8234D /* AppDelegate.swift */,
 				BF4C101E1F62E23500E8234D /* ViewController.swift */,
+				BF5B9A9F1F66CADE00ECB3EC /* README.md */,
 				BF4C10201F62E23500E8234D /* Main.storyboard */,
 				BF4C10231F62E23500E8234D /* Assets.xcassets */,
 				BF4C10251F62E23500E8234D /* LaunchScreen.storyboard */,
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF5B9AA01F66CADE00ECB3EC /* README.md in Sources */,
 				BF4C101F1F62E23500E8234D /* ViewController.swift in Sources */,
 				BF4C101D1F62E23500E8234D /* AppDelegate.swift in Sources */,
 			);
@@ -381,6 +385,7 @@
 				BF4C102D1F62E23500E8234D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
