@@ -7,7 +7,6 @@
 //
 
 #import "BaseFillTableViewController.h"
-#import <NSString_expanded/NSString+expanded.h>
 #import <QuartzCore/QuartzCore.h>
 #define SAPPW              [UIScreen mainScreen].bounds.size.width
 #define SAPPH              [UIScreen mainScreen].bounds.size.height
@@ -386,7 +385,7 @@
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     if([textField.text isEqualToString:@""]){
-        if(![self.value notEmptyOrNull])return;
+        if([self.value isEqualToString:@"\"\""]||[self.value isEqualToString:@""]||[self.value isEqualToString:@"''"]||[self.value isEqualToString:@"null"])return;
     }else{
         self.value = textField.text;
     }

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BaseCollectionView"
-  s.version      = "0.1.1"
+  s.version      = "0.1.2"
   s.summary      = "这是基本的集合视图"
   s.frameworks = 'UIKit','Foundation'
   s.requires_arc = true
@@ -16,5 +16,5 @@ Pod::Spec.new do |s|
    s.dependency 'AFNetworking','~>3.0'
    s.dependency 'SDWebImage'
    s.dependency 'SVProgressHUD','~>0.9'
-   s.dependency 'NSString+expanded'
+#   s.dependency 'NSString+expanded'
 end

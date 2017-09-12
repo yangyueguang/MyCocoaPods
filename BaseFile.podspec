@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BaseFile"
-  s.version      = "0.1.1"
+  s.version      = "0.1.2"
   s.summary      = "Yes ,this is my Summary is A short description of KNavigate."
   s.frameworks = 'UIKit','Foundation'
   s.requires_arc = true
@@ -36,5 +36,5 @@ end
    s.dependency 'AFNetworking','~>3.0'
    s.dependency 'SDWebImage'
    s.dependency 'SVProgressHUD','~>0.9'
-   s.dependency 'NSString+expanded'
+#   s.dependency 'NSString+expanded'
 end
