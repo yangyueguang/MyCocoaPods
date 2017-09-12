@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "GRBNavigationKit"
-  s.version      = "0.0.5"
-  s.summary      = "Yes ,this is my Summary is A short description of KNavigate."
+  s.version      = "0.1.4"
+  s.summary      = "这是带手势返回的导航控制器."
   s.frameworks = 'UIKit','Foundation'
   s.requires_arc = true
   s.platform = :ios
@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
   s.source       = { :git => "https://github.com/yangyueguang/MyCocoaPods.git", :tag => "#{s.version}" }
-  s.source_files  = "GRBNavigationKit"
+  s.source_files  = "CarryOn/RGBNavigationController.{h,m}"
 #, "GestureNavi/*.{h,m}"
   # s.public_header_files = "Classes/**/*.h"
   # s.resource  = "icon.png"
@@ -36,13 +36,13 @@ Pod::Spec.new do |s|
   # s.requires_arc = true
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
-	s.subspec 'JSONKit' do |js|
-        js.source_files = 'GRBNavigationKit/JSONKit'
-	js.requires_arc = false
-	end
-  s.subspec 'VRPlayer' do |ss|
-    ss.source_files = 'GRBNavigationKit/VRPlayer'
+#	s.subspec 'JSONKit' do |js|
+#       js.source_files = 'GRBNavigationKit/JSONKit'
+#	js.requires_arc = false
+#	end
+  #s.subspec 'VRPlayer' do |ss|
+  #  ss.source_files = 'GRBNavigationKit/VRPlayer'
   # ss.public_header_files = 'VRPlayer/*.h'
-    ss.ios.frameworks = 'MobileCoreServices'
-  end
+  # ss.ios.frameworks = 'MobileCoreServices'
+  #end
 end

@@ -33,4 +33,7 @@ pod 'BaseFile'
 pod 'XUtility'
 pod 'XCategory'
 pod 'ObjectDictionary'   #0.1.1
+pod 'BaseCollectionView'
+pod 'BaseTableView'
+
 end
