@@ -9,8 +9,6 @@
 #import "BaseCollectionView.h"
 #import <MJRefresh/MJRefresh.h>
 #import <AFNetworking/AFNetworking.h>
-#import <NSString_expanded/NSString+expanded.h>
-
 #import <SVProgressHUD/SVProgressHUD.h>
 
 
@@ -157,7 +155,7 @@
                          boolNull=YES;
                          block([NSArray array],YES);
                          if (masktype != SVProgressHUDMaskTypeNone) {
-                             [SVProgressHUD showImage:nil status:[[responseObject valueForKey:@"info"] notEmptyOrNull]?[responseObject valueForKey:@"info"]:@"网络错误，请稍后重试"];
+                             [SVProgressHUD showImage:nil status:[responseObject valueForKey:@"info"]];
                          }
                      }
 
