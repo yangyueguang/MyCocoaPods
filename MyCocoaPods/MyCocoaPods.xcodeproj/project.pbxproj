@@ -189,10 +189,11 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/BaseFile/BaseFile.framework",
+				"${BUILT_PRODUCTS_DIR}/BaseCollectionView/BaseCollectionView.framework",
 				"${BUILT_PRODUCTS_DIR}/BaseFillTableViewController/BaseFillTableViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/BaseScrollView/BaseScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/BaseStaticTableView/BaseStaticTableView.framework",
+				"${BUILT_PRODUCTS_DIR}/BaseTableView/BaseTableView.framework",
 				"${BUILT_PRODUCTS_DIR}/GRBNavigationKit/GRBNavigationKit.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/MyPageControl/MyPageControl.framework",
@@ -218,10 +219,11 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BaseFile.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BaseCollectionView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BaseFillTableViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BaseScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BaseStaticTableView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BaseTableView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRBNavigationKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MyPageControl.framework",

@@ -14,10 +14,9 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - BaseFile (0.0.9):
+  - BaseCollectionView (0.1.3):
     - AFNetworking (~> 3.0)
     - MJRefresh (~> 3.1.0)
-    - NSString+expanded
     - SDWebImage
     - SVProgressHUD (~> 0.9)
   - BaseFillTableViewController (0.0.9):
@@ -38,11 +37,12 @@ PODS:
     - NSString+expanded
     - SDWebImage
     - SVProgressHUD (~> 0.9)
-  - GRBNavigationKit (0.0.5):
-    - GRBNavigationKit/JSONKit (= 0.0.5)
-    - GRBNavigationKit/VRPlayer (= 0.0.5)
-  - GRBNavigationKit/JSONKit (0.0.5)
-  - GRBNavigationKit/VRPlayer (0.0.5)
+  - BaseTableView (0.1.2):
+    - AFNetworking (~> 3.0)
+    - MJRefresh (~> 3.1.0)
+    - SDWebImage
+    - SVProgressHUD (~> 0.9)
+  - GRBNavigationKit (0.1.4)
   - MJRefresh (3.1.12)
   - MyPageControl (0.0.7)
   - NSData+expanded (0.0.7)
@@ -51,7 +51,9 @@ PODS:
   - NSMutableArray+expanded (0.0.7)
   - NSObject+expanded (0.0.7)
   - NSString+expanded (0.0.7)
-  - ObjectDictionary (0.1.1)
+  - ObjectDictionary (0.1.4):
+    - ObjectDictionary/JSONKit (= 0.1.4)
+  - ObjectDictionary/JSONKit (0.1.4)
   - SDDataCache (0.0.6)
   - SDWebImage (4.1.0):
     - SDWebImage/Core (= 4.1.0)
@@ -75,10 +77,11 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
-  - BaseFile
+  - BaseCollectionView
   - BaseFillTableViewController
   - BaseScrollView
   - BaseStaticTableView
+  - BaseTableView
   - GRBNavigationKit
   - MJRefresh (~> 3.1.0)
   - MyPageControl
@@ -103,11 +106,12 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  BaseFile: 09a320b782e38aea218b8095c5b81676a21be49e
+  BaseCollectionView: 2ef110f61749614e657bdc578cc36855ea4feffe
   BaseFillTableViewController: 874286c00b7c690059d3e1833e407bc0ef3c73fc
   BaseScrollView: 7d58a7a073c0080fdbe29680307da23264e166b0
   BaseStaticTableView: 01835a2b800fea8f04c5110e71183dfe8a3a9b58
-  GRBNavigationKit: 069402786f3f0b4666627b5b117b500821605ffb
+  BaseTableView: 070eba9789d8edbde7e8cfc17d40a7a2600aa565
+  GRBNavigationKit: 32480b2588a7b46b3ac02e9a8b6d9c8454d0fb02
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   MyPageControl: e0d9847f81fd78f0abc59b29fa1251a723d649df
   NSData+expanded: 749f1528e71796fe371ee23e015463080ec28bf1
@@ -116,7 +120,7 @@ SPEC CHECKSUMS:
   NSMutableArray+expanded: 41890278d308ac4ed198d28afd6986b06c2955fe
   NSObject+expanded: d9961b530f16963a733a9ca0631caef30a004160
   NSString+expanded: 569fab225f433648ae287e1f306bbdf17ded369f
-  ObjectDictionary: 44867e3cd04a0e3750101700951a6cf6869ea2f0
+  ObjectDictionary: 0c2cd262eab9faf2488aea2ae52469887fb4ffbb
   SDDataCache: 47d245c7b68bd0ca2a01d4756a424efa4874d06b
   SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
   SVProgressHUD: 7038ae9d6a0bd2c87560d2699eba642eef82d41e
@@ -129,6 +133,6 @@ SPEC CHECKSUMS:
   XCategory: c90fd44c74480ec47b724425d8e5b524e8037728
   XUtility: 377fd5468bd60818198ed0e768a24950a1dbf8fd
 
-PODFILE CHECKSUM: f3e188f997c01bc385c987a419b3273b8b6c4aa3
+PODFILE CHECKSUM: 1e57ef412fabc752a2a86f340be15ff448f5105b
 
 COCOAPODS: 1.3.1

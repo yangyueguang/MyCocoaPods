@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SVProgressHUD.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "BaseTableViewCell.h"
 typedef id (^BaseTableDataBlock)(NSInteger page);
 typedef id (^BaseTableDataOfflineBlock)(NSInteger page);

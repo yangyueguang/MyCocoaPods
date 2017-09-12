@@ -103,10 +103,11 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/BaseFile/BaseFile.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BaseCollectionView/BaseCollectionView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BaseFillTableViewController/BaseFillTableViewController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BaseScrollView/BaseScrollView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BaseStaticTableView/BaseStaticTableView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BaseTableView/BaseTableView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GRBNavigationKit/GRBNavigationKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MyPageControl/MyPageControl.framework"
@@ -131,10 +132,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/BaseFile/BaseFile.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BaseCollectionView/BaseCollectionView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BaseFillTableViewController/BaseFillTableViewController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BaseScrollView/BaseScrollView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BaseStaticTableView/BaseStaticTableView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BaseTableView/BaseTableView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GRBNavigationKit/GRBNavigationKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MyPageControl/MyPageControl.framework"

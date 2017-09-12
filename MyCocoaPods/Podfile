@@ -11,26 +11,26 @@ pod 'MyPageControl'
 pod 'NSData+expanded'
 pod 'NSDate+expanded'
 pod 'NSDictionary+expanded'
+
 pod 'NSMutableArray+expanded'
 pod 'NSObject+expanded'
 pod 'NSString+expanded'
 pod 'SDDataCache'
 pod 'UIColor+expanded'
+
 pod 'UIControl+expanded'
 pod 'UIImage+expanded'
 pod 'UILabel+expanded'
 pod 'UIView+expanded'
 pod 'UIView+AutoLayout'
 
-
 #第二版
 pod 'BaseScrollView'
 pod 'BaseStaticTableView'
 pod 'BaseFillTableViewController'
-pod 'BaseFile'
-
-#第三版
+#pod 'BaseFile'
 pod 'XUtility'
+
 pod 'XCategory'
 pod 'ObjectDictionary'   #0.1.1
 pod 'BaseCollectionView'

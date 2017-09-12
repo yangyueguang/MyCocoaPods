@@ -10,8 +10,9 @@
 #endif
 #endif
 
-#import "RGBNavigationController.h"
+#import "BaseTableView.h"
+#import "BaseTableViewCell.h"
 
-FOUNDATION_EXPORT double GRBNavigationKitVersionNumber;
-FOUNDATION_EXPORT const unsigned char GRBNavigationKitVersionString[];
+FOUNDATION_EXPORT double BaseTableViewVersionNumber;
+FOUNDATION_EXPORT const unsigned char BaseTableViewVersionString[];
 

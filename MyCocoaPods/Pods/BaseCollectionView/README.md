@@ -84,6 +84,20 @@ pod search name
 # `pod 'GRBNavigationKit', '~> 0.0.5'`
 手势返回导航控制器，首次支持pod安装 pod ‘GRBNavigation’<br>
 网上的JSONKit导入项目中经常报21个错，因此我修复了错误之后把它以XJSONKit的名字上传到podspec上了，以后可以用 `pod 'XJSONKit'`来代替`pod 'JSONKit' `
+# `pod 'MyPageControl','~> 0.0.7'`
+# `pod 'NSData+expanded','~> 0.0.7'`
+# `pod 'NSDate+expanded','~> 0.0.7'`
+# `pod 'NSDictionary+expanded','~> 0.0.7'`
+# `pod 'NSMutableArray+expanded','~> 0.0.7'`
+# `pod 'NSObject+expanded','~> 0.0.7'`
+# `pod 'NSString+expanded','~> 0.0.7'`
+# `pod 'SDDataCache','~> 0.0.7'`
+# `pod 'UIColor+expanded','~> 0.0.7'`
+# `pod 'UIControl+expanded','~> 0.0.7'`
+# `pod 'UIImage+expanded','~> 0.0.7'`
+# `pod 'UILabel+expanded','~> 0.0.7'`
+# `pod 'UIView+expanded','~> 0.0.7'`
+# `pod 'UIView+AutoLayout'`
 
 
 # RepositoryBranch

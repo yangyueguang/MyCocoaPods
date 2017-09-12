@@ -1,0 +1,6 @@
+framework module BaseCollectionView {
+  umbrella header "BaseCollectionView-umbrella.h"
+
+  export *
+  module * { export * }
+}

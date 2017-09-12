@@ -7,7 +7,6 @@
 //
 #import "BaseTableView.h"
 #import <MJRefresh/MJRefresh.h>
-#import <NSString_expanded/NSString+expanded.h>
 #import <AFNetworking/AFNetworking.h>
 
 @interface BaseTableView(){
@@ -156,7 +155,7 @@
                 boolNull=YES;
                 block([NSArray array],NO);
                 if (masktype != SVProgressHUDMaskTypeNone) {
-                    [SVProgressHUD showImage:nil status:[[responseObject valueForKey:@"info"] notEmptyOrNull]?[responseObject valueForKey:@"info"]:@"网络错误，请稍后重试"];
+                    [SVProgressHUD showImage:nil status:[responseObject valueForKey:@"info"]];
                 }
             }
 
