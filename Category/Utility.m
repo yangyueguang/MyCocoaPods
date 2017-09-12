@@ -6,7 +6,7 @@
 #import <AudioToolbox/AudioToolbox.h>//振动
 #import <CommonCrypto/CommonDigest.h>
 #import <StoreKit/StoreKit.h>
-#import <NSString_expanded/NSString+expanded.h>
+//#import <NSString_expanded/NSString+expanded.h>
 
 @interface Utility()<SKStoreProductViewControllerDelegate>
 
@@ -57,7 +57,7 @@ static Utility *_utilityinstance=nil;
     NSString *macAddressString = [NSString stringWithFormat:@"%02X:%02X:%02X:%02X:%02X:%02X",macAddress[0], macAddress[1], macAddress[2],macAddress[3], macAddress[4], macAddress[5]];
     NSLog(@"Mac Address: %@", macAddressString);
     free(msgBuffer);
-    return macAddressString.md5;
+    return macAddressString;//.md5;
 }
 
 #pragma mark makeCall

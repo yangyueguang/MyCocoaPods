@@ -1,8 +1,9 @@
 Pod::Spec.new do |s|
   s.name         = "ObjectDictionary"
-  s.version      = "0.1.0"
+  s.version      = "0.1.1"
   s.summary      = "这是字典转模型和模型转字典的工具类"
-  s.frameworks = 'UIKit','Foundation','objc'
+  s.frameworks = 'UIKit','Foundation'
+#,'objc'
   s.requires_arc = true
   s.platform = :ios
   s.ios.deployment_target = '8.0'

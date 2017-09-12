@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name         = "Category"
-  s.version      = "0.1.0"
+  s.version      = "0.1.1"
   s.summary      = "这是拓展的集合"
   s.frameworks = 'UIKit','Foundation','sys','CommonCrypto','StoreKit','net','AudioToolbox'
  # s.requires_arc = true
   s.platform = :ios
- # s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '8.0'
  # s.description  = "this is the description you know ? yes ,so ,what do you want to do?Yes you are right"
   s.homepage     = "https://github.com/yangyueguang/MyCocoaPods"
   s.license      = "MIT"
@@ -13,7 +13,12 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/yangyueguang/MyCocoaPods.git", :tag => "#{s.version}" }
   s.source_files  = 'Category'
  # "GestureNavi/*.{h,m}"
- # s.dependency 'MyPageControl'
+  s.dependency 'SVProgressHUD','~> 0.9'
+  s.dependency 'MJRefresh'
+#,'~> 3.1.0'
+  s.dependency 'AFNetworking'
+  s.dependency 'SDWebImage'
+# s.dependency 'MyPageControl'
  # s.dependency 'NSData+expanded'
  # s.dependency 'NSDate+expanded'
  # s.dependency 'NSDictionary+expanded'

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BaseFile"
-  s.version      = "0.1.0"
+  s.version      = "0.1.1"
   s.summary      = "Yes ,this is my Summary is A short description of KNavigate."
   s.frameworks = 'UIKit','Foundation'
   s.requires_arc = true
@@ -24,12 +24,12 @@ Pod::Spec.new do |s|
   # s.tvos.deployment_target = "9.0"
   s.source       = { :git => "https://github.com/yangyueguang/MyCocoaPods.git", :tag => "#{s.version}" }
   s.source_files  = "BaseFile"
-s.subspec 'BaseCollectionView' do |CV|
-CV.source_files = 'BaseCollectionView'
-CV.requires_arc = true
-end
+   s.subspec 'BaseCollectionView' do |cv|
+   cv.source_files = 'BaseFile/BaseCollectionView'
+   cv.requires_arc = true
+   end
 s.subspec 'BaseTableView' do |tv|
-tv.source_files = 'BaseTableView'
+tv.source_files = 'BaseFile/BaseTableView'
 tv.requires_arc = true
 end
    s.dependency 'MJRefresh','~>3.1.0'
