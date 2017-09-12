@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
-  s.name         = "Utility"
+  s.name         = "XUtility"
   s.version      = "0.1.1"
   s.summary      = "这是工具类"
-  s.frameworks = 'UIKit','Foundation','sys','JavaScriptCore','StoreKit','net','AudioToolbox'
+  s.frameworks = 'UIKit','Foundation','JavaScriptCore','StoreKit','AudioToolbox'
 #,'CommonCrypto'
   s.homepage     = "https://github.com/yangyueguang/MyCocoaPods"
   s.license      = "MIT"

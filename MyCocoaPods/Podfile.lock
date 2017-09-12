@@ -51,6 +51,7 @@ PODS:
   - NSMutableArray+expanded (0.0.7)
   - NSObject+expanded (0.0.7)
   - NSString+expanded (0.0.7)
+  - ObjectDictionary (0.1.1)
   - SDDataCache (0.0.6)
   - SDWebImage (4.1.0):
     - SDWebImage/Core (= 4.1.0)
@@ -63,6 +64,14 @@ PODS:
   - UILabel+expanded (0.0.7)
   - UIView+AutoLayout (2.0.1)
   - UIView+expanded (0.0.7)
+  - XCategory (0.1.1):
+    - AFNetworking
+    - MJRefresh
+    - SDWebImage
+    - SVProgressHUD (~> 0.9)
+  - XUtility (0.1.1):
+    - AFNetworking
+    - NSString+expanded
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
@@ -79,6 +88,7 @@ DEPENDENCIES:
   - NSMutableArray+expanded
   - NSObject+expanded
   - NSString+expanded
+  - ObjectDictionary
   - SDDataCache
   - SDWebImage
   - SVProgressHUD (= 0.9)
@@ -88,6 +98,8 @@ DEPENDENCIES:
   - UILabel+expanded
   - UIView+AutoLayout
   - UIView+expanded
+  - XCategory
+  - XUtility
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -104,6 +116,7 @@ SPEC CHECKSUMS:
   NSMutableArray+expanded: 41890278d308ac4ed198d28afd6986b06c2955fe
   NSObject+expanded: d9961b530f16963a733a9ca0631caef30a004160
   NSString+expanded: 569fab225f433648ae287e1f306bbdf17ded369f
+  ObjectDictionary: 44867e3cd04a0e3750101700951a6cf6869ea2f0
   SDDataCache: 47d245c7b68bd0ca2a01d4756a424efa4874d06b
   SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
   SVProgressHUD: 7038ae9d6a0bd2c87560d2699eba642eef82d41e
@@ -113,7 +126,9 @@ SPEC CHECKSUMS:
   UILabel+expanded: 58b7ff89b69473f3d8e09a64833d9f54b73ba21f
   UIView+AutoLayout: 9eb76d5e72974e5b96c0350624d8f17ddb405ee0
   UIView+expanded: e5373ea12416969a036061cb05c3de05bccf81f1
+  XCategory: c90fd44c74480ec47b724425d8e5b524e8037728
+  XUtility: 377fd5468bd60818198ed0e768a24950a1dbf8fd
 
-PODFILE CHECKSUM: fe45d8814c7a462ae5378b0dd6da929151d40dbb
+PODFILE CHECKSUM: f3e188f997c01bc385c987a419b3273b8b6c4aa3
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1

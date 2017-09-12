@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
-  s.name         = "Category"
+  s.name         = "XCategory"
   s.version      = "0.1.1"
   s.summary      = "这是拓展的集合"
-  s.frameworks = 'UIKit','Foundation','sys','CommonCrypto','StoreKit','net','AudioToolbox'
+  s.frameworks = 'UIKit','Foundation','StoreKit','AudioToolbox'
  # s.requires_arc = true
   s.platform = :ios
   s.ios.deployment_target = '8.0'

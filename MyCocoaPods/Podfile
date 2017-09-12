@@ -29,6 +29,8 @@ pod 'BaseStaticTableView'
 pod 'BaseFillTableViewController'
 pod 'BaseFile'
 
-
-
+#第三版
+pod 'XUtility'
+pod 'XCategory'
+pod 'ObjectDictionary'   #0.1.1
 end
