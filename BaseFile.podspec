@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BaseFile"
-  s.version      = "0.0.9"
+  s.version      = "0.1.0"
   s.summary      = "Yes ,this is my Summary is A short description of KNavigate."
   s.frameworks = 'UIKit','Foundation'
   s.requires_arc = true
@@ -24,17 +24,14 @@ Pod::Spec.new do |s|
   # s.tvos.deployment_target = "9.0"
   s.source       = { :git => "https://github.com/yangyueguang/MyCocoaPods.git", :tag => "#{s.version}" }
   s.source_files  = "BaseFile"
-#, "GestureNavi/*.{h,m}"
-  # s.public_header_files = "Classes/**/*.h"
-  # s.resource  = "icon.png"
-  # s.resources = "Resources/*.png"
-  # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
-  # s.framework  = "SomeFramework"
-  # s.frameworks = "SomeFramework", "AnotherFramework"
-  # s.library   = "iconv"
-  # s.libraries = "iconv", "xml2"
-  # s.requires_arc = true
-  # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
+s.subspec 'BaseCollectionView' do |CV|
+CV.source_files = 'BaseCollectionView'
+CV.requires_arc = true
+end
+s.subspec 'BaseTableView' do |tv|
+tv.source_files = 'BaseTableView'
+tv.requires_arc = true
+end
    s.dependency 'MJRefresh','~>3.1.0'
    s.dependency 'AFNetworking','~>3.0'
    s.dependency 'SDWebImage'

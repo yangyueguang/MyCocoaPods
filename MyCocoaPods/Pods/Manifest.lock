@@ -14,6 +14,30 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - BaseFile (0.0.9):
+    - AFNetworking (~> 3.0)
+    - MJRefresh (~> 3.1.0)
+    - NSString+expanded
+    - SDWebImage
+    - SVProgressHUD (~> 0.9)
+  - BaseFillTableViewController (0.0.9):
+    - AFNetworking (~> 3.0)
+    - MJRefresh (~> 3.1.0)
+    - NSString+expanded
+    - SDWebImage
+    - SVProgressHUD (~> 0.9)
+  - BaseScrollView (0.0.9):
+    - AFNetworking (~> 3.0)
+    - MJRefresh (~> 3.1.0)
+    - NSString+expanded
+    - SDWebImage
+    - SVProgressHUD (~> 0.9)
+  - BaseStaticTableView (0.0.9):
+    - AFNetworking (~> 3.0)
+    - MJRefresh (~> 3.1.0)
+    - NSString+expanded
+    - SDWebImage
+    - SVProgressHUD (~> 0.9)
   - GRBNavigationKit (0.0.5):
     - GRBNavigationKit/JSONKit (= 0.0.5)
     - GRBNavigationKit/VRPlayer (= 0.0.5)
@@ -42,6 +66,10 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - BaseFile
+  - BaseFillTableViewController
+  - BaseScrollView
+  - BaseStaticTableView
   - GRBNavigationKit
   - MJRefresh (~> 3.1.0)
   - MyPageControl
@@ -63,6 +91,10 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  BaseFile: 09a320b782e38aea218b8095c5b81676a21be49e
+  BaseFillTableViewController: 874286c00b7c690059d3e1833e407bc0ef3c73fc
+  BaseScrollView: 7d58a7a073c0080fdbe29680307da23264e166b0
+  BaseStaticTableView: 01835a2b800fea8f04c5110e71183dfe8a3a9b58
   GRBNavigationKit: 069402786f3f0b4666627b5b117b500821605ffb
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   MyPageControl: e0d9847f81fd78f0abc59b29fa1251a723d649df
@@ -82,6 +114,6 @@ SPEC CHECKSUMS:
   UIView+AutoLayout: 9eb76d5e72974e5b96c0350624d8f17ddb405ee0
   UIView+expanded: e5373ea12416969a036061cb05c3de05bccf81f1
 
-PODFILE CHECKSUM: 042602b7f2c43328cc6e561d0480c4091e91b442
+PODFILE CHECKSUM: fe45d8814c7a462ae5378b0dd6da929151d40dbb
 
 COCOAPODS: 1.2.1

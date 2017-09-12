@@ -23,6 +23,11 @@ pod 'UIView+expanded'
 pod 'UIView+AutoLayout'
 
 
+#第二版
+pod 'BaseScrollView'
+pod 'BaseStaticTableView'
+pod 'BaseFillTableViewController'
+pod 'BaseFile'
 
 
 

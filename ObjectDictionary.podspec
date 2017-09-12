@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "ObjectDictionary"
-  s.version      = "0.0.9"
-  s.summary      = "Yes ,this is my Summary is A short description of KNavigate."
+  s.version      = "0.1.0"
+  s.summary      = "这是字典转模型和模型转字典的工具类"
   s.frameworks = 'UIKit','Foundation','objc'
   s.requires_arc = true
   s.platform = :ios

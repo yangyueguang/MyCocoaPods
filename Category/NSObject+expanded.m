@@ -115,7 +115,7 @@
 }
 + (NSArray *)jsonArrayWithObjectArray:(NSArray *)objectArray {
     NSMutableArray *jsonObjects = [NSMutableArray array];
-    for (CYZBaseModel *model in objectArray) {
+    for (NSObject *model in objectArray) {
         NSDictionary *jsonDict = [model dictionaryRepresentation];
         [jsonObjects addObject:jsonDict];
     }
@@ -136,7 +136,7 @@
 
 - (id)initWithDict:(NSDictionary *)aDict
 {
-    self = [super init];
+    self = [self init];
     
     if (self) {
         //建立映射关系
@@ -147,7 +147,7 @@
 }
 
 - (id)initWithJsonString:(NSString *)json {
-    self = [super init];
+    self = [self init];
     if (self) {
         //解析json字符串
         NSError *error = nil;
@@ -167,7 +167,7 @@
 #pragma mark - NSCoding
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super init];
+    self = [self init];
     if (self) {
         unsigned int count = 0;
         
@@ -330,7 +330,7 @@
                     
                     Class newClass = objc_getClass([type cStringUsingEncoding:NSUTF8StringEncoding]);
                     //如果是该类的子类，说明能响应initWithDict:方法并且能建立映射字典。
-                    if ([newClass isSubclassOfClass:[CYZBaseModel class]]) {
+                    if ([newClass isSubclassOfClass:[NSObject class]]) {
                         id instance = [[newClass alloc] initWithDict:aDictValue];
                         [self performSelectorOnMainThread:setter withObject:instance waitUntilDone:[NSThread isMainThread]];
                     }
@@ -354,7 +354,7 @@
                     for (id content in aDictValue) {
                         Class classInArray = NSClassFromString(classString);
                         //如果是该类的子类，说明能响应initWithDict:方法并且能建立映射字典。
-                        if ([classInArray isSubclassOfClass:[CYZBaseModel class]]) {
+                        if ([classInArray isSubclassOfClass:[NSObject class]]) {
                             id instance = [[classInArray alloc] initWithDict:content];
                             [valueArray addObject:instance];
                         } else {
@@ -453,7 +453,7 @@
         
         //only add it to dictionary if it is not nil
         if (key && value) {
-            if ([value isKindOfClass:[CYZBaseModel class]]) {
+            if ([value isKindOfClass:[NSObject class]]) {
                 //如果model里有其他自定义模型，并且是继承自该类，则递归将其转换为字典。
                 [dict setObject:[value dictionaryRepresentation] forKey:key];
             } else {
@@ -607,7 +607,7 @@
     // Now see if we need to map any superclasses as well.
     Class superClass = class_getSuperclass( [self class] );
     if (superClass != nil && ! [superClass isEqual:[NSObject class]]) {
-        NSString *superString = [super description];
+        NSString *superString = [self description];
         [propPrint appendString:superString];
     }
     

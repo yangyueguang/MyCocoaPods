@@ -1,0 +1,6 @@
+framework module BaseFillTableViewController {
+  umbrella header "BaseFillTableViewController-umbrella.h"
+
+  export *
+  module * { export * }
+}

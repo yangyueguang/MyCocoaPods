@@ -6,26 +6,8 @@
 #import <AudioToolbox/AudioToolbox.h>//振动
 #import <CommonCrypto/CommonDigest.h>
 #import <StoreKit/StoreKit.h>
-@interface NSString(expanded)
-- (BOOL)notEmptyOrNull;
-@end
-@implementation NSString(expanded)
--(BOOL)notEmptyOrNull{
-    if ([self isEqualToString:@""]||[self isEqualToString:@"null"] || [self isEqualToString:@"\"\""] || [self isEqualToString:@"''"]) {
-        return NO;
-    }return YES;
-}
-- (NSString *)md5{
-    const char *concat_str = [self UTF8String];
-    unsigned char result[CC_MD5_DIGEST_LENGTH];
-    CC_MD5(concat_str, strlen(concat_str), result);
-    NSMutableString *hash = [NSMutableString string];
-    for (int i = 0; i < 16; i++){
-        [hash appendFormat:@"%02X", result[i]];
-    }
-    return [hash lowercaseString];
-}
-@end
+#import <NSString_expanded/NSString+expanded.h>
+
 @interface Utility()<SKStoreProductViewControllerDelegate>
 
 @end
@@ -402,8 +384,8 @@ static Utility *_utilityinstance=nil;
 }
 #pragma mark 版本更新
 - (void)upDataVersion{
-    NSString *version =  [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    NSString *s = [NSString stringWithContentsOfURL:[NSURL URLWithString:@""] encoding:NSUTF8StringEncoding error:nil];
+//    NSString *version =  [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+//    NSString *s = [NSString stringWithContentsOfURL:[NSURL URLWithString:@""] encoding:NSUTF8StringEncoding error:nil];
 
 }
 - (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController{
