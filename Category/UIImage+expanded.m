@@ -2,9 +2,11 @@
 
 #import "UIImage+expanded.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/SDWebImageDownloader.h>
 #import <Accelerate/Accelerate.h>
 CGFloat DegreesToRadians_afd(CGFloat degrees) {return degrees * M_PI / 180;};
 CGFloat RadiansToDegrees_afd(CGFloat radians) {return radians * 180/M_PI;};
+#define basePicPath @"http://www.baidu.com/"
 @implementation UIImage (expanded)
 // 画水印
 - (UIImage *) imageWithWaterMask:(UIImage*)mask inRect:(CGRect)rect
@@ -631,7 +633,7 @@ static CGRect swapWidthAndHeight(CGRect rect)
     __block __typeof(UIImage*)wimage = image;
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",basePicPath,name]];
-    [manager downloadImageWithURL:url options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+    [manager loadImageWithURL:url options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
         if (image) {
             wimage = image;
         }

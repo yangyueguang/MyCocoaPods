@@ -6,7 +6,7 @@ typedef enum {
     imageBigType,
 }imageType;
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 @interface NSString(expanded)
 
 - (NSString*)urlEncodedString;
