@@ -27,6 +27,7 @@
 		BF4C10261F62E23500E8234D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF4C10281F62E23500E8234D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF5B9A9F1F66CADE00ECB3EC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BF97602C1F7150DC00DE9ABB /* MyCocoaPods-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyCocoaPods-Bridging-Header.h"; sourceTree = "<group>"; };
 		CC2365036460F451E73D4822 /* Pods_MyCocoaPods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyCocoaPods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -78,6 +79,7 @@
 				BF4C10231F62E23500E8234D /* Assets.xcassets */,
 				BF4C10251F62E23500E8234D /* LaunchScreen.storyboard */,
 				BF4C10281F62E23500E8234D /* Info.plist */,
+				BF97602C1F7150DC00DE9ABB /* MyCocoaPods-Bridging-Header.h */,
 			);
 			path = MyCocoaPods;
 			sourceTree = "<group>";
@@ -127,6 +129,7 @@
 					BF4C10181F62E23500E8234D = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 968Q63C2Z7;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -401,11 +404,14 @@
 			baseConfigurationReference = 00087E8B0C2CE5586E75AE96 /* Pods-MyCocoaPods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 968Q63C2Z7;
 				INFOPLIST_FILE = MyCocoaPods/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.freedom.MyCocoaPods;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MyCocoaPods/MyCocoaPods-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -415,11 +421,13 @@
 			baseConfigurationReference = 6FB852E20851D3E97FD4AB39 /* Pods-MyCocoaPods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 968Q63C2Z7;
 				INFOPLIST_FILE = MyCocoaPods/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.freedom.MyCocoaPods;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MyCocoaPods/MyCocoaPods-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

@@ -81,33 +81,44 @@ pod repo update
 pod search name
 ```
 
-# `pod 'GRBNavigationKit', '~> 0.1.4'`
 手势返回导航控制器，首次支持pod安装 pod ‘GRBNavigation’<br>
 网上的JSONKit导入项目中经常报21个错，因此我修复了错误之后把它以XJSONKit的名字上传到podspec上了，以后可以用 `pod 'XJSONKit'`来代替`pod 'JSONKit' `
-# `pod 'MyPageControl','~> 0.0.7'`
-# `pod 'NSData+expanded','~> 0.0.7'`
-# `pod 'NSDate+expanded','~> 0.0.7'`
-# `pod 'NSDictionary+expanded','~> 0.0.7'`
-# `pod 'NSMutableArray+expanded','~> 0.0.7'`
-# `pod 'NSObject+expanded','~> 0.0.7'`
-# `pod 'NSString+expanded','~> 0.0.7'`
-# `pod 'SDDataCache','~> 0.0.6'`
-# `pod 'UIColor+expanded','~> 0.0.7'`
-# `pod 'UIControl+expanded','~> 0.0.7'`
-# `pod 'UIImage+expanded','~> 0.0.7'`
-# `pod 'UILabel+expanded','~> 0.0.7'`
-# `pod 'UIView+expanded','~> 0.0.7'`
-# `pod 'UIView+AutoLayout'`
-# `pod 'BaseFile','~> 0.1.3'`
-# `pod 'BaseScrollView','~> 0.0.9'`
-# `pod 'BaseCollectionView','~> 0.1.3'`
-# `pod 'BaseStaticTableView','~> 0.0.9'`
-# `pod 'BaseTableView','~> 0.1.2'`
-# `pod 'BaseFillTableViewController','~> 0.1.2'`
-# `pod 'XCatogory','~> 0.1.1'`
-# `pod 'ObjectDictionary','~> 0.1.4'`
-# `pod 'XUtility','~> 0.1.1'`
 
+```pod 'MyPageControl','~> 0.0.7'
+pod 'GRBNavigationKit', '~> 0.1.4'
+pod 'NSData+expanded','~> 0.0.7'
+pod 'NSDate+expanded','~> 0.0.7'
+pod 'NSDictionary+expanded','~> 0.0.7'
+pod 'NSMutableArray+expanded','~> 0.0.7'
+pod 'NSObject+expanded','~> 0.0.7'
+pod 'NSString+expanded','~> 0.0.7'
+pod 'SDDataCache','~> 0.0.6'
+pod 'UIColor+expanded','~> 0.0.7'
+pod 'UIControl+expanded','~> 0.0.7'
+pod 'UIImage+expanded','~> 0.0.7'
+pod 'UILabel+expanded','~> 0.0.7'
+pod 'UIView+expanded','~> 0.0.7'
+pod 'UIView+AutoLayout'
+pod 'BaseFile','~> 0.1.3'
+pod 'BaseScrollView','~> 0.0.9'
+pod 'BaseCollectionView','~> 0.1.3'
+pod 'BaseStaticTableView','~> 0.0.9'
+pod 'BaseTableView','~> 0.1.2'
+pod 'BaseFillTableViewController','~> 0.1.2'
+pod 'XCategory','~> 0.1.1'
+pod 'XUtility','~> 0.1.1'
+```
+# 更新内容
+那些小拓展和小继承的pod安装取消，进行了整合。
+pod 'BaseFile'
+pod 'BaseScrollView'
+pod 'BaseCollectionView'
+pod 'BaseTableView'
+pod 'BaseStaticTableView'
+pod 'BaseFillTableViewController'
+pod 'XCategory'
+pod 'XExtension'
+pod 'XCarryOn'
 一共23个
 # RepositoryBranch
 ## 这是只克隆一个仓库中的某个文件夹或某个分支到本地进行修改并上传的说明。

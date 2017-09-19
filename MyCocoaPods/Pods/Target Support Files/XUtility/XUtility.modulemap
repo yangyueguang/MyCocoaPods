@@ -1,6 +1,0 @@
-framework module XUtility {
-  umbrella header "XUtility-umbrella.h"
-
-  export *
-  module * { export * }
-}

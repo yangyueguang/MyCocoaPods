@@ -1,6 +1,0 @@
-framework module GRBNavigationKit {
-  umbrella header "GRBNavigationKit-umbrella.h"
-
-  export *
-  module * { export * }
-}

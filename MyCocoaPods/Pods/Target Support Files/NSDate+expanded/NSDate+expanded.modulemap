@@ -1,6 +1,0 @@
-framework module NSDate_expanded {
-  umbrella header "NSDate+expanded-umbrella.h"
-
-  export *
-  module * { export * }
-}

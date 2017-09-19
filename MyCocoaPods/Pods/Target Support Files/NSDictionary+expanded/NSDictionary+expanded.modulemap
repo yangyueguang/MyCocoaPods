@@ -1,6 +1,0 @@
-framework module NSDictionary_expanded {
-  umbrella header "NSDictionary+expanded-umbrella.h"
-
-  export *
-  module * { export * }
-}

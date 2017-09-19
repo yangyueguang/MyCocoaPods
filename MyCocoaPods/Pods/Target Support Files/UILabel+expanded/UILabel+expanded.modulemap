@@ -1,6 +1,0 @@
-framework module UILabel_expanded {
-  umbrella header "UILabel+expanded-umbrella.h"
-
-  export *
-  module * { export * }
-}

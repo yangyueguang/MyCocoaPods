@@ -1,6 +1,0 @@
-framework module BaseScrollView {
-  umbrella header "BaseScrollView-umbrella.h"
-
-  export *
-  module * { export * }
-}

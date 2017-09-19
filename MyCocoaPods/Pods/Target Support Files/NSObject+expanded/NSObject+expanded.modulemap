@@ -1,6 +1,0 @@
-framework module NSObject_expanded {
-  umbrella header "NSObject+expanded-umbrella.h"
-
-  export *
-  module * { export * }
-}

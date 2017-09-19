@@ -1,39 +1,38 @@
 platform:ios, '8.0'
 target 'MyCocoaPods' do
 use_frameworks!
-pod 'SDWebImage'                                     #网络图片请求                   https://github.com/rs/SDWebImage
-pod 'SVProgressHUD', '0.9'                           #提示性信息展示                  https://github.com/SVProgressHUD/SVProgressHUD
-pod 'MJRefresh', '~> 3.1.0'
-pod 'AFNetworking', '~> 3.0'                         #轻量级网络请求                   https://github.com/AFNetworking/AFNetworking
+#pod 'SDWebImage'                                     #网络图片请求                   https://github.com/rs/SDWebImage
+#pod 'SVProgressHUD', '0.9'                           #提示性信息展示                  https://github.com/SVProgressHUD/SVProgressHUD
+#pod 'MJRefresh', '~> 3.1.0'
+#pod 'AFNetworking', '~> 3.0'                         #轻量级网络请求                   https://github.com/AFNetworking/AFNetworking
 #以下是我的CocoaPods
-pod 'GRBNavigationKit'
-pod 'MyPageControl'
-pod 'NSData+expanded'
-pod 'NSDate+expanded'
-pod 'NSDictionary+expanded'
-
-pod 'NSMutableArray+expanded'
-pod 'NSObject+expanded'
-pod 'NSString+expanded'
-pod 'SDDataCache'
-pod 'UIColor+expanded'
-
-pod 'UIControl+expanded'
-pod 'UIImage+expanded'
-pod 'UILabel+expanded'
-pod 'UIView+expanded'
-pod 'UIView+AutoLayout'
+#pod 'GRBNavigationKit'
+#pod 'MyPageControl'
+#pod 'NSData+expanded'
+#pod 'NSDate+expanded'
+#pod 'NSDictionary+expanded'
+#
+#pod 'NSMutableArray+expanded'
+#pod 'NSObject+expanded'
+#pod 'NSString+expanded'
+#pod 'SDDataCache'
+#pod 'UIColor+expanded'
+#
+#pod 'UIControl+expanded'
+#pod 'UIImage+expanded'
+#pod 'UILabel+expanded'
+#pod 'UIView+expanded'
 
 #第二版
-pod 'BaseScrollView'
-pod 'BaseStaticTableView'
-pod 'BaseFillTableViewController'
+#pod 'BaseScrollView'
+#pod 'BaseStaticTableView'
+#pod 'BaseFillTableViewController'
 #pod 'BaseFile'
-pod 'XUtility'
-
-pod 'XCategory'
-pod 'ObjectDictionary'   #0.1.1
-pod 'BaseCollectionView'
-pod 'BaseTableView'
+#pod 'XUtility'
+#
+#pod 'XCategory'
+#pod 'ObjectDictionary'   #0.1.1
+#pod 'BaseCollectionView'
+#pod 'BaseTableView'
 
 end

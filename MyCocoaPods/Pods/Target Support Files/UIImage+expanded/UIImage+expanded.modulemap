@@ -1,6 +1,0 @@
-framework module UIImage_expanded {
-  umbrella header "UIImage+expanded-umbrella.h"
-
-  export *
-  module * { export * }
-}

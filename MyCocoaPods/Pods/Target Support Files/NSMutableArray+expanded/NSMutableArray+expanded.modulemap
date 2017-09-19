@@ -1,6 +1,0 @@
-framework module NSMutableArray_expanded {
-  umbrella header "NSMutableArray+expanded-umbrella.h"
-
-  export *
-  module * { export * }
-}

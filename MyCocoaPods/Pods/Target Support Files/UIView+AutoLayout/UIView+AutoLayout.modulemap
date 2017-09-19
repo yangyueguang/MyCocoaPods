@@ -1,6 +1,0 @@
-framework module UIView_AutoLayout {
-  umbrella header "UIView+AutoLayout-umbrella.h"
-
-  export *
-  module * { export * }
-}

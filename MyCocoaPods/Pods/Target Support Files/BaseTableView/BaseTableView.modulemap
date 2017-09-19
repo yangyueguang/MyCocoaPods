@@ -1,6 +1,0 @@
-framework module BaseTableView {
-  umbrella header "BaseTableView-umbrella.h"
-
-  export *
-  module * { export * }
-}

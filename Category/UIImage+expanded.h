@@ -2,8 +2,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImage (expanded)
-///通过颜色来生成一个纯色图片
-+ (UIImage *)imageFromColor:(UIColor *)color size:(CGSize )aSize;
+
 - (UIImage *)imageAtRect:(CGRect)rect;
 
 - (UIImage *)imageByScalingProportionallyToMinimumSize:(CGSize)targetSize;
@@ -39,4 +38,21 @@
  *  根据图片名返回一张能够自由拉伸的图片
  */
 + (UIImage *)resizableImageWithName:(NSString *)imageName;
+/// 获取屏幕截图
+///
+/// @return 屏幕截图图像
++ (UIImage *)scott_screenShot;
+
+
+/**
+ *  生成一张高斯模糊的图片
+ *
+ *  @param image 原图
+ *  @param blur  模糊程度 (0~1)
+ *
+ *  @return 高斯模糊图片
+ */
++ (UIImage *)scott_blurImage:(UIImage *)image blur:(CGFloat)blur;
+///图片灰色
+- (UIImage *)grayImage;
 @end

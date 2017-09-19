@@ -1,7 +1,92 @@
 
 #import "NSString+expanded.h"
 #import <CommonCrypto/CommonDigest.h>
+
+
+
+#define EmojiCodeToSymbol(c) ((((0x808080F0 | (c & 0x3F000) >> 4) | (c & 0xFC0) << 10) | (c & 0x1C0000) << 18) | (c & 0x3F) << 24)
+
 @implementation NSString(expanded)
+- (NSString*) urlEncodedString {
+    
+    CFStringRef encodedCFString = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                          (__bridge CFStringRef) self,
+                                                                          nil,
+                                                                          CFSTR("?!@#$^&%*+,:;='\"`<>()[]{}/\\| "),
+                                                                          kCFStringEncodingUTF8);
+    
+    NSString *encodedString = [[NSString alloc] initWithString:(__bridge_transfer NSString*) encodedCFString];
+    
+    if(!encodedString)
+        encodedString = @"";
+    
+    return encodedString;
+}
+
+- (NSString*) urlDecodedString {
+    
+    CFStringRef decodedCFString = CFURLCreateStringByReplacingPercentEscapesUsingEncoding(kCFAllocatorDefault,
+                                                                                          (__bridge CFStringRef) self,
+                                                                                          CFSTR(""),
+                                                                                          kCFStringEncodingUTF8);
+    
+    // We need to replace "+" with " " because the CF method above doesn't do it
+    NSString *decodedString = [[NSString alloc] initWithString:(__bridge_transfer NSString*) decodedCFString];
+    return (!decodedString) ? @"" : [decodedString stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+}
+- (NSString*)encodeValue:(NSString*)value{
+    NSString* encodedValue = value;
+    if (value.length > 0) {
+        NSCharacterSet *set = [[NSCharacterSet characterSetWithCharactersInString:@"!*'();:@&=+$,/?%#[]"]invertedSet];
+        encodedValue = [value stringByAddingPercentEncodingWithAllowedCharacters:set];
+    }
+    return encodedValue;
+}
+- (NSMutableDictionary *)getURLParameters {
+    NSRange range = [self rangeOfString:@"?"];
+    if (range.location == NSNotFound) {return nil;}
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    // 截取参数
+    NSString *parametersString = [self substringFromIndex:range.location + 1];
+    // 判断参数是单个参数还是多个参数
+    if ([parametersString containsString:@"&"]) {
+        NSArray *urlComponents = [parametersString componentsSeparatedByString:@"&"];
+        for (NSString *keyValuePair in urlComponents) {
+            // 生成Key/Value
+            NSArray *pairComponents = [keyValuePair componentsSeparatedByString:@"="];
+            NSString *key = [pairComponents.firstObject stringByRemovingPercentEncoding];
+            NSString *value = [pairComponents.lastObject stringByRemovingPercentEncoding];
+            if (key == nil || value == nil) {continue;}
+            id existValue = [params valueForKey:key];
+            if (existValue != nil) {
+                // 已存在的值，生成数组
+                if ([existValue isKindOfClass:[NSArray class]]) {
+                    NSMutableArray *items = [NSMutableArray arrayWithArray:existValue];
+                    [items addObject:value];
+                    [params setValue:items forKey:key];
+                } else {
+                    [params setValue:@[existValue, value] forKey:key];
+                }
+            } else {
+                [params setValue:value forKey:key];
+            }
+        }
+    } else {
+        // 单个参数// 生成Key/Value
+        NSArray *pairComponents = [parametersString componentsSeparatedByString:@"="];
+        // 只有一个参数，没有值
+        if (pairComponents.count == 1) {return nil;}
+        // 分隔值
+        NSString *key = [pairComponents.firstObject stringByRemovingPercentEncoding];
+        NSString *value = [pairComponents.lastObject stringByRemovingPercentEncoding];
+        // Key不能为nil
+        if (key == nil || value == nil) {
+            return nil;
+        }   // 设置值
+        [params setValue:value forKey:key];
+    }
+    return params;
+}
 
 - (NSString *)stringByReplaceHTML{
     
@@ -33,15 +118,15 @@
 -(NSString*)replaceControlString
 {
     NSString *tempStr = self;
-	tempStr=[tempStr stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
-	tempStr=[tempStr stringByReplacingOccurrencesOfString:@"\b" withString:@"\\b"];
-	tempStr=[tempStr stringByReplacingOccurrencesOfString:@"\f" withString:@"\\f"];
-	tempStr=[tempStr stringByReplacingOccurrencesOfString:@"\r" withString:@"\\t"];
-	tempStr=[tempStr stringByReplacingOccurrencesOfString:@"\t" withString:@"\\r"];
-	tempStr=[tempStr stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
-	tempStr=[tempStr stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-	
-	return tempStr;
+    tempStr=[tempStr stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+    tempStr=[tempStr stringByReplacingOccurrencesOfString:@"\b" withString:@"\\b"];
+    tempStr=[tempStr stringByReplacingOccurrencesOfString:@"\f" withString:@"\\f"];
+    tempStr=[tempStr stringByReplacingOccurrencesOfString:@"\r" withString:@"\\t"];
+    tempStr=[tempStr stringByReplacingOccurrencesOfString:@"\t" withString:@"\\r"];
+    tempStr=[tempStr stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
+    tempStr=[tempStr stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+    
+    return tempStr;
 }
 -(NSString*)replaceStoreKey
 {
@@ -93,7 +178,17 @@
 //        return [NSString stringWithFormat:@"%@%@",[@"" stringByPaddingToLength:(size.width/[@"_" sizeWithFont:_font].width+2)*2 withString:@" " startingAtIndex:0],self];
 //    }
 //}
-
+- (NSString *)indentLength:(CGFloat)_len font:(UIFont *)_font
+{
+    NSString *str=@"";
+    CGFloat temp=0.0;
+    while (temp<=_len) {
+        str=[str stringByAppendingString:@" "];
+        temp = [str sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:_font,NSFontAttributeName, nil]].width;
+    }
+    return [NSString stringWithFormat:@"%@%@",str,self];
+    //[@"" stringByPaddingToLength:(_len/[@"_" sizeWithFont:_font].width+1) withString:@"_" startingAtIndex:0]
+}
 - (BOOL)notEmptyOrNull
 {
     if ([self isEqualToString:@""]||[self isEqualToString:@"null"] || [self isEqualToString:@"\"\""] || [self isEqualToString:@"''"]) {
@@ -142,16 +237,248 @@
     return [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:soap=\"http://soap.csc.iofd.cn/\"> <soapenv:Header/> <soapenv:Body><soap:%@>%@</soap:%@></soapenv:Body></soapenv:Envelope>",self,obj?obj:@"",self];
 }
 - (NSString *)md5{
-	const char *concat_str = [self UTF8String];
-	unsigned char result[CC_MD5_DIGEST_LENGTH];
-	CC_MD5(concat_str, strlen(concat_str), result);
-	NSMutableString *hash = [NSMutableString string];
-	for (int i = 0; i < 16; i++){
-		[hash appendFormat:@"%02X", result[i]];
-	}
-	return [hash lowercaseString];
-	
+    const char *concat_str = [self UTF8String];
+    unsigned char result[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(concat_str, strlen(concat_str), result);
+    NSMutableString *hash = [NSMutableString string];
+    for (int i = 0; i < 16; i++){
+        [hash appendFormat:@"%02X", result[i]];
+    }
+    return [hash lowercaseString];
+    
 }
+#pragma mark 计算字符串大小
+- (CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize
+{
+    NSDictionary *dict = @{NSFontAttributeName: font};
+    CGSize textSize = [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil].size;
+    return textSize;
+}
+
+- (NSString *) pinyin
+{
+    NSMutableString *str = [self mutableCopy];
+    CFStringTransform((CFMutableStringRef)str, NULL, kCFStringTransformMandarinLatin, NO);
+    CFStringTransform((CFMutableStringRef)str, NULL, kCFStringTransformStripDiacritics, NO);
+    
+    return [str stringByReplacingOccurrencesOfString:@" " withString:@""];
+}
+
+- (NSString *) pinyinInitial
+{
+    if (self.length == 0) {
+        return nil;
+    }
+    NSMutableString *str = [self mutableCopy];
+    CFStringTransform((CFMutableStringRef)str, NULL, kCFStringTransformMandarinLatin, NO);
+    CFStringTransform((CFMutableStringRef)str, NULL, kCFStringTransformStripDiacritics, NO);
+    
+    NSArray *word = [str componentsSeparatedByString:@" "];
+    NSMutableString *initial = [[NSMutableString alloc] initWithCapacity:str.length / 3];
+    for (NSString *str in word) {
+        [initial appendString:[str substringToIndex:1]];
+    }
+    
+    return initial;
+}
+/**
+ *  @brief  urlEncode
+ *
+ *  @return urlEncode 后的字符串
+ */
+- (NSString *)urlEncode {
+    return [self urlEncodeUsingEncoding:NSUTF8StringEncoding];
+}
+/**
+ *  @brief  urlEncode
+ *
+ *  @param encoding encoding模式
+ *
+ *  @return urlEncode 后的字符串
+ */
+- (NSString *)urlEncodeUsingEncoding:(NSStringEncoding)encoding {
+    return (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                                 (__bridge CFStringRef)self,NULL,(CFStringRef)@"!*'\"();:@&=+$,/?%#[]% ",
+                                                                                 CFStringConvertNSStringEncodingToEncoding(encoding));
+}
+/**
+ *  @brief  urlDecode
+ *
+ *  @return urlDecode 后的字符串
+ */
+- (NSString *)urlDecode {
+    return [self urlDecodeUsingEncoding:NSUTF8StringEncoding];
+}
+/**
+ *  @brief  urlDecode
+ *
+ *  @param encoding encoding模式
+ *
+ *  @return urlDecode 后的字符串
+ */
+- (NSString *)urlDecodeUsingEncoding:(NSStringEncoding)encoding {
+    return (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
+                                                                                                 (__bridge CFStringRef)self,CFSTR(""),CFStringConvertNSStringEncodingToEncoding(encoding));
+}
+/**
+ *  @brief  url query转成NSDictionary
+ *
+ *  @return NSDictionary
+ */
+- (NSDictionary *)dictionaryFromURLParameters
+{
+    NSArray *pairs = [self componentsSeparatedByString:@"&"];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    for (NSString *pair in pairs) {
+        NSArray *kv = [pair componentsSeparatedByString:@"="];
+        NSString *val = [[kv objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [params setObject:val forKey:[kv objectAtIndex:0]];
+    }
+    return params;
+}
+
+- (UIColor *) stringTOColor:(NSString *)str
+{
+    if (!str || [str isEqualToString:@""]) {
+        return nil;
+    }
+    unsigned red,green,blue;
+    NSRange range;
+    range.length = 2;
+    range.location = 1;
+    [[NSScanner scannerWithString:[str substringWithRange:range]] scanHexInt:&red];
+    range.location = 3;
+    [[NSScanner scannerWithString:[str substringWithRange:range]] scanHexInt:&green];
+    range.location = 5;
+    [[NSScanner scannerWithString:[str substringWithRange:range]] scanHexInt:&blue];
+    UIColor *color= [UIColor colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:1];
+    return color;
+}
+
+
+
++ (NSString *)emojiWithIntCode:(int)intCode {
+    int symbol = EmojiCodeToSymbol(intCode);
+    NSString *string = [[NSString alloc] initWithBytes:&symbol length:sizeof(symbol) encoding:NSUTF8StringEncoding];
+    if (string == nil) { // 新版Emoji
+        string = [NSString stringWithFormat:@"%C", (unichar)intCode];
+    }
+    return string;
+}
+
+- (NSString *)emoji
+{
+    return [NSString emojiWithStringCode:self];
+}
+
++ (NSString *)emojiWithStringCode:(NSString *)stringCode
+{
+    char *charCode = (char *)stringCode.UTF8String;
+    int intCode = strtol(charCode, NULL, 16);
+    return [self emojiWithIntCode:intCode];
+}
+
+// 判断是否是 emoji表情
+- (BOOL)isEmoji
+{
+    BOOL returnValue = NO;
+    
+    const unichar hs = [self characterAtIndex:0];
+    // surrogate pair
+    if (0xd800 <= hs && hs <= 0xdbff) {
+        if (self.length > 1) {
+            const unichar ls = [self characterAtIndex:1];
+            const int uc = ((hs - 0xd800) * 0x400) + (ls - 0xdc00) + 0x10000;
+            if (0x1d000 <= uc && uc <= 0x1f77f) {
+                returnValue = YES;
+            }
+        }
+    } else if (self.length > 1) {
+        const unichar ls = [self characterAtIndex:1];
+        if (ls == 0x20e3) {
+            returnValue = YES;
+        }
+    } else {
+        // non surrogate
+        if (0x2100 <= hs && hs <= 0x27ff) {
+            returnValue = YES;
+        } else if (0x2B05 <= hs && hs <= 0x2b07) {
+            returnValue = YES;
+        } else if (0x2934 <= hs && hs <= 0x2935) {
+            returnValue = YES;
+        } else if (0x3297 <= hs && hs <= 0x3299) {
+            returnValue = YES;
+        } else if (hs == 0xa9 || hs == 0xae || hs == 0x303d || hs == 0x3030 || hs == 0x2b55 || hs == 0x2b1c || hs == 0x2b1b || hs == 0x2b50) {
+            returnValue = YES;
+        }
+    }
+    
+    return returnValue;
+}
+- (CGSize)sizeWithFont:(UIFont *)font maxW:(CGFloat)maxW
+{
+    NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
+    attrs[NSFontAttributeName] = font;
+    CGSize maxSize = CGSizeMake(maxW, MAXFLOAT);
+    return [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+}
+
+- (CGSize)sizeWithFont:(UIFont *)font
+{
+    return [self sizeWithFont:font maxW:MAXFLOAT];
+}
+
+-(NSString *)fileAppend:(NSString *)append
+{
+    //1.1获得文件扩展名
+    NSString *ext = [self pathExtension];
+    //1.2删除最后面的扩展名
+    NSString *imageName = [self stringByDeletingPathExtension];
+    
+    //1.3拼接append
+    imageName = [imageName stringByAppendingString:append];
+    
+    //1.4拼接扩展名
+    imageName = [imageName stringByAppendingPathExtension:ext];
+    
+    return imageName;
+}
+
++(NSString *)stringWithDouble:(double)value decimalsCount:(int)decimalsCount
+{
+    if (decimalsCount < 0) {
+        return nil;
+    }
+    
+    //生成格式字符串
+    NSString *fmt = [NSString stringWithFormat:@"%%.%df", decimalsCount];
+    
+    //生成保留decimalsCount位小数的字符串
+    NSString *str = [NSString stringWithFormat:fmt, value];
+    
+    //没有小数，直接返回
+    if ([str rangeOfString:@"."].length == 0) {
+        return str;
+    }
+    
+    //从最后面往前找，不断删除最后面的0和最后一个“.”
+    int index = str.length - 1;
+    unichar currentChar = [str characterAtIndex:index];
+    for (; currentChar == '0' || currentChar == '.'; index--, currentChar = [str characterAtIndex:index]) {
+        //裁减到“.”直接返回
+        if (currentChar == '.') {
+            return [str substringToIndex:index];
+        }
+    }
+    
+    str = [str substringToIndex:index + 1];
+    
+    return str;
+}
+
+
+
+
 + (NSString *)UTF8StringWithHZGB2312Data:(NSData *)data
 {
     NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
@@ -218,34 +545,27 @@
     return [arrayM copy];
 }
 
--(NSDictionary*)tojsonDictionary{
-    
-    if (self == nil) {
+-(NSMutableAttributedString*)attributeNumberWithFont:(UIFont*)font color:(UIColor*)color{
+    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:self attributes:@{NSFontAttributeName:font,NSForegroundColorAttributeName:color}];
+    for(int i =0; i < [self length];i++) {
+        int a = [self characterAtIndex:i];
         
-        return nil;
-        
+        if(isdigit(a)){
+            [AttributedStr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:53/255.0 green:190/255.0 blue:131/255.0 alpha:1/1.0]
+ range:NSMakeRange(i,1)];
+        }
     }
-    
-    NSData *jsonData = [self dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSError *err;
-    
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
-                         
-                                                        options:NSJSONReadingMutableContainers
-                         
-                                                          error:&err];
-    
-    if(err) {
-        
-        NSLog(@"json解析失败：%@",err);
-        
-        return nil;
-        
+    return AttributedStr;
+}
+-(NSMutableAttributedString*)attributeNumberWithBoldFontSize:(CGFloat)fontsize color:(UIColor*)color{
+    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:self attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontsize],NSForegroundColorAttributeName:color}];
+    for(int i =0; i < [self length];i++) {
+        int a = [self characterAtIndex:i];
+        if(isdigit(a)){
+            [AttributedStr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:33/255.0 green:34/255.0 blue:35/255.0 alpha:1] range:NSMakeRange(i,1)];
+            [AttributedStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:fontsize+2] range:NSMakeRange(i, 1)];
+        }
     }
-    
-    return dic;
-    
-    
+    return AttributedStr;
 }
 @end

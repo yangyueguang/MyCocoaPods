@@ -1,6 +1,0 @@
-framework module NSData_expanded {
-  umbrella header "NSData+expanded-umbrella.h"
-
-  export *
-  module * { export * }
-}
