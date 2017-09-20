@@ -98,12 +98,42 @@
     }
     return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
-
+// 计算方位角,正北向为0度，以顺时针方向递增
+-(double)computeAzimuthCLL:(CLLocationCoordinate2D)la1 :(CLLocationCoordinate2D)la2{
+    double lat1 = la1.latitude, lon1 = la1.longitude, lat2 = la2.latitude, lon2 = la2.longitude;
+    double result = 0.0;
+    int ilat1 = (int) (0.50 + lat1 * 360000.0);
+    int ilat2 = (int) (0.50 + lat2 * 360000.0);
+    int ilon1 = (int) (0.50 + lon1 * 360000.0);
+    int ilon2 = (int) (0.50 + lon2 * 360000.0);
+    lat1 = lat1*M_PI/180;
+    lon1 = lon1*M_PI/180;
+    lat2 = lat2*M_PI/180;
+    lon2 = lon2*M_PI/180;
+    if ((ilat1 == ilat2) && (ilon1 == ilon2)) {
+        return result;
+    } else if (ilon1 == ilon2) {
+        if (ilat1 > ilat2)result = 180.0;
+    } else {
+        double c = acos(sin(lat2) * sin(lat1) + cos(lat2) * cos(lat1) * cos((lon2 - lon1)));
+        double A = asin(cos(lat2) * sin((lon2 - lon1))/ sin(c));
+        result = A*180/M_PI;
+        if ((ilat2 > ilat1) && (ilon2 > ilon1)) {
+        } else if ((ilat2 < ilat1) && (ilon2 < ilon1)) {
+            result = 180.0 - result;
+        } else if ((ilat2 < ilat1) && (ilon2 > ilon1)) {
+            result = 180.0 - result;
+        } else if ((ilat2 > ilat1) && (ilon2 < ilon1)) {
+            result += 360.0;
+        }
+    }
+    return result;
+}
 #pragma mark - Class Methods
 + (NSArray *)objectArrayWithJsonArray:(NSArray *)jsonArray {
     NSMutableArray *objects = [NSMutableArray array];
     for (NSDictionary *dict in jsonArray) {
-        id instance = [[self alloc] initWithDict:dict];
+        id instance = [[self alloc] initWithExpandedDict:dict];
         [objects addObject:instance];
     }
     return objects;
@@ -134,15 +164,12 @@
 
 #pragma mark - Initialize
 
-- (id)initWithDict:(NSDictionary *)aDict
-{
+- (id)initWithExpandedDict:(NSDictionary *)aDict{
     self = [self init];
-    
     if (self) {
         //建立映射关系
         [self setAttributesDictionary:aDict];
     }
-    
     return self;
 }
 
@@ -152,13 +179,12 @@
         //解析json字符串
         NSError *error = nil;
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableLeaves error:&error];
-        
         if (error) {
             NSLog(@"Error occured when init object with json string: %@, error: %@", json, error.localizedDescription);
             return nil;
         }
         
-        self = [self initWithDict:dict];
+        self = [self initWithExpandedDict:dict];
     }
     
     return self;
@@ -331,7 +357,7 @@
                     Class newClass = objc_getClass([type cStringUsingEncoding:NSUTF8StringEncoding]);
                     //如果是该类的子类，说明能响应initWithDict:方法并且能建立映射字典。
                     if ([newClass isSubclassOfClass:[NSObject class]]) {
-                        id instance = [[newClass alloc] initWithDict:aDictValue];
+                        id instance = [[newClass alloc] initWithExpandedDict:aDictValue];
                         [self performSelectorOnMainThread:setter withObject:instance waitUntilDone:[NSThread isMainThread]];
                     }
                     
@@ -355,7 +381,7 @@
                         Class classInArray = NSClassFromString(classString);
                         //如果是该类的子类，说明能响应initWithDict:方法并且能建立映射字典。
                         if ([classInArray isSubclassOfClass:[NSObject class]]) {
-                            id instance = [[classInArray alloc] initWithDict:content];
+                            id instance = [[classInArray alloc] initWithExpandedDict:content];
                             [valueArray addObject:instance];
                         } else {
                             //如果不是数组中包含的不是自定义对象（例如，NSString或NSNumber等），并且符合子类给出的映射字典中的映射规则，那么直接添加到最终数组中
@@ -598,66 +624,43 @@
         [self performSelectorOnMainThread:setter withObject:[NSNull null] waitUntilDone:[NSThread isMainThread]];
     }
 }
-- (NSString *)description{
-    static int level = 1;
-    unsigned int count;
-    objc_property_t *propList = class_copyPropertyList([self class], &count);
-    NSMutableString *propPrint = [NSMutableString string];
-    
-    // Now see if we need to map any superclasses as well.
-    Class superClass = class_getSuperclass( [self class] );
-    if (superClass != nil && ! [superClass isEqual:[NSObject class]]) {
-        NSString *superString = [self description];
-        [propPrint appendString:superString];
-    }
-    
-    // --------- begin printing --------
-    [propPrint appendString:@" {\r"];
-    for (int i = 0; i < count; i++) {
-        objc_property_t property = propList[i];
-        
-        const char *propName = property_getName(property);
-        NSString *propNameString =[NSString stringWithCString:propName encoding:NSASCIIStringEncoding];
-        
-        if(propName)
-        {
-            id value = [self valueForKey:propNameString];
-            //            for (int i = 0; i <= [levels indexOfObject:[self class]]; i++) {
-            //                [propPrint appendString:@"   "];
-            //            }
-            
-            // fill blanks
-            for (int j = 0; j < level; j++) {
-                [propPrint appendString:@"   "];
-            }
-            
-            // increase indent level if this value is kind of array.
-            if ([value isKindOfClass:[NSArray class]]) {
-                level++;
-            }
-            [propPrint appendString:[NSString stringWithFormat:@"%@=%@ ;\r", propNameString, value]];
-            // decrease to original level for next printing
-            if ([value isKindOfClass:[NSArray class]]) {
-                level--;
-            }
-        }
-    }
-    
-    //    for (int i = 0; i < [levels indexOfObject:[self class]]; i++) {
-    //        [propPrint appendString:@"   "];
-    //    }
-    
-    for (int i = 0; i < level - 1; i++) {
-        [propPrint appendString:@"   "];
-    }
-    [propPrint appendString:@"}"];
-    
-    free(propList);
-    
-    [propPrint replaceOccurrencesOfString:@"\n" withString:@"\r" options:NSCaseInsensitiveSearch range:NSMakeRange(0, propPrint.length)];
-    
-    return propPrint;
-}
+//- (NSString *)description{
+//    static int level = 1;
+//    unsigned int count;
+//    objc_property_t *propList = class_copyPropertyList([self class], &count);
+//    NSMutableString *propPrint = [NSMutableString string];
+//    Class superClass = class_getSuperclass( [self class] );
+//    if (superClass != nil && ! [superClass isEqual:[NSObject class]]) {
+//        NSString *superString = [self description];
+//        [propPrint appendString:superString];
+//    }
+//    [propPrint appendString:@" {\r"];
+//    for (int i = 0; i < count; i++) {
+//        objc_property_t property = propList[i];
+//        const char *propName = property_getName(property);
+//        NSString *propNameString =[NSString stringWithCString:propName encoding:NSASCIIStringEncoding];
+//        if(propName){
+//            id value = [self valueForKey:propNameString];
+//            for (int j = 0; j < level; j++) {
+//                [propPrint appendString:@"   "];
+//            }
+//            if ([value isKindOfClass:[NSArray class]]) {
+//                level++;
+//            }
+//            [propPrint appendString:[NSString stringWithFormat:@"%@=%@ ;\r", propNameString, value]];
+//            if ([value isKindOfClass:[NSArray class]]) {
+//                level--;
+//            }
+//        }
+//    }
+//    for (int i = 0; i < level - 1; i++) {
+//        [propPrint appendString:@"   "];
+//    }
+//    [propPrint appendString:@"}"];
+//    free(propList);
+//    [propPrint replaceOccurrencesOfString:@"\n" withString:@"\r" options:NSCaseInsensitiveSearch range:NSMakeRange(0, propPrint.length)];
+//    return propPrint;
+//}
 
 
 @end

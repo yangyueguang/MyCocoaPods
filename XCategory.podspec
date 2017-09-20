@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "XCategory"
-  s.version      = "0.1.7"
+  s.version      = "0.1.8"
   s.summary      = "这是拓展的集合"
   s.frameworks   = 'UIKit','Foundation','StoreKit','AudioToolbox'
  #s.requires_arc = true
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.author       = { "yangyueguang" => "2829969299@qq.com" }
   s.source       = { :git => "https://github.com/yangyueguang/MyCocoaPods.git", :tag => "#{s.version}" }
   s.source_files = 'Category'
-  s.dependency 'SVProgressHUD','~> 0.9'
+  s.dependency 'SVProgressHUD'
   s.dependency 'MJRefresh'
   s.dependency 'AFNetworking'
   s.dependency 'SDWebImage'

@@ -633,11 +633,16 @@ static CGRect swapWidthAndHeight(CGRect rect)
     __block __typeof(UIImage*)wimage = image;
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",basePicPath,name]];
-    [manager loadImageWithURL:url options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+    [manager downloadImageWithURL:url options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
         if (image) {
             wimage = image;
         }
     }];
+//    [manager loadImageWithURL:url options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+//        if (image) {
+//            wimage = image;
+//        }
+//    }];
     return wimage;
 }
 + (UIImage *)resizableImageWithName:(NSString *)imageName{

@@ -11,6 +11,7 @@
 ///将NSArray或者NSDictionary转化为NSString
 -(NSString *)JSONString_l;
 
+-(double)computeAzimuthCLL:(CLLocationCoordinate2D)la1 :(CLLocationCoordinate2D)la2;
 
 ///FIXME: 新的
 
@@ -26,7 +27,7 @@
 + (NSString *)jsonStringWithObjectArray:(NSArray *)objectArray;
 
 //初始化方法，将传入字典的key对应的value赋值给Model对象中相应地属性。
-- (id)initWithDict:(NSDictionary *)aDict;
+- (id)initWithExpandedDict:(NSDictionary *)aDict;
 
 // 初始化方法，传入json字符串，根据json字符串中的键值关系为对象相应属性赋值
 - (id)initWithJsonString:(NSString *)json;

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BaseStaticTableView"
-  s.version      = "0.1.6"
+  s.version      = "0.1.8"
   s.summary      = "这是基本的静态表格视图."
   s.frameworks   = 'UIKit','Foundation'
   s.requires_arc = true
@@ -16,5 +16,4 @@ Pod::Spec.new do |s|
    s.dependency 'AFNetworking','~>3.0'
    s.dependency 'SDWebImage'
    s.dependency 'SVProgressHUD','~>0.9'
-   s.dependency 'NSString+expanded'
 end
