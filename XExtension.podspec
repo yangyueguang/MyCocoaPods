@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name         = "XExtension"
-  s.version      = "0.1.8"
+  s.version      = "0.1.9"
   s.summary      = "这是Swift的类的拓展集合."
-  s.frameworks   = 'UIKit','Foundation'
+  s.frameworks   = 'UIKit','Foundation','CommonCrypto'
   s.requires_arc = true
   s.platform     = :ios
   s.ios.deployment_target = '8.0'
@@ -31,4 +31,5 @@ Pod::Spec.new do |s|
    s.dependency 'AFNetworking','~>3.0'
    s.dependency 'SDWebImage'
    s.dependency 'SVProgressHUD','~>0.9'
+   s.dependency 'BlocksKit'
 end

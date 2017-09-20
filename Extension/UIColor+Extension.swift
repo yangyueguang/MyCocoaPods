@@ -9,6 +9,7 @@
 
 import Foundation
 // MARK: - UIColor
+import UIKit
 extension UIColor {
     
     class func HEX(_ rgbValue: UInt) -> UIColor {

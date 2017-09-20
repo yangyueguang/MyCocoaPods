@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 extension UIScrollView {
     /*
     //MARK: --------------------------- 下拉刷新 --------------------------

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 let basePath = "api"
 let baseDomain = "https://itourtest.croninfo.com"
 let basePicPath = "https://itourtest.croninfo.com/res/"

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "XCategory"
-  s.version      = "0.1.8"
+  s.version      = "0.1.9"
   s.summary      = "这是拓展的集合"
   s.frameworks   = 'UIKit','Foundation','StoreKit','AudioToolbox'
  #s.requires_arc = true

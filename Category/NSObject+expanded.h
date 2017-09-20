@@ -1,5 +1,6 @@
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 @interface NSObject (expanded)<NSCoding>
 //perfrom for bool
 - (void)performSelector:(SEL)aSelector withBool:(BOOL)aValue;

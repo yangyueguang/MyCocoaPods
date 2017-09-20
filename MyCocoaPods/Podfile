@@ -1,10 +1,11 @@
 platform:ios, '8.0'
 target 'MyCocoaPods' do
 use_frameworks!
-#pod 'SDWebImage'                                     #网络图片请求                   https://github.com/rs/SDWebImage
-#pod 'SVProgressHUD', '0.9'                           #提示性信息展示                  https://github.com/SVProgressHUD/SVProgressHUD
+#pod 'SDWebImage'
+#pod 'BlocksKit' 
+#pod 'SVProgressHUD', '0.9'
 #pod 'MJRefresh', '~> 3.1.0'
-#pod 'AFNetworking', '~> 3.0'                         #轻量级网络请求                   https://github.com/AFNetworking/AFNetworking
+#pod 'AFNetworking', '~> 3.0'  
 #以下是我的CocoaPods
 #pod 'GRBNavigationKit'
 #pod 'MyPageControl'

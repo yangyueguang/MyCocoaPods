@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 func Dlog<T>(message: T,logError: Bool = false,file: String = #file,method: String = #function,line: Int = #line){
     if logError {
         print("\((file as NSString).lastPathComponent)[\(line)], \(method): \(message)")
