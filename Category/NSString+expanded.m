@@ -165,7 +165,7 @@
 }
 //- (CGFloat)getHeightByWidth:(NSInteger)_width font:(UIFont *)_font{
 //     //!self不会调用，不用判断了
-//   return [self sizeWithFont:_font constrainedToSize:CGSizeMake(_width, 1000) lineBreakMode:UILineBreakModeCharacterWrap].height;
+//   return [self sizeOfFont:_font constrainedToSize:CGSizeMake(_width, 1000) lineBreakMode:UILineBreakModeCharacterWrap].height;
 //}
 
 //- (NSString *)indentString:(NSString*)_string font:(UIFont *)_font
@@ -173,9 +173,9 @@
 //    if (!_string) {
 //        return self;
 //    }else{
-//        CGSize  size=[_string sizeWithFont:_font];
-//        NSLog(@"%f,%f",size.width/[@" " sizeWithFont:_font].width,[@" " sizeWithFont:_font].width);
-//        return [NSString stringWithFormat:@"%@%@",[@"" stringByPaddingToLength:(size.width/[@"_" sizeWithFont:_font].width+2)*2 withString:@" " startingAtIndex:0],self];
+//        CGSize  size=[_string sizeOfFont:_font];
+//        NSLog(@"%f,%f",size.width/[@" " sizeOfFont:_font].width,[@" " sizeOfFont:_font].width);
+//        return [NSString stringWithFormat:@"%@%@",[@"" stringByPaddingToLength:(size.width/[@"_" sizeOfFont:_font].width+2)*2 withString:@" " startingAtIndex:0],self];
 //    }
 //}
 - (NSString *)indentLength:(CGFloat)_len font:(UIFont *)_font
@@ -187,7 +187,7 @@
         temp = [str sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:_font,NSFontAttributeName, nil]].width;
     }
     return [NSString stringWithFormat:@"%@%@",str,self];
-    //[@"" stringByPaddingToLength:(_len/[@"_" sizeWithFont:_font].width+1) withString:@"_" startingAtIndex:0]
+    //[@"" stringByPaddingToLength:(_len/[@"_" sizeOfFont:_font].width+1) withString:@"_" startingAtIndex:0]
 }
 - (BOOL)notEmptyOrNull
 {
@@ -248,7 +248,7 @@
     
 }
 #pragma mark 计算字符串大小
-- (CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize
+- (CGSize)sizeOfFont:(UIFont *)font maxSize:(CGSize)maxSize
 {
     NSDictionary *dict = @{NSFontAttributeName: font};
     CGSize textSize = [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil].size;
@@ -415,7 +415,7 @@
     
     return returnValue;
 }
-- (CGSize)sizeWithFont:(UIFont *)font maxW:(CGFloat)maxW
+- (CGSize)sizeOfFont:(UIFont *)font maxW:(CGFloat)maxW
 {
     NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
     attrs[NSFontAttributeName] = font;
@@ -423,9 +423,9 @@
     return [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
 }
 
-- (CGSize)sizeWithFont:(UIFont *)font
+- (CGSize)sizeOfFont:(UIFont *)font
 {
-    return [self sizeWithFont:font maxW:MAXFLOAT];
+    return [self sizeOfFont:font maxW:MAXFLOAT];
 }
 
 -(NSString *)fileAppend:(NSString *)append
@@ -552,7 +552,7 @@
         
         if(isdigit(a)){
             [AttributedStr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:53/255.0 green:190/255.0 blue:131/255.0 alpha:1/1.0]
- range:NSMakeRange(i,1)];
+                                  range:NSMakeRange(i,1)];
         }
     }
     return AttributedStr;
@@ -569,3 +569,4 @@
     return AttributedStr;
 }
 @end
+

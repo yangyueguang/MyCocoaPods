@@ -684,6 +684,7 @@ static CGRect swapWidthAndHeight(CGRect rect)
     if (blur < 0.f || blur > 1.f) {
         blur = 0.5f;
     }
+    if(!image)return image;
     int boxSize = (int)(blur * 40);
     boxSize = boxSize - (boxSize % 2) + 1;
     CGImageRef img = image.CGImage;

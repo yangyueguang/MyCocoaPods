@@ -25,7 +25,7 @@ typedef enum {
 -(NSString*)replaceStoreKey;
 - (NSString*)soapMessage:(NSString *)key,...;
 - (NSString *)md5;
-- (CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize;
+- (CGSize)sizeOfFont:(UIFont *)font maxSize:(CGSize)maxSize;
 
 - (NSString *) pinyin;
 - (NSString *) pinyinInitial;
@@ -83,8 +83,8 @@ typedef enum {
 
 - (BOOL)isEmoji;
 
-- (CGSize)sizeWithFont:(UIFont *)font maxW:(CGFloat)maxW;
-- (CGSize)sizeWithFont:(UIFont *)font;
+- (CGSize)sizeOfFont:(UIFont *)font maxW:(CGFloat)maxW;
+- (CGSize)sizeOfFont:(UIFont *)font;
 
 /**
  *  拼接文件名
@@ -117,3 +117,4 @@ typedef enum {
 -(NSMutableAttributedString*)attributeNumberWithFont:(UIFont*)font color:(UIColor*)color;
 -(NSMutableAttributedString*)attributeNumberWithBoldFontSize:(CGFloat)fontsize color:(UIColor*)color;
 @end
+
