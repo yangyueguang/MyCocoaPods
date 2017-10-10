@@ -13,5 +13,5 @@
 typedef void (^ActionBlock)(id sender);
 - (void)removeAllTargets;
 - (void)addEventHandler:(ActionBlock)handler forControlEvents:(UIControlEvents)controlEvents;
-
+- (void)callActionHandler:(UIButton*)sender;
 @end
