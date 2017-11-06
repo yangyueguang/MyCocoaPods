@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AlipaySDK"
-  s.version      = "0.2.5"
+  s.version      = "0.2.6"
   s.summary      = "这是支付宝支付集合."
   s.requires_arc = true
   s.platform = :ios
@@ -26,13 +26,14 @@ Pod::Spec.new do |s|
   	 cv.requires_arc = true
        	end
 	s.subspec 'util' do |tv|
+	tv.dependency 'AlipaySDK/openssl'
 	tv.source_files = 'AlipaySDK/Util'
 	tv.requires_arc = true
 	end
-  s.resource = 'AlipaySDK.bundle','libcrypto.a','libssl.a'
-  s.vendored_frameworks = 'AlipaySDK.framework'
-  s.public_header_files = 'AlipaySDK.framework/Headers/**/*.h'
-  s.frameworks = 'CoreTelephony', 'SystemConfiguration','UIKit','Foundation'
-  s.dependency 'OpenSSL-Universal', '~> 1.0.1.j-2'
+  s.resources = 'AlipaySDK/AlipaySDK.bundle','AlipaySDK/libcrypto.a','AlipaySDK/libssl.a'
+ # s.vendored_frameworks = 'AlipaySDK.framework'
+ # s.public_header_files = 'AlipaySDK.framework/Headers/**/*.h'
+  s.frameworks = 'CoreTelephony', 'SystemConfiguration','UIKit','Foundation','QuartzCore','CoreText','CoreGraphics','CoreMotion'
+ # s.dependency 'OpenSSL-Universal', '~> 1.0.1.j-2'
 
 end

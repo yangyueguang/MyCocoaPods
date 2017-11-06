@@ -7,9 +7,6 @@
 #import "RespForWeChatViewController.h"
 #import "WXApiManager.h"
 #import "WXApiResponseHandler.h"
-//#import "Constant.h"
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
 static NSString *kAppContentExInfo = @"<xml>extend info</xml>";
 static NSString *kAppMessageAction = @"<action>dotaliTest</action>";
 #define BUFFER_SIZE 1024 * 100

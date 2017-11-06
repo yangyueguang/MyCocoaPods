@@ -53,8 +53,8 @@
  *
  */
 
-#include <openssl/opensslconf.h>
-
+//#include <openssl/opensslconf.h>
+#include "opensslconf.h"
 #ifndef HEADER_E_OS2_H
 #define HEADER_E_OS2_H
 

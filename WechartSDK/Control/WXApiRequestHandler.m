@@ -4,14 +4,9 @@
 //
 //  Created by Jeason on 15/7/14.
 //
-//
-
-#import "WXApi.h"
+#import <WechatOpenSDK/WXApi.h>
 #import "WXApiRequestHandler.h"
 #import "WXApiManager.h"
-//#import "SendMessageToWXReq+requestWithTextOrMediaMessage.h"
-//#import "WXMediaMessage+messageConstruct.h"
-
 @implementation WXApiRequestHandler
 + (SendMessageToWXReq *)requestWithText:(NSString *)text OrMediaMessage:(WXMediaMessage *)message bText:(BOOL)bText InScene:(enum WXScene)scene {
     SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
@@ -207,7 +202,7 @@
                       Description:(NSString *)description
                         tousrname:(NSString *)tousrname
                            ExtMsg:(NSString *)extMsg {
-    [WXApi registerApp:appID withDescription:description];
+    [WXApi registerApp:appID];
     JumpToBizWebviewReq *req = [[JumpToBizWebviewReq alloc]init];
     req.tousrname = tousrname;
     req.extMsg = extMsg;

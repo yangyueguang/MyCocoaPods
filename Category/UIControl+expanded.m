@@ -25,11 +25,11 @@ static char UIButtonHandlerKey;
 }
 
 
-- (void)callActionHandler:(UIButton*)sender
+- (void)callActionHandler
 {
     ActionBlock handler = (ActionBlock)objc_getAssociatedObject(self, &UIButtonHandlerKey);
     if (handler) {
-        handler(sender);
+        handler(self);
     }
 }
 @end

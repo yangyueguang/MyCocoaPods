@@ -5,9 +5,7 @@
 #import "SendMsgToWeChatViewController.h"
 #import "WXApiRequestHandler.h"
 #import "WXApiManager.h"
-#import "PrefixHeader.h"
 #import "RespForWeChatViewController.h"
-//#import "Constant.h"
 @interface SendMsgToWeChatViewController ()<WXApiManagerDelegate,UITextViewDelegate>{
     UILabel *tips;
     UIImage *thumbImage;
@@ -251,8 +249,8 @@
 
 #pragma mark - Private Methods
 - (void)setupHeadView {
-    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH)];
-    [headView setBackgroundColor:RGBCOLOR(0xe1, 0xe0, 0xde)];
+    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    [headView setBackgroundColor:[UIColor greenColor]];
     UIImage *image = [UIImage imageNamed:@"micro_messenger.png"];
     NSInteger tlx = (headView.frame.size.width -  image.size.width) / 2;
     NSInteger tly = 20;
@@ -268,7 +266,7 @@
 
 - (void)setupSceneView {
     UIView *sceceView = [[UIView alloc] initWithFrame:CGRectMake(0, 135 + 2, 100, 100)];
-    [sceceView setBackgroundColor:RGBCOLOR(0xef, 0xef, 0xef)];
+    [sceceView setBackgroundColor:[UIColor greenColor]];
     
     tips = [[UILabel alloc]init];
     tips.text = @"分享场景:会话";
@@ -331,9 +329,9 @@
 }
 
 - (void)setupFootView {
-    self.footView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 135 + 2 + 100 + 2, APPW, APPH - 135 - 2 - 100 - 2)];
-    [self.footView setBackgroundColor:RGBCOLOR(0xef, 0xef, 0xef)];
-    self.footView.contentSize = CGSizeMake(APPW, APPH);
+    self.footView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 135 + 2 + 100 + 2, [UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height - 135 - 2 - 100 - 2)];
+    [self.footView setBackgroundColor:[UIColor greenColor]];
+    self.footView.contentSize = [UIScreen mainScreen].bounds.size;
     [self.view addSubview:self.footView];
     
     int index = 1;

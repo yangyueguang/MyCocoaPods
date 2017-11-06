@@ -4,13 +4,8 @@
 //
 //  Created by Jeason on 15/7/14.
 //
-//
-
-#import "WXApi.h"
+#import <WechatOpenSDK/WXApi.h>
 #import "WXApiResponseHandler.h"
-//#import "GetMessageFromWXResp+responseWithTextOrMediaMessage.h"
-//#import "WXMediaMessage+messageConstruct.h"
-
 @implementation WXApiResponseHandler
 + (GetMessageFromWXResp *)responseWithText:(NSString *)text OrMediaMessage:(WXMediaMessage *)message bText:(BOOL)bText {
     GetMessageFromWXResp *resp = [[GetMessageFromWXResp alloc] init];

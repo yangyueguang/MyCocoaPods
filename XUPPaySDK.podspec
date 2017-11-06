@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
-  s.name         = "UPPaySDK"
-  s.version      = "0.2.5"
+  s.name         = "XUPPaySDK"
+  s.version      = "0.2.6"
   s.summary      = "这是银联支付集合."
   s.frameworks = 'UIKit','Foundation'
   s.requires_arc = true
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
   s.source       = { :git => "https://github.com/yangyueguang/MyCocoaPods.git", :tag => "#{s.version}" }
-  s.source_files  = "UPPaySDK"
-  s.resource = 'libPaymentControl.a'
+  s.source_files  = "XUPPaySDK"
+  s.resource = 'XUPPaySDK/libPaymentControl.a'
   # s.dependency 'AFNetworking','~>3.0'
 end

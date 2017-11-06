@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WXApiObject.h"
+#import <WechatOpenSDK/WXApiObject.h>
 #import <UIKit/UIKit.h>
 @interface WXApiRequestHandler : NSObject
 
