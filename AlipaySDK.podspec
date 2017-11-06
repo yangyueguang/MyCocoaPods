@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AlipaySDK"
-  s.version      = "0.2.6"
+  s.version      = "0.2.7"
   s.summary      = "这是支付宝支付集合."
   s.requires_arc = true
   s.platform = :ios
