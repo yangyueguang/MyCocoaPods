@@ -20,6 +20,7 @@ Pod::Spec.new do |s|
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
   s.source       = { :git => "https://github.com/yangyueguang/MyCocoaPods.git", :tag => "#{s.version}" }
+ # s.vendored_frameworks = 'AlipaySDK/AlipaySDK.framework'  
   s.source_files  = "AlipaySDK"
   	 s.subspec 'openssl' do |cv|
    	 cv.source_files = 'AlipaySDK/openssl'
@@ -30,10 +31,11 @@ Pod::Spec.new do |s|
 	tv.source_files = 'AlipaySDK/Util'
 	tv.requires_arc = true
 	end
-  s.resources = 'AlipaySDK/AlipaySDK.bundle','AlipaySDK/libcrypto.a','AlipaySDK/libssl.a'
- # s.vendored_frameworks = 'AlipaySDK.framework'
- # s.public_header_files = 'AlipaySDK.framework/Headers/**/*.h'
-  s.frameworks = 'CoreTelephony', 'SystemConfiguration','UIKit','Foundation','QuartzCore','CoreText','CoreGraphics','CoreMotion'
- # s.dependency 'OpenSSL-Universal', '~> 1.0.1.j-2'
+  s.resources = 'AlipaySDK/AlipaySDK.bundle'
+  s.vendored_frameworks = 'AlipaySDK/AlipaySDK.framework','AlipaySDK/libcrypto.a','AlipaySDK/libssl.a'
+  s.libraries = 'c++'
+ # s.public_header_files = 'AlipaySDK/AlipaySDK.framework/Headers/*.h'
+  s.frameworks = 'CoreTelephony', 'SystemConfiguration','UIKit','Foundation','QuartzCore','CoreText','CoreGraphics','CoreMotion','CFNetwork'
+ # s.dependency 'OpenSSL-Universal'
 
 end

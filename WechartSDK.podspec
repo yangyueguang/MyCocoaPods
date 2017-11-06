@@ -32,8 +32,6 @@ Pod::Spec.new do |s|
 	tv.source_files = 'WechartSDK/ViewController'
 	tv.requires_arc = true
 	end
-   s.dependency 'AFNetworking','~>3.0'
-   s.dependency 'SDWebImage'
    s.dependency 'WechatOpenSDK'
   s.resource = 'WechartSDK/resource/*.*'
 

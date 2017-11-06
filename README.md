@@ -71,6 +71,7 @@ pod spec create name //touch name.podspec
 vim name.podspec
 echo "3.0" > .swift-version 如果swift版本不对的话s.dependency "SDWebImage", "~> 3.7.1"
 pod lib lint name.podspec --allow-warnings
+#如果饮用了包涵静态库的.a文件，则需要加上 --use-libraries
 pod lib lint --verbose
 pod trunk register 邮箱 'yangyueguang' -description='薛超'
 pod trunk me
