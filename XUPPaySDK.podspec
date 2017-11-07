@@ -13,6 +13,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/yangyueguang/MyCocoaPods.git", :tag => "#{s.version}" }
   s.source_files  = "XUPPaySDK"
   s.vendored_libraries = 'XUPPaySDK/libPaymentControl.a'
- # s.libraries 'c++'
+  s.libraries = 'c++','z'
   # s.dependency 'AFNetworking','~>3.0'
 end

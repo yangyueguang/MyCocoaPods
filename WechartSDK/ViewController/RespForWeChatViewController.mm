@@ -114,7 +114,7 @@ static NSString *kAppMessageAction = @"<action>dotaliTest</action>";
 #pragma mark - User Actions
 - (void)sendTextContent {
     [WXApiResponseHandler respText:describe];
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)sendImageContent {
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"jpg"];
@@ -123,14 +123,16 @@ static NSString *kAppMessageAction = @"<action>dotaliTest</action>";
                               MessageExt:nil
                                   Action:nil
                               ThumbImage:thumbImage];
-    [self dismissModalViewControllerAnimated:YES];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)sendLinkContent {
     [WXApiResponseHandler respLinkURL:webUrl
                                 Title:title
                           Description:subtitle
                            ThumbImage:thumbImage];
-    [self dismissModalViewControllerAnimated:YES];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)sendMusicContent {
@@ -139,7 +141,8 @@ static NSString *kAppMessageAction = @"<action>dotaliTest</action>";
                                  Title:title
                            Description:subtitle
                             ThumbImage:thumbImage];
-    [self dismissModalViewControllerAnimated:YES];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)sendVideoContent {
@@ -147,7 +150,8 @@ static NSString *kAppMessageAction = @"<action>dotaliTest</action>";
                                  Title:title
                            Description:subtitle
                             ThumbImage:thumbImage];
-    [self dismissModalViewControllerAnimated:YES];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)sendAppContent {
