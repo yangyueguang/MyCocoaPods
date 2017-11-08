@@ -38,7 +38,7 @@ extension UIFont {
         // 获取字体路径
         let url = NSURL(fileURLWithPath: path)
         let fontDataProvider : CGDataProvider = CGDataProvider(url: url)!
-        let fontRef : CGFont = CGFont(fontDataProvider)
+        let fontRef : CGFont = CGFont(fontDataProvider)!
         CTFontManagerRegisterGraphicsFont(fontRef, nil);
         let fontName : NSString = fontRef.postScriptName!
         let font = UIFont(name: fontName as String, size: size)

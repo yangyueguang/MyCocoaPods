@@ -117,7 +117,7 @@ extension UIButton {
             withClickBlock()
         })
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center;
-        button.frame.size = CGSize(width: ScreenWidth - 60, height: 30)
+        button.frame.size = CGSize(width: UIScreen.main.bounds.size.width - 60, height: 30)
         
         return button
         

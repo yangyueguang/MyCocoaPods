@@ -1,6 +1,0 @@
-framework module AlipayXSDK {
-  umbrella header "AlipayXSDK.h"
-
-  export *
-  module * { export * }
-}
