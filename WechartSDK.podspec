@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "WechartSDK"
-  s.version      = "0.2.7"
+  s.version      = "0.2.8"
   s.summary      = "这是微信分享与支付集合."
   s.frameworks = 'UIKit','Foundation'
   s.requires_arc = true
