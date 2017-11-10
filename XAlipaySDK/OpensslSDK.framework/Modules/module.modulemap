@@ -1,0 +1,6 @@
+framework module OpensslSDK {
+  umbrella header "OpensslSDK.h"
+
+  export *
+  module * { export * }
+}

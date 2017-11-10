@@ -7,12 +7,7 @@
 //
 
 #import "openssl_wrapper.h"
-
-#import "rsa.h"
-#include "pem.h"
-#include "md5.h"
-#include "bio.h"
-#include "sha.h"
+#import <OpensslSDK/OpensslSDK.h>
 #include <string.h>
 
 
