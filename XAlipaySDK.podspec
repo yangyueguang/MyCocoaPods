@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.libraries = 'c++','z','stdc'
   s.frameworks = 'CoreTelephony', 'SystemConfiguration','UIKit','Foundation','QuartzCore','CoreText','CoreGraphics','CoreMotion','CFNetwork'
   s.source_files  = 'XAlipaySDK'
-  s.dependency = 'AliPaySDK-Pod'
+ # s.dependency 'AliPaySDK-Pod'
   s.subspec 'openssl' do |cv|
          cv.source_files = 'XAlipaySDK/openssl'
          cv.requires_arc = true
