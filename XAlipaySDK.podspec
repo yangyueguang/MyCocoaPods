@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "XAlipaySDK"
-  s.version      = "0.2.9"
+  s.version      = "0.3.0"
   s.summary      = "这是支付宝支付集合."
   s.requires_arc = true
   s.platform = :ios
@@ -17,4 +17,14 @@ Pod::Spec.new do |s|
   s.frameworks = 'CoreTelephony', 'SystemConfiguration','UIKit','Foundation','QuartzCore','CoreText','CoreGraphics','CoreMotion','CFNetwork'
   s.source_files  = 'XAlipaySDK'
   s.dependency = 'AliPaySDK-Pod'
+  s.subspec 'openssl' do |cv|
+         cv.source_files = 'XAlipaySDK/openssl'
+         cv.requires_arc = true
+        end
+        s.subspec 'Util' do |tv|
+        tv.dependency 'XAlipaySDK/openssl'
+        tv.source_files = 'XAlipaySDK/Util'
+        tv.requires_arc = true
+        end
+
 end
