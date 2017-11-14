@@ -7,7 +7,7 @@
 //
 
 #import "openssl_wrapper.h"
-#import <OpensslSDK/OpensslSDK.h>
+#import "pem.h"
 #include <string.h>
 
 

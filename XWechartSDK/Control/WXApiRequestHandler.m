@@ -4,7 +4,7 @@
 //
 //  Created by Jeason on 15/7/14.
 //
-#import <WechatOpenSDK/WXApi.h>
+#import "WXApi.h"
 #import "WXApiRequestHandler.h"
 #import "WXApiManager.h"
 @implementation WXApiRequestHandler
