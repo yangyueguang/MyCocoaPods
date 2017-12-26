@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "XASIHttpRequest"
-  s.version      = "0.3.0"
+  s.version      = "0.3.1"
   s.summary      = "这是ASI网络请求框架."
   s.frameworks = 'UIKit','Foundation'
   s.requires_arc = true

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BaseStaticTableView"
-  s.version      = "0.1.9"
+  s.version      = "0.3.1"
   s.summary      = "这是基本的静态表格视图."
   s.frameworks   = 'UIKit','Foundation'
   s.requires_arc = true

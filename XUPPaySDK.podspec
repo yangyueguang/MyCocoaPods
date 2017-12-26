@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "XUPPaySDK"
-  s.version      = "0.3.0"
+  s.version      = "0.3.1"
   s.summary      = "这是银联支付集合."
   s.frameworks = 'UIKit','Foundation'
   s.requires_arc = true

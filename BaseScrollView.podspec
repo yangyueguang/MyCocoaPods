@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BaseScrollView"
-  s.version      = "0.1.8"
+  s.version      = "0.3.1"
   s.summary      = "这是基本的滚动视图，内含许多滚动的封装。"
   s.frameworks   = 'UIKit','Foundation'
   s.requires_arc = true

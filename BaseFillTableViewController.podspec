@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BaseFillTableViewController"
-  s.version      = "0.1.7"
+  s.version      = "0.3.1"
   s.summary      = "这是基本的填写表格的视图."
   s.frameworks   = 'UIKit','Foundation','QuartzCore'
   s.requires_arc = true

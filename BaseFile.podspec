@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BaseFile"
-  s.version      = "0.1.6"
+  s.version      = "0.3.1"
   s.summary      = "这是所有的基本类集合."
   s.frameworks = 'UIKit','Foundation'
   s.requires_arc = true
