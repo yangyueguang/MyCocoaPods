@@ -61,5 +61,13 @@
 // 将自定义对象转换成json字符串
 - (NSString *)jsonStringRepresentation;
 
+//获取对象的所有属性，不包括属性值
+- (NSArray *)getAllProperties;
+//获取对象的所有属性及属性类型
+- (NSDictionary*)propertiesDictionary;
+//获取类的属性的数据类型
+- (const char*)findPropertyTypeWithName:(NSString*)name;
+//获取对象的所有方法
+- (NSArray*)getMothList;
 
 @end

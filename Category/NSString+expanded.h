@@ -102,7 +102,7 @@ typedef enum {
  */
 +(NSString *)stringWithDouble:(double)value decimalsCount:(int)decimalsCount;
 
-- (NSAttributedString *)toMessageString;
+//- (NSAttributedString *)toMessageString;
 /** 将GBK编码的二进制数据转换成字符串 */
 + (NSString *)UTF8StringWithHZGB2312Data:(NSData *)data;
 

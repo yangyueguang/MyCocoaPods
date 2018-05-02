@@ -13,7 +13,7 @@
 
 @implementation UINavigationBar (expanded)
 static char kBackgroundViewKey;
-static int kNavBarBottom = 64;
+//static int kNavBarBottom = 64;
 - (UIView*)backgroundView{
     return objc_getAssociatedObject(self, &kBackgroundViewKey);
 }

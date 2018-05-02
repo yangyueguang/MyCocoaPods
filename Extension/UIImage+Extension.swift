@@ -63,36 +63,18 @@ extension UIImage {
     }
     
     class func imageWithURL(_ url : String,imgView : UIImageView) -> UIImage {
-        
         imgView.contentMode = UIViewContentMode.scaleAspectFit
-        
-        let request = URLRequest(url: URL(string: url)!)
-        
-        let thumbQueue = OperationQueue()
-        
         var image : UIImage?
-        
-        NSURLConnection.sendAsynchronousRequest(request, queue: thumbQueue, completionHandler: { response, data, error in
-            
-            if (error != nil) {
-                
-                print(error)
-                
-            } else {
-                
-                DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: {
-                    
+        let task = URLSession.shared.dataTask(with:URL(string: url)!, completionHandler: { (data, respons, eror) -> Void in
+            if data != nil{
+                DispatchQueue.main.async(execute: {
                     image = UIImage(data: data!)
-                    
-                    DispatchQueue.main.async(execute: {
-                        
-                        return image
-                    })
+                    imgView.image = image
                 })
-                
+            }else{
             }
         })
-        
+        task.resume();
         return image!
     }
     func imageByApplyingAlpha(_ alpha: CGFloat) -> UIImage {

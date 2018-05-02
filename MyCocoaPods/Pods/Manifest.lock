@@ -14,35 +14,49 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - Masonry (1.1.0)
   - MJRefresh (3.1.15)
+  - Realm (3.5.0):
+    - Realm/Headers (= 3.5.0)
+  - Realm/Headers (3.5.0)
+  - RealmSwift (3.5.0):
+    - Realm (= 3.5.0)
   - SDWebImage (4.2.2):
     - SDWebImage/Core (= 4.2.2)
   - SDWebImage/Core (4.2.2)
-  - SVProgressHUD (0.9)
-  - WechatOpenSDK (1.8.0)
+  - SnapKit (4.0.0)
+  - WechatOpenSDK (1.8.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - Masonry
   - MJRefresh (~> 3.1.0)
+  - RealmSwift
   - SDWebImage
-  - SVProgressHUD (= 0.9)
+  - SnapKit
   - WechatOpenSDK
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
+    - Masonry
     - MJRefresh
+    - Realm
+    - RealmSwift
     - SDWebImage
-    - SVProgressHUD
+    - SnapKit
     - WechatOpenSDK
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 9af70f5f9327a2cf87f0fb5929f35fcc2fa638ea
+  Realm: 0378021c424e4e2bd6a0e63b27881e929d9b9ad1
+  RealmSwift: 3322562622fda2ad596985ead4d8d8be30cf838c
   SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
-  SVProgressHUD: 7038ae9d6a0bd2c87560d2699eba642eef82d41e
-  WechatOpenSDK: 0ee07a8d492299d3e47372a33da5af26524a7576
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  WechatOpenSDK: 676feec516a11173eafd1fe64b10d27babf28701
 
-PODFILE CHECKSUM: 8e25724d55c5cc0e20f5748cfedff387679fa79e
+PODFILE CHECKSUM: fc9c85daac3705a73458d651c89fe50fa863745a
 
 COCOAPODS: 1.5.0

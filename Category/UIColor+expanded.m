@@ -1,4 +1,4 @@
-#import "UIColor+Expanded.h"
+#import "UIColor+expanded.h"
 
 
 // Static cache of looked up color names. Used with +colorWithName:

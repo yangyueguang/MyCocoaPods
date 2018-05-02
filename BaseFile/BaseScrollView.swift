@@ -96,7 +96,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
             view.removeFromSuperview()
         }
         for i in 0..<titles.count {
-            let size = (titles[i] as AnyObject).boundingRect(with: CGSize(width: APPW, height: self.frame.size.height), options: [.truncatesLastVisibleLine, .usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedStringKey.foregroundColor : UIColor.red ,NSAttributedStringKey.font : UIFont.systemFont(ofSize: 16)], context: nil).size
+            let size = (titles[i] as AnyObject).boundingRect(with: CGSize(width: UIScreen.main.bounds.width, height: self.frame.size.height), options: [.truncatesLastVisibleLine, .usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedStringKey.foregroundColor : UIColor.red ,NSAttributedStringKey.font : UIFont.systemFont(ofSize: 16)], context: nil).size
             let button = UIButton(type: .custom)
             button.frame = CGRect(x: starx, y: 0, width: size.width + 30, height: self.frame.size.height)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
@@ -266,7 +266,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
         delegate = self
         self.pushDelegateVC = NVC
         count = controllers.count
-        contentSize = CGSize(width: APPW * CGFloat(count), height: 0)
+        contentSize = CGSize(width: UIScreen.main.bounds.width * CGFloat(count), height: 0)
         scrollType = .scrollTypeContentView
         isPagingEnabled = true
         showsHorizontalScrollIndicator = false
@@ -275,7 +275,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
             NVC.addChildViewController(controllers[i])
         }
         let vc = NVC.childViewControllers[0]
-        vc.view.frame = CGRect(x: 0, y: 0, width: APPW, height: self.frame.size.height)
+        vc.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: self.frame.size.height)
         addSubview((vc.view)!)
     }
     //FIXME:内容视图滑动，如新闻类，同时自带标题的滑动
@@ -289,12 +289,12 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
             self.selectBlock(index, dict)
             let vc = NVC.childViewControllers[index]
             if vc.view.superview != nil {
-                self.content.contentOffset = CGPoint(x: APPW * CGFloat(index), y: 0)
+                self.content.contentOffset = CGPoint(x: UIScreen.main.bounds.width * CGFloat(index), y: 0)
                 return
             }
-            vc.view.frame = CGRect(x: APPW * CGFloat(index), y: 0, width: APPW, height:frame.size.height - (self.title.frame.size.height)+(self.title.frame.origin.y))
+            vc.view.frame = CGRect(x: UIScreen.main.bounds.width * CGFloat(index), y: 0, width: UIScreen.main.bounds.width, height:frame.size.height - (self.title.frame.size.height)+(self.title.frame.origin.y))
             self.content.addSubview(vc.view)
-            self.content.contentOffset = CGPoint(x: APPW * CGFloat(index), y: 0)
+            self.content.contentOffset = CGPoint(x: UIScreen.main.bounds.width * CGFloat(index), y: 0)
             } as! selectIndexBlock
         
         self.content.selectBlock = {(_ index: Int, _ dict: [AnyHashable: Any]) -> Void in
@@ -331,12 +331,12 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
             self.selectBlock(index, dict)
             let vc = NVC.childViewControllers[index]
             if vc.view.superview != nil {
-                self.content.contentOffset = CGPoint(x: APPW * CGFloat(index), y: 0)
+                self.content.contentOffset = CGPoint(x: UIScreen.main.bounds.width * CGFloat(index), y: 0)
                 return
             }
-            vc.view.frame = CGRect(x: APPW * CGFloat(index), y: 0, width: APPW, height:(self.frame.size.height) - (self.title.frame.size.height)+(self.title.frame.origin.y))
+            vc.view.frame = CGRect(x: UIScreen.main.bounds.width * CGFloat(index), y: 0, width: UIScreen.main.bounds.width, height:(self.frame.size.height) - (self.title.frame.size.height)+(self.title.frame.origin.y))
             self.content.addSubview(vc.view)
-            self.content.contentOffset = CGPoint(x: APPW * CGFloat(index), y: 0)
+            self.content.contentOffset = CGPoint(x: UIScreen.main.bounds.width * CGFloat(index), y: 0)
             } as! selectIndexBlock
         self.content.selectBlock = {(_ index: Int, _ dict: [AnyHashable: Any]) -> Void in
             self.selectBlock(index, dict)
@@ -573,7 +573,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
             let button = viewWithTag(page + 10) as? UIButton
             buttonAction(button!)
         case .scrollTypeContentView:
-            setContentOffset(CGPoint(x: APPW * CGFloat(page), y: 0), animated: false)
+            setContentOffset(CGPoint(x: UIScreen.main.bounds.width * CGFloat(page), y: 0), animated: false)
             
         case .scrollTypeContentTitleView:
             self.selectBlock(page, nil)
@@ -614,9 +614,9 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
             let line = viewWithTag(btn.tag + 20)
             line?.backgroundColor = UIColor.red
         case .scrollTypeTitleScroll:
-            var centx: CGFloat = btn.frame.origin.x - APPW / 2 + btn.frame.size.width / 2
-            if contentSize.width < btn.frame.origin.x + (APPW + btn.frame.size.width) / 2 {
-                centx = contentSize.width - APPW + 29
+            var centx: CGFloat = btn.frame.origin.x - UIScreen.main.bounds.width / 2 + btn.frame.size.width / 2
+            if contentSize.width < btn.frame.origin.x + (UIScreen.main.bounds.width + btn.frame.size.width) / 2 {
+                centx = contentSize.width - UIScreen.main.bounds.width + 29
             }
             else if centx < 0 {
                 centx = 0
@@ -633,9 +633,9 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
         case .scrollTypeScrollItem: break
         //不用做什么
         case .scrollTypeContentView:
-            var centx: CGFloat = btn.frame.origin.x - APPW / 2 + btn.frame.size.width / 2
-            if contentSize.width < btn.frame.origin.x + (APPW + btn.frame.size.width) / 2 {
-                centx = contentSize.width - APPW + 29
+            var centx: CGFloat = btn.frame.origin.x - UIScreen.main.bounds.width / 2 + btn.frame.size.width / 2
+            if contentSize.width < btn.frame.origin.x + (UIScreen.main.bounds.width + btn.frame.size.width) / 2 {
+                centx = contentSize.width - UIScreen.main.bounds.width + 29
             }else if centx < 0 {
                 centx = 0
             }
@@ -734,7 +734,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
             //这里是内容视图滚动过程中对标题栏的简便控制没有完成。
             let offset: CGFloat = scrollView.contentOffset.x
             //定义一个两个变量控制左右按钮的渐变
-            let left = Int(offset / APPW)
+            let left = Int(offset / UIScreen.main.bounds.width)
             let right: Int = 1 + left
             let leftButton = viewWithTag(left + 10) as? UIButton
             var rightButton: UIButton? = nil
@@ -742,7 +742,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
                 rightButton = viewWithTag(10 + right) as? UIButton
             }
             //切换左右按钮
-            let scaleR: CGFloat = offset / APPW - CGFloat(left)
+            let scaleR: CGFloat = offset / UIScreen.main.bounds.width - CGFloat(left)
             let scaleL: CGFloat = 1 - scaleR
             //左右按钮的缩放比例
             let tranScale = CGFloat(1.2 - 1)
@@ -758,7 +758,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
         case .scrollTypeContentIconView:
             let offset: CGFloat = scrollView.contentOffset.x
             //定义一个两个变量控制左右按钮的渐变
-            let left = Int(offset / APPW)
+            let left = Int(offset / UIScreen.main.bounds.width)
             let right: Int = 1 + left
             let leftButton = viewWithTag(left + 10) as? UIButton
             var rightButton: UIButton? = nil
@@ -766,7 +766,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
                 rightButton = viewWithTag(10 + right) as? UIButton
             }
             //切换左右按钮
-            let scaleR: CGFloat = offset / APPW - CGFloat(left)
+            let scaleR: CGFloat = offset / UIScreen.main.bounds.width - CGFloat(left)
             let scaleL: CGFloat = 1 - scaleR
             //左右按钮的缩放比例
             let tranScale = CGFloat(1.2 - 1)
@@ -803,8 +803,8 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
         case .scrollTypeScrollItem: break
         //不用做什么
         case .scrollTypeContentView:
-            let i: Int = Int(contentOffset.x / APPW)
-            let x = CGFloat(CGFloat(i) * APPW)
+            let i: Int = Int(contentOffset.x / UIScreen.main.bounds.width)
+            let x = CGFloat(CGFloat(i) * UIScreen.main.bounds.width)
             if (selectBlock != nil) {
                 selectBlock(i, nil)
             }
@@ -812,11 +812,11 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
             if vc.view.superview != nil {
                 return
             }
-            vc.view.frame = CGRect(x: x, y: 0, width: APPW, height: self.frame.size.height)
+            vc.view.frame = CGRect(x: x, y: 0, width: UIScreen.main.bounds.width, height: self.frame.size.height)
             addSubview((vc.view)!)
         case .scrollTypeContentTitleView:
-            let i: Int = Int(contentOffset.x / APPW)
-            let x = CGFloat(CGFloat(i) * APPW)
+            let i: Int = Int(contentOffset.x / UIScreen.main.bounds.width)
+            let x = CGFloat(CGFloat(i) * UIScreen.main.bounds.width)
             if (selectBlock != nil) {
                 selectBlock(i, nil)
             }
@@ -824,11 +824,11 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
             if vc.view.superview != nil {
                 return
             }
-            vc.view.frame = CGRect(x: x, y: 0, width: APPW, height:self.frame.size.height)
+            vc.view.frame = CGRect(x: x, y: 0, width: UIScreen.main.bounds.width, height:self.frame.size.height)
             addSubview((vc.view)!)
         case .scrollTypeContentIconView:
-            let i: Int = Int(contentOffset.x / APPW)
-            let x = CGFloat(i) * APPW
+            let i: Int = Int(contentOffset.x / UIScreen.main.bounds.width)
+            let x = CGFloat(i) * UIScreen.main.bounds.width
             if (selectBlock != nil) {
                 selectBlock(i, nil)
             }
@@ -836,7 +836,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
             if vc.view.superview != nil {
                 return
             }
-            vc.view.frame = CGRect(x: x, y: 0, width: APPW, height: self.frame.size.height)
+            vc.view.frame = CGRect(x: x, y: 0, width: UIScreen.main.bounds.width, height: self.frame.size.height)
             addSubview((vc.view)!)
         case .scrollTypeBanner:
             if contentOffset.x > self.frame.size.width * CGFloat(count - 2) {

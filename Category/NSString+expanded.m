@@ -1,38 +1,15 @@
 
 #import "NSString+expanded.h"
 #import <CommonCrypto/CommonDigest.h>
-
-
-
-#define EmojiCodeToSymbol(c) ((((0x808080F0 | (c & 0x3F000) >> 4) | (c & 0xFC0) << 10) | (c & 0x1C0000) << 18) | (c & 0x3F) << 24)
-
 @implementation NSString(expanded)
 - (NSString*) urlEncodedString {
-    
-    CFStringRef encodedCFString = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
-                                                                          (__bridge CFStringRef) self,
-                                                                          nil,
-                                                                          CFSTR("?!@#$^&%*+,:;='\"`<>()[]{}/\\| "),
-                                                                          kCFStringEncodingUTF8);
-    
-    NSString *encodedString = [[NSString alloc] initWithString:(__bridge_transfer NSString*) encodedCFString];
-    
-    if(!encodedString)
-        encodedString = @"";
-    
-    return encodedString;
+    NSString *charactersToEscape = @"?!@#$^&%*+,:;='\"`<>()[]{}/\\| ";
+    NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:charactersToEscape] invertedSet];
+    return [self stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
 }
 
 - (NSString*) urlDecodedString {
-    
-    CFStringRef decodedCFString = CFURLCreateStringByReplacingPercentEscapesUsingEncoding(kCFAllocatorDefault,
-                                                                                          (__bridge CFStringRef) self,
-                                                                                          CFSTR(""),
-                                                                                          kCFStringEncodingUTF8);
-    
-    // We need to replace "+" with " " because the CF method above doesn't do it
-    NSString *decodedString = [[NSString alloc] initWithString:(__bridge_transfer NSString*) decodedCFString];
-    return (!decodedString) ? @"" : [decodedString stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+    return [self stringByRemovingPercentEncoding];
 }
 - (NSString*)encodeValue:(NSString*)value{
     NSString* encodedValue = value;
@@ -239,7 +216,7 @@
 - (NSString *)md5{
     const char *concat_str = [self UTF8String];
     unsigned char result[CC_MD5_DIGEST_LENGTH];
-    CC_MD5(concat_str, strlen(concat_str), result);
+    CC_MD5(concat_str, (unsigned int)strlen(concat_str), result);
     NSMutableString *hash = [NSMutableString string];
     for (int i = 0; i < 16; i++){
         [hash appendFormat:@"%02X", result[i]];
@@ -297,9 +274,7 @@
  *  @return urlEncode 后的字符串
  */
 - (NSString *)urlEncodeUsingEncoding:(NSStringEncoding)encoding {
-    return (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                                 (__bridge CFStringRef)self,NULL,(CFStringRef)@"!*'\"();:@&=+$,/?%#[]% ",
-                                                                                 CFStringConvertNSStringEncodingToEncoding(encoding));
+    return [self urlEncodedString];
 }
 /**
  *  @brief  urlDecode
@@ -317,8 +292,7 @@
  *  @return urlDecode 后的字符串
  */
 - (NSString *)urlDecodeUsingEncoding:(NSStringEncoding)encoding {
-    return (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
-                                                                                                 (__bridge CFStringRef)self,CFSTR(""),CFStringConvertNSStringEncodingToEncoding(encoding));
+    return [self urlDecodedString];
 }
 /**
  *  @brief  url query转成NSDictionary
@@ -331,7 +305,7 @@
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     for (NSString *pair in pairs) {
         NSArray *kv = [pair componentsSeparatedByString:@"="];
-        NSString *val = [[kv objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *val = [[kv objectAtIndex:1] stringByRemovingPercentEncoding];
         [params setObject:val forKey:[kv objectAtIndex:0]];
     }
     return params;
@@ -358,7 +332,7 @@
 
 
 + (NSString *)emojiWithIntCode:(int)intCode {
-    int symbol = EmojiCodeToSymbol(intCode);
+    int symbol = ((((0x808080F0 | (intCode & 0x3F000) >> 4) | (intCode & 0xFC0) << 10) | (intCode & 0x1C0000) << 18) | (intCode & 0x3F) << 24);
     NSString *string = [[NSString alloc] initWithBytes:&symbol length:sizeof(symbol) encoding:NSUTF8StringEncoding];
     if (string == nil) { // 新版Emoji
         string = [NSString stringWithFormat:@"%C", (unichar)intCode];
@@ -374,7 +348,7 @@
 + (NSString *)emojiWithStringCode:(NSString *)stringCode
 {
     char *charCode = (char *)stringCode.UTF8String;
-    int intCode = strtol(charCode, NULL, 16);
+    int intCode = (int)strtol(charCode, NULL, 16);
     return [self emojiWithIntCode:intCode];
 }
 
@@ -462,7 +436,7 @@
     }
     
     //从最后面往前找，不断删除最后面的0和最后一个“.”
-    int index = str.length - 1;
+    int index = (int)str.length - 1;
     unichar currentChar = [str characterAtIndex:index];
     for (; currentChar == '0' || currentChar == '.'; index--, currentChar = [str characterAtIndex:index]) {
         //裁减到“.”直接返回

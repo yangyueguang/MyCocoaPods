@@ -94,7 +94,116 @@ extension NSObject
         return jsonObjects
     }
 
-    
+    @objc
+    func printPropertys(object:Any,_ oc:Bool)->Void{
+        if oc{
+            print("@interface Model : NSObject")
+        }else{
+            print("@objcMembers\nclass BCustomADMode: RLMObject {///")
+        }
+        if object is NSArray{
+            printArray(object as! [Any], oc: oc)
+        }else if object is NSDictionary{
+            printDict(object as! [AnyHashable:Any], oc: oc)
+        }
+        if oc{
+            print("@end\n@implementation Model\n@end")
+        }else{
+            print("}")
+        }
+    }
+    func printDict(_ dict:[AnyHashable:Any],oc:Bool){
+        for (key,value) in dict{
+            let s = getType(value: value)
+            if oc{
+                print("@property(nonatomic,copy)\(s) *\(key);")
+            }else{
+                print("@objc dynamic var \(key):\(s)?///")
+            }
+            if value is NSDictionary{
+                printDict(value as! [AnyHashable:Any], oc: oc)
+            }else if value is NSArray{
+                printArray(value as! [Any], oc: oc)
+            }
+        }
+    }
+    func printArray(_ array:[Any],oc:Bool){
+        if let value = array.first{
+            let s = getType(value: value)
+            if oc{
+                print("@property(nonatomic,copy)\(s) *\(value);")
+            }else{
+                print("@objc dynamic var \(value):\(s)?///")
+            }
+            if value is NSDictionary{
+                printDict(value as! [AnyHashable:Any], oc: oc)
+            }else if value is NSArray{
+                printArray(value as! [Any], oc: oc)
+            }
+        }
+    }
+    func getType(value:Any)->String{
+        var s = "unknown"
+        switch value{
+        case is String:s = "String";break;
+        case is NSNumber:s = "NSNumber";break;
+        case is Double:s = "Double";break;
+        case is Float:s = "Float";break;
+        case is Int32:s = "Int32";break;
+        case is UInt:s = "UInt";break;
+        case is Bool:s = "Bool";break;
+        case is NSDictionary:s = "Dictionary";break;
+        case is NSArray:s = "Array";break;
+        case is NSObject:s = "NSObject";break;
+        default:break;
+        }
+        return s
+    }
+    func notEmpty(_ item:Any)->String{
+        if item is NSNull{
+            return "-"
+        }else if item is String{
+            var ss = String(describing:item)
+            if ss == ""{
+                ss = "-"
+            }
+            return ss
+        }else if item is NSNumber{
+            return String(describing:item)
+        }else{
+            return "-"
+        }
+    }
+    func notEmptyPercent(_ item:Any)->String{
+        if item is NSNumber{
+            let decimal = NSDecimalNumber(string: String(format: "%lf",(item as! NSNumber).doubleValue))
+            return String(format: "%@%%", decimal)
+        }else if item is NSNull{
+            return ""
+        }else if item is String{
+            let ss = item as! String
+            if ss == "--" {
+                return ss
+            }else if ss == ""{
+                return "-"
+            }else{
+                return ss.appending("%")
+            }
+        }else{
+            return String.init(describing: item)
+        }
+    }
+    func decimalNumber(_ s:Any)->NSDecimalNumber{
+        if s is String{
+            let ss:NSString = s as! NSString
+            let doubleValue = (ss.replacingOccurrences(of:",", with: "") as NSString).doubleValue
+            return NSDecimalNumber(value: doubleValue)
+        }else if s is NSNumber{
+            return NSDecimalNumber(value: (s as! NSNumber).doubleValue)
+        }else{
+            return NSDecimalNumber(value:0.0)
+        }
+    }
 }
 
 

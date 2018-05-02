@@ -14,7 +14,13 @@ class BaseNavigationViewController: UINavigationController, UIGestureRecognizerD
         let item = UIBarButtonItem.appearance()
         item.setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.white,NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 14)], for: UIControlState())
         navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white ,NSAttributedStringKey.font : UIFont.systemFont(ofSize: 16)]
-        navigationBar.shadowImage = UIImage.imageWithColor(.clear, size: CGSize())
+        let rect = CGRect(x: 0, y: 0, width: 1.0, height:1.0)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
+        UIColor.clear.setFill()
+        UIRectFill(rect)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        navigationBar.shadowImage = image
         navigationBar.barTintColor = UIColor.green
         navigationBar.tintColor = UIColor.white
         navigationBar.barStyle = UIBarStyle.default

@@ -20,11 +20,11 @@ Pod::Spec.new do |s|
   s.subspec 'openssl' do |cv|
          cv.source_files = 'XAlipaySDK/openssl'
          cv.requires_arc = true
-        end
-        s.subspec 'Util' do |tv|
+    end
+  s.subspec 'Util' do |tv|
         tv.dependency 'XAlipaySDK/openssl'
         tv.source_files = 'XAlipaySDK/Util'
         tv.requires_arc = true
-        end
+    end
 
 end
