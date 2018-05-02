@@ -1,7 +1,7 @@
 
 #import "UIImage+expanded.h"
-#import <SDWebImage/UIImageView+WebCache.h>
-#import <SDWebImage/SDWebImageDownloader.h>
+//#import <SDWebImage/UIImageView+WebCache.h>
+//#import <SDWebImage/SDWebImageDownloader.h>
 #import <Accelerate/Accelerate.h>
 CGFloat DegreesToRadians_afd(CGFloat degrees) {return degrees * M_PI / 180;};
 CGFloat RadiansToDegrees_afd(CGFloat radians) {return radians * 180/M_PI;};

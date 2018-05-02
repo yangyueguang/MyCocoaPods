@@ -81,32 +81,7 @@ pod trunk push name.podspec  --allow-warnings
 pod repo update
 pod search name
 ```
-```pod 'MyPageControl','~> 0.0.7'
-pod 'GRBNavigationKit', '~> 0.1.4'
-pod 'NSData+expanded','~> 0.0.7'
-pod 'NSDate+expanded','~> 0.0.7'
-pod 'NSDictionary+expanded','~> 0.0.7'
-pod 'NSMutableArray+expanded','~> 0.0.7'
-pod 'NSObject+expanded','~> 0.0.7'
-pod 'NSString+expanded','~> 0.0.7'
-pod 'SDDataCache','~> 0.0.6'
-pod 'UIColor+expanded','~> 0.0.7'
-pod 'UIControl+expanded','~> 0.0.7'
-pod 'UIImage+expanded','~> 0.0.7'
-pod 'UILabel+expanded','~> 0.0.7'
-pod 'UIView+expanded','~> 0.0.7'
-pod 'UIView+AutoLayout'
-pod 'BaseFile','~> 0.1.3'
-pod 'BaseScrollView','~> 0.0.9'
-pod 'BaseCollectionView','~> 0.1.3'
-pod 'BaseStaticTableView','~> 0.0.9'
-pod 'BaseTableView','~> 0.1.2'
-pod 'BaseFillTableViewController','~> 0.1.2'
-pod 'XCategory','~> 0.1.1'
-pod 'XUtility','~> 0.1.1'
-```
 # 更新内容
-那些小拓展和小继承的pod安装取消，进行了整合。
 ```
 pod 'BaseFile'
 pod 'BaseScrollView'

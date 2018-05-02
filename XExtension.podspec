@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "XExtension"
-  s.version      = "0.3.1"
+  s.version      = "0.3.2"
   s.summary      = "这是Swift的类的拓展集合."
   s.frameworks   = 'UIKit','Foundation'
   s.requires_arc = true
@@ -27,9 +27,4 @@ Pod::Spec.new do |s|
   # cv.source_files = 'BaseFile/BaseCollectionView'
   # cv.requires_arc = true
   # end
-   s.dependency 'MJRefresh','~>3.1.0'
-   s.dependency 'AFNetworking','~>3.0'
-   s.dependency 'SDWebImage'
-   s.dependency 'SVProgressHUD','~>2.2'
-   s.dependency 'BlocksKit'
 end

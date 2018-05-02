@@ -2,36 +2,16 @@ platform:ios, '8.0'
 target 'MyCocoaPods' do
 use_frameworks!
 pod 'SDWebImage'
-pod 'BlocksKit'
 pod 'SVProgressHUD', '0.9'
 pod 'MJRefresh', '~> 3.1.0'
 pod 'AFNetworking', '~> 3.0'
 pod 'WechatOpenSDK'
 #以下是我的CocoaPods
-#pod 'GRBNavigationKit'
-#pod 'MyPageControl'
-#pod 'NSData+expanded'
-#pod 'NSDate+expanded'
-#pod 'NSDictionary+expanded'
-#
-#pod 'NSMutableArray+expanded'
-#pod 'NSObject+expanded'
-#pod 'NSString+expanded'
-#pod 'SDDataCache'
-#pod 'UIColor+expanded'
-#
-#pod 'UIControl+expanded'
-#pod 'UIImage+expanded'
-#pod 'UILabel+expanded'
-#pod 'UIView+expanded'
-
-#第二版
 #pod 'BaseScrollView'
 #pod 'BaseStaticTableView'
 #pod 'BaseFillTableViewController'
 #pod 'BaseFile'
 #pod 'XUtility'
-#
 #pod 'XCategory'
 #pod 'ObjectDictionary'   #0.1.1
 #pod 'BaseCollectionView'

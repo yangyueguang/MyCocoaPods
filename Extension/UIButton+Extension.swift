@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import BlocksKit
+//import BlocksKit
 extension UIButton {
 
     convenience init(x: CGFloat, iconName: NSString, target: AnyObject?, action: Selector, imageEdgeInsets: UIEdgeInsets){
@@ -74,9 +74,9 @@ extension UIButton {
         button.sizeToFit()
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
         button.setImage(UIImage(named: imageName), for: UIControlState())
-        button.bk_(whenTapped: {
-            block()
-        })
+//        button.bk_(whenTapped: {
+//            block()
+//        })
         button.frame.size = CGSize(width: String.zjSizeWithString(title, font: UIFont.systemFont(ofSize: 14) , sizeWidth: 0, sizeHeight: 21) + ((button.imageView?.image?.size.width)!), height: 21)
         
         return button
@@ -112,10 +112,10 @@ extension UIButton {
         button.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0)
         button.sizeToFit()
         
-        button.bk_(whenTapped:{
-            
-            withClickBlock()
-        })
+//        button.bk_(whenTapped:{
+//
+//            withClickBlock()
+//        })
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center;
         button.frame.size = CGSize(width: UIScreen.main.bounds.size.width - 60, height: 30)
         
@@ -138,10 +138,10 @@ extension UIButton {
         button.layer.masksToBounds = true
         button.contentEdgeInsets = UIEdgeInsetsMake(0, -5, 0,0)
         button.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0)
-        button.bk_(whenTapped:{
-            
-            withClickBlock()
-        })
+//        button.bk_(whenTapped:{
+//            
+//            withClickBlock()
+//        })
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center;
         
         return button

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "XAlipaySDK"
-  s.version      = "0.3.1"
+  s.version      = "0.3.2"
   s.summary      = "这是支付宝支付集合."
   s.requires_arc = true
   s.platform = :ios

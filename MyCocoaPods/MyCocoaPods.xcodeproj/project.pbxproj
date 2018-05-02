@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		13272FD8E7DF69123BAA2F4B /* Pods_MyCocoaPods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2365036460F451E73D4822 /* Pods_MyCocoaPods.framework */; };
+		713FDDC320995FFD00C4E69E /* BaseCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDDBA20995FFC00C4E69E /* BaseCollectionView.swift */; };
+		713FDDC420995FFD00C4E69E /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDDBB20995FFC00C4E69E /* BaseCollectionViewCell.swift */; };
+		713FDDC520995FFD00C4E69E /* BaseScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDDBC20995FFD00C4E69E /* BaseScrollView.swift */; };
+		713FDDC620995FFD00C4E69E /* BaseTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDDBD20995FFD00C4E69E /* BaseTabBarViewController.swift */; };
+		713FDDC720995FFD00C4E69E /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDDBE20995FFD00C4E69E /* BaseTableViewCell.swift */; };
+		713FDDC820995FFD00C4E69E /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDDBF20995FFD00C4E69E /* BaseNavigationViewController.swift */; };
+		713FDDC920995FFD00C4E69E /* BaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDDC020995FFD00C4E69E /* BaseTableView.swift */; };
+		713FDDCA20995FFD00C4E69E /* BaseStaticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDDC120995FFD00C4E69E /* BaseStaticView.swift */; };
+		713FDDCB20995FFD00C4E69E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDDC220995FFD00C4E69E /* BaseViewController.swift */; };
 		BF4C101D1F62E23500E8234D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4C101C1F62E23500E8234D /* AppDelegate.swift */; };
 		BF4C101F1F62E23500E8234D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4C101E1F62E23500E8234D /* ViewController.swift */; };
 		BF4C10221F62E23500E8234D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4C10201F62E23500E8234D /* Main.storyboard */; };
@@ -73,6 +82,15 @@
 /* Begin PBXFileReference section */
 		00087E8B0C2CE5586E75AE96 /* Pods-MyCocoaPods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCocoaPods.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods.debug.xcconfig"; sourceTree = "<group>"; };
 		6FB852E20851D3E97FD4AB39 /* Pods-MyCocoaPods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCocoaPods.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods.release.xcconfig"; sourceTree = "<group>"; };
+		713FDDBA20995FFC00C4E69E /* BaseCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionView.swift; sourceTree = "<group>"; };
+		713FDDBB20995FFC00C4E69E /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		713FDDBC20995FFD00C4E69E /* BaseScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScrollView.swift; sourceTree = "<group>"; };
+		713FDDBD20995FFD00C4E69E /* BaseTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabBarViewController.swift; sourceTree = "<group>"; };
+		713FDDBE20995FFD00C4E69E /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		713FDDBF20995FFD00C4E69E /* BaseNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewController.swift; sourceTree = "<group>"; };
+		713FDDC020995FFD00C4E69E /* BaseTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableView.swift; sourceTree = "<group>"; };
+		713FDDC120995FFD00C4E69E /* BaseStaticView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseStaticView.swift; sourceTree = "<group>"; };
+		713FDDC220995FFD00C4E69E /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		BF4C10191F62E23500E8234D /* MyCocoaPods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCocoaPods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF4C101C1F62E23500E8234D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF4C101E1F62E23500E8234D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +193,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		71517BB32094B32500B40538 /* BaseFile */ = {
+			isa = PBXGroup;
+			children = (
+				713FDDBD20995FFD00C4E69E /* BaseTabBarViewController.swift */,
+				713FDDBF20995FFD00C4E69E /* BaseNavigationViewController.swift */,
+				713FDDC220995FFD00C4E69E /* BaseViewController.swift */,
+				713FDDBC20995FFD00C4E69E /* BaseScrollView.swift */,
+				713FDDC120995FFD00C4E69E /* BaseStaticView.swift */,
+				713FDDBA20995FFC00C4E69E /* BaseCollectionView.swift */,
+				713FDDBB20995FFC00C4E69E /* BaseCollectionViewCell.swift */,
+				713FDDC020995FFD00C4E69E /* BaseTableView.swift */,
+				713FDDBE20995FFD00C4E69E /* BaseTableViewCell.swift */,
+			);
+			name = BaseFile;
+			path = ../../BaseFile;
+			sourceTree = "<group>";
+		};
 		9288D709AF3A9304559AAABB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +243,7 @@
 				BF77105E1FB94E4B001F853E /* Category */,
 				BF7710461FB94E4B001F853E /* Extension */,
 				BF4C101C1F62E23500E8234D /* AppDelegate.swift */,
+				71517BB32094B32500B40538 /* BaseFile */,
 				BF4C101E1F62E23500E8234D /* ViewController.swift */,
 				BF5B9A9F1F66CADE00ECB3EC /* README.md */,
 				BF4C10201F62E23500E8234D /* Main.storyboard */,
@@ -366,7 +402,6 @@
 				BF4C10161F62E23500E8234D /* Frameworks */,
 				BF4C10171F62E23500E8234D /* Resources */,
 				28BE07E740D64EC98425DACF /* [CP] Embed Pods Frameworks */,
-				720965DB090567F538A5B490 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -460,7 +495,6 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/BlocksKit/BlocksKit.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
@@ -468,7 +502,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlocksKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
@@ -476,21 +509,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		720965DB090567F538A5B490 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -519,6 +537,7 @@
 				BF77109C1FB94E4B001F853E /* UIColor+expanded.m in Sources */,
 				BF7710851FB94E4B001F853E /* UIAlertController+Extension.swift in Sources */,
 				BF7710CB1FB94F6E001F853E /* WXApiRequestHandler.m in Sources */,
+				713FDDC820995FFD00C4E69E /* BaseNavigationViewController.swift in Sources */,
 				BF77108E1FB94E4B001F853E /* UIScrollView+Extension.swift in Sources */,
 				BF7710981FB94E4B001F853E /* NSMutableArray+expanded.m in Sources */,
 				BF77108D1FB94E4B001F853E /* UINavigationController+Extension.swift in Sources */,
@@ -536,7 +555,12 @@
 				BF7710901FB94E4B001F853E /* UITextFiled+Extension.swift in Sources */,
 				BF77108B1FB94E4B001F853E /* UIImageView+Extension.swift in Sources */,
 				BF7710911FB94E4B001F853E /* UIView+Extension.swift in Sources */,
+				713FDDC920995FFD00C4E69E /* BaseTableView.swift in Sources */,
+				713FDDC520995FFD00C4E69E /* BaseScrollView.swift in Sources */,
 				BF77108A1FB94E4B001F853E /* UIImage+Extension.swift in Sources */,
+				713FDDC720995FFD00C4E69E /* BaseTableViewCell.swift in Sources */,
+				713FDDC420995FFD00C4E69E /* BaseCollectionViewCell.swift in Sources */,
+				713FDDCB20995FFD00C4E69E /* BaseViewController.swift in Sources */,
 				BF7710971FB94E4B001F853E /* NSFileManager+expanded.m in Sources */,
 				BF7710801FB94E4B001F853E /* NSObject+Extension.swift in Sources */,
 				BF7710991FB94E4B001F853E /* NSObject+expanded.m in Sources */,
@@ -550,6 +574,9 @@
 				BF7710A01FB94E4C001F853E /* UILabel+expanded.m in Sources */,
 				BF7710D61FB94F6F001F853E /* SendMsgToWeChatViewController.m in Sources */,
 				BF7710951FB94E4B001F853E /* NSDate+expanded.m in Sources */,
+				713FDDCA20995FFD00C4E69E /* BaseStaticView.swift in Sources */,
+				713FDDC320995FFD00C4E69E /* BaseCollectionView.swift in Sources */,
+				713FDDC620995FFD00C4E69E /* BaseTabBarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
