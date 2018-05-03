@@ -6,6 +6,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
        let us = User.init(name: "sd", pwd: "dk", account: "ds")
         print(us.account!)
+        
     }
 }
 
