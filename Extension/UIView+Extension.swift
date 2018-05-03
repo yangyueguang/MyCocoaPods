@@ -1,13 +1,5 @@
 //
 //  UIView+Extension.swift
-//  project
-//
-//  Created by Super on 2017/9/13.
-//  Copyright © 2017年 Super. All rights reserved.
-//
-
-// MARK: - UIView
-
 import UIKit
 import Foundation
 extension UIView  {
@@ -72,11 +64,6 @@ extension UIView  {
             self.addSubview(v)
         }
     }
-    /**
-     添加点击事件
-     - parameter target: 对象
-     - parameter action: 动作
-     */
     public func viewAddTarget(_ target : AnyObject,action : Selector) {
         let tap = UITapGestureRecognizer(target: target, action: action)
         self.isUserInteractionEnabled = true

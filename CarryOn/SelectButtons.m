@@ -13,16 +13,11 @@
 - (CGFloat)frameY {
     return self.frame.origin.y;
 }
-
 - (void)setFrameY:(CGFloat)newY {
-    self.frame = CGRectMake(self.frame.origin.x, newY,
-                            self.frame.size.width, self.frame.size.height);
+    self.frame = CGRectMake(self.frame.origin.x, newY,self.frame.size.width, self.frame.size.height);
 }
 @end
 @implementation BaseType
-+(NSString *)primaryKey{
-    return @"key";
-}
 @end
 @interface UIScreenTouchRecognizer : UIGestureRecognizer
 @end

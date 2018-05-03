@@ -1,10 +1,5 @@
 //
 //  UIAlertController+Extension.swift
-//  project
-//
-//  Created by Super on 2017/11/8.
-//  Copyright © 2017年 Super. All rights reserved.
-//
 import UIKit
 import Foundation
 extension UIAlertController {
@@ -22,5 +17,4 @@ extension UIAlertController {
         viewController.present(con, animated: true, completion: {() -> Void in
         })
     }
-
 }

@@ -1,6 +1,5 @@
 
 #import <UIKit/UIKit.h>
-
 @interface UIImage (expanded)
 - (UIImage *)imageAtRect:(CGRect)rect;
 - (UIImage *)imageByScalingProportionallyToMinimumSize:(CGSize)targetSize;
@@ -26,6 +25,7 @@
 + (UIImage *)scott_screenShot;
 // blur  模糊程度 (0~1)
 + (UIImage *)scott_blurImage:(UIImage *)image blur:(CGFloat)blur;
+- (UIImage *)imageWithAlpha:(CGFloat)alpha;
 ///图片灰色
 - (UIImage *)grayImage;
 - (UIImage *)subImageAtRect:(CGRect)rect;
@@ -52,5 +52,5 @@
 + (instancetype)imageWithStretchableName:(NSString *)imageName;
 + (instancetype)resizableWithImageName:(NSString *)imageName;
 - (CGRect) getRectWithSize:(CGSize) size;
-
++(UIImageView*)imageviewWithFrame:(CGRect)_frame defaultimage:(NSString*)_image stretchW:(NSInteger)_w stretchH:(NSInteger)_h;
 @end

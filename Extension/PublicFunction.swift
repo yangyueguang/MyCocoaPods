@@ -1,11 +1,5 @@
 //
 //  PublicFunction.swift
-//  project
-//
-//  Created by Super on 2017/9/8.
-//  Copyright © 2017年 Super. All rights reserved.
-//
-
 import Foundation
 import UIKit
 func Dlog<T>(message: T,logError: Bool = false,file: String = #file,method: String = #function,line: Int = #line){
@@ -17,18 +11,17 @@ func Dlog<T>(message: T,logError: Bool = false,file: String = #file,method: Stri
         #endif
     }
 }
-func appBundleVersion()->String{
-    return Bundle.main.infoDictionary!["bundle version"] as! String
-}
 func Version7()->Bool{
     guard let version = Float(UIDevice.current.systemVersion) else {
         return false
     }
     return version >= 7
 }
-
-func documentLocalPath()->String{
-    return NSSearchPathForDirectoriesInDomains(.documentationDirectory, .userDomainMask, true)[0]
+func getTopHeight()->CGFloat{
+    if APPH == 812.0{
+        return 88.0
+    }
+    return 64.0
 }
 func RGBAColor(R:CGFloat,G:CGFloat,B:CGFloat,A:CGFloat)->UIColor{
     return UIColor(red: R, green: G, blue: B, alpha: A)
@@ -71,13 +64,3 @@ func YH(obj:UIView?)->CGFloat{
         return 0
     }
 }
-
-//func LocalStr(key:String,comment:String)->id{
-//    [[HXLanguageManager shareInstance] localizedStringForKey:key value:comment]
-//}
-
-
-
-
-
-

@@ -30,6 +30,7 @@
 		713FDEFA2099A03800C4E69E /* MagiNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEF42099A03800C4E69E /* MagiNotice.swift */; };
 		713FDEFC2099A04200C4E69E /* UTI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 713FDEFB2099A04200C4E69E /* UTI.plist */; };
 		713FDEFF2099A04C00C4E69E /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEFE2099A04B00C4E69E /* ChineseToPinyin.m */; };
+		713FDF0B209B04A000C4E69E /* UITextField+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDF0A209B04A000C4E69E /* UITextField+expanded.m */; };
 		BF4C101D1F62E23500E8234D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4C101C1F62E23500E8234D /* AppDelegate.swift */; };
 		BF4C101F1F62E23500E8234D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4C101E1F62E23500E8234D /* ViewController.swift */; };
 		BF4C10221F62E23500E8234D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4C10201F62E23500E8234D /* Main.storyboard */; };
@@ -126,6 +127,8 @@
 		713FDEFB2099A04200C4E69E /* UTI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UTI.plist; sourceTree = "<group>"; };
 		713FDEFD2099A04B00C4E69E /* ChineseToPinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyin.h; sourceTree = "<group>"; };
 		713FDEFE2099A04B00C4E69E /* ChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyin.m; sourceTree = "<group>"; };
+		713FDF09209B04A000C4E69E /* UITextField+expanded.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+expanded.h"; sourceTree = "<group>"; };
+		713FDF0A209B04A000C4E69E /* UITextField+expanded.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+expanded.m"; sourceTree = "<group>"; };
 		BF4C10191F62E23500E8234D /* MyCocoaPods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCocoaPods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF4C101C1F62E23500E8234D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF4C101E1F62E23500E8234D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -231,16 +234,13 @@
 		713FDEDC20999DD500C4E69E /* CarryOn */ = {
 			isa = PBXGroup;
 			children = (
-				713FDEFB2099A04200C4E69E /* UTI.plist */,
 				713FDEFD2099A04B00C4E69E /* ChineseToPinyin.h */,
 				713FDEFE2099A04B00C4E69E /* ChineseToPinyin.m */,
 				713FDEF22099A03700C4E69E /* BaseExcelView.h */,
 				713FDEEC2099A03600C4E69E /* BaseExcelView.m */,
 				713FDEF12099A03700C4E69E /* BaseSegButtons.h */,
 				713FDEF32099A03700C4E69E /* BaseSegButtons.m */,
-				713FDEEF2099A03700C4E69E /* DownloadService.swift */,
 				713FDEF42099A03800C4E69E /* MagiNotice.swift */,
-				713FDEF02099A03700C4E69E /* PreViewController.swift */,
 				713FDEED2099A03700C4E69E /* SelectButtons.h */,
 				713FDEEE2099A03700C4E69E /* SelectButtons.m */,
 				713FDEE120999DD500C4E69E /* Utility.h */,
@@ -256,6 +256,17 @@
 			);
 			name = CarryOn;
 			path = ../../CarryOn;
+			sourceTree = "<group>";
+		};
+		713FDF07209AED6F00C4E69E /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				713FDEEF2099A03700C4E69E /* DownloadService.swift */,
+				713FDEFB2099A04200C4E69E /* UTI.plist */,
+				713FDEF02099A03700C4E69E /* PreViewController.swift */,
+			);
+			name = tools;
+			path = ../../tools;
 			sourceTree = "<group>";
 		};
 		71517BB32094B32500B40538 /* BaseFile */ = {
@@ -304,6 +315,7 @@
 		BF4C101B1F62E23500E8234D /* MyCocoaPods */ = {
 			isa = PBXGroup;
 			children = (
+				713FDF07209AED6F00C4E69E /* tools */,
 				713FDEDC20999DD500C4E69E /* CarryOn */,
 				BF7710AB1FB94F6E001F853E /* XWechartSDK */,
 				BF77105E1FB94E4B001F853E /* Category */,
@@ -381,6 +393,8 @@
 				BF7710761FB94E4B001F853E /* UIImage+expanded.m */,
 				BF7710771FB94E4B001F853E /* UILabel+expanded.h */,
 				BF7710781FB94E4B001F853E /* UILabel+expanded.m */,
+				713FDF09209B04A000C4E69E /* UITextField+expanded.h */,
+				713FDF0A209B04A000C4E69E /* UITextField+expanded.m */,
 				BF7710791FB94E4B001F853E /* UINavigationBar+expanded.h */,
 				BF77107A1FB94E4B001F853E /* UINavigationBar+expanded.m */,
 				BF77107B1FB94E4B001F853E /* UIView+expanded.h */,
@@ -635,6 +649,7 @@
 				BF7710911FB94E4B001F853E /* UIView+Extension.swift in Sources */,
 				713FDDC920995FFD00C4E69E /* BaseTableView.swift in Sources */,
 				713FDDC520995FFD00C4E69E /* BaseScrollView.swift in Sources */,
+				713FDF0B209B04A000C4E69E /* UITextField+expanded.m in Sources */,
 				BF77108A1FB94E4B001F853E /* UIImage+Extension.swift in Sources */,
 				713FDDC720995FFD00C4E69E /* BaseTableViewCell.swift in Sources */,
 				713FDEF92099A03800C4E69E /* BaseSegButtons.m in Sources */,

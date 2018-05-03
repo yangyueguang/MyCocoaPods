@@ -1,11 +1,6 @@
 //
 //  NSFileManager+expanded.m
 //  MyFirstAPP
-//
-//  Created by 薛超 on 17/1/18.
-//  Copyright © 2017年 薛超. All rights reserved.
-//
-
 #import "NSFileManager+expanded.h"
 #include <sys/xattr.h>
 @implementation NSFileManager (expanded)
@@ -152,5 +147,4 @@
 + (NSString *)cacheForFile:(NSString *)filename{
     return [[NSFileManager cachesPath] stringByAppendingString:filename];
 }
-
 @end

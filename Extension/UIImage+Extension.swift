@@ -1,17 +1,8 @@
 //
 //  UIImage+Extension.swift
-//  Liwushuo
-//
-//  Created by hans on 16/7/1.
-//  Copyright © 2016年 汉斯哈哈哈. All rights reserved.
-//
-
 import UIKit
-
 extension UIImage {
-
     class func imageWithColor(_ color: UIColor, size: CGSize) -> UIImage {
-        
         let rect = CGRect(x: 0, y: 0, width: size.width == 0 ? 1.0 : size.width, height: size.height == 0 ? 1.0 : size.height)
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
         color.setFill()
@@ -20,33 +11,24 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return image
     }
-    
      func resetImageSize(_ newWidth: CGFloat) -> UIImage {
-        
         let scale = newWidth / self.size.width
         let newHeight = self.size.height * scale
         UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
         self.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
         return newImage!
     }
-    
-
-    
     func zjResizeToSize(_ size: CGSize) -> UIImage {
         UIGraphicsBeginImageContext(size)
         self.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
         return newImage!
     }
-    
     //根据颜色生成图片
     class func createImageWithColor(_ color : UIColor) -> UIImage {
-        
         let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
@@ -56,12 +38,9 @@ extension UIImage {
         UIGraphicsEndImageContext();
         return theImage
     }
-    
     func original() ->UIImage {
-        
         return self.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
     }
-    
     class func imageWithURL(_ url : String,imgView : UIImageView) -> UIImage {
         imgView.contentMode = UIViewContentMode.scaleAspectFit
         var image : UIImage?
@@ -79,33 +58,22 @@ extension UIImage {
     }
     func imageByApplyingAlpha(_ alpha: CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(self.size, false, 0)
-        
         let ctx: CGContext = UIGraphicsGetCurrentContext()!
         let area = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
-        
         ctx.scaleBy(x: 1, y: -1)
         ctx.translateBy(x: 0, y: -area.size.height)
-        
         ctx.setBlendMode(.multiply)
-        
         ctx.setAlpha(alpha)
-        
         ctx.draw(self.cgImage!, in: area)
-        
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        
         UIGraphicsEndImageContext()
-        
         return newImage!
     }
-    
-    
     func imageInRect(_ rect: CGRect) -> UIImage {
         let sourceImageRef = self.cgImage
         let newImageRef = sourceImageRef?.cropping(to: rect)
         return UIImage(cgImage: newImageRef!)
     }
-    
     func clipImage(_ size: CGSize) -> UIImage {
         if self.size.width*size.height <= self.size.height*size.width {
             //以被剪裁图片的宽度为基准，得到剪切范围的大小
@@ -120,7 +88,6 @@ extension UIImage {
             return self.imageInRect(CGRect(x: (self.size.width - width) * 0.5, y: 0, width: width, height: height))
         }
     }
-
     //圆角加边框
     static func circleBorderW(_ borderW: CGFloat, circleColor: UIColor, image: UIImage)->UIImage {
         // 圆环宽度
@@ -153,10 +120,6 @@ extension UIImage {
         bgImage = bgImage?.stretchableImage(withLeftCapWidth: Int(a), topCapHeight: Int(b))
         return bgImage!
     }
-
-
-
-    
     //  生成图片名字
     class func createTypeAndName(_ image: UIImage) -> String {
         var mimeType: String? = nil
@@ -173,14 +136,12 @@ extension UIImage {
 //        }
         return mimeType!
     }
-    
     class func dataURL2Image(_ imgSrc: String) -> UIImage {
         let url = URL(string: imgSrc)
         let data = try! Data(contentsOf: url!)
         let image = UIImage(data: data)
         return image!
     }
-    
     //按比例缩放,size 是你要把图显示到 多大区域 CGSizeMake(300, 140)
     class func imageCompress(forSize sourceImage: UIImage, targetSize size: CGSize) -> UIImage {
         var newImage: UIImage? = nil
@@ -198,21 +159,17 @@ extension UIImage {
             let heightFactor: CGFloat = targetHeight / height
             if widthFactor > heightFactor {
                 scaleFactor = widthFactor
-            }
-            else {
+            }else {
                 scaleFactor = heightFactor
             }
             scaledWidth = width * scaleFactor
             scaledHeight = height * scaleFactor
             if widthFactor > heightFactor {
                 thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5
-            }
-            else if widthFactor < heightFactor {
+            }else if widthFactor < heightFactor {
                 thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5
             }
-
        }
-    
         UIGraphicsBeginImageContext(size)
         var thumbnailRect = CGRect.zero
         thumbnailRect.origin = thumbnailPoint
@@ -250,8 +207,6 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return scaledImage!
     }
-
-
     //通过颜色来生成一个纯色图片
     class func image(from color: UIColor, size aSize: CGSize) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: aSize.width, height: aSize.height)
@@ -312,6 +267,4 @@ extension UIImage {
         let newImage: UIImage? = image?.resizableImage(withCapInsets: UIEdgeInsetsMake(h!, w!, h!, w!), resizingMode: .stretch)
         return newImage!
     }
-
-
 }

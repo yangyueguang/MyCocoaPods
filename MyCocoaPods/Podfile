@@ -9,14 +9,11 @@ pod 'Masonry'
 pod 'RealmSwift'
 pod 'SnapKit'
 #以下是我的CocoaPods
-#pod 'BaseScrollView'
-#pod 'BaseStaticTableView'
-#pod 'BaseFillTableViewController'
 #pod 'BaseFile'
 #pod 'XUtility'
 #pod 'XCategory'
+#pod 'XExtension'
+#pod 'XWechatSDK'
 #pod 'ObjectDictionary'   #0.1.1
-#pod 'BaseCollectionView'
-#pod 'BaseTableView'
 
 end

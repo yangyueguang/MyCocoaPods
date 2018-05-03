@@ -1,17 +1,6 @@
-//
-//  UIGestureRecognizer+YYAdd.m
-//  YYKit <https://github.com/ibireme/YYKit>
-//
-//  Created by ibireme on 13/10/13.
-//  Copyright (c) 2015 ibireme.
-//
-//  This source code is licensed under the MIT-style license found in the
-//  LICENSE file in the root directory of this source tree.
-//
 
 #import "UIGestureRecognizer+expanded.h"
 #import <objc/runtime.h>
-
 static const int block_key;
 @interface _YYUIGestureRecognizerBlockTarget : NSObject
 @property (nonatomic, copy) void (^block)(id sender);

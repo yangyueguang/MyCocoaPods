@@ -1,5 +1,3 @@
-
-
 #import "RGBNavigationController.h"
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
@@ -147,12 +145,4 @@
         [self moveViewWithX:touchPoint.x - startTouch.x];
     }
 }
-
-
-
 @end
-
-
-
-
-

@@ -38,7 +38,6 @@ static SDDataCache *instance;
     }
     return self;
 }
-
 - (void)dealloc{
      memCache = nil;
      diskCachePath = nil;
@@ -51,7 +50,6 @@ static SDDataCache *instance;
         instance = [[SDDataCache alloc] init];
     }return instance;
 }
-
 #pragma mark SDDataCache (private)
 - (NSString *)cachePathForKey:(NSString *)key{
     const char *str = [key UTF8String];
@@ -61,7 +59,6 @@ static SDDataCache *instance;
                           r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8], r[9], r[10], r[11], r[12], r[13], r[14], r[15]];
     return [diskCachePath stringByAppendingPathComponent:filename];
 }
-
 - (void)storeKeyWithDataToDisk:(NSArray *)keyAndData{
     // Can't use defaultManager another thread
     NSFileManager *fileManager = [[NSFileManager alloc] init];
@@ -73,7 +70,6 @@ static SDDataCache *instance;
 		[fileManager createFileAtPath:[self cachePathForKey:key] contents:data attributes:nil];
 	}
 }
-
 - (void)notifyDelegate:(NSDictionary *)arguments{
     NSString *key = [arguments objectForKey:@"key"];
     id <SDDataCacheDelegate> delegate = [arguments objectForKey:@"delegate"];
@@ -88,7 +84,6 @@ static SDDataCache *instance;
             [delegate dataCache:self didNotFindDataForKey:key userInfo:info];
         }
 }
-
 - (void)queryDiskCacheOperation:(NSDictionary *)arguments{
     NSString *key = [arguments objectForKey:@"key"];
     NSMutableDictionary *mutableArguments = [arguments mutableCopy];
@@ -97,11 +92,9 @@ static SDDataCache *instance;
     [self performSelectorOnMainThread:@selector(notifyDelegate:) withObject:mutableArguments waitUntilDone:NO];
 }
 #pragma mark DataCache
-
 - (void)storeData:(NSData *)aData forKey:(NSString *)key{
 	[self storeData:aData forKey:key toDisk:YES];
 }
-
 - (void)storeData:(NSData *)aData forKey:(NSString *)key toDisk:(BOOL)toDisk{
     if (!aData || !key)return;
     if (toDisk && !aData)return;
@@ -111,11 +104,9 @@ static SDDataCache *instance;
         [cacheInQueue addOperation:[[NSInvocationOperation alloc] initWithTarget:self selector:@selector(storeKeyWithDataToDisk:) object:keyWithData]];
     }
 }
-
 - (NSData *)dataFromKey:(NSString *)key{
     return [self dataFromKey:key fromDisk:YES];
 }
-
 - (NSData *)dataFromKey:(NSString *)key fromDisk:(BOOL)fromDisk{
     if (key == nil)return nil;
 	NSData *data=[memCache objectForKey:key];
@@ -145,24 +136,20 @@ static SDDataCache *instance;
     if (info)[arguments setObject:info forKey:@"userInfo"];
     [cacheOutQueue addOperation:[[NSInvocationOperation alloc] initWithTarget:self selector:@selector(queryDiskCacheOperation:) object:arguments]];
 }
-
 - (void)removeDataForKey:(NSString *)key{
     if (key == nil)return;
     [memCache removeObjectForKey:key];
     [[NSFileManager defaultManager] removeItemAtPath:[self cachePathForKey:key] error:nil];
 }
-
 - (void)clearMemory{
     [cacheInQueue cancelAllOperations]; // won't be able to complete
     [memCache removeAllObjects];
 }
-
 - (void)clearDisk{
     [cacheInQueue cancelAllOperations];
     [[NSFileManager defaultManager] removeItemAtPath:diskCachePath error:nil];
     [[NSFileManager defaultManager] createDirectoryAtPath:diskCachePath withIntermediateDirectories:YES attributes:nil error:NULL];
 }
-
 - (void)cleanDisk{
     NSDate *expirationDate = [NSDate dateWithTimeIntervalSinceNow:-cacheMaxCacheAge];
     NSDirectoryEnumerator *fileEnumerator = [[NSFileManager defaultManager] enumeratorAtPath:diskCachePath];
@@ -175,5 +162,4 @@ static SDDataCache *instance;
         }
     }
 }
-
 @end

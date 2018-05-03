@@ -2,22 +2,11 @@
 //
 //  NSObject+Extension.swift
 //  project
-//
-//  Created by Super on 2017/9/13.
-//  Copyright © 2017年 Super. All rights reserved.
-//
-
 import Foundation
-
 // MARK: - NSObject
-extension NSObject
-{
-    
-    
-    func performSelectorOnMainThread(selector aSelector: Selector,withObject object:AnyObject! ,waitUntilDone wait:Bool)
-    {
-        if self.responds(to: aSelector)
-        {
+extension NSObject{
+    func performSelectorOnMainThread(selector aSelector: Selector,withObject object:AnyObject! ,waitUntilDone wait:Bool){
+        if self.responds(to: aSelector){
             var continuego = false
             let group = DispatchGroup()
             let queue = DispatchQueue(label: "com.fsh.dispatch", attributes: [])
@@ -29,48 +18,34 @@ extension NSObject
                 })
             })
 //            group.wait(timeout: DispatchTime.distantFuture)
-            
-            if wait
-            {
+            if wait{
                 let ret = RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Foundation.Date.distantFuture )
-                while (!continuego && ret)
-                {
-                    
+                while (!continuego && ret){
                 }
             }
         }
     }
-    
     class func clearCache() {
         let domain = Bundle.main.bundleIdentifier
         UserDefaults.standard.removePersistentDomain(forName: domain!)
     }
-    
     fileprivate class func jsonToData(_ jsonResponse: AnyObject) -> Data? {
-        
         do{
             let data = try JSONSerialization.data(withJSONObject: jsonResponse, options: JSONSerialization.WritingOptions.prettyPrinted)
             return data;
-            
-        }catch
-        {
+        }catch{
             return nil
         }
     }
-    
     fileprivate class func dataToJson(_ data: Data) -> AnyObject? {
-        
         do{
             let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
             return json as AnyObject?
             
-        }
-        catch
-        {
+        }catch{
             return nil
         }
     }
-
     ///将NSArray或者NSDictionary转化为NSString
     func jsonString() -> String {
         if let data = try? JSONSerialization.data(withJSONObject: self){
@@ -93,7 +68,6 @@ extension NSObject
         }
         return jsonObjects
     }
-
     @objc
     func printPropertys(object:Any,_ oc:Bool)->Void{
         if oc{
@@ -205,5 +179,3 @@ extension NSObject
         }
     }
 }
-
-

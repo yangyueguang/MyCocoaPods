@@ -1,15 +1,14 @@
 
 #import "Utility.h"
 #include <sys/sysctl.h>
+#include <sys/socket.h>
 #include <net/if.h>
 #include <net/if_dl.h>
 #import <AudioToolbox/AudioToolbox.h>//振动
 #import <CommonCrypto/CommonDigest.h>
+#import <QuartzCore/QuartzCore.h>
 #import <StoreKit/StoreKit.h>
-//#import <NSString_expanded/NSString+expanded.h>
-
 @interface Utility()<SKStoreProductViewControllerDelegate>
-
 @end
 @implementation Utility
 static Utility *_utilityinstance=nil;
@@ -153,21 +152,18 @@ static Utility *_utilityinstance=nil;
         return NO;
     }
 }
-
 //判断是否为整形：
 - (BOOL)isPureInt:(NSString*)string{
     NSScanner* scan = [NSScanner scannerWithString:string];
     int val;
     return[scan scanInt:&val] && [scan isAtEnd];
 }
-
 //判断是否为浮点形：
 - (BOOL)isPureFloat:(NSString*)string{
     NSScanner* scan = [NSScanner scannerWithString:string];
     float val;
     return[scan scanFloat:&val] && [scan isAtEnd];
 }
-
 #pragma mark -数据格式化
 ///数据格式化
 -(NSString *)FormatPhone:(NSString *)str{
@@ -248,99 +244,6 @@ static Utility *_utilityinstance=nil;
     turnstr=[turnstr substringFromIndex:1];
     return turnstr;
 }
-
--(NSString *)timeToNow:(NSString *)theDate{
-    NSString *timeString=@"";
-    if (!theDate) {return @"";}
-    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *d=[NSDate dateWithTimeIntervalSince1970:[theDate integerValue]];
-    if (!d) {return theDate;}
-    NSTimeInterval late=[d timeIntervalSince1970]*1;
-    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
-    NSTimeInterval now=[dat timeIntervalSince1970]*1;
-    NSTimeInterval cha=(now-late)>0 ? (now-late) : 0;
-    if (cha/60<1) {
-        timeString=@"刚刚";
-    }else if (cha/3600<1) {
-        timeString = [NSString stringWithFormat:@"%f", cha/60];
-        timeString = [timeString substringToIndex:timeString.length-7];
-        timeString=[NSString stringWithFormat:@"%@ 分前", timeString];
-    }else if (cha/3600>1 && cha/3600<12) {
-        timeString = [NSString stringWithFormat:@"%f", cha/3600];
-        timeString = [timeString substringToIndex:timeString.length-7];
-        timeString=[NSString stringWithFormat:@"%@ 小时前", timeString];
-    }else if(cha/3600<24){
-        timeString = @"今天";
-    }else if(cha/3600<48){
-        timeString = @"昨天";
-    }else if(cha/3600/24<10){
-        timeString = [NSString stringWithFormat:@"%.0f 天前",cha/3600/24];
-    }else if(cha/3600/24<365){
-        [dateFormatter setDateFormat:@"MM月dd日"];
-        timeString=[dateFormatter stringFromDate:d];
-    }else{
-        timeString = [NSString stringWithFormat:@"%d年前",(int)cha/3600/24/365];
-    }
-    return timeString;
-}
-//时间戳
--(NSString *)timeToTimestamp:(NSString *)timestamp{
-    if (!timestamp) {return @"";}
-    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-    NSDate *aTime = [NSDate dateWithTimeIntervalSince1970:[timestamp integerValue]];
-    NSString *str=[dateFormatter stringFromDate:aTime];
-    return str;
-}
-
-
-#pragma mark 元件创建
-+ (UITextField *)textFieldlWithFrame:(CGRect)aframe font:(UIFont*)afont color:(UIColor*)acolor placeholder:(NSString *)aplaceholder text:(NSString*)atext{
-    UITextField *baseTextField=[[UITextField alloc]initWithFrame:aframe];
-    [baseTextField setKeyboardType:UIKeyboardTypeDefault];
-    [baseTextField setBorderStyle:UITextBorderStyleNone];
-    [baseTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
-    [baseTextField setTextColor:acolor];
-    baseTextField.placeholder=aplaceholder;
-    baseTextField.font=afont;
-    [baseTextField setSecureTextEntry:NO];
-    [baseTextField setReturnKeyType:UIReturnKeyDone];
-    [baseTextField setText:atext];
-    baseTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    return baseTextField;
-}
-
-+(UIImageView*)imageviewWithFrame:(CGRect)_frame defaultimage:(NSString*)_image{
-    return [self imageviewWithFrame:_frame defaultimage:_image stretchW:0 stretchH:0];
-}
-//-1 if want stretch half of image.size
-+(UIImageView*)imageviewWithFrame:(CGRect)_frame defaultimage:(NSString*)_image stretchW:(NSInteger)_w stretchH:(NSInteger)_h{
-    UIImageView *imageview = nil;
-    if(_image){
-        if (_w&&_h) {
-            UIImage *image = [UIImage imageNamed:_image];
-            if (_w==-1) {
-                _w = image.size.width/2;
-            }
-            if(_h==-1){
-                _h = image.size.height/2;
-            }
-            imageview = [[UIImageView alloc] initWithImage:[image stretchableImageWithLeftCapWidth:_w topCapHeight:_h]];
-            imageview.contentMode=UIViewContentModeScaleToFill;
-        }else{
-            imageview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:_image]];
-            imageview.contentMode=UIViewContentModeScaleAspectFill;
-        }
-    }
-    if (CGRectIsEmpty(_frame)) {
-        [imageview setFrame:CGRectMake(_frame.origin.x,_frame.origin.y, imageview.image.size.width, imageview.image.size.height)];
-    }else{
-        [imageview setFrame:_frame];
-    }
-    imageview.clipsToBounds=YES;
-    return  imageview;
-}
 #pragma mark 是否支持蓝牙协议4.0
 //是否支持蓝牙协议4.0
 - (BOOL)isSupportBluetoothProtocol{
@@ -379,14 +282,123 @@ static Utility *_utilityinstance=nil;
         return NO;
     }
 }
--(NSString *)VersionSelect{
-    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
++ (BOOL)validateIDCardNumber:(NSString *)value {
+    value = [value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    int length =0;
+    if (!value) {
+        return NO;
+    }else {
+        length = (int)value.length;
+        if (length !=15 && length !=18) {
+            return NO;
+        }
+    }
+    // 省份代码
+    NSArray *areasArray =@[@"11",@"12", @"13",@"14", @"15",@"21", @"22",@"23", @"31",@"32", @"33",@"34", @"35",@"36", @"37",@"41", @"42",@"43", @"44",@"45", @"46",@"50", @"51",@"52", @"53",@"54", @"61",@"62", @"63",@"64", @"65",@"71", @"81",@"82", @"91"];
+    NSString *valueStart2 = [value substringToIndex:2];
+    BOOL areaFlag =NO;
+    for (NSString *areaCode in areasArray) {
+        if ([areaCode isEqualToString:valueStart2]) {
+            areaFlag =YES;
+            break;
+        }
+    }
+    if (!areaFlag) {
+        return false;
+    }
+    NSRegularExpression *regularExpression;
+    NSUInteger numberofMatch;
+    int year =0;
+    switch (length) {
+        case 15:
+            year = [value substringWithRange:NSMakeRange(6,2)].intValue +1900;
+            if (year %4 ==0 || (year %100 ==0 && year %4 ==0)) {
+                regularExpression = [[NSRegularExpression alloc]initWithPattern:@"^[1-9][0-9]{5}[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}$"
+                                                                        options:NSRegularExpressionCaseInsensitive
+                                                                          error:nil];//测试出生日期的合法性
+            }else {
+                regularExpression = [[NSRegularExpression alloc]initWithPattern:@"^[1-9][0-9]{5}[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}$"
+                                                                        options:NSRegularExpressionCaseInsensitive
+                                                                          error:nil];//测试出生日期的合法性
+            }
+            numberofMatch = [regularExpression numberOfMatchesInString:value
+                                                               options:NSMatchingReportProgress
+                                                                 range:NSMakeRange(0, value.length)];
+            if(numberofMatch >0) {
+                return YES;
+            }else {
+                return NO;
+            }
+        case 18:
+            year = [value substringWithRange:NSMakeRange(6,4)].intValue;
+            if (year %4 ==0 || (year %100 ==0 && year %4 ==0)) {
+                regularExpression = [[NSRegularExpression alloc]initWithPattern:@"^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}[0-9Xx]$"
+                                                                        options:NSRegularExpressionCaseInsensitive
+                                                                          error:nil];//测试出生日期的合法性
+            }else {
+                regularExpression = [[NSRegularExpression alloc]initWithPattern:@"^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}[0-9Xx]$"
+                                                                        options:NSRegularExpressionCaseInsensitive
+                                                                          error:nil];//测试出生日期的合法性
+            }
+            numberofMatch = [regularExpression numberOfMatchesInString:value
+                                                               options:NSMatchingReportProgress
+                                                                 range:NSMakeRange(0, value.length)];
+            if(numberofMatch >0) {
+                int S = ([value substringWithRange:NSMakeRange(0,1)].intValue + [value substringWithRange:NSMakeRange(10,1)].intValue) *7 + ([value substringWithRange:NSMakeRange(1,1)].intValue + [value substringWithRange:NSMakeRange(11,1)].intValue) *9 + ([value substringWithRange:NSMakeRange(2,1)].intValue + [value substringWithRange:NSMakeRange(12,1)].intValue) *10 + ([value substringWithRange:NSMakeRange(3,1)].intValue + [value substringWithRange:NSMakeRange(13,1)].intValue) *5 + ([value substringWithRange:NSMakeRange(4,1)].intValue + [value substringWithRange:NSMakeRange(14,1)].intValue) *8 + ([value substringWithRange:NSMakeRange(5,1)].intValue + [value substringWithRange:NSMakeRange(15,1)].intValue) *4 + ([value substringWithRange:NSMakeRange(6,1)].intValue + [value substringWithRange:NSMakeRange(16,1)].intValue) *2 + [value substringWithRange:NSMakeRange(7,1)].intValue *1 + [value substringWithRange:NSMakeRange(8,1)].intValue *6 + [value substringWithRange:NSMakeRange(9,1)].intValue *3;
+                int Y = S %11;
+                NSString *M =@"F";
+                NSString *JYM =@"10X98765432";
+                M = [JYM substringWithRange:NSMakeRange(Y,1)];// 判断校验位
+                if ([M isEqualToString:[value substringWithRange:NSMakeRange(17,1)]]) {
+                    return YES;// 检测ID的校验位
+                }else {
+                    return NO;
+                }
+                
+            }else {
+                return NO;
+            }
+        default:
+            return false;
+    }
 }
-#pragma mark 版本更新
-- (void)upDataVersion{
-//    NSString *version =  [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-//    NSString *s = [NSString stringWithContentsOfURL:[NSURL URLWithString:@""] encoding:NSUTF8StringEncoding error:nil];
-
+//判断是否银行卡
++ (BOOL)validateBankCard:(NSString *)cardNo{
+    int oddsum = 0;    //奇数求和
+    int evensum = 0;    //偶数求和
+    int allsum = 0;
+    int cardNoLength = (int)[cardNo length];
+    int lastNum = [[cardNo substringFromIndex:cardNoLength-1] intValue];
+    cardNo = [cardNo substringToIndex:cardNoLength -1];
+    for (int i = cardNoLength -1 ; i>=1;i--) {
+        NSString *tmpString = [cardNo substringWithRange:NSMakeRange(i-1,1)];
+        int tmpVal = [tmpString intValue];
+        if (cardNoLength % 2 ==1 ) {
+            if((i % 2) == 0){
+                tmpVal *= 2;
+                if(tmpVal>=10)
+                    tmpVal -= 9;
+                evensum += tmpVal;
+            }else{
+                oddsum += tmpVal;
+            }
+        }else{
+            if((i % 2) == 1){
+                tmpVal *= 2;
+                if(tmpVal>=10)
+                    tmpVal -= 9;
+                evensum += tmpVal;
+            }else{
+                oddsum += tmpVal;
+            }
+        }
+    }
+    allsum = oddsum + evensum;
+    allsum += lastNum;
+    if((allsum % 10) ==0)
+        return YES;
+    else
+        return NO;
 }
 - (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController{
     [viewController dismissViewControllerAnimated:YES completion:nil];
@@ -404,19 +416,6 @@ static Utility *_utilityinstance=nil;
         }
     }];
 }
-
-#pragma mark 新增的方法
-+ (NSDictionary *)dictFromLocalJsonFileName:(NSString *)name{
-    if (name == nil) return nil;
-    NSString *pathr=[[NSBundle mainBundle] pathForResource:name ofType:nil];
-    NSString *jsonString=[[NSString alloc] initWithContentsOfFile:pathr encoding:NSUTF8StringEncoding error:nil];
-    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *err;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
-    if(err) {NSLog(@"json解析失败：%@",err);return nil;}
-    return dic;
-}
-
 +(NSMutableArray *)imageDictWithImages:(NSMutableArray *)imagearry fileKey:(NSString *)key{
     NSMutableArray *marry=  [NSMutableArray array];
     for (int i=0; i<imagearry.count; i++) {
@@ -429,6 +428,41 @@ static Utility *_utilityinstance=nil;
         [marry addObject:dic];
         //     @[@{@"fileData":data,@"fileKey":@"image",@"fileName":@"name.jpg"}]
     }return marry;
+}
++ (void)showNavLine:(UIViewController *)vc {
+    if ([vc.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
+        NSArray *list=vc.navigationController.navigationBar.subviews;
+        for (id obj in list) {
+            if ([obj isKindOfClass:[UIImageView class]]) {
+                UIImageView *imageView=(UIImageView *)obj;
+                NSArray *list2=imageView.subviews;
+                for (id obj2 in list2) {
+                    if ([obj2 isKindOfClass:[UIImageView class]]) {
+                        UIImageView *imageView2=(UIImageView *)obj2;
+                        imageView2.hidden=NO;
+                    }
+                }
+            }
+        }
+    }
+}
+
++ (void)hidNavLine:(UIViewController *)vc {
+    if ([vc.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
+        NSArray *list=vc.navigationController.navigationBar.subviews;
+        for (id obj in list) {
+            if ([obj isKindOfClass:[UIImageView class]]) {
+                UIImageView *imageView=(UIImageView *)obj;
+                NSArray *list2=imageView.subviews;
+                for (id obj2 in list2) {
+                    if ([obj2 isKindOfClass:[UIImageView class]]) {
+                        UIImageView *imageView2=(UIImageView *)obj2;
+                        imageView2.hidden=YES;
+                    }
+                }
+            }
+        }
+    }
 }
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];

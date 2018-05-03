@@ -68,6 +68,7 @@
 // Relative dates from the current date
 + (NSDate *) dateTomorrow;
 + (NSDate *) dateYesterday;
+-(NSString *)timeToNow;
 + (NSDate *) dateWithDaysFromNow: (NSInteger) days;
 + (NSDate *) dateWithDaysBeforeNow: (NSInteger) days;
 + (NSDate *) dateWithHoursFromNow: (NSInteger) dHours;

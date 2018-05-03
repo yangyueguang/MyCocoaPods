@@ -104,7 +104,6 @@
 //周日是“1”，周一是“2”...
 -(int)getWeekIntValueWithDate{
     int weekIntValue;
-    
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierChinese];
     NSDateComponents *comps= [calendar components:(NSCalendarUnitYear |NSCalendarUnitMonth |NSCalendarUnitDay |NSCalendarUnitWeekday) fromDate:self];
     return weekIntValue = (int)[comps weekday];
@@ -121,13 +120,11 @@
         comps_today.month == comps_other.month &&
         comps_today.day == comps_other.day) {
         return @"今天";
-        
     }else{
         //直接返回当时日期的字符串(这里让它返回空)
         return [NSDate getWeekStringFromInteger:weekIntValue];//周几
     }
 }
-
 //通过数字返回星期几
 +(NSString *)getWeekStringFromInteger:(int)week{
     NSString *str_week;
@@ -699,6 +696,37 @@
     }else {
         return [self formatYMDWith:@"/"];
     }
+}
+-(NSString *)timeToNow{
+    NSString *timeString = @"";
+    NSTimeInterval late=[self timeIntervalSince1970]*1;
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval now=[dat timeIntervalSince1970]*1;
+    NSTimeInterval cha=(now-late)>0 ? (now-late) : 0;
+    if (cha/60<1) {
+        timeString=@"刚刚";
+    }else if (cha/3600<1) {
+        timeString = [NSString stringWithFormat:@"%f", cha/60];
+        timeString = [timeString substringToIndex:timeString.length-7];
+        timeString=[NSString stringWithFormat:@"%@ 分前", timeString];
+    }else if (cha/3600>1 && cha/3600<12) {
+        timeString = [NSString stringWithFormat:@"%f", cha/3600];
+        timeString = [timeString substringToIndex:timeString.length-7];
+        timeString=[NSString stringWithFormat:@"%@ 小时前", timeString];
+    }else if(cha/3600<24){
+        timeString = @"今天";
+    }else if(cha/3600<48){
+        timeString = @"昨天";
+    }else if(cha/3600/24<10){
+        timeString = [NSString stringWithFormat:@"%.0f 天前",cha/3600/24];
+    }else if(cha/3600/24<365){
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"MM月dd日"];
+        timeString=[dateFormatter stringFromDate:self];
+    }else{
+        timeString = [NSString stringWithFormat:@"%d年前",(int)cha/3600/24/365];
+    }
+    return timeString;
 }
 - (NSString *)chatFileTimeInfo{
     if ([self isThisWeek]) {

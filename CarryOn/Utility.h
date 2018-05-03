@@ -6,11 +6,6 @@
 +(id)Share;
 ///获取地址
 +(NSString *)getMacAddress;
-///计算时间差
--(NSString *)timeToNow:(NSString *)theDate;
-///时间戳格式化时间yyyy-MM-dd HH:mm
--(NSString *)timeToTimestamp:(NSString *)timestamp;
-#pragma mark 数据格式化
 ///格式化电话号码
 -(NSString *)FormatPhone:(NSString *)str;
 ///格式化身份证号
@@ -33,6 +28,8 @@
 - (BOOL)validateEmail:(NSString *)candidate;
 ///验证手机号
 - (BOOL)validateTel:(NSString *)candidate;
++ (BOOL)validateIDCardNumber:(NSString *)value;
++ (BOOL)validateBankCard:(NSString *)cardNo;
 ///判断ios版本是否高于当前版本要求
 - (BOOL)isAvailableIOS:(CGFloat)availableVersion;
 #pragma mark 功能方法
@@ -48,17 +45,8 @@
 -(void)shakeViewAnimation:(UIView *)aV;
 ///view 左右抖动
 -(void)leftRightAnimations:(UIView *)view;
-#pragma mark 版本
-///获取当前app版本
--(NSString *)VersionSelect;
-///更新版本
-- (void)upDataVersion;
-///根据本地json文件生成字典
-+ (NSDictionary*)dictFromLocalJsonFileName:(NSString *)name;
 ///把图片变成可上传的参数类型
 +(NSMutableArray*)imageDictWithImages:(NSMutableArray*)imagearry fileKey:(NSString*)key;
-#pragma mark 元件创建
-+(UITextField *)textFieldlWithFrame:(CGRect)aframe font:(UIFont*)afont color:(UIColor*)acolor placeholder:(NSString *)aplaceholder text:(NSString*)atext;
-+(UIImageView*)imageviewWithFrame:(CGRect)_frame defaultimage:(NSString*)_image;
-+(UIImageView*)imageviewWithFrame:(CGRect)_frame defaultimage:(NSString*)_image stretchW:(NSInteger)_w stretchH:(NSInteger)_h;
++ (void)hidNavLine:(UIViewController *)vc;
++ (void)showNavLine:(UIViewController *)vc;
 @end

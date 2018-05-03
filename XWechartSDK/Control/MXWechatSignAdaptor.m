@@ -39,8 +39,7 @@
                            totalFee:(NSString *)totalFee
                            deviceIp:(NSString *)deviceIp
                           notifyUrl:(NSString *)notifyUrl
-                          tradeType:(NSString *)tradeType
-{
+                          tradeType:(NSString *)tradeType{
     if (self = [super init]) {
         
         _wechatAppId        = wechatAppId;
@@ -96,8 +95,7 @@
 //创建签名
 //签名算法
 //签名生成的通用步骤如下：
--(void)createMd5Sign:(NSMutableDictionary*)dict
-{
+-(void)createMd5Sign:(NSMutableDictionary*)dict{
     NSMutableString *contentString  =[NSMutableString string];
     
     NSArray *keys = [dict allKeys];
@@ -140,8 +138,7 @@
                         prepayid:(NSString *)prepayid_key
                          package:(NSString *)package_key
                         noncestr:(NSString *)noncestr_key
-                       timestamp:(UInt32)timestamp_key
-{
+                       timestamp:(UInt32)timestamp_key{
     NSMutableDictionary *signParams = [NSMutableDictionary dictionary];
     [signParams setObject:appid_key forKey:@"appid"];
     [signParams setObject:noncestr_key forKey:@"noncestr"];
@@ -177,8 +174,7 @@
 
 
 // MD5加密算法
--(NSString *) md5:(NSString *)str
-{
+-(NSString *) md5:(NSString *)str{
     const char *cStr = [str UTF8String];
     //加密规则，因为逗比微信没有出微信支付demo，这里加密规则是参照安卓demo来得
     unsigned char result[16]= "0123456789abcdef";
@@ -195,8 +191,7 @@
 
 #pragma makr - Getter and Setter
 
-- (NSMutableDictionary *)dic
-{
+- (NSMutableDictionary *)dic{
     if (!_dic) {
         _dic = [NSMutableDictionary dictionary];
     }

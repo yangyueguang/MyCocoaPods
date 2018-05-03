@@ -1,7 +1,4 @@
-
 #import "UIImage+expanded.h"
-//#import <SDWebImage/UIImageView+WebCache.h>
-//#import <SDWebImage/SDWebImageDownloader.h>
 #import <Accelerate/Accelerate.h>
 CGFloat DegreesToRadians_afd(CGFloat degrees) {return degrees * M_PI / 180;};
 CGFloat RadiansToDegrees_afd(CGFloat radians) {return radians * 180/M_PI;};
@@ -176,13 +173,11 @@ static int16_t gaussianblur_kernel[25] = {1, 4, 6, 4, 1,4, 16, 24, 16, 4,6, 24, 
             transform = CGAffineTransformTranslate(transform, self.size.width, self.size.height);
             transform = CGAffineTransformRotate(transform, M_PI);
             break;
-            
         case UIImageOrientationLeft:
         case UIImageOrientationLeftMirrored:
             transform = CGAffineTransformTranslate(transform, self.size.width, 0);
             transform = CGAffineTransformRotate(transform, M_PI_2);
             break;
-            
         case UIImageOrientationRight:
         case UIImageOrientationRightMirrored:
             transform = CGAffineTransformTranslate(transform, 0, self.size.height);
@@ -204,7 +199,7 @@ static int16_t gaussianblur_kernel[25] = {1, 4, 6, 4, 1,4, 16, 24, 16, 4,6, 24, 
     // Now we draw the underlying CGImage into a new context, applying the transform
     // calculated above.
     CGContextRef ctx = CGBitmapContextCreate(NULL, self.size.width, self.size.height,CGImageGetBitsPerComponent(self.CGImage), 0,
-                                             CGImageGetColorSpace(self.CGImage),CGImageGetBitmapInfo(self.CGImage));
+CGImageGetColorSpace(self.CGImage),CGImageGetBitmapInfo(self.CGImage));
     CGContextConcatCTM(ctx, transform);
     switch (self.imageOrientation) {
         case UIImageOrientationLeft:
@@ -283,7 +278,6 @@ static CGRect swapWidthAndHeight(CGRect rect){
     if (width != newWidth || height != newHeight) {
         UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
         [self drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
-		
         UIImage *resized = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         //NSData *jpeg = UIImageJPEGRepresentation(image, 0.8);
@@ -297,8 +291,7 @@ static CGRect swapWidthAndHeight(CGRect rect){
     CGRect transposedRect = CGRectMake(0, 0, newRect.size.height, newRect.size.width);
     CGImageRef imageRef = self.CGImage;
     // Build a context that's the same dimensions as the new size
-    CGContextRef bitmap = CGBitmapContextCreate(NULL,newRect.size.width,newRect.size.height,CGImageGetBitsPerComponent(imageRef),0,
-                                                CGImageGetColorSpace(imageRef),CGImageGetBitmapInfo(imageRef));
+    CGContextRef bitmap = CGBitmapContextCreate(NULL,newRect.size.width,newRect.size.height,CGImageGetBitsPerComponent(imageRef),0,CGImageGetColorSpace(imageRef),CGImageGetBitmapInfo(imageRef));
     // Rotate and/or flip the image if required by its orientation
     CGContextConcatCTM(bitmap, transform);
     // Set the quality level to use when rescaling
@@ -328,32 +321,26 @@ static CGRect swapWidthAndHeight(CGRect rect){
             transform = CGAffineTransformTranslate(transform, newSize.width, 0);
             transform = CGAffineTransformRotate(transform, M_PI_2);
             break;
-            
         case UIImageOrientationRight:          // EXIF = 8
         case UIImageOrientationRightMirrored:  // EXIF = 7
             transform = CGAffineTransformTranslate(transform, 0, newSize.height);
             transform = CGAffineTransformRotate(transform, -M_PI_2);
             break;
-        default:
-            break;
+        default:break;
     }
-    
     switch (self.imageOrientation) {
         case UIImageOrientationUpMirrored:     // EXIF = 2
         case UIImageOrientationDownMirrored:   // EXIF = 4
             transform = CGAffineTransformTranslate(transform, newSize.width, 0);
             transform = CGAffineTransformScale(transform, -1, 1);
             break;
-            
         case UIImageOrientationLeftMirrored:   // EXIF = 5
         case UIImageOrientationRightMirrored:  // EXIF = 7
             transform = CGAffineTransformTranslate(transform, newSize.height, 0);
             transform = CGAffineTransformScale(transform, -1, 1);
             break;
-        default:
-            break;
+        default:break;
     }
-    
     return transform;
 }
 #pragma clang diagnostic pop
@@ -389,27 +376,22 @@ static CGRect swapWidthAndHeight(CGRect rect){
 			tran = CGAffineTransformMakeTranslation(0.0, rect.size.width);
 			tran = CGAffineTransformRotate(tran, 3.0 * M_PI / 2.0);
 			break;
-			
         case UIImageOrientationLeftMirrored:
 			bnds = swapWidthAndHeight(bnds);
-			tran = CGAffineTransformMakeTranslation(rect.size.height,
-													rect.size.width);
+			tran = CGAffineTransformMakeTranslation(rect.size.height,rect.size.width);
 			tran = CGAffineTransformScale(tran, -1.0, 1.0);
 			tran = CGAffineTransformRotate(tran, 3.0 * M_PI / 2.0);
 			break;
-			
         case UIImageOrientationRight:
 			bnds = swapWidthAndHeight(bnds);
 			tran = CGAffineTransformMakeTranslation(rect.size.height, 0.0);
 			tran = CGAffineTransformRotate(tran, M_PI / 2.0);
 			break;
-			
         case UIImageOrientationRightMirrored:
 			bnds = swapWidthAndHeight(bnds);
 			tran = CGAffineTransformMakeScale(-1.0, 1.0);
 			tran = CGAffineTransformRotate(tran, M_PI / 2.0);
 			break;
-			
         default:
 			// orientation value supplied is invalid
 			assert(false);
@@ -526,6 +508,13 @@ static CGRect swapWidthAndHeight(CGRect rect){
     UIImage *grayImage = [UIImage imageWithCGImage:CGBitmapContextCreateImage(context)];
     CGContextRelease(context);
     return grayImage;
+}
+- (UIImage *)imageWithAlpha:(CGFloat)alpha{
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
+    [self drawAtPoint:CGPointZero blendMode:kCGBlendModeNormal alpha:alpha];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 - (UIImage *)grayImage{
@@ -668,7 +657,6 @@ static CGRect swapWidthAndHeight(CGRect rect){
     void* outt = malloc(n);
     vImage_Buffer src = {data, height, width, bytesPerRow};
     vImage_Buffer dest = {outt, height, width, bytesPerRow};
-    
     vImageConvolve_ARGB8888(&src, &dest, NULL, 0, 0, gaussianblur_kernel, 5, 5, 256, NULL, kvImageCopyInPlace);
     memcpy(data, outt, n);
     free(outt);
@@ -803,5 +791,31 @@ static CGRect swapWidthAndHeight(CGRect rect){
     CGFloat width = scale * self.size.width;
     CGFloat height = scale * self.size.height;
     return CGRectMake((size.width - width) / 2, (size.height - height) / 2, width, height);
+}
++(UIImageView*)imageviewWithFrame:(CGRect)_frame defaultimage:(NSString*)_image stretchW:(NSInteger)_w stretchH:(NSInteger)_h{
+    UIImageView *imageview = nil;
+    if(_image){
+        if (_w&&_h) {
+            UIImage *image = [UIImage imageNamed:_image];
+            if (_w==-1) {
+                _w = image.size.width/2;
+            }
+            if(_h==-1){
+                _h = image.size.height/2;
+            }
+            imageview = [[UIImageView alloc] initWithImage:[image stretchableImageWithLeftCapWidth:_w topCapHeight:_h]];
+            imageview.contentMode=UIViewContentModeScaleToFill;
+        }else{
+            imageview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:_image]];
+            imageview.contentMode=UIViewContentModeScaleAspectFill;
+        }
+    }
+    if (CGRectIsEmpty(_frame)) {
+        [imageview setFrame:CGRectMake(_frame.origin.x,_frame.origin.y, imageview.image.size.width, imageview.image.size.height)];
+    }else{
+        [imageview setFrame:_frame];
+    }
+    imageview.clipsToBounds=YES;
+    return  imageview;
 }
 @end

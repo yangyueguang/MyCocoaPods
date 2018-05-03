@@ -1,19 +1,9 @@
 //
 //  UINavigationBar+expanded.m
-//  薛超APP框架
-//
-//  Created by Super on 2017/6/1.
-//  Copyright © 2017年 薛超. All rights reserved.
-//
-
 #import "UINavigationBar+expanded.h"
 #import <objc/runtime.h>
-
-#define StatusBarHeight  [UIApplication sharedApplication].statusBarFrame.size.height
-
 @implementation UINavigationBar (expanded)
 static char kBackgroundViewKey;
-//static int kNavBarBottom = 64;
 - (UIView*)backgroundView{
     return objc_getAssociatedObject(self, &kBackgroundViewKey);
 }
@@ -24,7 +14,7 @@ static char kBackgroundViewKey;
     if (self.backgroundView == nil){
         // 设置导航栏本身全透明
         [self setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-        self.backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), self.frame.size.height + StatusBarHeight)];
+        self.backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), self.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height)];
         // _UIBarBackground是导航栏的第一个子控件
         [self.subviews.firstObject insertSubview:self.backgroundView atIndex:0];
         // 隐藏导航栏底部默认黑线
@@ -32,14 +22,11 @@ static char kBackgroundViewKey;
     }
     self.backgroundView.backgroundColor = color;
 }
-
-- (void)wr_setBackgroundAplha:(CGFloat)alpha
-{
+- (void)wr_setBackgroundAplha:(CGFloat)alpha{
     if (self.backgroundView != nil) {
         self.backgroundView.alpha = alpha;
     }
 }
-
 - (void)wr_setBarButtonItemsAlpha:(CGFloat)alpha hasSystemBackIndicator:(BOOL)hasSystemBackIndicator{
     for (UIView *view in self.subviews){
         if (hasSystemBackIndicator == YES){
@@ -49,7 +36,7 @@ static char kBackgroundViewKey;
             }
         }else{
             // 这里如果不做判断的话，会显示 backIndicatorImage
-            if (![view isKindOfClass:NSClassFromString(@"_UINavigationBarBackIndicatorView")] && ![view isKindOfClass:NSClassFromString(@"_UIBarBackground")]) {
+            if (![view isKindOfClass:NSClassFromString(@"_UINavigationBarBackIndicatorView")] && ![view isKindOfClass:NSClassFromString(@"_UIBarBackground")]){
                 view.alpha = alpha;
             }
         }

@@ -1,12 +1,6 @@
 
 //
 //  String+Extension.swift
-//  project
-//
-//  Created by Super on 2017/9/13.
-//  Copyright © 2017年 Super. All rights reserved.
-//
-
 import Foundation
 import UIKit
 // MARK: - String
@@ -32,11 +26,6 @@ extension String {
         default:return""
         }
     }
-    
-    /**
-     获取唯一标示UUID
-     - returns: 返回UUID
-     */
     static func getUUID() -> String{
         let uuid : UUID = UIDevice.current.identifierForVendor!
         let uu :String = "\(uuid)"
@@ -45,23 +34,11 @@ extension String {
         let lastArray = "\((arrayNext[0] )+(arrayNext[1] )+(arrayNext[2] )+(arrayNext[3] )+(arrayNext[4] ))".components(separatedBy: " ")
         return "\((lastArray[0] )+(lastArray[1] ))"
     }
-    /**
-     获取当前时间戳
-     - returns: 返回当前时间戳
-     */
     static func getDate() -> String{
         let date:Foundation.Date = Foundation.Date()
         let array = "\(date.timeIntervalSince1970)".components(separatedBy: ".")
         return "\(array[0])"
     }
-    
-    /**
-     计算字符串高度
-     - parameter text:    计算文字
-     - parameter theFont: 文字大小
-     - parameter width:   文字宽度
-     - returns: 文字高度
-     */
     static func contentStringFrame(_ label : UILabel,text : String,theFont : CGFloat,width : CGFloat , height : CGFloat) -> CGFloat{
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.font = UIFont.systemFont(ofSize: theFont)
@@ -70,7 +47,6 @@ extension String {
         let boundingRect : CGRect = text.boundingRect(with: CGSize(width: CGFloat(width), height: 0), options: options, attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: theFont)], context: nil)
         return width == 0 ? boundingRect.width : boundingRect.height
     }
-    
     /**<判断字符串是否为空*/
     func isNullOrEmpty()->Bool{
         if(self.isEmpty){
@@ -83,12 +59,6 @@ extension String {
             }
         }
     }
-    /**
-     在固定宽度情况下，获取文字的Size
-     - parameter width:      固定的宽度
-     - parameter attributes: 文字属性
-     - returns: CGSize
-     */
     func  sizeOfString (constrainedToWidth width: CGFloat, attributes : [NSAttributedStringKey: Any]?) -> CGSize {
         return  NSString(string: self).boundingRect(with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude),options: NSStringDrawingOptions.usesLineFragmentOrigin,attributes: attributes,context: nil).size
     }
@@ -96,12 +66,6 @@ extension String {
         let attrs = [NSAttributedStringKey.font : font];
         return NSString(string: self).boundingRect(with: maxSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attrs, context: nil).size
     }
-    /**
-     在固定高度情况下，获取文字的Size
-     - parameter width:      固定的高度
-     - parameter attributes: 文字属性
-     - returns: CGSize
-     */
     func  sizeOfString (constrainedToHeight height: CGFloat, attributes : [NSAttributedStringKey: String]?) -> CGSize {
         return NSString(string: self).boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: height),options: NSStringDrawingOptions.usesLineFragmentOrigin,attributes: attributes,context: nil).size
     }

@@ -1,19 +1,14 @@
 
-
 #import "NSDictionary+expanded.h"
-
-
 @implementation NSDictionary (expanded)
-- (id)objectForJSONKey:(id)aKey
-{
+- (id)objectForJSONKey:(id)aKey{
     id value = [self objectForKey:aKey];
     if (!value||value==[NSNull null]) {
         return nil;
     }else{
         if ([value isKindOfClass:[NSNumber class]]) {
             return [NSString stringWithFormat:@"%@",value];
-        }
-        else if([value isKindOfClass:[NSString class]]){
+        }else if([value isKindOfClass:[NSString class]]){
             if ([value isEqualToString:@""] || [value isEqualToString:@"null"]) {
                 return  nil;
             }
@@ -21,13 +16,11 @@
         return value;
     }
 }
-- (NSString*)valueForJSONStrKey:(NSString *)key
-{
+- (NSString*)valueForJSONStrKey:(NSString *)key{
     NSString *str = [self valueForJSONKey:key];
     return str?str:@"";
 }
-- (id)valueForJSONKey:(NSString *)key
-{
+- (id)valueForJSONKey:(NSString *)key{
     id value = [self valueForKey:key];
     if (!value||value==[NSNull null]) {
         return nil;
@@ -42,8 +35,7 @@
         return value;
     }
 }
-- (id)valueForJSONKeys:(NSString *)key,...NS_REQUIRES_NIL_TERMINATION
-{
+- (id)valueForJSONKeys:(NSString *)key,...NS_REQUIRES_NIL_TERMINATION{
     id object=[self valueForJSONKey:key];
     NSString *akey;
     va_list ap;
@@ -55,8 +47,7 @@
     return object;
 }
 //always return an array
-- (void)setObjects:(id)objects forKey:(id)aKey
-{
+- (void)setObjects:(id)objects forKey:(id)aKey{
     if (!aKey || !objects || [self isKindOfClass:[NSMutableDictionary class]]) {
         return;
     }
@@ -64,11 +55,18 @@
         NSMutableArray *array = [NSMutableArray arrayWithArray:[self objectForKey:aKey]];
         [array addObject:objects];
         [(NSMutableDictionary*)self setObject:array forKey:aKey];
-    }
-    else
-    {
+    }else{
         [(NSMutableDictionary*)self setObject:[NSMutableArray arrayWithObject:objects] forKey:aKey];
     }
 }
-
++ (NSDictionary *)dictFromLocalJsonFileName:(NSString *)name{
+    if (name == nil) return nil;
+    NSString *pathr=[[NSBundle mainBundle] pathForResource:name ofType:nil];
+    NSString *jsonString=[[NSString alloc] initWithContentsOfFile:pathr encoding:NSUTF8StringEncoding error:nil];
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
+    if(err) {NSLog(@"json解析失败：%@",err);return nil;}
+    return dic;
+}
 @end

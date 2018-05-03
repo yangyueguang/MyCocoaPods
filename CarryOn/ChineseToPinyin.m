@@ -5,7 +5,6 @@
 //  Created by shawnlee on 10-12-16.
 //  Copyright 2010 lianpu. All rights reserved.
 //
-
 #import "ChineseToPinyin.h"
 NSString* FindLetter(int nCode){
 	NSString* strValue = @"";

@@ -16,8 +16,7 @@ sb.sureBlock = ^(NSMutableArray<BaseType *> *types, NSString *key) {
 };
 */
 #import <UIKit/UIKit.h>
-#import <Realm/Realm.h>
-@interface BaseType : RLMObject
+@interface BaseType : NSObject
 @property (copy, nonatomic) NSString * _Nullable key;
 @property (copy, nonatomic) NSString * _Nullable value;
 @property (copy, nonatomic) NSString * _Nullable code;

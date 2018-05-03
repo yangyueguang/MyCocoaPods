@@ -1,12 +1,7 @@
 
 #import "NSMutableArray+expanded.h"
-
-
-
 @implementation NSMutableArray (Convenience)
-
-- (void)moveObjectFromIndex:(NSUInteger)from toIndex:(NSUInteger)to
-{
+- (void)moveObjectFromIndex:(NSUInteger)from toIndex:(NSUInteger)to{
     if (to != from) {
         id obj = [self objectAtIndex:from];
         //[obj retain];
@@ -16,8 +11,6 @@
         } else {
             [self insertObject:obj atIndex:to];
         }
-        //[obj release];
     }
 }
-
 @end

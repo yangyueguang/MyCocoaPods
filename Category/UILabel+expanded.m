@@ -1,15 +1,7 @@
 //
 //  UILabel+expanded.m
-//  薛超APP框架
-//
-//  Created by 薛超 on 16/9/8.
-//  Copyright © 2016年 薛超. All rights reserved.
-//
-
 #import "UILabel+expanded.h"
-
 @implementation UILabel (expanded)
-
 -(BOOL)canBecomeFirstResponder{
     return YES;
 }
@@ -19,7 +11,6 @@
     }
     return NO;
 }
-
 -(void)lableCopy{
     if ([self isKindOfClass:[UILabel class]]) {
         self.userInteractionEnabled=YES;
@@ -49,13 +40,11 @@
     //  UIMenuController *menu=(UIMenuController*)item;
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     pboard.string = self.text;
-    
     NSLog(@"________copy:%@",self.text);
 }
 + (UILabel*)labelWithFrame:(CGRect)aframe font:(UIFont*)afont color:(UIColor*)acolor text:(NSString*)atext{
     return [self labelWithFrame:aframe font:afont color:acolor text:atext textAlignment:NSTextAlignmentLeft];
 }
-
 + (UILabel*)labelWithFrame:(CGRect)aframe font:(UIFont*)afont color:(UIColor*)acolor text:(NSString*)atext textAlignment:(NSTextAlignment)aalignment setLineSpacing:(float)afloat{
     UILabel *lblTemp=[self labelWithFrame:aframe font:afont color:acolor text:atext textAlignment:aalignment];
     if (!aframe.size.height) {
@@ -71,7 +60,6 @@
     }
     return lblTemp;
 }
-
 + (UILabel*)labelWithFrame:(CGRect)aframe font:(UIFont*)afont color:(UIColor*)acolor text:(NSString*)atext textAlignment:(NSTextAlignment)aalignment{
     UILabel *baseLabel=[[UILabel alloc] initWithFrame:aframe];
     if(afont)baseLabel.font=afont;

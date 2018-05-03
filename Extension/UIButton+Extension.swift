@@ -1,15 +1,7 @@
 //
 //  UIButton+Extension.swift
-//  Liwushuo
-//
-//  Created by hans on 16/6/30.
-//  Copyright © 2016年 汉斯哈哈哈. All rights reserved.
-//
-
 import UIKit
-//import BlocksKit
 extension UIButton {
-
     convenience init(x: CGFloat, iconName: NSString, target: AnyObject?, action: Selector, imageEdgeInsets: UIEdgeInsets){
         self.init()
         frame = CGRect(x: x, y: 0, width: 44, height: 44)
@@ -18,7 +10,6 @@ extension UIButton {
         self.imageEdgeInsets = imageEdgeInsets
         addTarget(target, action: action, for: UIControlEvents.touchUpInside)
     }
-    
     /// 导航栏排序按钮
     convenience init(sortTarget: AnyObject?, action: Selector) {
         self.init()
@@ -27,7 +18,6 @@ extension UIButton {
         setImage(UIImage(named: "icon_sort"), for: UIControlState())
         addTarget(sortTarget, action: action, for: UIControlEvents.touchUpInside)
     }
-    
     /// 导航栏返回按钮
     convenience init(backTarget: AnyObject?, action: Selector) {
         self.init()
@@ -36,7 +26,6 @@ extension UIButton {
         contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
         addTarget(backTarget, action: action, for: UIControlEvents.touchUpInside)
     }
-    
     /// 导航栏取消按钮
     convenience init(cancelTarget: AnyObject?, action: Selector) {
         self.init()
@@ -45,7 +34,6 @@ extension UIButton {
         contentHorizontalAlignment = UIControlContentHorizontalAlignment.right
         addTarget(cancelTarget, action: action, for: UIControlEvents.touchUpInside)
     }
-    
     /// 选礼神器-筛选标签按钮
     convenience init(srotTagTarget: AnyObject?, action: Selector) {
         self.init()
@@ -62,9 +50,7 @@ extension UIButton {
         layer.borderWidth = 0.5
         addTarget(srotTagTarget, action: action, for: UIControlEvents.touchUpInside)
     }
-    
     class func zjBarButtonItem(_ title : String,imageName : String,block:@escaping ()->Void) -> UIButton {
-        
         let button = UIButton.init(type: UIButtonType.custom)
         button.adjustsImageWhenDisabled = false
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
@@ -74,32 +60,18 @@ extension UIButton {
         button.sizeToFit()
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
         button.setImage(UIImage(named: imageName), for: UIControlState())
-//        button.bk_(whenTapped: {
-//            block()
-//        })
         button.frame.size = CGSize(width: String.zjSizeWithString(title, font: UIFont.systemFont(ofSize: 14) , sizeWidth: 0, sizeHeight: 21) + ((button.imageView?.image?.size.width)!), height: 21)
-        
         return button
     }
-    /**
-     自定义返回Nav按钮
-     
-     - returns: 自定义按钮
-     */
+    ///自定义返回Nav按钮
     class func buttonWithBackItem() -> UIButton {
-        
         let btn : UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 48, height: 20))
-        
         btn.setTitleColor(UIColor.blue, for: UIControlState())
-        
         btn.setTitle("返回", for: UIControlState())
-        
         return btn
     }
-    
     //主页搜索栏
     class func createTitleButtonView(_ imageName : String,title : String,withClickBlock:@escaping ()->Void) -> UIButton {
-        
         let button = UIButton.init(type: UIButtonType.custom)
         button.adjustsImageWhenHighlighted = false
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
@@ -111,20 +83,11 @@ extension UIButton {
         button.contentEdgeInsets = UIEdgeInsetsMake(0, -5, 0,0)
         button.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0)
         button.sizeToFit()
-        
-//        button.bk_(whenTapped:{
-//
-//            withClickBlock()
-//        })
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center;
         button.frame.size = CGSize(width: UIScreen.main.bounds.size.width - 60, height: 30)
-        
         return button
-        
     }
-    
     class func createDestinationTitleButtonView(_ imageName : String,title : String,frame : CGRect , withClickBlock:@escaping ()->Void) -> UIButton {
-        
         let button = UIButton.init(type: UIButtonType.custom)
         button.frame = frame
         button.setTitleColor(UIColor.HEX(0xbec2c6), for: UIControlState())
@@ -138,14 +101,8 @@ extension UIButton {
         button.layer.masksToBounds = true
         button.contentEdgeInsets = UIEdgeInsetsMake(0, -5, 0,0)
         button.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0)
-//        button.bk_(whenTapped:{
-//            
-//            withClickBlock()
-//        })
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center;
-        
         return button
-        
     }
     //自定义按钮：
     class func createButtonWithTitle(frame:CGRect,title:String,fontSize:CGFloat,tag:Int,target:AnyObject,action:Selector) -> UIButton  {
@@ -156,9 +113,7 @@ extension UIButton {
         button.addTarget(target, action: action, for: UIControlEvents.touchUpInside)
         button.tag = tag
         button.setTitleColor(UIColor.black, for: .normal)
-        
         return button
-        
     }
     class func createButtonWithImg(frame:CGRect,imgName:String,tag:Int,target:AnyObject,action:Selector) -> UIButton  {
         let  button = UIButton.init(type: UIButtonType.custom)

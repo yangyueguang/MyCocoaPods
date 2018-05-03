@@ -10,10 +10,6 @@
 + (NSURL *)cachesURL;
 + (NSString *)cachesPath;
 + (BOOL)addSkipBackupAttributeToFile:(NSString *)path;
-/**
- Get available disk space.
- @return An amount of available disk space in Megabytes.
- */
 + (double)availableDiskSpace;
 // 图片 — 设置
 + (NSString *)pathUserSettingImage:(NSString *)imageName;
@@ -37,6 +33,4 @@
 + (NSString *)pathDBMessage;
 // 缓存
 + (NSString *)cacheForFile:(NSString *)filename;
-
-
 @end

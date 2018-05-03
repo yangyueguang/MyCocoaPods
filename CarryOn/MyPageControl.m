@@ -1,6 +1,5 @@
 
 #import "MyPageControl.h"
-
 @interface MyPageControl() // 声明一个私有方法, 该方法不允许对象直接使用
 - (void)updateDots;
 @end
@@ -8,8 +7,8 @@
 - (id)initWithFrame:(CGRect)frame{ // 初始化
     self = [super initWithFrame:frame];  
     return self;
-}
-- (void)setImagePageStateNormal:(UIImage *)image{ // 设置正常状态点按钮的图片
+}// 设置正常状态点按钮的图片
+- (void)setImagePageStateNormal:(UIImage *)image{
     _imagePageStateHighlighted = image;
     [self updateDots];  
 }  

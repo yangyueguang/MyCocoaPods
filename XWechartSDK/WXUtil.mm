@@ -7,8 +7,7 @@
 @implementation WXUtil
 
 //md5 encode
-+(NSString *) md5:(NSString *)str
-{
++(NSString *) md5:(NSString *)str{
     const char *cStr = [str UTF8String];
     unsigned char digest[CC_MD5_DIGEST_LENGTH];
     CC_MD5( cStr, (unsigned int)strlen(cStr), digest );
@@ -21,8 +20,7 @@
     return output;
 }
 //sha1 encode
-+(NSString*) sha1:(NSString *)str
-{
++(NSString*) sha1:(NSString *)str{
     const char *cstr = [str cStringUsingEncoding:NSUTF8StringEncoding];
     NSData *data = [NSData dataWithBytes:cstr length:str.length];
     
@@ -38,8 +36,7 @@
     return output;
 }
 //http 请求
-+(NSData *) httpSend:(NSString *)url method:(NSString *)method data:(NSString *)data
-{
++(NSData *) httpSend:(NSString *)url method:(NSString *)method data:(NSString *)data{
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:5];
     //设置提交方式
     [request setHTTPMethod:method];

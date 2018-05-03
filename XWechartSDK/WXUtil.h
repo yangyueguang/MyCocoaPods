@@ -3,8 +3,7 @@
 #import <Foundation/Foundation.h>
 #import <CommonCrypto/CommonDigest.h>
 
-@interface WXUtil :NSObject <NSXMLParserDelegate>
-{
+@interface WXUtil :NSObject <NSXMLParserDelegate>{
 }
 /*
  加密实现MD5和SHA1
