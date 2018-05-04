@@ -21,6 +21,10 @@ let APPW = UIScreen.main.bounds.width
 let APPH = UIScreen.main.bounds.height
 let TopHeight:CGFloat = getTopHeight()
 let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+let libraryPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first
+let cachesPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first
+let tempPath = NSTemporaryDirectory()
+let homePath = NSHomeDirectory()
 struct Url {
     static let PeiYouTiXianRequest = "order/ApplyWithdrawal"
     static let PeiYouAccountInfo = "Account/Companion_AccountNumber"

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		13272FD8E7DF69123BAA2F4B /* Pods_MyCocoaPods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2365036460F451E73D4822 /* Pods_MyCocoaPods.framework */; };
+		71024C36209C289300207E44 /* XCarryOn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71024C35209C289300207E44 /* XCarryOn.swift */; };
 		713FDDC320995FFD00C4E69E /* BaseCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDDBA20995FFC00C4E69E /* BaseCollectionView.swift */; };
 		713FDDC420995FFD00C4E69E /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDDBB20995FFC00C4E69E /* BaseCollectionViewCell.swift */; };
 		713FDDC520995FFD00C4E69E /* BaseScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDDBC20995FFD00C4E69E /* BaseScrollView.swift */; };
@@ -19,9 +20,7 @@
 		713FDDCB20995FFD00C4E69E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDDC220995FFD00C4E69E /* BaseViewController.swift */; };
 		713FDEE520999DD500C4E69E /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEDD20999DD500C4E69E /* Utility.m */; };
 		713FDEE620999DD500C4E69E /* RGBNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEE220999DD500C4E69E /* RGBNavigationController.m */; };
-		713FDEE720999DD500C4E69E /* MyPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEE320999DD500C4E69E /* MyPageControl.m */; };
 		713FDEE820999DD500C4E69E /* SDDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEE420999DD500C4E69E /* SDDataCache.m */; };
-		713FDEEB20999E3400C4E69E /* TDTouchID.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEEA20999E3400C4E69E /* TDTouchID.m */; };
 		713FDEF52099A03800C4E69E /* BaseExcelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEEC2099A03600C4E69E /* BaseExcelView.m */; };
 		713FDEF62099A03800C4E69E /* SelectButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEEE2099A03700C4E69E /* SelectButtons.m */; };
 		713FDEF72099A03800C4E69E /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEEF2099A03700C4E69E /* DownloadService.swift */; };
@@ -96,6 +95,7 @@
 /* Begin PBXFileReference section */
 		00087E8B0C2CE5586E75AE96 /* Pods-MyCocoaPods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCocoaPods.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods.debug.xcconfig"; sourceTree = "<group>"; };
 		6FB852E20851D3E97FD4AB39 /* Pods-MyCocoaPods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCocoaPods.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods.release.xcconfig"; sourceTree = "<group>"; };
+		71024C35209C289300207E44 /* XCarryOn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCarryOn.swift; sourceTree = "<group>"; };
 		713FDDBA20995FFC00C4E69E /* BaseCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionView.swift; sourceTree = "<group>"; };
 		713FDDBB20995FFC00C4E69E /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		713FDDBC20995FFD00C4E69E /* BaseScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScrollView.swift; sourceTree = "<group>"; };
@@ -107,14 +107,10 @@
 		713FDDC220995FFD00C4E69E /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		713FDEDD20999DD500C4E69E /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		713FDEDE20999DD500C4E69E /* SDDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDataCache.h; sourceTree = "<group>"; };
-		713FDEDF20999DD500C4E69E /* MyPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPageControl.h; sourceTree = "<group>"; };
 		713FDEE020999DD500C4E69E /* RGBNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RGBNavigationController.h; sourceTree = "<group>"; };
 		713FDEE120999DD500C4E69E /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		713FDEE220999DD500C4E69E /* RGBNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RGBNavigationController.m; sourceTree = "<group>"; };
-		713FDEE320999DD500C4E69E /* MyPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPageControl.m; sourceTree = "<group>"; };
 		713FDEE420999DD500C4E69E /* SDDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDataCache.m; sourceTree = "<group>"; };
-		713FDEE920999E3400C4E69E /* TDTouchID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTouchID.h; sourceTree = "<group>"; };
-		713FDEEA20999E3400C4E69E /* TDTouchID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDTouchID.m; sourceTree = "<group>"; };
 		713FDEEC2099A03600C4E69E /* BaseExcelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseExcelView.m; sourceTree = "<group>"; };
 		713FDEED2099A03700C4E69E /* SelectButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectButtons.h; sourceTree = "<group>"; };
 		713FDEEE2099A03700C4E69E /* SelectButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectButtons.m; sourceTree = "<group>"; };
@@ -241,14 +237,11 @@
 				713FDEF12099A03700C4E69E /* BaseSegButtons.h */,
 				713FDEF32099A03700C4E69E /* BaseSegButtons.m */,
 				713FDEF42099A03800C4E69E /* MagiNotice.swift */,
+				71024C35209C289300207E44 /* XCarryOn.swift */,
 				713FDEED2099A03700C4E69E /* SelectButtons.h */,
 				713FDEEE2099A03700C4E69E /* SelectButtons.m */,
 				713FDEE120999DD500C4E69E /* Utility.h */,
 				713FDEDD20999DD500C4E69E /* Utility.m */,
-				713FDEE920999E3400C4E69E /* TDTouchID.h */,
-				713FDEEA20999E3400C4E69E /* TDTouchID.m */,
-				713FDEDF20999DD500C4E69E /* MyPageControl.h */,
-				713FDEE320999DD500C4E69E /* MyPageControl.m */,
 				713FDEE020999DD500C4E69E /* RGBNavigationController.h */,
 				713FDEE220999DD500C4E69E /* RGBNavigationController.m */,
 				713FDEDE20999DD500C4E69E /* SDDataCache.h */,
@@ -620,7 +613,6 @@
 				713FDEF52099A03800C4E69E /* BaseExcelView.m in Sources */,
 				BF5B9AA01F66CADE00ECB3EC /* README.md in Sources */,
 				BF4C101F1F62E23500E8234D /* ViewController.swift in Sources */,
-				713FDEEB20999E3400C4E69E /* TDTouchID.m in Sources */,
 				BF77109B1FB94E4B001F853E /* UIBarButtonItem+expanded.m in Sources */,
 				BF4C101D1F62E23500E8234D /* AppDelegate.swift in Sources */,
 				BF7710821FB94E4B001F853E /* PublicString.swift in Sources */,
@@ -640,7 +632,6 @@
 				BF7710921FB94E4B001F853E /* UIViewController+Extension.swift in Sources */,
 				BF7710881FB94E4B001F853E /* UIColor+Extension.swift in Sources */,
 				BF7710CC1FB94F6E001F853E /* WXApiResponseHandler.m in Sources */,
-				713FDEE720999DD500C4E69E /* MyPageControl.m in Sources */,
 				BF77107F1FB94E4B001F853E /* Dictionary+Extension.swift in Sources */,
 				BF77109D1FB94E4B001F853E /* UIControl+expanded.m in Sources */,
 				BF7710831FB94E4B001F853E /* PublicTools.swift in Sources */,
@@ -676,6 +667,7 @@
 				713FDEF82099A03800C4E69E /* PreViewController.swift in Sources */,
 				713FDDCA20995FFD00C4E69E /* BaseStaticView.swift in Sources */,
 				713FDDC320995FFD00C4E69E /* BaseCollectionView.swift in Sources */,
+				71024C36209C289300207E44 /* XCarryOn.swift in Sources */,
 				713FDDC620995FFD00C4E69E /* BaseTabBarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -426,41 +426,20 @@ static Utility *_utilityinstance=nil;
         NSData *imgData=UIImageJPEGRepresentation(image, 1.0);
         [dic setObject:imgData forKey:@"fileData"];
         [marry addObject:dic];
-        //     @[@{@"fileData":data,@"fileKey":@"image",@"fileName":@"name.jpg"}]
+//     @[@{@"fileData":data,@"fileKey":@"image",@"fileName":@"name.jpg"}]
     }return marry;
 }
-+ (void)showNavLine:(UIViewController *)vc {
-    if ([vc.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
-        NSArray *list=vc.navigationController.navigationBar.subviews;
-        for (id obj in list) {
-            if ([obj isKindOfClass:[UIImageView class]]) {
-                UIImageView *imageView=(UIImageView *)obj;
-                NSArray *list2=imageView.subviews;
-                for (id obj2 in list2) {
-                    if ([obj2 isKindOfClass:[UIImageView class]]) {
-                        UIImageView *imageView2=(UIImageView *)obj2;
-                        imageView2.hidden=NO;
-                    }
-                }
-            }
-        }
-    }
-}
-
-+ (void)hidNavLine:(UIViewController *)vc {
-    if ([vc.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
-        NSArray *list=vc.navigationController.navigationBar.subviews;
-        for (id obj in list) {
-            if ([obj isKindOfClass:[UIImageView class]]) {
-                UIImageView *imageView=(UIImageView *)obj;
-                NSArray *list2=imageView.subviews;
-                for (id obj2 in list2) {
-                    if ([obj2 isKindOfClass:[UIImageView class]]) {
-                        UIImageView *imageView2=(UIImageView *)obj2;
-                        imageView2.hidden=YES;
-                    }
-                }
-            }
+-(void)openSettings:(void (^)(BOOL))block{
+    if(NSFoundationVersionNumber<NSFoundationVersionNumber_iOS_8_0){
+        block(NO);
+    }else{
+        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        if([[UIApplication sharedApplication]canOpenURL:url]){
+            [[UIApplication sharedApplication]openURL:url options:@{} completionHandler:^(BOOL success) {
+                block(success);
+            }];
+        }else{
+            block(NO);
         }
     }
 }

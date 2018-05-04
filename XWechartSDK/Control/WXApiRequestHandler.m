@@ -222,9 +222,10 @@
         //解析服务端返回json数据
         NSError *error;
         //加载一个NSURL对象
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+//        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
         //将请求的url数据放到NSData对象中
-        NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSData *response = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+//        NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
         if ( response != nil) {
             NSMutableDictionary *dict = NULL;
             //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中

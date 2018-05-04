@@ -158,28 +158,20 @@
         NSLog(@"支付失败");
     }
 }
-#pragma mark -UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == alertView.cancelButtonIndex)
-        return;
-    if (alertView.tag == 111) {
-        RespForWeChatViewController* controller = [RespForWeChatViewController alloc];
-        [self presentViewController:controller animated:YES completion:nil];
-    }
-}
-
 #pragma mark - WXApiManagerDelegate
 - (void)managerDidRecvGetMessageReq:(GetMessageFromWXReq *)req {
     // 微信请求App提供内容， 需要app提供内容后使用sendRsp返回
     NSString *strTitle = [NSString stringWithFormat:@"微信请求App提供内容"];
     NSString *strMsg = [NSString stringWithFormat:@"openID: %@", req.openID];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle
-                                                    message:strMsg
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil, nil];
-    alert.tag = 111;
-    [alert show];
+    
+    
+    UIAlertController *acVC = [UIAlertController alertControllerWithTitle:strTitle message:strMsg preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *destructive = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        RespForWeChatViewController* controller = [RespForWeChatViewController alloc];
+        [self presentViewController:controller animated:YES completion:nil];
+    }];
+    [acVC addAction:destructive];
+    [self presentViewController:acVC animated:YES completion:nil];
 }
 
 - (void)managerDidRecvShowMessageReq:(ShowMessageFromWXReq *)req {
@@ -188,12 +180,7 @@
     WXAppExtendObject *obj = msg.mediaObject;
     NSString *strTitle = [NSString stringWithFormat:@"微信请求App显示内容"];
     NSString *strMsg = [NSString stringWithFormat:@"openID: %@, 标题：%@ \n内容：%@ \n附带信息：%@ \n缩略图:%lu bytes\n附加消息:%@\n", req.openID, msg.title, msg.description, obj.extInfo, (unsigned long)msg.thumbData.length, msg.messageExt];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle
-                                                    message:strMsg
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil, nil];
-    [alert show];
+    NSLog(@"%@===%@",strTitle,strMsg);
 }
 
 - (void)managerDidRecvLaunchFromWXReq:(LaunchFromWXReq *)req {
@@ -202,25 +189,13 @@
     //从微信启动App
     NSString *strTitle = [NSString stringWithFormat:@"从微信启动"];
     NSString *strMsg = [NSString stringWithFormat:@"openID: %@, messageExt:%@", req.openID, msg.messageExt];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle
-                                                    message:strMsg
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil, nil];
-    [alert show];
+    NSLog(@"%@===%@",strTitle,strMsg);
 }
 
 - (void)managerDidRecvMessageResponse:(SendMessageToWXResp *)response {
     NSString *strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
     NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", response.errCode];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle
-                                                    message:strMsg
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil, nil];
-    [alert show];
+    NSLog(@"%@===%@",strTitle,strMsg);
 }
 
 - (void)managerDidRecvAddCardResponse:(AddCardToWXCardPackageResp *)response {
@@ -228,23 +203,13 @@
     for (WXCardItem* cardItem in response.cardAry) {
         [cardStr appendString:[NSString stringWithFormat:@"cardid:%@ cardext:%@ cardstate:%u\n",cardItem.cardId,cardItem.extMsg,(unsigned int)cardItem.cardState]];
     }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"add card resp"
-                                                    message:cardStr
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil, nil];
-    [alert show];
+    NSLog(@"%@===%@",@"add card resp",cardStr);
 }
 
 - (void)managerDidRecvAuthResponse:(SendAuthResp *)response {
     NSString *strTitle = [NSString stringWithFormat:@"Auth结果"];
     NSString *strMsg = [NSString stringWithFormat:@"code:%@,state:%@,errcode:%d", response.code, response.state, response.errCode];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle
-                                                    message:strMsg
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil, nil];
-    [alert show];
+    NSLog(@"%@===%@",strTitle,strMsg);
 }
 
 #pragma mark - Private Methods

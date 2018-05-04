@@ -76,6 +76,13 @@
     self.layer.cornerRadius = 3.0;  
     self.layer.borderWidth = 1.0;
 }
+-(void)bestRoundCorner{
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:self.bounds.size];
+    CAShapeLayer *layer = [[CAShapeLayer alloc]init];
+    layer.frame = self.bounds;
+    layer.path = path.CGPath;
+    self.layer.mask = layer;
+}
 -(void)rotateViewStart;{
     CABasicAnimation* rotationAnimation;
     rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];

@@ -47,6 +47,4 @@
 -(void)leftRightAnimations:(UIView *)view;
 ///把图片变成可上传的参数类型
 +(NSMutableArray*)imageDictWithImages:(NSMutableArray*)imagearry fileKey:(NSString*)key;
-+ (void)hidNavLine:(UIViewController *)vc;
-+ (void)showNavLine:(UIViewController *)vc;
 @end
