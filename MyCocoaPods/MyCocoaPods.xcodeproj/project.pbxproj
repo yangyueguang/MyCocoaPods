@@ -30,6 +30,8 @@
 		713FDEFC2099A04200C4E69E /* UTI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 713FDEFB2099A04200C4E69E /* UTI.plist */; };
 		713FDEFF2099A04C00C4E69E /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEFE2099A04B00C4E69E /* ChineseToPinyin.m */; };
 		713FDF0B209B04A000C4E69E /* UITextField+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDF0A209B04A000C4E69E /* UITextField+expanded.m */; };
+		7162E67F20A034EA00EF6896 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7162E67D20A034EA00EF6896 /* HTMLParser.m */; };
+		7162E68120A0352F00EF6896 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7162E68020A0352E00EF6896 /* libxml2.tbd */; };
 		BF4C101D1F62E23500E8234D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4C101C1F62E23500E8234D /* AppDelegate.swift */; };
 		BF4C101F1F62E23500E8234D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4C101E1F62E23500E8234D /* ViewController.swift */; };
 		BF4C10221F62E23500E8234D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4C10201F62E23500E8234D /* Main.storyboard */; };
@@ -125,6 +127,9 @@
 		713FDEFE2099A04B00C4E69E /* ChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyin.m; sourceTree = "<group>"; };
 		713FDF09209B04A000C4E69E /* UITextField+expanded.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+expanded.h"; sourceTree = "<group>"; };
 		713FDF0A209B04A000C4E69E /* UITextField+expanded.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+expanded.m"; sourceTree = "<group>"; };
+		7162E67D20A034EA00EF6896 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
+		7162E67E20A034EA00EF6896 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
+		7162E68020A0352E00EF6896 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		BF4C10191F62E23500E8234D /* MyCocoaPods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCocoaPods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF4C101C1F62E23500E8234D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF4C101E1F62E23500E8234D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +225,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7162E68120A0352F00EF6896 /* libxml2.tbd in Frameworks */,
 				13272FD8E7DF69123BAA2F4B /* Pods_MyCocoaPods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,6 +261,8 @@
 			isa = PBXGroup;
 			children = (
 				713FDEEF2099A03700C4E69E /* DownloadService.swift */,
+				7162E67E20A034EA00EF6896 /* HTMLParser.h */,
+				7162E67D20A034EA00EF6896 /* HTMLParser.m */,
 				713FDEFB2099A04200C4E69E /* UTI.plist */,
 				713FDEF02099A03700C4E69E /* PreViewController.swift */,
 			);
@@ -282,6 +290,7 @@
 		9288D709AF3A9304559AAABB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7162E68020A0352E00EF6896 /* libxml2.tbd */,
 				CC2365036460F451E73D4822 /* Pods_MyCocoaPods.framework */,
 			);
 			name = Frameworks;
@@ -313,8 +322,8 @@
 				BF7710AB1FB94F6E001F853E /* XWechartSDK */,
 				BF77105E1FB94E4B001F853E /* Category */,
 				BF7710461FB94E4B001F853E /* Extension */,
-				BF4C101C1F62E23500E8234D /* AppDelegate.swift */,
 				71517BB32094B32500B40538 /* BaseFile */,
+				BF4C101C1F62E23500E8234D /* AppDelegate.swift */,
 				BF4C101E1F62E23500E8234D /* ViewController.swift */,
 				BF5B9A9F1F66CADE00ECB3EC /* README.md */,
 				BF4C10201F62E23500E8234D /* Main.storyboard */,
@@ -647,6 +656,7 @@
 				713FDDC420995FFD00C4E69E /* BaseCollectionViewCell.swift in Sources */,
 				713FDDCB20995FFD00C4E69E /* BaseViewController.swift in Sources */,
 				713FDEF62099A03800C4E69E /* SelectButtons.m in Sources */,
+				7162E67F20A034EA00EF6896 /* HTMLParser.m in Sources */,
 				713FDEFA2099A03800C4E69E /* MagiNotice.swift in Sources */,
 				BF7710971FB94E4B001F853E /* NSFileManager+expanded.m in Sources */,
 				713FDEF72099A03800C4E69E /* DownloadService.swift in Sources */,
@@ -801,6 +811,7 @@
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/WechatOpenSDK\"",
 					"$(PROJECT_DIR)/build/include",
+					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = MyCocoaPods/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -824,6 +835,7 @@
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/WechatOpenSDK\"",
 					"$(PROJECT_DIR)/build/include",
+					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = MyCocoaPods/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -11,6 +11,8 @@ import StoreKit
 import AudioToolbox
 import Foundation
 import LocalAuthentication
+import CoreSpotlight
+import MobileCoreServices
 @objcMembers
 public class APP:NSObject{
     let region:String!
@@ -146,5 +148,29 @@ public class PublicTools:NSObject{
                 }
             }
         }
+    }
+    ///添加系统层面的搜索
+    class func addSearchItem(title:String?,des:String?,thumURL:URL?,identifier:String?,keywords:[String]?){
+        let sias = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
+        sias.title = title
+        sias.thumbnailURL = thumURL
+        sias.contentDescription = des
+        sias.keywords = keywords
+        let searchableItem = CSSearchableItem(uniqueIdentifier:identifier,domainIdentifier:"items",attributeSet:sias)
+        addSearchItems([searchableItem])
+    }
+    ///添加系统层面的搜索
+    class func addSearchItems(_ searchItems:[CSSearchableItem]){
+        let searchIndex = CSSearchableIndex.default()
+        searchIndex.indexSearchableItems(searchItems){error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    ///删除系统层面的搜索
+    class func deleteSearchItem(identifiers:[String],closure:((Error?) -> Swift.Void)? = nil){
+        let searchIndex = CSSearchableIndex.default()
+        searchIndex.deleteSearchableItems(withIdentifiers: identifiers, completionHandler: closure)
     }
 }

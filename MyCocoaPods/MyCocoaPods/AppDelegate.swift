@@ -1,6 +1,7 @@
 import UIKit
 import AVFoundation
 //import Bugly
+import CoreSpotlight
 import Realm
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {//WXApiDelegate
@@ -147,6 +148,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {//WXApiDelegate
 //        //微信的
 //        WXApi.handleOpen(url, delegate: WXApiManager.shared())
 //        ShareSDK.handleOpen(url, wxDelegate: self)
+        return true
+    }
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        if userActivity.activityType == CSSearchableItemActionType {
+            if let userInfo = userActivity.userInfo {
+                let selectedItem = userInfo[CSSearchableItemActivityIdentifier] as! String
+                print(selectedItem)
+            }
+        }
         return true
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

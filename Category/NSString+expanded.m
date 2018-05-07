@@ -65,25 +65,19 @@
 }
 
 - (NSString *)stringByReplaceHTML{
-    
     NSScanner *theScanner;
     NSString *text = nil;
     NSString *html = self;
     theScanner = [NSScanner scannerWithString:html];
-    
     while ([theScanner isAtEnd] == NO) {
-        
         // find start of tag
         [theScanner scanUpToString:@"<" intoString:NULL] ;
-        
         // find end of tag
         [theScanner scanUpToString:@">" intoString:&text] ;
-        
         // replace the found tag with a space
         //(you can filter multi-spaces out later if you wish)
         html = [html stringByReplacingOccurrencesOfString:
-                [ NSString stringWithFormat:@"%@>", text]
-                                               withString:@" "];
+            [NSString stringWithFormat:@"%@>", text]withString:@" "];
     } // while //
     return html;
 }
@@ -447,5 +441,18 @@
     NSArray* array = [self componentsSeparatedByString:@"."];
     return [array lastObject];
 }
+- (NSString *)gotHtml{
+    NSURL *url = [NSURL URLWithString:[self urlEncodedString]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:NULL error:&error];
+    if (error) {
+        NSLog(@"%@",error.localizedDescription);
+        return nil;
+    }
+    NSString *backStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return backStr;
+}
+
 @end
 

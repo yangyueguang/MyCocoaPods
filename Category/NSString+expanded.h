@@ -63,5 +63,6 @@ typedef enum {
 -(NSMutableAttributedString*)attributeNumberWithBoldFontSize:(CGFloat)fontsize color:(UIColor*)color;
 -(NSString*)deleteSpace;
 - (NSString* )extendName;
+- (NSString *)gotHtml;
 @end
 
