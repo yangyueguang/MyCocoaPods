@@ -1,5 +1,6 @@
 
 import UIKit
+@objcMembers
 open class SWCommonItem : NSObject {
     open var icon: String! /** 图标 */
     open var title: String! /** 标题 */
@@ -11,7 +12,7 @@ open class SWCommonItem : NSObject {
     class func item(withTitle title: String)->SWCommonItem{
        return SWCommonItem(title: title, icon: "")
     }
-    init(title: String, icon: String) {
+    public init(title: String, icon: String) {
         super.init()
         self.title = title
         self.icon = icon
@@ -20,6 +21,7 @@ open class SWCommonItem : NSObject {
         fatalError("init(coder:) has not been implemented")
     }
 }
+@objcMembers
 open class SWCommonGroup : NSObject {
     open var header: String! /** 组头 */
     open var footer: String! /** 组尾 */
@@ -31,6 +33,7 @@ open class SWCommonGroup : NSObject {
         fatalError("init(coder:) has not been implemented")
     }
 }
+@objcMembers
 open class SWCommonCell : UITableViewCell {
     var badgeValue = ""
     lazy var rightArrow: UIImageView = UIImageView(image: UIImage(named: "cell_right"))
@@ -74,7 +77,7 @@ open class SWCommonCell : UITableViewCell {
     }
     
     // MARK: - setter
-    func setIndexPath(_ indexPath: IndexPath, rowsInSection rows: Int) {
+    public func setIndexPath(_ indexPath: IndexPath, rowsInSection rows: Int) {
         // 1.取出背景view
         let bgView = backgroundView as? UIImageView
         let selectedBgView = selectedBackgroundView as? UIImageView
@@ -101,6 +104,7 @@ open class SWCommonCell : UITableViewCell {
         }
     }
 }
+@objcMembers
 open class BaseStaticTableView : UITableView {
    var groups :[SWCommonGroup] = [SWCommonGroup]()
     override init(frame: CGRect, style: UITableViewStyle) {
@@ -114,29 +118,29 @@ open class BaseStaticTableView : UITableView {
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func numberOfSections(in tableView: UITableView) -> Int {
+    open func numberOfSections(in tableView: UITableView) -> Int {
         return groups.count
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let group: SWCommonGroup? = groups[section]
         return (group?.items.count)!
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = SWCommonCell.cellWith(tableView: tableView)
         let group: SWCommonGroup? = groups[indexPath.section]
         cell.item = (group?.items[indexPath.row])!
         cell.setIndexPath(indexPath, rowsInSection: (group?.items.count)!)
         return cell
     }
-    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    open func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         let group: SWCommonGroup? = groups[section]
         return group?.footer
     }
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let group: SWCommonGroup? = groups[section]
         return group?.header
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 1.取出这行对应的item模型
         let group: SWCommonGroup? = groups[indexPath.section]
         let item: SWCommonItem? = (group?.items[indexPath.row])!

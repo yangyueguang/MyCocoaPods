@@ -1,7 +1,7 @@
 //
 //  UIButton+Extension.swift
 import UIKit
-extension UIButton {
+public extension UIButton {
     convenience init(x: CGFloat, iconName: NSString, target: AnyObject?, action: Selector, imageEdgeInsets: UIEdgeInsets){
         self.init()
         frame = CGRect(x: x, y: 0, width: 44, height: 44)

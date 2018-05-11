@@ -4,8 +4,9 @@
 //  Created by Super on 2017/9/13.
 //  Copyright © 2017年 Super. All rights reserved.
 import UIKit
-class BaseNavigationViewController: UINavigationController, UIGestureRecognizerDelegate, UINavigationControllerDelegate {
-    override func viewDidLoad() {
+@objcMembers
+open class BaseNavigationViewController: UINavigationController, UIGestureRecognizerDelegate, UINavigationControllerDelegate {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         let appearance = UINavigationBar.appearance()
         appearance.isTranslucent = false
@@ -38,7 +39,7 @@ class BaseNavigationViewController: UINavigationController, UIGestureRecognizerD
             delegate = self
         }
     }
-    override var preferredStatusBarStyle: UIStatusBarStyle{
+    override open var preferredStatusBarStyle: UIStatusBarStyle{
         return .lightContent
     }
     lazy var backBtn: UIButton = {
@@ -49,7 +50,7 @@ class BaseNavigationViewController: UINavigationController, UIGestureRecognizerD
     @objc func backBtnAction() {
         _ = popViewController(animated: true)
     }
-    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+    override open func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if self.childViewControllers.count > 0 {
             viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backBtn)
             viewController.hidesBottomBarWhenPushed = true
@@ -60,29 +61,29 @@ class BaseNavigationViewController: UINavigationController, UIGestureRecognizerD
         }
         super.pushViewController(viewController, animated: animated)
     }
-    override func popViewController(animated: Bool) -> UIViewController? {
+    override open func popViewController(animated: Bool) -> UIViewController? {
         return super.popViewController(animated: animated)
     }
-    override func popToRootViewController(animated: Bool) -> [UIViewController]? {
+    override open func popToRootViewController(animated: Bool) -> [UIViewController]? {
         if responds(to: #selector(getter: UINavigationController.interactivePopGestureRecognizer)) && animated {
             interactivePopGestureRecognizer?.isEnabled = false
         }
         return super.popToRootViewController(animated: animated)
     }
-    override func popToViewController(_ viewController: UIViewController, animated: Bool) -> [UIViewController]? {
+    override open func popToViewController(_ viewController: UIViewController, animated: Bool) -> [UIViewController]? {
         if responds(to: #selector(getter: UINavigationController.interactivePopGestureRecognizer)) && animated {
             interactivePopGestureRecognizer?.isEnabled = false
         }
         return super.popToViewController(viewController, animated: false)
     }
     //MARK: - UINavigationControllerDelegate
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+    public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if responds(to: #selector(getter: UINavigationController.interactivePopGestureRecognizer)) {
             interactivePopGestureRecognizer?.isEnabled = true
         }
     }
     //MARK: - UIGestureRecognizerDelegate
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer == interactivePopGestureRecognizer {
             if self.viewControllers.count < 2 || self.visibleViewController == self.viewControllers[0] {
                 return false

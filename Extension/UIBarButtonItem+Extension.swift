@@ -1,7 +1,7 @@
 //
 //  UIBarButtonItem+Extension.swift
 import UIKit
-extension UIBarButtonItem {
+public extension UIBarButtonItem {
     convenience init(gifTarget: AnyObject?, action: Selector){
         let btn = UIButton(type: UIButtonType.custom)
         btn.setImage(UIImage(named: "feed_signin"), for: UIControlState())

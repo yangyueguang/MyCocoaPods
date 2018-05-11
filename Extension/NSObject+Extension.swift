@@ -4,7 +4,7 @@
 //  project
 import Foundation
 // MARK: - NSObject
-extension NSObject{
+public extension NSObject{
     func performSelectorOnMainThread(selector aSelector: Selector,withObject object:AnyObject! ,waitUntilDone wait:Bool){
         if self.responds(to: aSelector){
             var continuego = false

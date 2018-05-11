@@ -4,7 +4,7 @@
 import Foundation
 import UIKit
 // MARK: - String
-extension String {
+public extension String {
     static func zjSizeWithString(_ str : String,font : UIFont, sizeWidth : CGFloat, sizeHeight : CGFloat) -> CGFloat {
         let attributes = [NSAttributedStringKey.font: font]
         let option = NSStringDrawingOptions.usesLineFragmentOrigin
@@ -14,7 +14,7 @@ extension String {
     static func getSeqNo() -> String{
         return  String(arc4random()%89999999+10000000)
     }
-    static func getWeekName(_ englishName : String) -> String{
+    func getWeekName(_ englishName : String) -> String{
         switch englishName{
         case "Monday"   :return "星期一"
         case "Tuesday"  :return "星期二"
@@ -26,7 +26,7 @@ extension String {
         default:return""
         }
     }
-    static func getUUID() -> String{
+    func getUUID() -> String{
         let uuid : UUID = UIDevice.current.identifierForVendor!
         let uu :String = "\(uuid)"
         let array = uu.components(separatedBy: ">")

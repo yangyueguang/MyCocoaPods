@@ -1,7 +1,7 @@
 //
 //  UIImage+Extension.swift
 import UIKit
-extension UIImage {
+public extension UIImage {
     class func imageWithColor(_ color: UIColor, size: CGSize) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: size.width == 0 ? 1.0 : size.width, height: size.height == 0 ? 1.0 : size.height)
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)

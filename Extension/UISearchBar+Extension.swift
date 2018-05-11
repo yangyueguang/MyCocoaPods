@@ -4,7 +4,7 @@
 //
 //  Created by hans on 16/7/9.
 import UIKit
-extension UISearchBar {
+public extension UISearchBar {
     convenience init(searchGifdelegate: UISearchBarDelegate, backgroundColor: UIColor, backgroundImage: UIImage) {
         self.init()
         delegate = searchGifdelegate

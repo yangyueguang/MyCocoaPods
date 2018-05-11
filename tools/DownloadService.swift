@@ -169,7 +169,7 @@ public enum ResourceType : String {
     }
 }
 @objcMembers
-class CRResource: RLMObject {
+open class CRResource: RLMObject {
     dynamic var id:Int32=0//序号
     dynamic var password=""//密码
     dynamic var checkCode=""//唯一标识
@@ -193,13 +193,13 @@ class CRResource: RLMObject {
     dynamic var size:Double = 0//文件大小
     dynamic var resumeData : NSData?//文件数据流
     dynamic var status : ResourceStatus = .normal
-    override static func primaryKey() -> String {
+    override open static func primaryKey() -> String {
         return "checkCode"
     }
 }
 @objcMembers
 /// 下载器
-class ResourceDownloader : NSObject {
+open class ResourceDownloader : NSObject {
     typealias TaskObserverBlock = (_ status:ResourceStatus, _ progress: Float , _ task: AnyObject) -> Void
     fileprivate var insideDownloadTask : URLSessionDownloadTask?
     private let sessionManager : AFURLSessionManager
@@ -234,7 +234,7 @@ class ResourceDownloader : NSObject {
             self.resource = resource
         }
     }
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) 没打算支持序列化")
     }
     // MARK: - 公开函数
@@ -396,7 +396,7 @@ destination: destinationBlock,completionHandler: completionHandler)
 }
 
 @objcMembers
-final class DownloadService : NSObject {
+public final class DownloadService : NSObject {
     public static let service = DownloadService()
     public let documentURL:URL
     public var completedClosure:(() -> Void)?
@@ -415,7 +415,7 @@ final class DownloadService : NSObject {
         sessionManager.securityPolicy = policy
         super.init()
     }
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     // MARK: - 公开函数

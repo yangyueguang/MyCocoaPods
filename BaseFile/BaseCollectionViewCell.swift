@@ -1,5 +1,6 @@
 
 import UIKit
+@objcMembers
 open class BaseCollectionViewCell : UICollectionViewCell {
     open var icon: UIImageView!
     open var line: UIView!
@@ -34,7 +35,7 @@ open class BaseCollectionViewCell : UICollectionViewCell {
             contentView.isUserInteractionEnabled = true
     }
     //MARK: 以下子类重写
-    func initUI() {
+    open func initUI() {
         backgroundColor = UIColor(red: 245, green: 245, blue: 245, alpha: 1)
         icon = UIImageView()
         icon.contentMode = .scaleToFill

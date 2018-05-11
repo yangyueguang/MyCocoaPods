@@ -3,7 +3,7 @@
 //  UILabel+Extension.swift
 import Foundation
 import UIKit
-extension UILabel {
+public extension UILabel {
     //下划线
     func bottomLine(_ str : String) -> Void {
         let str1 = NSMutableAttributedString(string: str)

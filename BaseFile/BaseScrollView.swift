@@ -4,6 +4,7 @@ import SDWebImage
 func RGBACOLOR(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) -> UIColor {
     return UIColor(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: a)
 }
+@objc
 public enum MyScrolltype : Int {
     case scrollTypeSegment = 1 //分类平分展示视图
     case scrollTypeTitleScroll //标题滑动，自适应文字宽度
@@ -19,7 +20,8 @@ public enum MyScrolltype : Int {
 }
 public typealias selectIndexBlock = (Int, [AnyHashable : Any]?) -> Swift.Void
 public typealias viewOfIndexBlock = (Int) -> UIView?
-class BaseScrollView : UIScrollView, UIScrollViewDelegate {
+@objcMembers
+open class BaseScrollView : UIScrollView, UIScrollViewDelegate {
     open var time: Timer! //计时器
     open var icons: [Any]! //图片内容  由图片视图或视图组成的数组
     open var titles: [Any]! //标题    由文字组成的数组
@@ -48,7 +50,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
         fatalError("init(coder:) 没有实现")
     }
     //FIXME:分类平分展示视图
-    init(segment frame: CGRect, titles: [String]) {
+    public init(segment frame: CGRect, titles: [String]) {
         super.init(frame: frame)
         scrollType = MyScrolltype.scrollTypeSegment
         self.titles = titles
@@ -87,7 +89,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
         bouncesZoom = false
     }
     //FIXME:标题滑动，自适应文字宽度
-    init(titleScroll frame:CGRect,titles:[String]){
+    public init(titleScroll frame:CGRect,titles:[String]){
         super.init(frame: frame)
         self.titles = titles
         scrollType = MyScrolltype.scrollTypeTitleScroll
@@ -127,7 +129,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
         bouncesZoom = false
     }
     //FIXME:标题滑动，有文字和图标的
-    init(titleIconScroll frame: CGRect, titles: [String], icons: [String]){
+    public init(titleIconScroll frame: CGRect, titles: [String], icons: [String]){
         super.init(frame: frame)
         self.titles = titles
         self.icons = icons
@@ -165,7 +167,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
     }
     
     //FIXME:内容小项目滑动，一般在主页
-    init(baseItem frame: CGRect, icons: [String], titles: [String], size: CGSize, round: Bool){
+    public init(baseItem frame: CGRect, icons: [String], titles: [String], size: CGSize, round: Bool){
         super.init(frame: frame)
         self.titles = titles
         self.icons = icons
@@ -209,7 +211,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
     }
 
     //FIXME:内容小项目滑动，一般在主页并且有分页的
-    init(scrollItem frame: CGRect, icons: [String], titles: [String], size: CGSize, hang: Int, round: Bool){
+    public init(scrollItem frame: CGRect, icons: [String], titles: [String], size: CGSize, hang: Int, round: Bool){
         super.init(frame: frame)
         self.titles = titles
         self.icons = icons
@@ -261,7 +263,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
     }
     
     //FIXME:内容视图滑动，如新闻类
-    init(contentView frame: CGRect, controllers: [UIViewController], in NVC: UIViewController){
+    public init(contentView frame: CGRect, controllers: [UIViewController], in NVC: UIViewController){
         super.init(frame: frame)
         delegate = self
         self.pushDelegateVC = NVC
@@ -279,7 +281,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
         addSubview((vc.view)!)
     }
     //FIXME:内容视图滑动，如新闻类，同时自带标题的滑动
-    init(contentTitleView frame: CGRect, titles: [String], controllers: [UIViewController], in NVC: UIViewController){
+    public init(contentTitleView frame: CGRect, titles: [String], controllers: [UIViewController], in NVC: UIViewController){
         super.init(frame: frame)
         self.scrollType = .scrollTypeContentTitleView
         self.title = BaseScrollView(segment:CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: 40), titles: titles)
@@ -321,7 +323,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
     }
 
     //FIXME:内容视图滑动，如新闻类，同时自带拥有图标的标题的滑动
-    init(contentIconView frame: CGRect, titles: [String], icons: [String], controllers: [UIViewController], in NVC: UIViewController){
+    public init(contentIconView frame: CGRect, titles: [String], icons: [String], controllers: [UIViewController], in NVC: UIViewController){
         super.init(frame: frame)
         self.scrollType = .scrollTypeContentIconView
         self.title = BaseScrollView(titleIconScroll: CGRect(x: frame.origin.x, y: frame.origin.y, width: (self.frame.size.width), height: 60), titles: titles, icons: icons)
@@ -353,7 +355,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
         NVC.view.addSubview((self.content)!)
     }
     //FIXME:横着的滚动视图一般见推荐或广告
-    init(banner frame: CGRect, icons: [String]){
+    public init(banner frame: CGRect, icons: [String]){
         super.init(frame: frame)
         //仅支持网址访问图片//pagecontroll在右下角
         scrollType = .scrollTypeBanner
@@ -396,7 +398,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
     }
 
     //FIXME:竖着动态播放的视图或广告
-    init(verticallyBanner frame: CGRect, icons: [String]){
+    public init(verticallyBanner frame: CGRect, icons: [String]){
         super.init(frame: frame)
         scrollType = .scrollTypeVerticallyBanner
         delegate = self
@@ -431,7 +433,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
     }
 
     //FIXME:欢迎界面
-    init(welcom frame: CGRect, icons: [String]){
+    public init(welcom frame: CGRect, icons: [String]){
         super.init(frame: frame)
         self.icons = icons
         scrollType = .scrollTypeWelcom
@@ -453,7 +455,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
     }
 
     //FIXME:分类展示的标题栏
-    init(viewSegment frame: CGRect, viewsNumber num: Int, viewOfIndex block: @escaping viewOfIndexBlock){
+    public init(viewSegment frame: CGRect, viewsNumber num: Int, viewOfIndex block: @escaping viewOfIndexBlock){
         super.init(frame: frame)
         self.viewBlock = block
         scrollType = .scrollTypeSegment
@@ -476,7 +478,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
     }
 
     //FIXME:内容小项目视图
-    init(viewItem frame: CGRect, viewsNumber num: Int, viewOfIndex block: @escaping viewOfIndexBlock){
+    public init(viewItem frame: CGRect, viewsNumber num: Int, viewOfIndex block: @escaping viewOfIndexBlock){
         super.init(frame: frame)
         self.viewBlock = block
         scrollType = .scrollTypeBaseItem
@@ -503,7 +505,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
     }
     
     //FIXME:视图banner兼容内容视图
-    init(viewBanner frame: CGRect, viewsNumber num: Int, viewOfIndex block: @escaping viewOfIndexBlock, vertically vertical: Bool, setFire fire: Bool){
+    public init(viewBanner frame: CGRect, viewsNumber num: Int, viewOfIndex block: @escaping viewOfIndexBlock, vertically vertical: Bool, setFire fire: Bool){
         super.init(frame: frame)
         self.viewBlock = block
         isPagingEnabled = true
@@ -555,7 +557,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
 
     //FIXME: Actions===========================================
     //外界调用主动选择第几个块
-    func selectThePage(_ page: Int) {
+    public func selectThePage(_ page: Int) {
         switch scrollType {
         case .scrollTypeSegment:
             let button = viewWithTag(page + 10) as? UIButton
@@ -598,7 +600,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
         }
     }
 
-    @objc func buttonAction(_ btn: UIButton) {
+    @objc public func buttonAction(_ btn: UIButton) {
         if selectBlock != nil {
             selectBlock(btn.tag - 10, nil)
         }
@@ -654,7 +656,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
         }
     }
     
-    @objc func bannerTimeAction() {
+    @objc public func bannerTimeAction() {
         pagecontroller?.currentPage = index
         index += 1
         if scrollType == .scrollTypeBanner {
@@ -873,7 +875,7 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
         default: break
         }
     }
-    func show() {
+    public func show() {
         UIApplication.shared.windows[0].addSubview(self)
         isHidden = false
         alpha = 1.0
@@ -882,14 +884,14 @@ class BaseScrollView : UIScrollView, UIScrollViewDelegate {
         }, completion: {(_ finished: Bool) -> Void in
         })
     }
-    @objc func hidden() {
+    @objc public func hidden() {
         UIView.animate(withDuration: 0.4, animations: {() -> Void in
             self.alpha = 0.0
         }, completion: {(_ finished: Bool) -> Void in
             self.removeFromSuperview()
         })
     }
-    @objc func itemDidTaped(_ tap:UITapGestureRecognizer){
+    @objc public func itemDidTaped(_ tap:UITapGestureRecognizer){
         let i:Int = tap.view!.tag
         if self.selectBlock != nil {
                 selectBlock(i, nil)

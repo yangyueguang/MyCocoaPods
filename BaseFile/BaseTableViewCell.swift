@@ -1,5 +1,6 @@
 
 import UIKit
+@objcMembers
 open class BaseTableViewCell : UITableViewCell {
     open var icon: UIImageView!
     open var line: UIView!
@@ -21,7 +22,7 @@ open class BaseTableViewCell : UITableViewCell {
         }
         return instance!
     }
-    class func getTableCellIdentifier() -> String {
+    public class func getTableCellIdentifier() -> String {
         return "\(NSStringFromClass(self))Identifier"
     }
     required override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -52,7 +53,7 @@ open class BaseTableViewCell : UITableViewCell {
         selectionStyle = .none
     }
     //MARK: 以下子类重写
-    func initUI() {
+    open func initUI() {
         backgroundColor = UIColor(red: 245, green: 245, blue: 245, alpha: 1)
         icon = UIImageView()
         icon.contentMode = .scaleToFill

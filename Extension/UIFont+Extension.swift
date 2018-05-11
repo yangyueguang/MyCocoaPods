@@ -3,7 +3,7 @@
 //  UIFont+Extension.swift
 import Foundation
 import UIKit
-extension UIFont {
+public extension UIFont {
     class func customFont_FZLTZCHJW(fontSize size : CGFloat = 12) -> UIFont {
         return UIFont(name: "FZLanTingHeiS-DB1-GB", size: size)!
     }

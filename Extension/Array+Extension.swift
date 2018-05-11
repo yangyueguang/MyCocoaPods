@@ -1,7 +1,7 @@
 //
 //  NSArray+Extension.swift
 import Foundation
-extension Array{
+public extension Array{
     func description(withLocale locale: Any?) -> String {
         var strM: String = "(\n"
         for obj:Any in self{

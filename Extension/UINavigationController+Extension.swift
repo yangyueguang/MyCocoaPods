@@ -3,7 +3,7 @@
 //  UINavigationController+Extension.swift
 import Foundation
 import UIKit
-extension UINavigationController  {
+public extension UINavigationController  {
     class func zjPopViewControllerAnimated(_ nav : UINavigationController) {
         UIView.beginAnimations(nil, context:nil)
         UIView.setAnimationCurve(UIViewAnimationCurve.easeInOut)

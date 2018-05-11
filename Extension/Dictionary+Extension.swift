@@ -1,7 +1,7 @@
 //
 //  Dictionary+Extension.swift
 import Foundation
-extension Dictionary{
+public extension Dictionary{
     func description(withLocale locale: Any?) -> String {
         var strM: String = "{\n"
         for (k,v) in self{

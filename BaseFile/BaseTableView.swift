@@ -1,6 +1,7 @@
 
 import UIKit
 public typealias BaseTableLoadedDataBlock = ([Any]?, Bool) -> Swift.Void
+@objcMembers
 open class BaseTableView : UITableView {
     open var dataArray = NSMutableArray()
     open var urlString = ""
@@ -9,10 +10,10 @@ open class BaseTableView : UITableView {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    convenience init(frame: CGRect) {
+    public convenience init(frame: CGRect) {
         self.init(frame: frame, style: .plain)
     }
-    override init(frame: CGRect, style: UITableViewStyle) {
+    public override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
     }
     override open func layoutSubviews() {

@@ -4,7 +4,7 @@
 import Foundation
 // MARK: - 计算
 private var moren :TimeInterval = Foundation.Date().timeIntervalSince1970
-extension Date {
+public extension Date {
     var timeInterval:TimeInterval {
         get {
             guard let isFinished = objc_getAssociatedObject(self, &moren) as? TimeInterval else {
@@ -82,18 +82,18 @@ extension Date {
         return (hour, minute, second)
     }
     //获取当前时间戳
-    static func getCurrentTimeStamp() -> String {
+    func getCurrentTimeStamp() -> String {
         let timeStamp : String = "\(Int64(floor(Date().timeIntervalSince1970 * 1000)))"
         return timeStamp
     }
     //获取当前年月日
-    static func getCurrentDate() -> String {
+    func getCurrentDate() -> String {
         let formatter : DateFormatter = DateFormatter()
         formatter.date(from: "yyyy-MM-dd")
         return formatter.string(from: Date())
     }
     //将时间转换为时间戳
-    static func change2TimeStamp(_ date : String) -> String {
+    func change2TimeStamp(_ date : String) -> String {
         let formatter : DateFormatter = DateFormatter()
         formatter.date(from: "yyyy-MM-dd")
         formatter.dateStyle = .medium
@@ -103,7 +103,7 @@ extension Date {
         return "\(String(describing: dateNow?.timeIntervalSince1970))000"
     }
     ///将时间戳转化成时间
-    static func change2Date(_ timestamp : String) -> String {
+    func change2Date(_ timestamp : String) -> String {
         guard timestamp.utf8.count > 3 else {
             return ""
         }
@@ -233,11 +233,11 @@ extension Date {
             return "后天"
         }else{
             //直接返回当时日期的字符串(这里让它返回空)
-            return Date.getWeekString(fromInteger: weekIntValue)//周几
+            return self.getWeekString(fromInteger: weekIntValue)//周几
         }
     }
     //通过数字返回星期几
-    static func getWeekString(fromInteger week: Int) -> String {
+    func getWeekString(fromInteger week: Int) -> String {
         var str_week: String
         switch week {
         case 1:str_week = "周日"

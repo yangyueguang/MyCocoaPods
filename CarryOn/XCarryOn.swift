@@ -5,11 +5,12 @@
 //  Created by htf on 2018/5/4.
 //  Copyright © 2018年 Super. All rights reserved.
 import UIKit
-class XCarryOn: NSObject {
+@objcMembers
+open class XCarryOn: NSObject {
 
 }
 @objcMembers
-class XPageControl: UIPageControl {
+open class XPageControl: UIPageControl {
     var imagePageStateNormal: UIImage?{
         get{
             return self.imagePageStateNormal!
@@ -28,7 +29,7 @@ class XPageControl: UIPageControl {
             updateDots()
         }
     }
-    override var currentPage: Int{
+    override open var currentPage: Int{
         set{
          super.currentPage = newValue
          updateDots()
@@ -40,10 +41,10 @@ class XPageControl: UIPageControl {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+    override open func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         super.endTracking(touch, with: event)
         updateDots()
     }
@@ -69,8 +70,9 @@ class XPageControl: UIPageControl {
     }
 }
 ///让键盘右上角加个完成按钮// 键盘完成按钮
-class XTextField: UITextField {
-    override func draw(_ rect: CGRect) {
+@objcMembers
+open class XTextField: UITextField {
+    override open func draw(_ rect: CGRect) {
         super.draw(rect)
         let toolBar = UIToolbar(frame: CGRect(x:0, y:0,width:UIScreen.main.bounds.size.width, height:30))
         toolBar.barStyle = .default

@@ -3,7 +3,7 @@
 import Foundation
 // MARK: - UIColor
 import UIKit
-extension UIColor {
+public extension UIColor {
     class func HEX(_ rgbValue: UInt) -> UIColor {
         return UIColor(
             red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
@@ -18,14 +18,14 @@ extension UIColor {
     class func RGBA(_ R: CGFloat,_ G: CGFloat,_ B: CGFloat,_ A: CGFloat) -> UIColor {
         return UIColor(red: R/256.0, green: G/256.0, blue: B/256.0, alpha: A)
     }
-    static func colorWithHex(hexValue:Int, alphaValue:CGFloat) -> UIColor{
+    class func colorWithHex(hexValue:Int, alphaValue:CGFloat) -> UIColor{
         if hexValue > 0xFFF{
             return UIColor(red: CGFloat((hexValue & 0xFF0000) >> 16) / 255.0, green: CGFloat((hexValue & 0xFF00) >> 8) / 255.0, blue: CGFloat(hexValue & 0xFF)  / 255.0, alpha: alphaValue)
         }else{
             return UIColor(red: CGFloat((hexValue & 0xF00) >> 8) / 255.0, green: CGFloat((hexValue & 0xF0) >> 4) / 255.0, blue: CGFloat(hexValue & 0xF)  / 255.0, alpha: alphaValue)
         }
     }
-    static func  colorWithHex(hexValue:Int) ->UIColor{
+    class func  colorWithHex(hexValue:Int) ->UIColor{
         return UIColor.colorWithHex(hexValue: hexValue, alphaValue: 1)
     }
     class var randomColor: UIColor {
@@ -51,7 +51,7 @@ extension UIColor {
             alpha: CGFloat(alpha)
         )
     }
-    static func hexFromUIColor(color:UIColor) -> String{
+    class func hexFromUIColor(color:UIColor) -> String{
         //还没有实现
         var myColor = color
         if (color.cgColor.numberOfComponents < 4) {

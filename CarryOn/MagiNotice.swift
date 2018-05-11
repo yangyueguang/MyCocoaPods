@@ -7,12 +7,12 @@
 import Foundation
 import UIKit
 private let ma_topBar: Int = 1001
-enum NoticeType{
+public enum NoticeType{
     case success
     case error
     case info
 }
-extension UIResponder {
+public extension UIResponder {
     @discardableResult
     func pleaseWaitWithImages(_ imageNames: Array<UIImage>, timeInterval: Int) -> UIWindow{
         return MagiNotice.wait(imageNames, timeInterval: timeInterval)
@@ -66,8 +66,8 @@ extension UIResponder {
     
 }
 
-
-class MagiNotice: NSObject {
+@objcMembers
+open class MagiNotice: NSObject {
     static var windows = Array<UIWindow?>()
     static let rv = UIApplication.shared.keyWindow?.subviews.first as UIView?
     static var timer: DispatchSource!
@@ -400,7 +400,7 @@ class MagiNotice: NSObject {
     }
 }
 
-class MagiProgressView: UIView {
+open class MagiProgressView: UIView {
 
     // MARK: - 控件
     lazy var progressLayer: CAShapeLayer = {
@@ -431,7 +431,7 @@ class MagiProgressView: UIView {
         addSubview(progressLabel)
         layer.addSublayer(progressLayer)
     }
-            override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
             progressLabel.frame = bounds
         progressLayer.frame = layer.bounds
@@ -444,17 +444,17 @@ class MagiProgressView: UIView {
         progressLayer.path = path.cgPath
         
     }
-            required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
             // 关闭隐式动画
-    override func action(for layer: CALayer, forKey event: String) -> CAAction? {
+    override open func action(for layer: CALayer, forKey event: String) -> CAAction? {
         return nil
     }
     
 }
 
-class MagiNoticeSDK {
+open class MagiNoticeSDK {
     struct Cache {
         static var imageOfCheckmark: UIImage?
         static var imageOfCross: UIImage?
@@ -528,7 +528,7 @@ class MagiNoticeSDK {
         return Cache.imageOfInfo!
     }
 }
-extension UIWindow{
+public extension UIWindow{
     func hide(){
         MagiNotice.hideNotice(self)
     }
@@ -536,7 +536,7 @@ extension UIWindow{
 fileprivate extension Selector {
     static let hideNotice = #selector(MagiNotice.hideNotice(_:))
 }
-@objc extension MagiNotice {
+@objc public extension MagiNotice {
     static func hideNotice(_ sender: AnyObject) {
         if let window = sender as? UIWindow {
             if let v = window.subviews.first {

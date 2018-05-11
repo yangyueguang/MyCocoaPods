@@ -2,6 +2,6 @@
 //  UIScrollView+Extension.swift
 import Foundation
 import UIKit
-extension UIScrollView {
+public extension UIScrollView {
 
 }

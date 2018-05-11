@@ -3,7 +3,7 @@
 //  UIViewController+Extension.swift
 import Foundation
 import UIKit
-extension UIViewController{
+public extension UIViewController{
     var backGestureEnable:Bool?{
         get{
             return self.backGestureEnable!

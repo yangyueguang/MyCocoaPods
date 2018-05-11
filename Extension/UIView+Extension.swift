@@ -2,7 +2,7 @@
 //  UIView+Extension.swift
 import UIKit
 import Foundation
-extension UIView  {
+public extension UIView  {
     func x()->CGFloat{
         return self.frame.origin.x
     }
@@ -64,7 +64,7 @@ extension UIView  {
             self.addSubview(v)
         }
     }
-    public func viewAddTarget(_ target : AnyObject,action : Selector) {
+    func viewAddTarget(_ target : AnyObject,action : Selector) {
         let tap = UITapGestureRecognizer(target: target, action: action)
         self.isUserInteractionEnabled = true
         self.addGestureRecognizer(tap)
