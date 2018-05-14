@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.frameworks   = 'UIKit','Foundation'
   s.requires_arc = true
   s.platform     = :ios
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
   s.description  = "这是Swift的类的拓展集合"
   s.homepage     = "https://github.com/yangyueguang/MyCocoaPods"
   # s.screenshots= "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
