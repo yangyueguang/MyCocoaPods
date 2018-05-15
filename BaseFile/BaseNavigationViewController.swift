@@ -22,7 +22,7 @@ open class BaseNavigationViewController: UINavigationController, UIGestureRecogn
         let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         navigationBar.shadowImage = image
-        navigationBar.barTintColor = UIColor.green
+        navigationBar.barTintColor = UIColor.gray
         navigationBar.tintColor = UIColor.white
         navigationBar.barStyle = UIBarStyle.default
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
