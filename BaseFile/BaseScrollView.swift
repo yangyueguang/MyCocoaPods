@@ -287,7 +287,7 @@ open class BaseScrollView : UIScrollView, UIScrollViewDelegate {
         self.title = BaseScrollView(segment:CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: 40), titles: titles)
         self.content = BaseScrollView(contentView: CGRect(x:frame.origin.x, y: (self.title.frame.size.height)+(self.title.frame.origin.y), width:frame.size.width, height:frame.size.height - (self.title.frame.size.height)), controllers: controllers, in: NVC)
         self.pushDelegateVC = NVC
-        self.title.selectBlock = {(_ index: Int, _ dict: [AnyHashable: Any]) -> Void in
+        self.title.selectBlock = {(index, dict) in
             self.selectBlock(index, dict)
             let vc = NVC.childViewControllers[index]
             if vc.view.superview != nil {
@@ -297,9 +297,9 @@ open class BaseScrollView : UIScrollView, UIScrollViewDelegate {
             vc.view.frame = CGRect(x: UIScreen.main.bounds.width * CGFloat(index), y: 0, width: UIScreen.main.bounds.width, height:frame.size.height - (self.title.frame.size.height)+(self.title.frame.origin.y))
             self.content.addSubview(vc.view)
             self.content.contentOffset = CGPoint(x: UIScreen.main.bounds.width * CGFloat(index), y: 0)
-            } as! selectIndexBlock
+            }
         
-        self.content.selectBlock = {(_ index: Int, _ dict: [AnyHashable: Any]) -> Void in
+        self.content.selectBlock = {(index, dict) in
             self.selectBlock(index, dict)
             var i = 0
             while i < (self.title.titles.count) {
@@ -317,7 +317,7 @@ open class BaseScrollView : UIScrollView, UIScrollViewDelegate {
             //文字变红
             button?.backgroundColor = UIColor.white
             //        button.transform = CGAffineTransformMakeScale(1.5, 1.5);//放大的效果,放大1.5倍
-            } as! selectIndexBlock
+            }
         NVC.view.addSubview((self.title)!)
         NVC.view.addSubview((self.content)!)
     }
@@ -329,7 +329,7 @@ open class BaseScrollView : UIScrollView, UIScrollViewDelegate {
         self.title = BaseScrollView(titleIconScroll: CGRect(x: frame.origin.x, y: frame.origin.y, width: (self.frame.size.width), height: 60), titles: titles, icons: icons)
         self.content = BaseScrollView(contentView: CGRect(x:frame.origin.x, y: self.title.frame.size.height+self.title.frame.origin.y, width: self.frame.size.width, height: self.frame.size.height - self.title.size.height), controllers: controllers, in: NVC)
         self.pushDelegateVC = NVC
-        self.title.selectBlock = {(_ index: Int, _ dict: [AnyHashable: Any]) -> Void in
+        self.title.selectBlock = {(index,dict) in
             self.selectBlock(index, dict)
             let vc = NVC.childViewControllers[index]
             if vc.view.superview != nil {
@@ -339,8 +339,8 @@ open class BaseScrollView : UIScrollView, UIScrollViewDelegate {
             vc.view.frame = CGRect(x: UIScreen.main.bounds.width * CGFloat(index), y: 0, width: UIScreen.main.bounds.width, height:(self.frame.size.height) - (self.title.frame.size.height)+(self.title.frame.origin.y))
             self.content.addSubview(vc.view)
             self.content.contentOffset = CGPoint(x: UIScreen.main.bounds.width * CGFloat(index), y: 0)
-            } as! selectIndexBlock
-        self.content.selectBlock = {(_ index: Int, _ dict: [AnyHashable: Any]) -> Void in
+            }
+        self.content.selectBlock = {(index, dict) in
             self.selectBlock(index, dict)
             var i = 0
             while i < (self.title.titles.count) {
@@ -350,7 +350,7 @@ open class BaseScrollView : UIScrollView, UIScrollViewDelegate {
             }
             let button = self.title.viewWithTag(10 + index) as? UIButton
             button?.backgroundColor = UIColor.white
-            } as! selectIndexBlock
+            }
         NVC.view.addSubview((self.title)!)
         NVC.view.addSubview((self.content)!)
     }
