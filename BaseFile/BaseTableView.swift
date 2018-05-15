@@ -1,12 +1,8 @@
 
 import UIKit
-public typealias BaseTableLoadedDataBlock = ([Any]?, Bool) -> Swift.Void
 @objcMembers
 open class BaseTableView : UITableView {
     open var dataArray = NSMutableArray()
-    open var urlString = ""
-    var curPage = 0
-    //MARK: 初始化
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

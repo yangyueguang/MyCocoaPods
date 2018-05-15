@@ -3,8 +3,6 @@ import UIKit
 @objcMembers
 open class BaseCollectionView : UICollectionView {
     open var dataArray = NSMutableArray()
-    open var urlString = ""
-    var curPage = 0
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

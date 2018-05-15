@@ -15,10 +15,6 @@ barItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.
         tabBar.barTintColor = .green
         tabBar.tintColor = .yellow
         view.backgroundColor = .black
-        addChildViewControllers()
-    }
-    fileprivate func addChildViewControllers(){
-//        addChildViewController(HomeViewController(), title: "首页", imageName: "tabbar_home")
     }
     fileprivate func addChildViewController(_ controller: UIViewController, title:String, imageName:String){
         controller.tabBarItem.image = UIImage(named: imageName)
