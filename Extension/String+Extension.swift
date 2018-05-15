@@ -11,7 +11,7 @@ public extension String {
         let rect:CGRect = str.boundingRect(with: CGSize(width: sizeWidth, height: 8000), options: option, attributes: attributes, context: nil)
         return sizeWidth == 0 ? rect.size.width : rect.size.height
     }
-    static func getSeqNo() -> String{
+    func getSeqNo() -> String{
         return  String(arc4random()%89999999+10000000)
     }
     func getWeekName(_ englishName : String) -> String{
@@ -34,12 +34,12 @@ public extension String {
         let lastArray = "\((arrayNext[0] )+(arrayNext[1] )+(arrayNext[2] )+(arrayNext[3] )+(arrayNext[4] ))".components(separatedBy: " ")
         return "\((lastArray[0] )+(lastArray[1] ))"
     }
-    static func getDate() -> String{
+    func getDate() -> String{
         let date:Foundation.Date = Foundation.Date()
         let array = "\(date.timeIntervalSince1970)".components(separatedBy: ".")
         return "\(array[0])"
     }
-    static func contentStringFrame(_ label : UILabel,text : String,theFont : CGFloat,width : CGFloat , height : CGFloat) -> CGFloat{
+    func contentStringFrame(_ label : UILabel,text : String,theFont : CGFloat,width : CGFloat , height : CGFloat) -> CGFloat{
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.font = UIFont.systemFont(ofSize: theFont)
         label.numberOfLines = 0

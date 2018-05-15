@@ -26,20 +26,20 @@ public let cachesPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .
 public let tempPath = NSTemporaryDirectory()
 public let homePath = NSHomeDirectory()
 public struct Url {
-    static let PeiYouTiXianRequest = "order/ApplyWithdrawal"
-    static let PeiYouAccountInfo = "Account/Companion_AccountNumber"
-    static let ScanTouriestIntroduction = "account/Get_Tourist_Info"
+    public static let PeiYouTiXianRequest = "order/ApplyWithdrawal"
+    public static let PeiYouAccountInfo = "Account/Companion_AccountNumber"
+    public static let ScanTouriestIntroduction = "account/Get_Tourist_Info"
 }
 //Mark: 字符串：UserDefualt 存储字符串
 public struct UserDefaultForUser {
-    static let AccessToken = "AccessToken"
-    static let UserId = "TokenUserId"
-    static let AccessTokenDate = "AccessTokenDate"
-    static let UserModel = "UserModel"
-    static let CouponNo = "CouponNo"
-    static let LastBuilding = "LastBuildingModel"
-    static let SelectCityId = "SelectCityId"
-    static let StatusCode = "StatusCode"
+    public static let AccessToken = "AccessToken"
+    public static let UserId = "TokenUserId"
+    public static let AccessTokenDate = "AccessTokenDate"
+    public static let UserModel = "UserModel"
+    public static let CouponNo = "CouponNo"
+    public static let LastBuilding = "LastBuildingModel"
+    public static let SelectCityId = "SelectCityId"
+    public static let StatusCode = "StatusCode"
 }
 public enum ContentType:String {
     case Video = "video"

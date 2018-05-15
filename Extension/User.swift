@@ -36,10 +36,10 @@ open class User: NSObject {///账号
     public var area:String?///街道
     public var street:String?///语言
     public var language:String?
-    override init() {
+    public override init() {
         super.init()
     }
-    convenience init(name:String,pwd:String="",account:String?,token:String="") {
+    public convenience init(name:String,pwd:String="",account:String?,token:String="") {
         self.init()
         self.name = name
         self.pwd = pwd

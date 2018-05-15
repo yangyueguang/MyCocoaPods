@@ -15,22 +15,22 @@ import CoreSpotlight
 import MobileCoreServices
 @objcMembers
 public class APP:NSObject{
-    let region:String!
-    let name:String!
-    let bundle:String!
-    var icon=UIImage()
-    let identifier:String!
-    let infoVersion:String!
-    let bundleName:String!
-    let version:String!
-    let build:Int32
-    let platVersion:String!
-    let lessVersion:String!
-    var allowLoad=false
-    let launchName:String!
-    let mainName:String!
-    let deviceType:UIUserInterfaceIdiom!
-    let wechatAvalueble:Bool!
+    public let region:String!
+    public let name:String!
+    public let bundle:String!
+    public var icon=UIImage()
+    public let identifier:String!
+    public let infoVersion:String!
+    public let bundleName:String!
+    public let version:String!
+    public let build:Int32
+    public let platVersion:String!
+    public let lessVersion:String!
+    public var allowLoad=false
+    public let launchName:String!
+    public let mainName:String!
+    public let deviceType:UIUserInterfaceIdiom!
+    public let wechatAvalueble:Bool!
     public override init() {
         let info = Bundle.main.infoDictionary
         region = info!["CFBundleDevelopmentRegion"] as! String
@@ -60,7 +60,7 @@ public class APP:NSObject{
 }
 @objcMembers
 public class PublicTools:NSObject{
-    static let app = APP()
+    public let app = APP()
     class func showTouchID(desc:String="",_ block: @escaping (_ error:LAError?,_ m:String?) -> Void){
         if NSFoundationVersionNumber < NSFoundationVersionNumber_iOS_8_0 {
             block(LAError(_nsError:NSError()),"系统版本不支持TouchID")
@@ -97,7 +97,7 @@ public class PublicTools:NSObject{
             }
         });
     }
-    func fileSizeAtPath(_ filePath:String)->Double{
+    class func fileSizeAtPath(_ filePath:String)->Double{
         let manager = FileManager.default
         do {
             let attr = try manager.attributesOfItem(atPath:filePath)
@@ -106,7 +106,7 @@ public class PublicTools:NSObject{
             return 0
         }
     }
-    func folderSizeAtPath(_ folderPath:String)->Double{
+    class func folderSizeAtPath(_ folderPath:String)->Double{
         let manager = FileManager.default
         var folderSize = 0.0
         var isDir: ObjCBool = true
@@ -123,7 +123,7 @@ public class PublicTools:NSObject{
         }
         return folderSize
     }
-    func updateAPPWithPlistURL(_ url:String="http://dn-mypure.qbox.me/iOS_test.plist",block: @escaping(Bool)->Void){
+    class func updateAPPWithPlistURL(_ url:String="http://dn-mypure.qbox.me/iOS_test.plist",block: @escaping(Bool)->Void){
         let serviceURL = "itms-services:///?action=download-manifest&url="
         let realUrl = URL(string:"\(serviceURL)\(url)")
         UIApplication.shared.open(realUrl!, options: [:]) { (success) in
@@ -133,7 +133,7 @@ public class PublicTools:NSObject{
             }
         }
     }
-    func openSettings(_ block: @escaping (_: Bool) -> Void) {
+    class func openSettings(_ block: @escaping (_: Bool) -> Void) {
         if NSFoundationVersionNumber < NSFoundationVersionNumber_iOS_8_0 {
             block(false)
         } else {
