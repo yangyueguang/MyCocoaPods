@@ -23,7 +23,7 @@ public func getTopHeight()->CGFloat{
     }
     return 64.0
 }
-public func RGBAColor(R:CGFloat,G:CGFloat,B:CGFloat,A:CGFloat)->UIColor{
+public func RGBAColor(_ R:CGFloat,_ G:CGFloat,_ B:CGFloat,_ A:CGFloat = 1.0)->UIColor{
     return UIColor(red: R, green: G, blue: B, alpha: A)
 }
 public func W(_ obj:UIView?)->CGFloat{
