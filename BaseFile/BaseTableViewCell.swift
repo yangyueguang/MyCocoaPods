@@ -15,14 +15,14 @@ open class BaseTableViewCell : UITableViewCell {
             if (o is BaseTableViewCell) {
                 instance = o as? BaseTableViewCell
             }else {
-                instance = self.init(style: .default, reuseIdentifier: self.getTableCellIdentifier())
+                instance = self.init(style: .default, reuseIdentifier: self.identifier())
             }
         }else {
-            instance = self.init(style: .default, reuseIdentifier: self.getTableCellIdentifier())
+            instance = self.init(style: .default, reuseIdentifier: self.identifier())
         }
         return instance!
     }
-    public class func getTableCellIdentifier() -> String {
+    public class func identifier() -> String {
         return "\(NSStringFromClass(self))Identifier"
     }
     required override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {

@@ -6,7 +6,7 @@ open class BaseCollectionViewCell : UICollectionViewCell {
     open var line: UIView!
     open var title: UILabel!
     open var script: UILabel!
-    open class func getColloctionCellIdentifier() -> String {
+    open class func identifier() -> String {
         return "\(NSStringFromClass(self))Identifier"
     }
     required override public init(frame: CGRect) {

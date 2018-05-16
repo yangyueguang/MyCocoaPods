@@ -26,38 +26,38 @@ public func getTopHeight()->CGFloat{
 public func RGBAColor(R:CGFloat,G:CGFloat,B:CGFloat,A:CGFloat)->UIColor{
     return UIColor(red: R, green: G, blue: B, alpha: A)
 }
-public func W(obj:UIView?)->CGFloat{
+public func W(_ obj:UIView?)->CGFloat{
     if obj != nil {
         return obj!.frame.size.width
     }else{
         return 0
     }
 }
-public func H(obj:UIView?)->CGFloat{
+public func H(_ obj:UIView?)->CGFloat{
     if obj != nil {
         return obj!.frame.size.height
     }else{
         return 0
     }
 }
-public func X(obj:UIView?)->CGFloat{
+public func X(_ obj:UIView?)->CGFloat{
     if obj != nil {
         return obj!.frame.origin.x
     }else{
         return 0
     }
 }
-public func Y(obj:UIView)->CGFloat{
+public func Y(_ obj:UIView)->CGFloat{
     return obj.frame.origin.y
 }
-public func XW(obj:UIView?)->CGFloat{
+public func XW(_ obj:UIView?)->CGFloat{
     if obj != nil{
         return obj!.frame.origin.x + obj!.frame.size.width
     }else{
         return 0
     }
 }
-public func YH(obj:UIView?)->CGFloat{
+public func YH(_ obj:UIView?)->CGFloat{
     if obj != nil{
         return obj!.frame.origin.y + obj!.frame.size.height
     }else{
