@@ -1,3 +1,12 @@
+#安装cocoapods
+sudo gem install cocoapods
+pod setup
+如果失败，运行下面命令
+gem sources -l
+gem sources -remove https://rubygems.org/
+gem sources -a http://ruby.taobao.org/
+https://rubygems.org/   https://ruby.taobao.org/
+sudo gem update cocoapods
 # MyCocoaPods
 这是我所有自己上传和使用的cocoapods集合
 
