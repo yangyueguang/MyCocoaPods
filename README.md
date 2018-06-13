@@ -9,6 +9,9 @@ gem sources -a http://ruby.taobao.org/
 https://rubygems.org/   https://ruby.taobao.org/
 sudo gem install cocoapods
 sudo gem update cocoapods
+如果没有权限
+sudo gem install -n /usr/local/bin sass 
+sudo gem install -n /usr/local/bin cocoapods
 ```
 # MyCocoaPods
 这是我所有自己上传和使用的cocoapods集合
