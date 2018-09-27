@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "XExtension"
-  s.version      = "0.3.5"
+  s.version      = "0.3.6"
   s.summary      = "这是Swift的类的拓展集合."
   s.frameworks   = 'UIKit','Foundation'
   s.requires_arc = true
