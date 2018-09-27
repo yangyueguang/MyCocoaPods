@@ -10,7 +10,7 @@ public extension UIViewController{
         }
         set{
             self.backGestureEnable = newValue
- self.navigationController?.interactivePopGestureRecognizer?.isEnabled = newValue!
+            self.navigationController?.interactivePopGestureRecognizer?.isEnabled = newValue!
         }
     }
     var naviLineHidden:Bool?{

@@ -6,7 +6,7 @@ import Realm
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {//WXApiDelegate
     var window: UIWindow?
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         initshardSDK()
         chushihua()
         return true
@@ -40,9 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {//WXApiDelegate
 //GMSPlacesClient.provideAPIKey(GoogleMapKey)
     }
     func chushihua() {
-        NotificationCenter.default.addObserver(self, selector:#selector(test), name: .UIApplicationWillResignActive, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(test), name: .UIApplicationDidBecomeActive, object: nil)
-        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        NotificationCenter.default.addObserver(self, selector:#selector(test), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(test), name: UIApplication.didBecomeActiveNotification, object: nil)
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
         let config = RLMRealmConfiguration.default()
         config.schemaVersion = 1
         config.migrationBlock = {(_ migration: RLMMigration, _ oldSchemaVersion: UInt64) -> Void in
@@ -57,14 +57,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {//WXApiDelegate
     class func backgroundPlayerID(_ backTaskId: UIBackgroundTaskIdentifier) -> UIBackgroundTaskIdentifier {
         //设置并激活音频会话类别
         let session = AVAudioSession.sharedInstance()
-        try? session.setCategory(AVAudioSessionCategoryPlayback)
+        try? session.setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
         try? session.setActive(true)
         //允许应用程序接收远程控制
         UIApplication.shared.beginReceivingRemoteControlEvents()
         //设置后台任务ID
-        var newTaskId: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
+        var newTaskId: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
         newTaskId = UIApplication.shared.beginBackgroundTask(expirationHandler: {
-            if newTaskId != UIBackgroundTaskInvalid && backTaskId != UIBackgroundTaskInvalid {
+            if newTaskId != UIBackgroundTaskIdentifier.invalid && backTaskId != UIBackgroundTaskIdentifier.invalid {
                 UIApplication.shared.endBackgroundTask(backTaskId)
             }
         })
@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {//WXApiDelegate
     func applicationWillResignActive(_ application: UIApplication) {
         //[BMKMapView willBackGround];//当应用即将后台时调用，停止一切调用opengl相关的操作
         print("\n\n倔强的打出一行字告诉你我要挂起了。。\n\n")
-        let _: UIBackgroundTaskIdentifier? = AppDelegate.backgroundPlayerID(UIBackgroundTaskInvalid)
+        let _: UIBackgroundTaskIdentifier? = AppDelegate.backgroundPlayerID(UIBackgroundTaskIdentifier.invalid)
     }
     //使用此方法释放共享资源，保存用户数据，取消计时器，并存储足够的应用程序状态信息，以恢复应用程序的当前状态，以防止其稍后被终止。
     //如果您的应用程序支持后台执行，这种方法被称为替代applicationWillTerminate:当用户退出
@@ -134,7 +134,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {//WXApiDelegate
         return true
     }
     // NOTE: 9.0以后使用新API接口
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
 //        if (url.host == "safepay") {
 //        // 支付跳转支付宝钱包进行支付，处理支付结果
 //            AlipaySDK.defaultService().processOrder(withPaymentResult: url, standbyCallback: { (resultDic:[AnyHashable : Any]?) in
@@ -150,7 +150,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {//WXApiDelegate
 //        ShareSDK.handleOpen(url, wxDelegate: self)
         return true
     }
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+    private func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         if userActivity.activityType == CSSearchableItemActionType {
             if let userInfo = userActivity.userInfo {
                 let selectedItem = userInfo[CSSearchableItemActivityIdentifier] as! String

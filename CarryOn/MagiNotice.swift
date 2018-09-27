@@ -121,7 +121,7 @@ open class MagiNotice: NSObject {
             // change direction
             window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
         }
-            window.windowLevel = UIWindowLevelStatusBar
+                window.windowLevel = UIWindow.Level.statusBar
         window.isHidden = false
         window.addSubview(view)
         windows.append(window)
@@ -151,7 +151,7 @@ open class MagiNotice: NSObject {
             if imageNames.count > timerTimes {
                 let iv = UIImageView(frame: frame)
                 iv.image = imageNames.first!
-                iv.contentMode = UIViewContentMode.scaleAspectFit
+                iv.contentMode = UIView.ContentMode.scaleAspectFit
                 mainView.addSubview(iv)
                 timer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: UInt(0)), queue: DispatchQueue.main) as! DispatchSource
                 timer.schedule(deadline: DispatchTime.now(),
@@ -169,7 +169,7 @@ open class MagiNotice: NSObject {
                 timer.resume()
             }
         } else {
-            let ai = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+                let ai = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
             ai.frame = CGRect(x: 21, y: 21, width: 36, height: 36)
             ai.startAnimating()
             mainView.addSubview(ai)
@@ -184,7 +184,7 @@ open class MagiNotice: NSObject {
             // change direction
             window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
         }
-            window.windowLevel = UIWindowLevelAlert
+                window.windowLevel = UIWindow.Level.alert
         window.isHidden = false
         window.addSubview(mainView)
         windows.append(window)
@@ -222,7 +222,7 @@ open class MagiNotice: NSObject {
             // change direction
             window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
         }
-            window.windowLevel = UIWindowLevelAlert
+                window.windowLevel = UIWindow.Level.alert
         window.isHidden = false
         window.addSubview(mainView)
         windows.append(window)
@@ -267,7 +267,7 @@ open class MagiNotice: NSObject {
             // change direction
             window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
         }
-            window.windowLevel = UIWindowLevelAlert
+                window.windowLevel = UIWindow.Level.alert
         window.center = rv!.center
         window.isHidden = false
         window.addSubview(mainView)
@@ -313,7 +313,7 @@ open class MagiNotice: NSObject {
                 // change direction
                 progressWindow?.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
             }
-            progressWindow?.windowLevel = UIWindowLevelAlert
+                progressWindow?.windowLevel = UIWindow.Level.alert
             progressWindow?.center = rv!.center
             progressWindow?.isHidden = false
             progressWindow?.addSubview(mainView)
@@ -373,7 +373,7 @@ open class MagiNotice: NSObject {
         mainView.addSubview(label)
             window.frame = frame
         mainView.frame = frame
-            window.windowLevel = UIWindowLevelAlert
+                window.windowLevel = UIWindow.Level.alert
         window.isHidden = false
         window.addSubview(mainView)
         windows.append(window)
@@ -409,7 +409,7 @@ open class MagiProgressView: UIView {
         progressLayer.strokeColor = UIColor.white.cgColor
         progressLayer.lineWidth = 2
         progressLayer.strokeEnd = 0
-        progressLayer.lineCap = kCALineCapRound
+        progressLayer.lineCap = CAShapeLayerLineCap.round
         return progressLayer
     }()
             lazy var progressLabel: UILabel = {

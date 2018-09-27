@@ -19,7 +19,7 @@ public extension NSObject{
             })
 //            group.wait(timeout: DispatchTime.distantFuture)
             if wait{
-                let ret = RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Foundation.Date.distantFuture )
+                let ret = RunLoop.current.run(mode: RunLoop.Mode.default, before: Foundation.Date.distantFuture )
                 while (!continuego && ret){
                 }
             }

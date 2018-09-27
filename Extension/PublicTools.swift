@@ -33,18 +33,18 @@ public class APP:NSObject{
     public let wechatAvalueble:Bool!
     public override init() {
         let info = Bundle.main.infoDictionary
-        region = info!["CFBundleDevelopmentRegion"] as! String
-        name = info!["CFBundleDisplayName"] as! String
-        bundle = info!["CFBundleExecutable"] as! String
-        identifier = info!["CFBundleIdentifier"] as! String
-        infoVersion = info!["CFBundleInfoDictionaryVersion"] as! String
-        bundleName = info!["CFBundleName"] as! String
-        version = info!["CFBundleShortVersionString"] as! String
+        region = info!["CFBundleDevelopmentRegion"] as? String
+        name = info!["CFBundleDisplayName"] as? String
+        bundle = info!["CFBundleExecutable"] as? String
+        identifier = info!["CFBundleIdentifier"] as? String
+        infoVersion = info!["CFBundleInfoDictionaryVersion"] as? String
+        bundleName = info!["CFBundleName"] as? String
+        version = info!["CFBundleShortVersionString"] as? String
         build = info!["CFBundleVersion"] as! Int32
-        platVersion = info!["DTPlatformVersion"] as! String
-        lessVersion = info!["MinimumOSVersion"] as! String
-        launchName = info!["UILaunchStoryboardName"] as! String
-        mainName = info!["UIMainStoryboardFile"] as! String
+        platVersion = info!["DTPlatformVersion"] as? String
+        lessVersion = info!["MinimumOSVersion"] as? String
+        launchName = info!["UILaunchStoryboardName"] as? String
+        mainName = info!["UIMainStoryboardFile"] as? String
         deviceType = UIDevice.current.userInterfaceIdiom
         wechatAvalueble = UIApplication.shared.canOpenURL(URL(string: "weixin://")!)
         super.init()
@@ -137,7 +137,7 @@ public class PublicTools:NSObject{
         if NSFoundationVersionNumber < NSFoundationVersionNumber_iOS_8_0 {
             block(false)
         } else {
-            let url = URL(string: UIApplicationOpenSettingsURLString)
+            let url = URL(string: UIApplication.openSettingsURLString)
             if let anUrl = url {
                 if UIApplication.shared.canOpenURL(anUrl) {
                     UIApplication.shared.open(anUrl, options: [:], completionHandler: {(_ success: Bool) -> Void in

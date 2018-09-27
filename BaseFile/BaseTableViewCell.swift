@@ -25,7 +25,7 @@ open class BaseTableViewCell : UITableViewCell {
     public class func identifier() -> String {
         return "\(NSStringFromClass(self))Identifier"
     }
-    required override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         loadBaseTableCellSubviews()
     }

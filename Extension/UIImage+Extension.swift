@@ -39,10 +39,10 @@ public extension UIImage {
         return theImage
     }
     func original() ->UIImage {
-        return self.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        return self.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
     }
     class func imageWithURL(_ url : String,imgView : UIImageView) -> UIImage {
-        imgView.contentMode = UIViewContentMode.scaleAspectFit
+        imgView.contentMode = UIView.ContentMode.scaleAspectFit
         var image : UIImage?
         let task = URLSession.shared.dataTask(with:URL(string: url)!, completionHandler: { (data, respons, eror) -> Void in
             if data != nil{
@@ -264,7 +264,7 @@ public extension UIImage {
         let w: CGFloat? = (image?.size.width)! * 0.5
         let h: CGFloat? = (image?.size.height)! * 0.5
         // 生成可以拉伸指定位置的图片
-        let newImage: UIImage? = image?.resizableImage(withCapInsets: UIEdgeInsetsMake(h!, w!, h!, w!), resizingMode: .stretch)
+        let newImage: UIImage? = image?.resizableImage(withCapInsets: UIEdgeInsets(top: h!, left: w!, bottom: h!, right: w!), resizingMode: .stretch)
         return newImage!
     }
 }

@@ -10,8 +10,8 @@ open class BaseTabBarViewController: UITabBarController {
     override open func viewDidLoad() {
         super.viewDidLoad()
         let barItem = UITabBarItem.appearance()
-barItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.gray,NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 12)], for: .normal)
-barItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.red,NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 12)], for: .selected)
+        barItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.gray,NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12)], for: .normal)
+        barItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.red,NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12)], for: .selected)
         tabBar.barTintColor = .green
         tabBar.tintColor = .yellow
         view.backgroundColor = .black
@@ -22,7 +22,7 @@ barItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.
         controller.tabBarItem.title = title
         controller.title = title
         let nav = BaseNavigationViewController()
-        nav.addChildViewController(controller)
-        addChildViewController(nav)
+        nav.addChild(controller)
+        addChild(nav)
     }
 }

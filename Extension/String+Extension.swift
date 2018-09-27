@@ -6,7 +6,7 @@ import UIKit
 // MARK: - String
 public extension String {
     static func zjSizeWithString(_ str : String,font : UIFont, sizeWidth : CGFloat, sizeHeight : CGFloat) -> CGFloat {
-        let attributes = [NSAttributedStringKey.font: font]
+        let attributes = [NSAttributedString.Key.font: font]
         let option = NSStringDrawingOptions.usesLineFragmentOrigin
         let rect:CGRect = str.boundingRect(with: CGSize(width: sizeWidth, height: 8000), options: option, attributes: attributes, context: nil)
         return sizeWidth == 0 ? rect.size.width : rect.size.height
@@ -44,7 +44,7 @@ public extension String {
         label.font = UIFont.systemFont(ofSize: theFont)
         label.numberOfLines = 0
         let options : NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
-        let boundingRect : CGRect = text.boundingRect(with: CGSize(width: CGFloat(width), height: 0), options: options, attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: theFont)], context: nil)
+        let boundingRect : CGRect = text.boundingRect(with: CGSize(width: CGFloat(width), height: 0), options: options, attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: theFont)], context: nil)
         return width == 0 ? boundingRect.width : boundingRect.height
     }
     /**<判断字符串是否为空*/
@@ -59,14 +59,14 @@ public extension String {
             }
         }
     }
-    func  sizeOfString (constrainedToWidth width: CGFloat, attributes : [NSAttributedStringKey: Any]?) -> CGSize {
+    func  sizeOfString (constrainedToWidth width: CGFloat, attributes : [NSAttributedString.Key: Any]?) -> CGSize {
         return  NSString(string: self).boundingRect(with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude),options: NSStringDrawingOptions.usesLineFragmentOrigin,attributes: attributes,context: nil).size
     }
     func sizeOfString(font:UIFont,maxSize:CGSize) -> CGSize{
-        let attrs = [NSAttributedStringKey.font : font];
+        let attrs = [NSAttributedString.Key.font : font];
         return NSString(string: self).boundingRect(with: maxSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attrs, context: nil).size
     }
-    func  sizeOfString (constrainedToHeight height: CGFloat, attributes : [NSAttributedStringKey: String]?) -> CGSize {
+    func  sizeOfString (constrainedToHeight height: CGFloat, attributes : [NSAttributedString.Key: String]?) -> CGSize {
         return NSString(string: self).boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: height),options: NSStringDrawingOptions.usesLineFragmentOrigin,attributes: attributes,context: nil).size
     }
     //给字符串进行base64加密：
@@ -175,7 +175,7 @@ public extension String {
         if let space = lineSpace {
             let paragraphStyleT = NSMutableParagraphStyle()
             paragraphStyleT.lineSpacing = space
-            AttributedStr.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyleT, range: NSMakeRange(0,self.count))
+            AttributedStr.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyleT, range: NSMakeRange(0,self.count))
         }
         return AttributedStr
     }

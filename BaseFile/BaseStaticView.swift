@@ -59,7 +59,7 @@ open class SWCommonCell : UITableViewCell {
         return cell!
     }
    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         textLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         detailTextLabel?.font = UIFont.systemFont(ofSize: 11)
@@ -107,13 +107,13 @@ open class SWCommonCell : UITableViewCell {
 @objcMembers
 open class BaseStaticTableView : UITableView {
    var groups :[SWCommonGroup] = [SWCommonGroup]()
-    override init(frame: CGRect, style: UITableViewStyle) {
+    override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: .grouped)
         backgroundColor = UIColor.lightGray
         separatorStyle = .none
         sectionFooterHeight = 5
         sectionHeaderHeight = 0
-        contentInset = UIEdgeInsetsMake(5 - 35, 0, 0, 0)
+        contentInset = UIEdgeInsets(top: 5 - 35, left: 0, bottom: 0, right: 0)
     }
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

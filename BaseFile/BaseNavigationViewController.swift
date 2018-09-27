@@ -13,8 +13,8 @@ open class BaseNavigationViewController: UINavigationController, UIGestureRecogn
         appearance.backIndicatorImage = UIImage(named: "返回")?.withRenderingMode(.alwaysTemplate)
 //        appearance.setBackgroundImage(UIImage.imageWithColor(.white, size: CGSize(width: 1, height: 1)), for: UIBarMetrics.default)
         let item = UIBarButtonItem.appearance()
-        item.setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.white,NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 14)], for: UIControlState())
-        navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white ,NSAttributedStringKey.font : UIFont.systemFont(ofSize: 16)]
+        item.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white,NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)], for: UIControl.State())
+        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white ,NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)]
         let rect = CGRect(x: 0, y: 0, width: 1.0, height:1.0)
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
         UIColor.clear.setFill()
@@ -35,7 +35,7 @@ open class BaseNavigationViewController: UINavigationController, UIGestureRecogn
         interactivePopGestureRecognizer?.delegate = self
         if responds(to: #selector(getter: UINavigationController.interactivePopGestureRecognizer)) {
             interactivePopGestureRecognizer?.delegate = self
-            self.navigationBar.titleTextAttributes = [NSAttributedStringKey(rawValue: "Font") : UIFont.systemFont(ofSize: 16)]
+            self.navigationBar.titleTextAttributes = [NSAttributedString.Key(rawValue: "Font") : UIFont.systemFont(ofSize: 16)]
             delegate = self
         }
     }
@@ -51,7 +51,7 @@ open class BaseNavigationViewController: UINavigationController, UIGestureRecogn
         _ = popViewController(animated: true)
     }
     override open func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        if self.childViewControllers.count > 0 {
+        if self.children.count > 0 {
             viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backBtn)
             viewController.hidesBottomBarWhenPushed = true
             viewController.view.backgroundColor = UIColor.white

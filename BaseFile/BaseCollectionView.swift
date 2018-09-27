@@ -9,7 +9,7 @@ open class BaseCollectionView : UICollectionView {
     public convenience init(frame: CGRect) {
         let lay = UICollectionViewFlowLayout()
         lay.itemSize = CGSize(width: 100, height: 100)
-        lay.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        lay.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         lay.minimumInteritemSpacing = 10
         lay.minimumLineSpacing = 10
         lay.scrollDirection = .vertical
