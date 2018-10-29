@@ -92,6 +92,8 @@
 		BF7710D51FB94F6F001F853E /* RespForWeChatViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF7710C31FB94F6E001F853E /* RespForWeChatViewController.mm */; };
 		BF7710D61FB94F6F001F853E /* SendMsgToWeChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7710C51FB94F6E001F853E /* SendMsgToWeChatViewController.m */; };
 		BF7710D71FB94F6F001F853E /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF7710C71FB94F6E001F853E /* WXUtil.mm */; };
+		DF42322B218726EB005E5949 /* NSObject+Mirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF42322A218726EB005E5949 /* NSObject+Mirror.swift */; };
+		DF42322D21872704005E5949 /* UILabel+TapAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF42322C21872704005E5949 /* UILabel+TapAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -218,6 +220,8 @@
 		BF7710C71FB94F6E001F853E /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
 		BF97602C1F7150DC00DE9ABB /* MyCocoaPods-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyCocoaPods-Bridging-Header.h"; sourceTree = "<group>"; };
 		CC2365036460F451E73D4822 /* Pods_MyCocoaPods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyCocoaPods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF42322A218726EB005E5949 /* NSObject+Mirror.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Mirror.swift"; sourceTree = "<group>"; };
+		DF42322C21872704005E5949 /* UILabel+TapAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+TapAction.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,6 +327,7 @@
 				BF77105E1FB94E4B001F853E /* Category */,
 				BF7710461FB94E4B001F853E /* Extension */,
 				71517BB32094B32500B40538 /* BaseFile */,
+				DF423229218726EB005E5949 /* XMirror */,
 				BF4C101C1F62E23500E8234D /* AppDelegate.swift */,
 				BF4C101E1F62E23500E8234D /* ViewController.swift */,
 				BF5B9A9F1F66CADE00ECB3EC /* README.md */,
@@ -345,6 +350,7 @@
 				BF77104B1FB94E4B001F853E /* PublicFunction.swift */,
 				BF77104C1FB94E4B001F853E /* PublicString.swift */,
 				BF77104D1FB94E4B001F853E /* PublicTools.swift */,
+				DF42322C21872704005E5949 /* UILabel+TapAction.swift */,
 				BF77104E1FB94E4B001F853E /* String+Extension.swift */,
 				BF77104F1FB94E4B001F853E /* UIAlertController+Extension.swift */,
 				BF7710501FB94E4B001F853E /* UIBarButtonItem+Extension.swift */,
@@ -461,6 +467,15 @@
 				BF7710C51FB94F6E001F853E /* SendMsgToWeChatViewController.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DF423229218726EB005E5949 /* XMirror */ = {
+			isa = PBXGroup;
+			children = (
+				DF42322A218726EB005E5949 /* NSObject+Mirror.swift */,
+			);
+			name = XMirror;
+			path = ../../XMirror;
 			sourceTree = "<group>";
 		};
 		E9D68D9BEC1C3806859F6C0D /* Pods */ = {
@@ -617,6 +632,7 @@
 				BF7710941FB94E4B001F853E /* NSData+expanded.m in Sources */,
 				BF7710841FB94E4B001F853E /* String+Extension.swift in Sources */,
 				BF77109F1FB94E4C001F853E /* UIImage+expanded.m in Sources */,
+				DF42322B218726EB005E5949 /* NSObject+Mirror.swift in Sources */,
 				BF77109A1FB94E4B001F853E /* NSString+expanded.m in Sources */,
 				BF77109E1FB94E4C001F853E /* UIGestureRecognizer+expanded.m in Sources */,
 				713FDEF52099A03800C4E69E /* BaseExcelView.m in Sources */,
@@ -626,6 +642,7 @@
 				BF4C101D1F62E23500E8234D /* AppDelegate.swift in Sources */,
 				BF7710821FB94E4B001F853E /* PublicString.swift in Sources */,
 				BF77109C1FB94E4B001F853E /* UIColor+expanded.m in Sources */,
+				DF42322D21872704005E5949 /* UILabel+TapAction.swift in Sources */,
 				BF7710851FB94E4B001F853E /* UIAlertController+Extension.swift in Sources */,
 				BF7710CB1FB94F6E001F853E /* WXApiRequestHandler.m in Sources */,
 				713FDDC820995FFD00C4E69E /* BaseNavigationViewController.swift in Sources */,
