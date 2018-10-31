@@ -92,6 +92,7 @@
 		BF7710D51FB94F6F001F853E /* RespForWeChatViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF7710C31FB94F6E001F853E /* RespForWeChatViewController.mm */; };
 		BF7710D61FB94F6F001F853E /* SendMsgToWeChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7710C51FB94F6E001F853E /* SendMsgToWeChatViewController.m */; };
 		BF7710D71FB94F6F001F853E /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF7710C71FB94F6E001F853E /* WXUtil.mm */; };
+		DFFBF955218990280085B638 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DFFBF954218990280085B638 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -218,6 +219,7 @@
 		BF7710C71FB94F6E001F853E /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
 		BF97602C1F7150DC00DE9ABB /* MyCocoaPods-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyCocoaPods-Bridging-Header.h"; sourceTree = "<group>"; };
 		CC2365036460F451E73D4822 /* Pods_MyCocoaPods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyCocoaPods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFFBF954218990280085B638 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,6 +328,7 @@
 				BF4C101C1F62E23500E8234D /* AppDelegate.swift */,
 				BF4C101E1F62E23500E8234D /* ViewController.swift */,
 				BF5B9A9F1F66CADE00ECB3EC /* README.md */,
+				DFFBF954218990280085B638 /* .gitignore */,
 				BF4C10201F62E23500E8234D /* Main.storyboard */,
 				BF4C10231F62E23500E8234D /* Assets.xcassets */,
 				BF4C10251F62E23500E8234D /* LaunchScreen.storyboard */,
@@ -539,6 +542,7 @@
 				BF7710D11FB94F6F001F853E /* micro_messenger.png in Resources */,
 				BF7710CF1FB94F6E001F853E /* dynamicthumb.png in Resources */,
 				BF7710CE1FB94F6E001F853E /* dynamic.gif in Resources */,
+				DFFBF955218990280085B638 /* .gitignore in Resources */,
 				BF4C10271F62E23500E8234D /* LaunchScreen.storyboard in Resources */,
 				BF7710D31FB94F6F001F853E /* test.jpg in Resources */,
 				BF4C10241F62E23500E8234D /* Assets.xcassets in Resources */,
