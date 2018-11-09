@@ -4,11 +4,11 @@
 //
 //  Created by Chao Xue 薛超 on 2018/10/30.
 //  Copyright © 2018年 Xuechao. All rights reserved.
-//  给NSObject添加字典模型转换功能的扩展
+//  给NSObject添加字典模型转换功能的扩展 需要设置模型为OC类型，即class前加objcMembers。属性里int,float,double要设置默认值
 
 import Foundation
 // 字段类型模型
-class NSObjectType {
+private class NSObjectType {
     var isArray: Bool = false
     var isNSObject:Bool = false
     var isOptional: Bool = false
@@ -24,11 +24,16 @@ class NSObjectType {
         parseBegin()
     }
     func parseBegin(){
-        typeName = "\(propertyMirrorType.subjectType)".replacingOccurrences(of: "Optional<", with: "").replacingOccurrences(of: ">", with: "")
+        let subjectTypeName = "\(propertyMirrorType.subjectType)"
+        typeName = subjectTypeName
+            .replacingOccurrences(of: "Optional<", with: "")
+            .replacingOccurrences(of: "Array<", with: "")
+            .replacingOccurrences(of: ">", with: "")
+            .replacingOccurrences(of: "ImplicitlyUnwrapped", with: "")
         typeClass = propertyMirrorType.subjectType
         guard propertyMirrorType.displayStyle != nil else { return }
-        realType = RealType.getTypeFromTypeName(typeName)
-        isArray = typeName.contains("Array")
+        realType = RealType(rawValue: typeName) ?? RealType.Class
+        isArray = subjectTypeName.contains("Array")
         let sdkTypes = ["__NSCFNumber", "NSNumber", "_NSContiguousString", "UIImage", "_NSZeroData"]
         isNSObject = RealType.Class == realType && !sdkTypes.contains(typeName)
         isOptional = propertyMirrorType.displayStyle == Mirror.DisplayStyle.optional
@@ -42,20 +47,10 @@ class NSObjectType {
         case String = "String"
         case NSNumber = "NSNumber"
         case Class = "Class"
-        static func getTypeFromTypeName(_ name:String) -> RealType {
-            var realType = RealType.Class
-            if name.contains("Int") {realType = RealType.Int}
-            else if name.contains("Bool") {realType = RealType.Bool}
-            else if name.contains("Float") {realType = RealType.Float}
-            else if name.contains("Double") {realType = RealType.Double}
-            else if name.contains("String") {realType = RealType.String}
-            else if name.contains("NSNumber") {realType = RealType.NSNumber}
-            return realType
-        }
     }
 }
 
-extension NSObject{
+public extension NSObject{
     // 解析结束
     @objc func parseOver(){}
     // 字段替换
@@ -165,13 +160,9 @@ extension NSObject{
                         arrAggregate = parseAggregateArray(arrDict: dict[key] as! NSArray)
                         model.setValue(arrAggregate, forKeyPath: name)
                     default:
-                        let clsString = type.typeName.replacingOccurrences(of: "Array<", with: "")
-                            .replacingOccurrences(of: "Optional<", with: "")
-                            .replacingOccurrences(of: ">", with: "")
-                            .replacingOccurrences(of: "ImplicitlyUnwrapped", with: "")
-                        var cls  = getObjectWithName(clsString)
+                        var cls  = getObjectWithName(type.typeName)
                         if cls == nil && type.isNSObject {
-                            let nameSpaceString = "\(type.belongType).\(clsString)"
+                            let nameSpaceString = "\(type.belongType).\(type.typeName ?? "")"
                             cls = getObjectWithName(nameSpaceString)
                         }
                         let dictKeyArr = dict[key] as! NSArray
@@ -189,13 +180,12 @@ extension NSObject{
         return model
     }
 
-    var description1: String {
+    var detailPrint: String {
         let pointAddr = NSString(format: "%p",unsafeBitCast(self, to: Int.self)) as String
-        var printStr = "\(type(of: self))" + " <\(pointAddr)>: " + "\r{"
+        var printStr = "\(type(of: self)) <\(pointAddr)>: \n"
         self.properties { (name, type, value) -> Void in
             printStr += type.isArray ? "\r\r['\(name)']: \(value)" : "\r\(name): \(value)"
         }
-        printStr += "\r}"
         return printStr
     }
     /// 是否打开点击效果，默认是打开
@@ -205,7 +195,7 @@ extension NSObject{
     }
 
     // 遍历对象属性
-    func properties(property: (_ name: String, _ type: NSObjectType, _ value: Any) -> Void){
+    private func properties(property: (_ name: String, _ type: NSObjectType, _ value: Any) -> Void){
         for p in mirror.children {
             let objType = NSObjectType(propertyMirrorType: Mirror(reflecting: p.value), belongType: type(of: self))
             property(p.label!, objType, p.value)
@@ -274,24 +264,32 @@ extension NSObject{
         return intArrM
     }
 
+    static func gotPropertyNames() -> [String] {
+        var count : UInt32 = 0
+        var propertys: [String] = []
+        let ivars = class_copyIvarList(self, &count)!
+        for i in 0..<count {
+            let ivar = ivars[Int(i)]
+            let ivarName = String(cString: ivar_getName(ivar)!)
+            propertys.append(ivarName)
+        }
+        free(ivars)
+        return propertys
+    }
+
     private static func getObjectWithName(_ name: String) -> NSObject.Type?{
-        guard var appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String else { return nil }
-        var name = name
-        if appName == "" {appName = ((Bundle.main.bundleIdentifier!).characters.split{$0 == "."}.map { String($0) }).last ?? ""}
-        if !name.contains("\(appName)."){ name = appName + "." + name }
-        let strArr = name.characters.split(whereSeparator: { (element) -> Bool in
-            return element == "."
-        }).map { String($0) }
-        var className = name
+        let bundleName = NSStringFromClass(self).components(separatedBy: ".").first!
+        var bundleClassName = bundleName + "." + name
+        let strArr = bundleClassName.components(separatedBy: ".")
         let num = strArr.count
-        if num > 2 || strArr.contains(appName) {
+        if num > 2 || strArr.contains(bundleName) {
             var nameStringM = "_TtC"
             for _ in 0..<num - 2 { nameStringM += "C" }
             for (_, s): (Int, String) in strArr.enumerated(){
                 nameStringM += "\(s.count)\(s)"
             }
-            className = nameStringM
+            bundleClassName = nameStringM
         }
-        return (NSClassFromString(className) as? NSObject.Type)
+        return (NSClassFromString(bundleClassName) as? NSObject.Type)
     }
 }
