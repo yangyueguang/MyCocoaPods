@@ -2,7 +2,8 @@
 //  PublicFunction.swift
 import Foundation
 import UIKit
-public func Dlog<T>(message: T, file: String = #file,method: String = #function,line: Int = #line){
+
+public func Dlog<T>(_ message: T, file: String = #file,method: String = #function,line: Int = #line){
     #if DEBUG
     print("\n\((file as NSString).lastPathComponent)[\(line)]: \(method)\n \(message)")
     #endif
