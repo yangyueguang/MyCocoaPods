@@ -2,7 +2,7 @@
 //  PublicFunction.swift
 import Foundation
 import UIKit
-public func Dlog<T>(message: T,logError: Bool = false,file: String = #file,method: String = #function,line: Int = #line){
+public func Dlog<T>(_ message: T,logError: Bool = false,file: String = #file,method: String = #function,line: Int = #line){
     if logError {
         print("\((file as NSString).lastPathComponent)[\(line)], \(method): \(message)")
     } else {
