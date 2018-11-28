@@ -13,9 +13,8 @@ public extension UILabel {
         str1.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: range1)
         self.attributedText = str1
     }
-    func txtCopy(_ item: Any) {
+    @objc func txtCopy(_ item: Any) {
         UIPasteboard.general.string = text
-        print("________copy:\(String(describing: text))")
     }
     public convenience init(frame: CGRect, text: String, font: UIFont, color: UIColor = .black, alignment: NSTextAlignment = .left, lines: Int = 0, lineSpace: CGFloat?, shadowColor: UIColor = UIColor.clear) {
         self.init(frame: frame)
@@ -34,32 +33,14 @@ public extension UILabel {
         }
     }
 
-//    -(void)lableCopy{
-//    if ([self isKindOfClass:[UILabel class]]) {
-//    self.userInteractionEnabled=YES;
-//    //长按
-//    UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
-//    [self addGestureRecognizer:recognizer];
-//    }
-//    }
-//    -(void)longPress:(UILongPressGestureRecognizer *)longPress{
-//    UILabel *lbl=(UILabel *)longPress.view;
-//    [self becomeFirstResponder];
-//    UIMenuController *popMenu = [UIMenuController sharedMenuController];
-//    UIMenuItem *item1 = [[UIMenuItem alloc] initWithTitle:@"复制" action:@selector(txtCopy:)];
-//    NSArray *menuItems = [NSArray arrayWithObjects:item1,nil];
-//    [popMenu setMenuItems:menuItems];
-//    [popMenu setArrowDirection:UIMenuControllerArrowDown];
-//    [popMenu setTargetRect:self.bounds inView:self];
-//    [popMenu setMenuVisible:YES animated:YES];
-//    NSLog(@"________长按:%@",lbl.text);
-//    }
-//    -(void)txtCopy:(id)item{
-//    //  UIMenuController *menu=(UIMenuController*)item;
-//    UIPasteboard *pboard = [UIPasteboard generalPasteboard];
-//    pboard.string = self.text;
-//    NSLog(@"________copy:%@",self.text);
-//    }
-
+    func labelLongPress(_ longPress: UILongPressGestureRecognizer) {
+        self.becomeFirstResponder()
+        let popMenu = UIMenuController.shared
+        let item = UIMenuItem(title: "复制", action: #selector(txtCopy(_:)))
+        popMenu.menuItems = [item]
+        popMenu.arrowDirection = .down
+        popMenu.setTargetRect(self.bounds, in: self)
+        popMenu.setMenuVisible(true, animated: true)
+    }
 }
 

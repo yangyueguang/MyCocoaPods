@@ -67,17 +67,9 @@
 		BF7710D51FB94F6F001F853E /* RespForWeChatViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF7710C31FB94F6E001F853E /* RespForWeChatViewController.mm */; };
 		BF7710D61FB94F6F001F853E /* SendMsgToWeChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7710C51FB94F6E001F853E /* SendMsgToWeChatViewController.m */; };
 		BF7710D71FB94F6F001F853E /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF7710C71FB94F6E001F853E /* WXUtil.mm */; };
-<<<<<<< HEAD
-
+		DF42322D21872704005E5949 /* UILabel+TapAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF42322C21872704005E5949 /* UILabel+TapAction.swift */; };
+		DFFA80AC21AE943B009B1999 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFA80AB21AE943B009B1999 /* FileManager+Extension.swift */; };
 		DFFBF955218990280085B638 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DFFBF954218990280085B638 /* .gitignore */; };
-
-		DF42322B218726EB005E5949 /* NSObject+Mirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF42322A218726EB005E5949 /* NSObject+Mirror.swift */; };
-		DF42322D21872704005E5949 /* UILabel+TapAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF42322C21872704005E5949 /* UILabel+TapAction.swift */; };
-
-=======
-		DF42322D21872704005E5949 /* UILabel+TapAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF42322C21872704005E5949 /* UILabel+TapAction.swift */; };
-		DFFA80AC21AE943B009B1999 /* NSFileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFA80AB21AE943B009B1999 /* NSFileManager+Extension.swift */; };
->>>>>>> develop
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,17 +155,9 @@
 		BF7710C71FB94F6E001F853E /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
 		BF97602C1F7150DC00DE9ABB /* MyCocoaPods-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyCocoaPods-Bridging-Header.h"; sourceTree = "<group>"; };
 		CC2365036460F451E73D4822 /* Pods_MyCocoaPods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyCocoaPods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-<<<<<<< HEAD
-
+		DF42322C21872704005E5949 /* UILabel+TapAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+TapAction.swift"; sourceTree = "<group>"; };
+		DFFA80AB21AE943B009B1999 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		DFFBF954218990280085B638 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-
-		DF42322A218726EB005E5949 /* NSObject+Mirror.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Mirror.swift"; sourceTree = "<group>"; };
-		DF42322C21872704005E5949 /* UILabel+TapAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+TapAction.swift"; sourceTree = "<group>"; };
-
-=======
-		DF42322C21872704005E5949 /* UILabel+TapAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+TapAction.swift"; sourceTree = "<group>"; };
-		DFFA80AB21AE943B009B1999 /* NSFileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFileManager+Extension.swift"; sourceTree = "<group>"; };
->>>>>>> develop
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,7 +277,7 @@
 				BF7710541FB94E4B001F853E /* UIImage+Extension.swift */,
 				BF7710551FB94E4B001F853E /* UIImageView+Extension.swift */,
 				BF7710561FB94E4B001F853E /* UILabel+Extension.swift */,
-				DFFA80AB21AE943B009B1999 /* NSFileManager+Extension.swift */,
+				DFFA80AB21AE943B009B1999 /* FileManager+Extension.swift */,
 				BF7710571FB94E4B001F853E /* UINavigationController+Extension.swift */,
 				BF7710581FB94E4B001F853E /* UIScrollView+Extension.swift */,
 				BF7710591FB94E4B001F853E /* UISearchBar+Extension.swift */,
@@ -539,7 +523,7 @@
 				BF7710901FB94E4B001F853E /* UITextFiled+Extension.swift in Sources */,
 				BF77108B1FB94E4B001F853E /* UIImageView+Extension.swift in Sources */,
 				BF7710911FB94E4B001F853E /* UIView+Extension.swift in Sources */,
-				DFFA80AC21AE943B009B1999 /* NSFileManager+Extension.swift in Sources */,
+				DFFA80AC21AE943B009B1999 /* FileManager+Extension.swift in Sources */,
 				BF77108A1FB94E4B001F853E /* UIImage+Extension.swift in Sources */,
 				713FDEF92099A03800C4E69E /* BaseSegButtons.m in Sources */,
 				713FDEF62099A03800C4E69E /* SelectButtons.m in Sources */,
