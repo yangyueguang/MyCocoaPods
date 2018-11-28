@@ -251,5 +251,8 @@ public extension Date {
         }
         return str_week
     }
+    public func fd_adding(_ component: Calendar.Component, value: Int) -> Date {
+        return Calendar.current.date(byAdding: component, value: value, to: self)!
+    }
 }
 
