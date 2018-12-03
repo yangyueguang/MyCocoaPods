@@ -21,20 +21,15 @@ static SDDataCache *instance;
         cacheInQueue.maxConcurrentOperationCount = 1;
         cacheOutQueue = [[NSOperationQueue alloc] init];
         cacheOutQueue.maxConcurrentOperationCount = 1;
-#if !TARGET_OS_IPHONE
-#else
         // Subscribe to app events
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearMemory) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cleanDisk) name:UIApplicationWillTerminateNotification object:nil];
-#ifdef __IPHONE_4_0
         UIDevice *device = [UIDevice currentDevice];
         if ([device respondsToSelector:@selector(isMultitaskingSupported)] && device.multitaskingSupported){
             // When in background, clean memory in order to have less chance to be killed
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearMemory) name:UIApplicationDidEnterBackgroundNotification object:nil];
         }
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cleanDisk) name:UIApplicationWillResignActiveNotification object:nil];
-#endif
-#endif
     }
     return self;
 }
@@ -63,27 +58,12 @@ static SDDataCache *instance;
     // Can't use defaultManager another thread
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSString *key = [keyAndData objectAtIndex:0];
-	// If no data representation given, convert the UIImage in JPEG and store it
-	// This trick is more CPU/memory intensive and doesn't preserve alpha channel
 	NSData *data=[self dataFromKey:key fromDisk:YES];  // be thread safe with no lock
 	if (data){
 		[fileManager createFileAtPath:[self cachePathForKey:key] contents:data attributes:nil];
 	}
 }
-- (void)notifyDelegate:(NSDictionary *)arguments{
-    NSString *key = [arguments objectForKey:@"key"];
-    id <SDDataCacheDelegate> delegate = [arguments objectForKey:@"delegate"];
-    NSDictionary *info = [arguments objectForKey:@"userInfo"];
-    NSData *data = [arguments objectForKey:@"data"];
-    if (data){
-        [memCache setObject:data forKey:key];
-        if ([delegate respondsToSelector:@selector(dataCache:didFindData:forKey:userInfo:)]){
-            [delegate dataCache:self didFindData:data forKey:key userInfo:info];
-        }
-    }else if ([delegate respondsToSelector:@selector(dataCache:didNotFindDataForKey:userInfo:)]){
-            [delegate dataCache:self didNotFindDataForKey:key userInfo:info];
-        }
-}
+
 - (void)queryDiskCacheOperation:(NSDictionary *)arguments{
     NSString *key = [arguments objectForKey:@"key"];
     NSMutableDictionary *mutableArguments = [arguments mutableCopy];
@@ -114,27 +94,6 @@ static SDDataCache *instance;
 		data=[[NSData alloc] initWithContentsOfFile:[self cachePathForKey:key]];
         if (data)[memCache setObject:data forKey:key];
     }return data;
-}
-- (void)queryDiskCacheForKey:(NSString *)key delegate:(id <SDDataCacheDelegate>)delegate userInfo:(NSDictionary *)info{
-    if (!delegate)return;
-    if (!key){
-        if ([delegate respondsToSelector:@selector(dataCache:didNotFindDataForKey:userInfo:)]){
-            [delegate dataCache:self didNotFindDataForKey:key userInfo:info];
-        }return;
-    }
-    // First check the in-memory cache...
-	NSData *data=[memCache objectForKey:key];
-    if (data){
-        // ...notify delegate immediately, no need to go async
-        if ([delegate respondsToSelector:@selector(dataCache:didFindData:forKey:userInfo:)]){
-            [delegate dataCache:self didFindData:data forKey:key userInfo:info];
-        }return;
-    }
-    NSMutableDictionary *arguments = [NSMutableDictionary dictionaryWithCapacity:3];
-    [arguments setObject:key forKey:@"key"];
-    [arguments setObject:delegate forKey:@"delegate"];
-    if (info)[arguments setObject:info forKey:@"userInfo"];
-    [cacheOutQueue addOperation:[[NSInvocationOperation alloc] initWithTarget:self selector:@selector(queryDiskCacheOperation:) object:arguments]];
 }
 - (void)removeDataForKey:(NSString *)key{
     if (key == nil)return;

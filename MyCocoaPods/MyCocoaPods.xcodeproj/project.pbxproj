@@ -10,7 +10,6 @@
 		13272FD8E7DF69123BAA2F4B /* Pods_MyCocoaPods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2365036460F451E73D4822 /* Pods_MyCocoaPods.framework */; };
 		71024C36209C289300207E44 /* XCarryOn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71024C35209C289300207E44 /* XCarryOn.swift */; };
 		713FDEE520999DD500C4E69E /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEDD20999DD500C4E69E /* Utility.m */; };
-		713FDEE620999DD500C4E69E /* RGBNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEE220999DD500C4E69E /* RGBNavigationController.m */; };
 		713FDEE820999DD500C4E69E /* SDDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEE420999DD500C4E69E /* SDDataCache.m */; };
 		713FDEF52099A03800C4E69E /* BaseExcelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEEC2099A03600C4E69E /* BaseExcelView.m */; };
 		713FDEF62099A03800C4E69E /* SelectButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEEE2099A03700C4E69E /* SelectButtons.m */; };
@@ -19,7 +18,6 @@
 		713FDEF92099A03800C4E69E /* BaseSegButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEF32099A03700C4E69E /* BaseSegButtons.m */; };
 		713FDEFA2099A03800C4E69E /* MagiNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEF42099A03800C4E69E /* MagiNotice.swift */; };
 		713FDEFC2099A04200C4E69E /* UTI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 713FDEFB2099A04200C4E69E /* UTI.plist */; };
-		713FDEFF2099A04C00C4E69E /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEFE2099A04B00C4E69E /* ChineseToPinyin.m */; };
 		7162E67F20A034EA00EF6896 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7162E67D20A034EA00EF6896 /* HTMLParser.m */; };
 		7162E68120A0352F00EF6896 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7162E68020A0352E00EF6896 /* libxml2.tbd */; };
 		BF4C101D1F62E23500E8234D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4C101C1F62E23500E8234D /* AppDelegate.swift */; };
@@ -78,9 +76,7 @@
 		71024C35209C289300207E44 /* XCarryOn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCarryOn.swift; sourceTree = "<group>"; };
 		713FDEDD20999DD500C4E69E /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		713FDEDE20999DD500C4E69E /* SDDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDataCache.h; sourceTree = "<group>"; };
-		713FDEE020999DD500C4E69E /* RGBNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RGBNavigationController.h; sourceTree = "<group>"; };
 		713FDEE120999DD500C4E69E /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
-		713FDEE220999DD500C4E69E /* RGBNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RGBNavigationController.m; sourceTree = "<group>"; };
 		713FDEE420999DD500C4E69E /* SDDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDataCache.m; sourceTree = "<group>"; };
 		713FDEEC2099A03600C4E69E /* BaseExcelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseExcelView.m; sourceTree = "<group>"; };
 		713FDEED2099A03700C4E69E /* SelectButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectButtons.h; sourceTree = "<group>"; };
@@ -92,8 +88,6 @@
 		713FDEF32099A03700C4E69E /* BaseSegButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSegButtons.m; sourceTree = "<group>"; };
 		713FDEF42099A03800C4E69E /* MagiNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagiNotice.swift; sourceTree = "<group>"; };
 		713FDEFB2099A04200C4E69E /* UTI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UTI.plist; sourceTree = "<group>"; };
-		713FDEFD2099A04B00C4E69E /* ChineseToPinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyin.h; sourceTree = "<group>"; };
-		713FDEFE2099A04B00C4E69E /* ChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyin.m; sourceTree = "<group>"; };
 		7162E67D20A034EA00EF6896 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
 		7162E67E20A034EA00EF6896 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
 		7162E68020A0352E00EF6896 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
@@ -176,8 +170,6 @@
 		713FDEDC20999DD500C4E69E /* CarryOn */ = {
 			isa = PBXGroup;
 			children = (
-				713FDEFD2099A04B00C4E69E /* ChineseToPinyin.h */,
-				713FDEFE2099A04B00C4E69E /* ChineseToPinyin.m */,
 				713FDEF22099A03700C4E69E /* BaseExcelView.h */,
 				713FDEEC2099A03600C4E69E /* BaseExcelView.m */,
 				713FDEF12099A03700C4E69E /* BaseSegButtons.h */,
@@ -188,8 +180,6 @@
 				713FDEEE2099A03700C4E69E /* SelectButtons.m */,
 				713FDEE120999DD500C4E69E /* Utility.h */,
 				713FDEDD20999DD500C4E69E /* Utility.m */,
-				713FDEE020999DD500C4E69E /* RGBNavigationController.h */,
-				713FDEE220999DD500C4E69E /* RGBNavigationController.m */,
 				713FDEDE20999DD500C4E69E /* SDDataCache.h */,
 				713FDEE420999DD500C4E69E /* SDDataCache.m */,
 			);
@@ -492,7 +482,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				713FDEE620999DD500C4E69E /* RGBNavigationController.m in Sources */,
 				BF7710C81FB94F6E001F853E /* ApiXml.mm in Sources */,
 				BF7710931FB94E4B001F853E /* User.swift in Sources */,
 				BF7710D51FB94F6F001F853E /* RespForWeChatViewController.mm in Sources */,
@@ -508,7 +497,6 @@
 				DF42322D21872704005E5949 /* UILabel+TapAction.swift in Sources */,
 				BF7710851FB94E4B001F853E /* UIAlertController+Extension.swift in Sources */,
 				BF7710CB1FB94F6E001F853E /* WXApiRequestHandler.m in Sources */,
-				713FDEFF2099A04C00C4E69E /* ChineseToPinyin.m in Sources */,
 				BF77108E1FB94E4B001F853E /* UIScrollView+Extension.swift in Sources */,
 				BF77108D1FB94E4B001F853E /* UINavigationController+Extension.swift in Sources */,
 				BF7710811FB94E4B001F853E /* PublicFunction.swift in Sources */,

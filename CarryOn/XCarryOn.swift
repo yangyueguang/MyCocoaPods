@@ -12,30 +12,19 @@ open class XCarryOn: NSObject {
 @objcMembers
 open class XPageControl: UIPageControl {
     var imagePageStateNormal: UIImage?{
-        get{
-            return self.imagePageStateNormal!
-        }
-        set{
-            self.imagePageStateNormal = newValue!
+        didSet {
             updateDots()
         }
     }
     open var imagePageStateHighlighted: UIImage?{
-        get{
-            return self.imagePageStateHighlighted!
-        }
-        set{
-            self.imagePageStateHighlighted = newValue!
+        didSet {
             updateDots()
         }
     }
     override open var currentPage: Int{
-        set{
-         super.currentPage = newValue
-         updateDots()
-        }
-        get{
-            return self.currentPage
+        didSet {
+            super.currentPage = currentPage
+            updateDots()
         }
     }
     override init(frame: CGRect) {

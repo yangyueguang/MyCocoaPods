@@ -3,7 +3,6 @@
 #import "SelectButtons.h"
 #define SortButtonH 34.0f
 #define WS(weakSelf)    __weak __typeof(self)weakSelf = self;
-#import "ChineseToPinyin.h"
 #import <Masonry/Masonry.h>
 #import <UIKit/UIGestureRecognizerSubclass.h>
 @interface UIView(fray)
