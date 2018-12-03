@@ -5,19 +5,17 @@
 import Foundation
 // MARK: - NSObject
 public extension NSObject{
-    func performSelectorOnMainThread(selector aSelector: Selector,withObject object:AnyObject! ,waitUntilDone wait:Bool){
+    func performSelectorOnMainThread(selector aSelector: Selector,withObject object:AnyObject! ,waitUntilDone wait:Bool = false){
         if self.responds(to: aSelector){
             var continuego = false
             let group = DispatchGroup()
             let queue = DispatchQueue(label: "com.fsh.dispatch", attributes: [])
             queue.async(group: group,execute: {
                 queue.async(execute: {
-                    //做了个假的
                     Thread.detachNewThreadSelector(aSelector, toTarget:self, with: object)
                     continuego = true
                 })
             })
-//            group.wait(timeout: DispatchTime.distantFuture)
             if wait{
                 let ret = RunLoop.current.run(mode: RunLoop.Mode.default, before: Foundation.Date.distantFuture )
                 while (!continuego && ret){
@@ -29,7 +27,7 @@ public extension NSObject{
         let domain = Bundle.main.bundleIdentifier
         UserDefaults.standard.removePersistentDomain(forName: domain!)
     }
-    fileprivate class func jsonToData(_ jsonResponse: AnyObject) -> Data? {
+    class func jsonToData(_ jsonResponse: AnyObject) -> Data? {
         do{
             let data = try JSONSerialization.data(withJSONObject: jsonResponse, options: JSONSerialization.WritingOptions.prettyPrinted)
             return data;
@@ -37,7 +35,7 @@ public extension NSObject{
             return nil
         }
     }
-    fileprivate class func dataToJson(_ data: Data) -> AnyObject? {
+    class func dataToJson(_ data: Data) -> AnyObject? {
         do{
             let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
             return json as AnyObject?
@@ -45,19 +43,6 @@ public extension NSObject{
         }catch{
             return nil
         }
-    }
-    ///将NSArray或者NSDictionary转化为NSString
-    func jsonString() -> String {
-        if let data = try? JSONSerialization.data(withJSONObject: self){
-            return String(data: data, encoding: .utf8)!
-        }
-        return ""
-    }
-    func tojsonstring() -> String {
-        if let data = try? JSONSerialization.data(withJSONObject: self) {
-            return String(data: data, encoding: String.Encoding.utf8)!
-        }
-        return ""
     }
     //  哪个类调用，就返回哪个类的对象数组对应的json数组。
     class func jsonArray(withObjectArray objectArray: [Any]) -> [Any] {
@@ -68,71 +53,8 @@ public extension NSObject{
         }
         return jsonObjects
     }
-    @objc
-    func printPropertys(object:Any,_ oc:Bool)->Void{
-        if oc{
-            print("@interface Model : NSObject")
-        }else{
-            print("@objcMembers\nclass BCustomADMode: RLMObject {///")
-        }
-        if object is NSArray{
-            printArray(object as! [Any], oc: oc)
-        }else if object is NSDictionary{
-            printDict(object as! [AnyHashable:Any], oc: oc)
-        }
-        if oc{
-            print("@end\n@implementation Model\n@end")
-        }else{
-            print("}")
-        }
-    }
-    func printDict(_ dict:[AnyHashable:Any],oc:Bool){
-        for (key,value) in dict{
-            let s = getType(value: value)
-            if oc{
-                print("@property(nonatomic,copy)\(s) *\(key);")
-            }else{
-                print("@objc dynamic var \(key):\(s)?///")
-            }
-            if value is NSDictionary{
-                printDict(value as! [AnyHashable:Any], oc: oc)
-            }else if value is NSArray{
-                printArray(value as! [Any], oc: oc)
-            }
-        }
-    }
-    func printArray(_ array:[Any],oc:Bool){
-        if let value = array.first{
-            let s = getType(value: value)
-            if oc{
-                print("@property(nonatomic,copy)\(s) *\(value);")
-            }else{
-                print("@objc dynamic var \(value):\(s)?///")
-            }
-            if value is NSDictionary{
-                printDict(value as! [AnyHashable:Any], oc: oc)
-            }else if value is NSArray{
-                printArray(value as! [Any], oc: oc)
-            }
-        }
-    }
-    func getType(value:Any)->String{
-        var s = "unknown"
-        switch value{
-        case is String:s = "String";break;
-        case is NSNumber:s = "NSNumber";break;
-        case is Double:s = "Double";break;
-        case is Float:s = "Float";break;
-        case is Int32:s = "Int32";break;
-        case is UInt:s = "UInt";break;
-        case is Bool:s = "Bool";break;
-        case is NSDictionary:s = "Dictionary";break;
-        case is NSArray:s = "Array";break;
-        case is NSObject:s = "NSObject";break;
-        default:break;
-        }
-        return s
-    }
+
+
     func notEmpty(_ item:Any)->String{
         if item is NSNull{
             return "-"
@@ -148,25 +70,7 @@ public extension NSObject{
             return "-"
         }
     }
-    func notEmptyPercent(_ item:Any)->String{
-        if item is NSNumber{
-            let decimal = NSDecimalNumber(string: String(format: "%lf",(item as! NSNumber).doubleValue))
-            return String(format: "%@%%", decimal)
-        }else if item is NSNull{
-            return ""
-        }else if item is String{
-            let ss = item as! String
-            if ss == "--" {
-                return ss
-            }else if ss == ""{
-                return "-"
-            }else{
-                return ss.appending("%")
-            }
-        }else{
-            return String.init(describing: item)
-        }
-    }
+
     func decimalNumber(_ s:Any)->NSDecimalNumber{
         if s is String{
             let ss:NSString = s as! NSString
@@ -178,4 +82,50 @@ public extension NSObject{
             return NSDecimalNumber(value:0.0)
         }
     }
+
+    /// 打印字典转换的模型
+    public func jsonToModelPrint(_ dict:[String:Any], name:String, space: String = ""){
+        let getType = {(value:Any) -> String? in
+            var s: String?
+            switch value{
+            case is Bool:s = "Bool"
+            case is String:s = "String"
+            case is Int:s = "Int"
+            case is NSNumber:s = "Double"
+            case is NSNull:s = "NSNull"
+            default:break
+            }
+            return s
+        }
+        let firstUppercase = {(name: String) -> String in
+            return name.prefix(1).uppercased() + name.suffix(from: name.index(name.startIndex, offsetBy: 1))
+        }
+
+        func printArray(_ value:Any, key: String, space: String) {
+            if value is NSDictionary{
+                jsonToModelPrint(value as! [String:Any],name:firstUppercase(key), space: space)
+            }else if value is NSArray{
+                printArray((value as! [Any]).first ?? "", key: firstUppercase(key), space: space)
+            }else{
+            }
+        }
+
+        print("\n\(space)@objcMembers\n\(space)class \(firstUppercase(name)): NSObject {")
+        let newspace = space.compactMap({ return "\($0)" }).reduce("\t") { $0 + $1 }
+        for (key,value) in dict{
+            if value is NSDictionary{
+                print("\(newspace)var \(key): \(getType(value) ?? firstUppercase(key))?")
+                jsonToModelPrint(value as! [String:Any],name:key, space: newspace + "\t")
+            }else if value is NSArray{
+                let value = (value as! NSArray).firstObject ?? ""
+                print("\(newspace)var \(key): [\(getType(value) ?? firstUppercase(key))] = []")
+                printArray(value, key: key, space: newspace + "\t")
+            }else{
+                print("\(newspace)var \(key): \(getType(value) ?? firstUppercase(key))\(value is NSNumber ? " = 0" : "?")")
+            }
+        }
+        print("\(space)}")
+    }
+
+
 }

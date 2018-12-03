@@ -19,7 +19,6 @@ private var effectDic: Dictionary<String, NSAttributedString>?
 private var isTapEffect = true
 
 extension UILabel {
-
     /// 是否打开点击效果，默认是打开
     var isTapEffectEnabled: Bool {
         set { isTapEffect = newValue }

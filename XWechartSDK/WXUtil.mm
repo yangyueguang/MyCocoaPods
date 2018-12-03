@@ -1,6 +1,12 @@
 
 #import <Foundation/Foundation.h>
 #import "WXUtil.h"
+
+
+#include <sys/sysctl.h>
+#include <sys/socket.h>
+#include <net/if.h>
+#include <net/if_dl.h>
 /*
  加密实现MD5和SHA1
  */
@@ -53,5 +59,37 @@
     return response;
     //return [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
 }
-
++(NSString *)getMacAddress{
+    int                 mgmtInfoBase[6];
+    char                *msgBuffer = NULL;
+    size_t              length;
+    unsigned char       macAddress[6];
+    struct if_msghdr    *interfaceMsgStruct;
+    struct sockaddr_dl  *socketStruct;
+    NSString            *errorFlag = NULL;
+    mgmtInfoBase[0] = CTL_NET;        // Request network subsystem
+    mgmtInfoBase[1] = AF_ROUTE;       // Routing table info
+    mgmtInfoBase[2] = 0;
+    mgmtInfoBase[3] = AF_LINK;        // Request link layer information
+    mgmtInfoBase[4] = NET_RT_IFLIST;  // Request all configured interfaces
+    if ((mgmtInfoBase[5] = if_nametoindex("en0")) == 0)
+        errorFlag = @"if_nametoindex failure";
+    else{
+        if (sysctl(mgmtInfoBase, 6, NULL, &length, NULL, 0) < 0)errorFlag = @"sysctl mgmtInfoBase failure";
+        else{
+//            if ((msgBuffer = malloc(length)) == NULL)   errorFlag = @"buffer allocation failure";
+//            else{
+//                if (sysctl(mgmtInfoBase, 6, msgBuffer, &length, NULL, 0) < 0) errorFlag = @"sysctl msgBuffer failure";
+//            }
+        }
+    }
+    if (errorFlag != NULL){free(msgBuffer);   return errorFlag;}
+    interfaceMsgStruct = (struct if_msghdr *) msgBuffer;
+    socketStruct = (struct sockaddr_dl *) (interfaceMsgStruct + 1);
+    memcpy(&macAddress, socketStruct->sdl_data + socketStruct->sdl_nlen, 6);
+    NSString *macAddressString = [NSString stringWithFormat:@"%02X:%02X:%02X:%02X:%02X:%02X",macAddress[0], macAddress[1], macAddress[2],macAddress[3], macAddress[4], macAddress[5]];
+    NSLog(@"Mac Address: %@", macAddressString);
+    free(msgBuffer);
+    return macAddressString;//.md5;
+}
 @end

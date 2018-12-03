@@ -12,6 +12,8 @@ import AudioToolbox
 import Foundation
 import LocalAuthentication
 import CoreSpotlight
+import QuartzCore
+import StoreKit
 import MobileCoreServices
 @objcMembers
 public class APP:NSObject{
@@ -133,18 +135,19 @@ public class PublicTools:NSObject{
             }
         }
     }
-    class func openSettings(_ block: @escaping (_: Bool) -> Void) {
+
+    static func openSettings(_ closure: @escaping (Bool) -> Void) {
         if NSFoundationVersionNumber < NSFoundationVersionNumber_iOS_8_0 {
-            block(false)
+            closure(false)
         } else {
             let url = URL(string: UIApplication.openSettingsURLString)
             if let anUrl = url {
                 if UIApplication.shared.canOpenURL(anUrl) {
-                    UIApplication.shared.open(anUrl, options: [:], completionHandler: {(_ success: Bool) -> Void in
-                        block(success)
+                    UIApplication.shared.open(anUrl, options: [:], completionHandler: { success in
+                        closure(success)
                     })
                 } else {
-                    block(false)
+                    closure(false)
                 }
             }
         }
@@ -172,5 +175,46 @@ public class PublicTools:NSObject{
     class func deleteSearchItem(identifiers:[String],closure:((Error?) -> Swift.Void)? = nil){
         let searchIndex = CSSearchableIndex.default()
         searchIndex.deleteSearchableItems(withIdentifiers: identifiers, completionHandler: closure)
+    }
+
+    //播放提示音
+    func playSystemSound() {
+        //        var sound: SystemSoundID //系统声音的id 取值范围为：1000-2000
+        /*ReceivedMessage.caf--收到信息，仅在短信界面打开时播放。
+         sms-received1.caf-------三全音sms-received2.caf-------管钟琴sms-received3.caf-------玻璃sms-received4.caf-------圆号
+         sms-received5.caf-------铃声sms-received6.caf-------电子乐SentMessage.caf--------发送信息
+         */
+        //        let path = "/System/Library/Audio/UISounds/\("sms-received1").\("caf")"
+        //        Bundle(identifier: "com.apple.UIKit")?.path(forResource: soundName, ofType: soundType) //得到苹果框架资源UIKit.framework ，从中取出所要播放的系统声音的路径
+        //        Bundle.main.url(forResource: "tap", withExtension: "aif") //获取自定义的声音
+        //        let url: CFURL = URL(fileURLWithPath: path) as CFURL
+        //        let error: OSStatus = AudioServicesCreateSystemSoundID(url, &sound)
+        //        if error != kAudioServicesNoError {
+        //            print("获取的声音的时候，出现错误")
+        //        }
+        //        AudioServicesPlaySystemSound(sound)
+        //震动
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+    }
+}
+extension PublicTools: SKStoreProductViewControllerDelegate{
+    func openAppStore(_ appId: String) {
+        let urlStr = "itms-apps://itunes.apple.com/app/id\(appId)"
+        let url = URL(string: urlStr)
+        if let anUrl = url {
+            UIApplication.shared.open(anUrl, options: [:]) { (isSuccess) in
+            }
+        }
+        let storeProductVC = SKStoreProductViewController()
+        storeProductVC.delegate = self
+        let dict = [SKStoreProductParameterITunesItemIdentifier : appId]
+        storeProductVC.loadProduct(withParameters: dict, completionBlock: { result, error in
+            if result {
+                UIApplication.shared.keyWindow?.rootViewController?.present(storeProductVC, animated: true)
+            }
+        })
+    }
+    func productViewControllerDidFinish(_ viewController: SKStoreProductViewController) {
+        viewController.dismiss(animated: true) {}
     }
 }

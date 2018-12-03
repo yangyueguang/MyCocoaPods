@@ -48,7 +48,7 @@
             BaseType *ty = self.types[i];
             [nameItems addObject:ty.value];
         }
-        _setionTitleArray = [ChineseToPinyin IndexArray:nameItems];
+//        _setionTitleArray = [ChineseToPinyin IndexArray:nameItems];
         if([self.key isEqualToString:@"noSort"]){
             [_setionTitleArray removeAllObjects];
         }
@@ -63,7 +63,7 @@
             BaseType *ty = self.types[i];
             [nameItems addObject:ty.value];
         }
-        _resultArr = [ChineseToPinyin LetterSortArray:nameItems];
+//        _resultArr = [ChineseToPinyin LetterSortArray:nameItems];
         if([self.key isEqualToString:@"noSort"]){
             _resultArr = [NSMutableArray arrayWithObject:nameItems];
         }

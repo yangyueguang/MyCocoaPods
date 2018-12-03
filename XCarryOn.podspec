@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "XCarryOn"
-  s.version      = "0.3.6"
+  s.version      = "0.3.8"
   s.summary      = "这是基本的类的继承。"
   s.frameworks   = 'UIKit','Foundation'
   s.requires_arc = true
@@ -12,10 +12,4 @@ Pod::Spec.new do |s|
   s.author       = { "yangyueguang" => "2829969299@qq.com" }
   s.source         = { :git => "https://github.com/yangyueguang/MyCocoaPods.git", :tag => "#{s.version}" }
   s.source_files   = "CarryOn"
-  # s.subspec '' do |cv|
-  # cv.source_files = ''
-  # cv.requires_arc = true
-  # end
-  s.dependency "Masonry"
-  s.dependency "MJRefresh"
 end

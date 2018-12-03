@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "XWechartSDK"
-  s.version      = "0.3.2"
+  s.version      = "0.3.8"
   s.summary      = "这是微信分享与支付集合."
   s.frameworks = 'UIKit','Foundation'
   s.requires_arc = true

@@ -69,5 +69,50 @@ public extension UIView  {
         self.isUserInteractionEnabled = true
         self.addGestureRecognizer(tap)
     }
+
+    /// 类似qq聊天窗口的抖动效果
+    func shakeAnimation() {
+        let t: CGFloat = 5.0
+        let translateRight = CGAffineTransform.identity.translatedBy(x: t, y: 0.0)
+        let translateLeft = CGAffineTransform.identity.translatedBy(x: -t, y: 0.0)
+        let translateTop = CGAffineTransform.identity.translatedBy(x: 0.0, y: 1)
+        let translateBottom = CGAffineTransform.identity.translatedBy(x: 0.0, y: -1)
+        self.transform = translateLeft
+        UIView.animate(withDuration: 0.07, delay: 0.0, options: .autoreverse, animations: {
+            UIView.setAnimationRepeatCount(2.0)
+            self.transform = translateRight
+        }) { finished in
+            UIView.animate(withDuration: 0.07, animations: {
+                self.transform = translateBottom
+            }) { finished in
+                UIView.animate(withDuration: 0.07, animations: {
+                    self.transform = translateTop
+                }) { finished in
+                    UIView.animate(withDuration: 0.05, delay: 0.0, options: .beginFromCurrentState, animations: {
+                        self.transform = .identity //回到没有设置transform之前的坐标
+                    })
+                }
+            }
+        }
+    }
+    //view 左右抖动
+    func leftRightAnimation() {
+        let t: CGFloat = 5.0
+        let translateRight = CGAffineTransform.identity.translatedBy(x: t, y: 0.0)
+        let translateLeft = CGAffineTransform.identity.translatedBy(x: -t, y: 0.0)
+        self.transform = translateLeft
+        UIView.animate(withDuration: 0.07, delay: 0.0, options: [.autoreverse, .repeat], animations: {
+            UIView.setAnimationRepeatCount(2.0)
+            self.transform = translateRight
+        }) { finished in
+            if finished {
+                UIView.animate(withDuration: 0.05, delay: 0.0, options: .beginFromCurrentState, animations: {
+                    self.transform = .identity
+                })
+            }
+        }
+    }
+
+
 }
 
