@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.frameworks   = 'UIKit','Foundation'
   s.requires_arc = true
   s.platform     = :ios
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
   s.description  = "这是基本的类的继承和工具类"
   s.homepage     = "https://github.com/yangyueguang/MyCocoaPods"
   s.license      = "MIT"

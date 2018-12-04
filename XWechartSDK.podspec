@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.frameworks = 'UIKit','Foundation'
   s.requires_arc = true
   s.platform = :ios
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
   s.description  = "这是微信分享与支付集合。"
   s.homepage     = "https://github.com/yangyueguang/MyCocoaPods"
   s.license      = "MIT"
@@ -13,6 +13,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/yangyueguang/MyCocoaPods.git", :tag => "#{s.version}" }
   s.source_files  = "XWechartSDK"
   s.dependency 'WechatOpenSDK'
+  #s.vendored_libraries = "XWechartSDK/SDK/libWeChatSDK.a"
   s.resources = 'XWechartSDK/resource/*.*'
   	 s.subspec 'Control' do |cv|	 
        	 cv.source_files = 'XWechartSDK/Control'
@@ -23,5 +24,8 @@ Pod::Spec.new do |s|
 	tv.source_files = 'XWechartSDK/ViewController'
 	tv.requires_arc = true
 	end
-
+#	s.subspec 'SDK' do |sdk|
+ #       sdk.source_files = 'XWechartSDK/SDK'
+  #      sdk.requires_arc = true
+  #      end
 end
