@@ -127,5 +127,36 @@ public extension Date {
         }
         return str_week
     }
+    func timeToNow() -> String {
+        var timeString = ""
+        let late = TimeInterval(timeIntervalSince1970 * 1)
+        let dat = Date(timeIntervalSinceNow: 0)
+        let now = TimeInterval(dat.timeIntervalSince1970 * 1)
+        let cha = TimeInterval((now - late) > 0 ? (now - late) : 0)
+        if Int(cha / 60) < 1 {
+            timeString = "刚刚"
+        } else if Int(cha / 3600) < 1 {
+            timeString = "\(cha / 60)"
+            timeString = (timeString as NSString).substring(to: timeString.count - 7) 
+            timeString = "\(timeString) 分前"
+        } else if Int(cha / 3600) > 1 && Int(cha / 3600) < 12 {
+            timeString = "\(cha / 3600)"
+            timeString = (timeString as NSString).substring(to: timeString.count - 7)
+            timeString = "\(timeString) 小时前"
+        } else if Int(cha / 3600) < 24 {
+            timeString = "今天"
+        } else if Int(cha / 3600) < 48 {
+            timeString = "昨天"
+        } else if cha / 3600 / 24 < 10 {
+            timeString = String(format: "%.0f 天前", cha / 3600 / 24)
+        } else if cha / 3600 / 24 < 365 {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM月dd日"
+            timeString = dateFormatter.string(from: self)
+        } else {
+            timeString = "\(Int(cha) / 3600 / 24 / 365)年前"
+        }
+        return timeString
+    }
 }
 
