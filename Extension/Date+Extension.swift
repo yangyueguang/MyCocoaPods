@@ -2,7 +2,6 @@
 //
 //  Date+Extension.swift
 import Foundation
-// MARK: - 计算
 private var moren :TimeInterval = Foundation.Date().timeIntervalSince1970
 public extension Date {
     var timeInterval:TimeInterval {
@@ -59,14 +58,14 @@ public extension Date {
         return Calendar.current.date(byAdding: component, value: value, to: self)!
     }
 
-    /// for example : let (year, month, day) = date.getDay()
+    /// let (year, month, day) = date.getDay()
     func getDay() -> (year:Int, month:Int, day:Int) {
         var year:Int = 0, month:Int = 0, day:Int = 0
         let date = Foundation.Date(timeIntervalSince1970: timeInterval)
         (Calendar.current as NSCalendar).getEra(nil, year: &year, month: &month, day: &day, from: date)
         return (year, month, day)
     }
-    /// for example : let (hour, minute, second) = date.getTime()
+    /// let (hour, minute, second) = date.getTime()
     func getTime() -> (hour:Int, minute:Int, second:Int) {
         var hour:Int = 0, minute:Int = 0, second:Int = 0
         let date = Foundation.Date(timeIntervalSince1970: timeInterval)

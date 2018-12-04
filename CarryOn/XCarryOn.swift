@@ -6,10 +6,6 @@
 //  Copyright © 2018年 Super. All rights reserved.
 import UIKit
 @objcMembers
-open class XCarryOn: NSObject {
-
-}
-@objcMembers
 open class XPageControl: UIPageControl {
     var imagePageStateNormal: UIImage?{
         didSet {

@@ -3,73 +3,98 @@
 import UIKit
 import Foundation
 public extension UIView  {
-    func x()->CGFloat{
-        return self.frame.origin.x
+    var x: CGFloat {
+        set {
+            self.frame = CGRect(x: x, y: frame.origin.y, width: frame.size.width, height: frame.size.height)
+        }
+        get {
+            return frame.origin.x
+        }
     }
-    func right()-> CGFloat{
-        return self.frame.origin.x + self.frame.size.width
+    var y: CGFloat {
+        set {
+            self.frame = CGRect(x: frame.origin.x, y: y, width: frame.size.width, height: frame.size.height)
+        }
+        get {
+            return frame.origin.y
+        }
     }
-    func y()->CGFloat{
-        return self.frame.origin.y
+    var width: CGFloat {
+        set {
+            self.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: width, height: frame.size.height)
+        }
+        get {
+            return frame.size.width
+        }
     }
-    func bottom()->CGFloat{
-        return self.frame.origin.y + self.frame.size.height
+    var height: CGFloat {
+        set {
+            self.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: height)
+        }
+        get {
+            return frame.size.height
+        }
     }
-    func width()->CGFloat{
-        return self.frame.size.width
+    var right: CGFloat {
+        get {
+            return frame.origin.x + frame.size.width
+        }
+        set {
+            self.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: right - frame.origin.x, height: frame.size.height)
+        }
     }
-    func height()-> CGFloat{
-        return self.frame.size.height
+    var bottom: CGFloat {
+        get {
+            return frame.origin.y + frame.size.height
+        }
+        set {
+            self.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: bottom - frame.origin.y)
+        }
     }
-    func setX(_ x: CGFloat){
-        var rect:CGRect = self.frame
-        rect.origin.x = x
-        self.frame = rect
+    var size: CGSize {
+        set {
+            self.frame.size = size
+        }
+        get {
+            return frame.size
+        }
     }
-    func setSize(_ size : CGSize) -> Void {
-        let size = self.frame.size
-        self.frame.size = size
+
+    func alignmentLeft(_ view: UIView, _ offset: CGFloat = 0) {
+        self.frame = CGRect(x: view.x + offset, y: frame.origin.y, width: frame.size.width, height: frame.size.height)
     }
-    func setRight(_ right: CGFloat){
-        var rect:CGRect = self.frame
-        rect.origin.x = right - rect.size.width
-        self.frame = rect
+    func alignmentRight(_ view: UIView, _ offset: CGFloat = 0) {
+        self.frame = CGRect(x: view.right - self.width + offset, y: frame.origin.y, width: frame.size.width, height: frame.size.height)
     }
-    func setY(_ y: CGFloat){
-        var rect:CGRect = self.frame
-        rect.origin.y = y
-        self.frame = rect
+    func alignmentTop(_ view: UIView, _ offset: CGFloat = 0) {
+        self.frame = CGRect(x: frame.origin.x, y: view.y + offset, width: frame.size.width, height: frame.size.height)
     }
-    func setBottom(_ bottom: CGFloat){
-        var rect:CGRect = self.frame
-        rect.origin.y = bottom - rect.size.height
-        self.frame = rect
+    func alignmentBottom(_ view: UIView, _ offset: CGFloat = 0) {
+        self.frame = CGRect(x: frame.origin.x, y: view.bottom - frame.size.height + offset, width: frame.size.width, height: frame.size.height)
     }
-    func setWidth(_ width: CGFloat){
-        var rect:CGRect = self.frame
-        rect.size.width = width
-        self.frame = rect
+    func alignmentHorizontal(_ view: UIView) {
+        self.center = CGPoint(x: view.center.x, y: center.y)
     }
-    func setHeight(_ height: CGFloat){
-        var rect:CGRect = self.frame
-        rect.size.height = height
-        self.frame = rect
+    func alignmentVertical(_ view: UIView) {
+        self.center = CGPoint(x: center.x, y: view.center.y)
     }
-    //控件居中
-    func center(_ view : UIView) -> Void {
-        self.center = CGPoint(x: view.center.x, y: self.center.y)
+    /// 变圆
+    func round() {
+        layer.masksToBounds = true
+        layer.cornerRadius = size.width / 2
     }
+    /// 批量添加子视图
     func addSubviews(_ views:[UIView]) {
         for v in views {
             self.addSubview(v)
         }
     }
-    func viewAddTarget(_ target : AnyObject,action : Selector) {
+    /// 添加点击响应
+    func add(_ target: AnyObject, action: Selector) {
         let tap = UITapGestureRecognizer(target: target, action: action)
         self.isUserInteractionEnabled = true
         self.addGestureRecognizer(tap)
     }
-
     /// 类似qq聊天窗口的抖动效果
     func shakeAnimation() {
         let t: CGFloat = 5.0
@@ -95,7 +120,7 @@ public extension UIView  {
             }
         }
     }
-    //view 左右抖动
+    /// 左右抖动
     func leftRightAnimation() {
         let t: CGFloat = 5.0
         let translateRight = CGAffineTransform.identity.translatedBy(x: t, y: 0.0)
@@ -112,7 +137,4 @@ public extension UIView  {
             }
         }
     }
-
-
 }
-

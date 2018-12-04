@@ -18,7 +18,7 @@ private var tapBlock: ((_ str: String, _ range: NSRange, _ index: Int) -> Void)?
 private var effectDic: Dictionary<String, NSAttributedString>?
 private var isTapEffect = true
 
-extension UILabel {
+public extension UILabel {
     /// 是否打开点击效果，默认是打开
     var isTapEffectEnabled: Bool {
         set { isTapEffect = newValue }

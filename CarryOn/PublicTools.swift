@@ -12,8 +12,6 @@ import AudioToolbox
 import Foundation
 import LocalAuthentication
 import CoreSpotlight
-import QuartzCore
-import StoreKit
 import MobileCoreServices
 @objcMembers
 public class APP:NSObject{
@@ -33,6 +31,7 @@ public class APP:NSObject{
     public let mainName:String!
     public let deviceType:UIUserInterfaceIdiom!
     public let wechatAvalueble:Bool!
+    public let systemVersion: Float!
     public override init() {
         let info = Bundle.main.infoDictionary
         region = info!["CFBundleDevelopmentRegion"] as? String
@@ -49,6 +48,7 @@ public class APP:NSObject{
         mainName = info!["UIMainStoryboardFile"] as? String
         deviceType = UIDevice.current.userInterfaceIdiom
         wechatAvalueble = UIApplication.shared.canOpenURL(URL(string: "weixin://")!)
+        systemVersion = Float(UIDevice.current.systemVersion) ?? 8.0
         super.init()
         if let transport:[String:Any] = info!["NSAppTransportSecurity"] as? [String : Any]{
             self.allowLoad = transport["NSAllowsArbitraryLoads"] as! Bool
@@ -63,6 +63,7 @@ public class APP:NSObject{
 @objcMembers
 public class PublicTools:NSObject{
     public let app = APP()
+    /// 弹出指纹验证的视图
     class func showTouchID(desc:String="",_ block: @escaping (_ error:LAError?,_ m:String?) -> Void){
         if NSFoundationVersionNumber < NSFoundationVersionNumber_iOS_8_0 {
             block(LAError(_nsError:NSError()),"系统版本不支持TouchID")
@@ -99,32 +100,8 @@ public class PublicTools:NSObject{
             }
         });
     }
-    class func fileSizeAtPath(_ filePath:String)->Double{
-        let manager = FileManager.default
-        do {
-            let attr = try manager.attributesOfItem(atPath:filePath)
-            return attr[FileAttributeKey.size] as! Double
-        } catch  {
-            return 0
-        }
-    }
-    class func folderSizeAtPath(_ folderPath:String)->Double{
-        let manager = FileManager.default
-        var folderSize = 0.0
-        var isDir: ObjCBool = true
-        if manager.fileExists(atPath: folderPath, isDirectory: &isDir){
-            if isDir.boolValue{
-                let childFilesEnumerator = manager.enumerator(atPath: folderPath)
-                while let fileName = childFilesEnumerator?.nextObject(){
-                    let absolutePath = "\(folderPath)\(fileName)"
-                    folderSize += self.folderSizeAtPath(absolutePath)
-                }
-            }else{
-                folderSize += fileSizeAtPath(folderPath)
-            }
-        }
-        return folderSize
-    }
+
+    /// 软件自更新
     class func updateAPPWithPlistURL(_ url:String="http://dn-mypure.qbox.me/iOS_test.plist",block: @escaping(Bool)->Void){
         let serviceURL = "itms-services:///?action=download-manifest&url="
         let realUrl = URL(string:"\(serviceURL)\(url)")
@@ -135,7 +112,7 @@ public class PublicTools:NSObject{
             }
         }
     }
-
+    /// 打开系统的设置
     static func openSettings(_ closure: @escaping (Bool) -> Void) {
         if NSFoundationVersionNumber < NSFoundationVersionNumber_iOS_8_0 {
             closure(false)
@@ -152,7 +129,7 @@ public class PublicTools:NSObject{
             }
         }
     }
-    ///添加系统层面的搜索
+    /// 添加系统层面的搜索
     class func addSearchItem(title:String?,des:String?,thumURL:URL?,identifier:String?,keywords:[String]?){
         let sias = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
         sias.title = title
@@ -162,7 +139,7 @@ public class PublicTools:NSObject{
         let searchableItem = CSSearchableItem(uniqueIdentifier:identifier,domainIdentifier:"items",attributeSet:sias)
         addSearchItems([searchableItem])
     }
-    ///添加系统层面的搜索
+    ///批量添加系统层面的搜索
     class func addSearchItems(_ searchItems:[CSSearchableItem]){
         let searchIndex = CSSearchableIndex.default()
         searchIndex.indexSearchableItems(searchItems){error in
@@ -196,8 +173,77 @@ public class PublicTools:NSObject{
         //震动
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
     }
+
+    /// 在主线程运行
+    func performSelectorOnMainThread(selector aSelector: Selector,withObject object:AnyObject! ,waitUntilDone wait:Bool = false){
+        if self.responds(to: aSelector){
+            var continuego = false
+            let group = DispatchGroup()
+            let queue = DispatchQueue(label: "com.fsh.dispatch", attributes: [])
+            queue.async(group: group,execute: {
+                queue.async(execute: {
+                    Thread.detachNewThreadSelector(aSelector, toTarget:self, with: object)
+                    continuego = true
+                })
+            })
+            if wait{
+                let ret = RunLoop.current.run(mode: RunLoop.Mode.default, before: Foundation.Date.distantFuture )
+                while (!continuego && ret){
+                }
+            }
+        }
+    }
+    /// json转Data
+    class func jsonToData(_ jsonResponse: AnyObject) -> Data? {
+        do{
+            let data = try JSONSerialization.data(withJSONObject: jsonResponse, options: JSONSerialization.WritingOptions.prettyPrinted)
+            return data;
+        }catch{
+            return nil
+        }
+    }
+    /// data转json
+    class func dataToJson(_ data: Data) -> AnyObject? {
+        do{
+            let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
+            return json as AnyObject?
+        }catch{
+            return nil
+        }
+    }
+  
+    /// 变成没有null的字符串
+    func notEmpty(_ item:Any)->String{
+        if item is NSNull{
+            return "-"
+        }else if item is String{
+            var ss = String(describing:item)
+            if ss == ""{
+                ss = "-"
+            }
+            return ss
+        }else if item is NSNumber{
+            return String(describing:item)
+        }else{
+            return "-"
+        }
+    }
+    /// 变成decimalNumber
+    func decimalNumber(_ s:Any)->NSDecimalNumber{
+        if s is String{
+            let ss:NSString = s as! NSString
+            let doubleValue = (ss.replacingOccurrences(of:",", with: "") as NSString).doubleValue
+            return NSDecimalNumber(value: doubleValue)
+        }else if s is NSNumber{
+            return NSDecimalNumber(value: (s as! NSNumber).doubleValue)
+        }else{
+            return NSDecimalNumber(value:0.0)
+        }
+    }
+
 }
-extension PublicTools: SKStoreProductViewControllerDelegate{
+extension PublicTools: SKStoreProductViewControllerDelegate {
+    /// 根据appid打开AppStore
     func openAppStore(_ appId: String) {
         let urlStr = "itms-apps://itunes.apple.com/app/id\(appId)"
         let url = URL(string: urlStr)
@@ -214,7 +260,7 @@ extension PublicTools: SKStoreProductViewControllerDelegate{
             }
         })
     }
-    func productViewControllerDidFinish(_ viewController: SKStoreProductViewController) {
+    private func productViewControllerDidFinish(_ viewController: SKStoreProductViewController) {
         viewController.dismiss(animated: true) {}
     }
 }

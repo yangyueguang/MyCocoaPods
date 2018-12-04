@@ -9,11 +9,7 @@ pod 'Masonry'
 pod 'RealmSwift'
 pod 'SnapKit'
 #以下是我的CocoaPods
-#pod 'BaseFile'
-#pod 'XUtility'
-#pod 'XCategory'
+#pod 'XCarryOn'
 #pod 'XExtension'
 #pod 'XWechatSDK'
-#pod 'ObjectDictionary'   #0.1.1
-
 end
