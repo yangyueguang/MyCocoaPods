@@ -121,7 +121,7 @@ public extension UIColor {
 
 //FIXME: 以下是UIKit的扩展
 public extension UILabel {
-    convenience init(frame: CGRect, text: String, font: UIFont, color: UIColor = .black, alignment: NSTextAlignment = .left, lines: Int = 0, lineSpace: CGFloat?, shadowColor: UIColor = UIColor.clear) {
+    convenience init(frame: CGRect, font: UIFont, color: UIColor, text: String?, lineSpace: CGFloat = -1, alignment: NSTextAlignment = .left, lines: Int = 0, shadowColor: UIColor = UIColor.clear) {
         self.init(frame: frame)
         self.font = font
         self.text = text
@@ -130,10 +130,10 @@ public extension UILabel {
         self.textAlignment = alignment
         self.numberOfLines = lines
         self.shadowColor = shadowColor
-        if let lineSpace = lineSpace {
+        if lineSpace > 0 {
             let paragraphStye = NSMutableParagraphStyle()
             paragraphStye.lineSpacing = lineSpace
-            let attributedString = NSMutableAttributedString.init(string: text, attributes: [NSAttributedString.Key.paragraphStyle:paragraphStye])
+            let attributedString = NSMutableAttributedString.init(string: text ?? "", attributes: [NSAttributedString.Key.paragraphStyle:paragraphStye])
             self.attributedText = attributedString
         }
     }
