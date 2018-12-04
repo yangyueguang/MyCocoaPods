@@ -24,7 +24,6 @@
 		BF4C10271F62E23500E8234D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4C10251F62E23500E8234D /* LaunchScreen.storyboard */; };
 		BF5B9AA01F66CADE00ECB3EC /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9A9F1F66CADE00ECB3EC /* README.md */; };
 		BF77107E1FB94E4B001F853E /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7710481FB94E4B001F853E /* Date+Extension.swift */; };
-		BF7710801FB94E4B001F853E /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF77104A1FB94E4B001F853E /* NSObject+Extension.swift */; };
 		BF7710831FB94E4B001F853E /* PublicTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF77104D1FB94E4B001F853E /* PublicTools.swift */; };
 		BF7710841FB94E4B001F853E /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF77104E1FB94E4B001F853E /* String+Extension.swift */; };
 		BF77108A1FB94E4B001F853E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7710541FB94E4B001F853E /* UIImage+Extension.swift */; };
@@ -47,6 +46,7 @@
 		BF7710D71FB94F6F001F853E /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF7710C71FB94F6E001F853E /* WXUtil.mm */; };
 		DF0274C021B5328B003038F1 /* XDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0274BF21B5328B003038F1 /* XDataCache.swift */; };
 		DF42322D21872704005E5949 /* UILabel+TapAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF42322C21872704005E5949 /* UILabel+TapAction.swift */; };
+		DFA5BE3E21B6952800CB9223 /* NSObject+Mirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA5BE3D21B6952800CB9223 /* NSObject+Mirror.swift */; };
 		DFFBF955218990280085B638 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DFFBF954218990280085B638 /* .gitignore */; };
 		DFFC764C21B55DD7006E75D4 /* OtherExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFC764B21B55DD7006E75D4 /* OtherExtensions.swift */; };
 		DFFC764E21B56021006E75D4 /* Public.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFC764D21B56021006E75D4 /* Public.swift */; };
@@ -76,7 +76,6 @@
 		BF4C10281F62E23500E8234D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF5B9A9F1F66CADE00ECB3EC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BF7710481FB94E4B001F853E /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		BF77104A1FB94E4B001F853E /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		BF77104D1FB94E4B001F853E /* PublicTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicTools.swift; sourceTree = "<group>"; };
 		BF77104E1FB94E4B001F853E /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		BF7710541FB94E4B001F853E /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -110,6 +109,7 @@
 		CC2365036460F451E73D4822 /* Pods_MyCocoaPods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyCocoaPods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF0274BF21B5328B003038F1 /* XDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDataCache.swift; sourceTree = "<group>"; };
 		DF42322C21872704005E5949 /* UILabel+TapAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+TapAction.swift"; sourceTree = "<group>"; };
+		DFA5BE3D21B6952800CB9223 /* NSObject+Mirror.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Mirror.swift"; sourceTree = "<group>"; };
 		DFFBF954218990280085B638 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		DFFC764B21B55DD7006E75D4 /* OtherExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherExtensions.swift; sourceTree = "<group>"; };
 		DFFC764D21B56021006E75D4 /* Public.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Public.swift; sourceTree = "<group>"; };
@@ -208,10 +208,10 @@
 		BF7710461FB94E4B001F853E /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				BF7710481FB94E4B001F853E /* Date+Extension.swift */,
-				BF77104A1FB94E4B001F853E /* NSObject+Extension.swift */,
 				DF42322C21872704005E5949 /* UILabel+TapAction.swift */,
+				DFA5BE3D21B6952800CB9223 /* NSObject+Mirror.swift */,
 				BF77104E1FB94E4B001F853E /* String+Extension.swift */,
+				BF7710481FB94E4B001F853E /* Date+Extension.swift */,
 				BF7710541FB94E4B001F853E /* UIImage+Extension.swift */,
 				BF77105B1FB94E4B001F853E /* UIView+Extension.swift */,
 				DFFC764B21B55DD7006E75D4 /* OtherExtensions.swift */,
@@ -436,6 +436,7 @@
 				DF42322D21872704005E5949 /* UILabel+TapAction.swift in Sources */,
 				DF0274C021B5328B003038F1 /* XDataCache.swift in Sources */,
 				BF7710CB1FB94F6E001F853E /* WXApiRequestHandler.m in Sources */,
+				DFA5BE3E21B6952800CB9223 /* NSObject+Mirror.swift in Sources */,
 				BF7710CC1FB94F6E001F853E /* WXApiResponseHandler.m in Sources */,
 				BF7710831FB94E4B001F853E /* PublicTools.swift in Sources */,
 				BF7710911FB94E4B001F853E /* UIView+Extension.swift in Sources */,
@@ -444,7 +445,6 @@
 				7162E67F20A034EA00EF6896 /* HTMLParser.m in Sources */,
 				713FDEFA2099A03800C4E69E /* MagiNotice.swift in Sources */,
 				713FDEF72099A03800C4E69E /* DownloadService.swift in Sources */,
-				BF7710801FB94E4B001F853E /* NSObject+Extension.swift in Sources */,
 				BF7710D71FB94F6F001F853E /* WXUtil.mm in Sources */,
 				BF7710CA1FB94F6E001F853E /* WXApiManager.m in Sources */,
 				BF7710D61FB94F6F001F853E /* SendMsgToWeChatViewController.m in Sources */,

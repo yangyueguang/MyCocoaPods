@@ -83,17 +83,17 @@ public extension NSObject{
     }
 
     /// 数组转模型对象数组
-    class func parses(array: [Any]) -> [NSObject]{
+    class func parses(_ array: [Any]) -> [NSObject]{
         var models: [NSObject] = []
         for (_ , dict) in array.enumerated(){
-            let model = self.parse(dict: dict as! NSDictionary)
+            let model = self.parse(dict as! NSDictionary)
             models.append(model)
         }
         return models
     }
 
     /// 字典转模型
-    class func parse(dict: NSDictionary) -> Self{
+    class func parse(_ dict: NSDictionary) -> Self{
         let model = self.init()
         let mappingDict = model.mappingDict()
         let ignoreProperties = model.ignoreProperties()
@@ -109,10 +109,10 @@ public extension NSObject{
                         guard dictValue != nil else { return } //保证字典中有模型
                         let modelValue = model.value(forKeyPath: key)
                         if modelValue != nil { //子模型已经初始化
-                            model.setValue((type.typeClass as! NSObject.Type).parse(dict: dict[key] as! NSDictionary), forKeyPath: name)
+                            model.setValue((type.typeClass as! NSObject.Type).parse(dict[key] as! NSDictionary), forKeyPath: name)
                         }else{ //子模型没有初始化
                             let cls = getObjectWithName(type.typeName ?? "")
-                            model.setValue(cls?.parse(dict: dict[key] as? NSDictionary ?? [:]), forKeyPath: name)
+                            model.setValue(cls?.parse(dict[key] as? NSDictionary ?? [:]), forKeyPath: name)
                         }
                     }else{
                         switch type.realType {
@@ -168,7 +168,7 @@ public extension NSObject{
                         let dictKeyArr = dict[key] as! NSArray
                         var arrM: [NSObject] = []
                         for (_, value) in dictKeyArr.enumerated() {
-                            let elementModel = cls?.parse(dict: value as! NSDictionary)
+                            let elementModel = cls?.parse(value as! NSDictionary)
                             arrM.append(elementModel ?? NSObject())
                         }
                         model.setValue(arrM, forKeyPath: name)
@@ -232,7 +232,7 @@ public extension NSObject{
         guard now <= time + duration else { return nil }
         let path = NSObject.cachesFolder! + "/" + name + ".arc"
         let unarchivedDictionary = NSKeyedUnarchiver.unarchiveObject(withFile: path) as? NSDictionary
-        return self.parse(dict: unarchivedDictionary ?? [:])
+        return self.parse(unarchivedDictionary ?? [:])
     }
     private static var cachesFolder: String? {
         let cacheRootPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last
