@@ -12,54 +12,9 @@ import AudioToolbox
 import Foundation
 import LocalAuthentication
 import CoreSpotlight
+import CoreLocation
 import MobileCoreServices
-@objcMembers
-public class APP:NSObject{
-    public let region:String!
-    public let name:String!
-    public let bundle:String!
-    public var icon=UIImage()
-    public let identifier:String!
-    public let infoVersion:String!
-    public let bundleName:String!
-    public let version:String!
-    public let build:Int32
-    public let platVersion:String!
-    public let lessVersion:String!
-    public var allowLoad=false
-    public let launchName:String!
-    public let mainName:String!
-    public let deviceType:UIUserInterfaceIdiom!
-    public let wechatAvalueble:Bool!
-    public let systemVersion: Float!
-    public override init() {
-        let info = Bundle.main.infoDictionary
-        region = info!["CFBundleDevelopmentRegion"] as? String
-        name = info!["CFBundleDisplayName"] as? String
-        bundle = info!["CFBundleExecutable"] as? String
-        identifier = info!["CFBundleIdentifier"] as? String
-        infoVersion = info!["CFBundleInfoDictionaryVersion"] as? String
-        bundleName = info!["CFBundleName"] as? String
-        version = info!["CFBundleShortVersionString"] as? String
-        build = info!["CFBundleVersion"] as! Int32
-        platVersion = info!["DTPlatformVersion"] as? String
-        lessVersion = info!["MinimumOSVersion"] as? String
-        launchName = info!["UILaunchStoryboardName"] as? String
-        mainName = info!["UIMainStoryboardFile"] as? String
-        deviceType = UIDevice.current.userInterfaceIdiom
-        wechatAvalueble = UIApplication.shared.canOpenURL(URL(string: "weixin://")!)
-        systemVersion = Float(UIDevice.current.systemVersion) ?? 8.0
-        super.init()
-        if let transport:[String:Any] = info!["NSAppTransportSecurity"] as? [String : Any]{
-            self.allowLoad = transport["NSAllowsArbitraryLoads"] as! Bool
-        }
-        if let iconDict:[String:Any] = info!["CFBundleIcons"] as? [String : Any]{
-            if let iconfiles:[String:Any] = iconDict["CFBundlePrimaryIcon"] as? [String : Any]{
-                self.icon = UIImage(named:iconfiles["CFBundleIconName"] as! String)!
-            }
-        }
-    }
-}
+
 @objcMembers
 public class PublicTools:NSObject{
     public let app = APP()
@@ -240,7 +195,58 @@ public class PublicTools:NSObject{
             return NSDecimalNumber(value:0.0)
         }
     }
+    /// 计算方位角,正北向为0度，以顺时针方向递增
+    func computeAzimuthCLL(_ la1: CLLocationCoordinate2D, la2: CLLocationCoordinate2D) -> Double {
+        var lat1: Double = la1.latitude
+        var lon1: Double = la1.longitude
+        var lat2: Double = la2.latitude
+        var lon2: Double = la2.longitude
+        var result: Double = 0.0
+        let ilat1 = Int(0.50 + lat1 * 360000.0)
+        let ilat2 = Int(0.50 + lat2 * 360000.0)
+        let ilon1 = Int(0.50 + lon1 * 360000.0)
+        let ilon2 = Int(0.50 + lon2 * 360000.0)
+        lat1 = lat1 * .pi / 180
+        lon1 = lon1 * .pi / 180
+        lat2 = lat2 * .pi / 180
+        lon2 = lon2 * .pi / 180
+        if (ilat1 == ilat2) && (ilon1 == ilon2) {
+            return result
+        } else if ilon1 == ilon2 {
+            if ilat1 > ilat2 {
+                result = 180.0
+            }
+        } else {
+            let c = acos(sin(lat2) * sin(lat1) + cos(lat2) * cos(lat1) * cos((lon2 - lon1)))
+            let A = asin(cos(lat2) * sin((lon2 - lon1)) / sin(c))
+            result = A * 180 / .pi
+            if (ilat2 > ilat1) && (ilon2 > ilon1) {
+            } else if (ilat2 < ilat1) && (ilon2 < ilon1) {
+                result = 180.0 - result
+            } else if (ilat2 < ilat1) && (ilon2 > ilon1) {
+                result = 180.0 - result
+            } else if (ilat2 > ilat1) && (ilon2 < ilon1) {
+                result += 360.0
+            }
+        }
+        return result
+    }
+    /// 联合各个异步请求信号量
+    public func combineAsyncRequest(count:Int, requestClosure: @escaping ((Int, DispatchSemaphore) -> DispatchWorkItem), completion: (() -> Void)? = nil) {
+        let semaphore = DispatchSemaphore(value: 0)
+        let queue = DispatchQueue.global(qos: .default)
+        let group = DispatchGroup()
+        for i in 0..<count {
+            queue.async(group: group, execute: requestClosure(i, semaphore))
+        }
+        let item = DispatchWorkItem {
+            DispatchQueue.main.async(execute: {
+                completion?()
+            })
+        }
+        group.notify(queue: queue, work: item)
 
+    }
 }
 extension PublicTools: SKStoreProductViewControllerDelegate {
     /// 根据appid打开AppStore

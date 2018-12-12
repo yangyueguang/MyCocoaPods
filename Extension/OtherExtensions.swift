@@ -7,46 +7,21 @@
 //
 import UIKit
 import Foundation
-public extension Array{
-    mutating func moveObject(from: Int, to: Int) {
-        if to != from {
-            let obj = self[from]
-            remove(at: from)
-            if to >= count {
-                append(obj)
-            }else{
-                insert(obj, at: to)
-            }
-        }
-    }
-    /// 返回对象数组对应的json数组 前提element一定是AnyObject类型
-    func jsonArray() -> [[String: Any]] {
-        var jsonObjects: [[String: Any]] = []
-        for element in self {
-            let model: AnyObject = element as AnyObject
-            let jsonDict = model.dictionaryRepresentation()
-            jsonObjects.append(jsonDict)
-        }
-        return jsonObjects
-    }
-    /// 安全的取值
-    public func item(at index: Int) -> Element? {
-        guard startIndex..<endIndex ~= index else { return nil }
-        return self[index]
+public extension NSObject {
+    class var nameOfClass: String {
+        return NSStringFromClass(self).components(separatedBy: ".").last! as String
     }
 }
-
-public extension Dictionary{
-    func description() -> String {
-        var strM: String = "{\n"
-        for (k,v) in self{
-            strM += "\t\(k) = \(v);\n"
+public extension URL {
+    var queryParameters: [String: String] {
+        guard let components = URLComponents(url: self, resolvingAgainstBaseURL: false), let queryItems = components.queryItems else { return [:] }
+        var items: [String: String] = [:]
+        for queryItem in queryItems {
+            items[queryItem.name] = queryItem.value
         }
-        strM += "}\n"
-        return strM
+        return items
     }
 }
-
 public extension FileManager {
     class func url(for dictionary: FileManager.SearchPathDirectory) -> URL?{
         return self.default.urls(for: dictionary, in: .userDomainMask).last
@@ -119,6 +94,24 @@ public extension UIColor {
     }
 }
 
+class ClosureWrapper: NSObject {
+    let closureCallBack: () -> Void
+    init(callBack: @escaping () -> Void) {
+        closureCallBack = callBack
+    }
+    @objc open func invoke() {
+        closureCallBack()
+    }
+}
+
+var associatedClosure: UInt8 = 0
+public extension UIControl {
+    func addAction(_ events: UIControl.Event, closure: @escaping () -> Void) {
+        let wrapper = ClosureWrapper.init(callBack: closure)
+        addTarget(wrapper, action: #selector(wrapper.invoke), for: events)
+        objc_setAssociatedObject(self, &associatedClosure, wrapper, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+}
 //FIXME: 以下是UIKit的扩展
 public extension UILabel {
     convenience init(frame: CGRect, font: UIFont, color: UIColor, text: String?, lineSpace: CGFloat = -1, alignment: NSTextAlignment = .left, lines: Int = 0, shadowColor: UIColor = UIColor.clear) {
@@ -167,6 +160,12 @@ public extension UIButton {
             layer.cornerRadius = radios
         }
         addTarget(target, action: action, for: .touchUpInside)
+    }
+    func centerTextAndImage(spacing: CGFloat) {
+        let insetAmount = spacing / 2
+        imageEdgeInsets = UIEdgeInsets(top: 0, left: -insetAmount, bottom: 0, right: insetAmount)
+        titleEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: -insetAmount)
+        contentEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: insetAmount)
     }
 }
 
@@ -277,6 +276,11 @@ public extension UIViewController{
         }
         return topVC
     }
+    class func initFromNib() -> UIViewController {
+        let nib = Bundle(for: self)
+        return self.init(nibName: self.nameOfClass, bundle: nib)
+    }
+
     /// 是否支持手势返回
     func setBackGestureEnable(_ enable: Bool) {
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = enable

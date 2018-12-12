@@ -17,6 +17,71 @@ public extension String {
         let lastArray = "\((arrayNext[0] )+(arrayNext[1] )+(arrayNext[2] )+(arrayNext[3] )+(arrayNext[4] ))".components(separatedBy: " ")
         return "\((lastArray[0] )+(lastArray[1] ))"
     }
+    /// 判断字符串中是否有中文
+    func isHaveChinese() -> Bool {
+        for ch in self.unicodeScalars {
+            if (0x4e00 < ch.value  && ch.value < 0x9fff) { return true }
+        }
+        return false
+    }
+    public var isEmoji: Bool {
+        let scalarValue = unicodeScalars.first!.value
+        switch scalarValue {
+        case 0x3030, 0x00AE, 0x00A9, // Special Characters
+        0x1D000...0x1F77F, // Emoticons
+        0x2100...0x27BF, // Misc symbols and Dingbats
+        0xFE00...0xFE0F, // Variation Selectors
+        0x1F900...0x1F9FF: // Supplemental Symbols and Pictographs
+            return true
+        default:
+            return false
+        }
+    }
+    /// 将中文字符串转换为拼音
+    func pinyin(hasBlank: Bool = false) -> String {
+        let stringRef = NSMutableString(string: self) as CFMutableString
+        CFStringTransform(stringRef,nil, kCFStringTransformToLatin, false) // 转换为带音标的拼音
+        CFStringTransform(stringRef, nil, kCFStringTransformStripCombiningMarks, false) // 去掉音标
+        let pinyin = stringRef as String
+        return hasBlank ? pinyin : pinyin.replacingOccurrences(of: " ", with: "")
+    }
+
+    /// 获取首字母
+    func firstLetter(lowercased: Bool = false) -> String {
+        let pinyin = self.pinyin(hasBlank: true).capitalized
+        var headPinyinStr = ""
+        if pinyin.count > 0 {
+            headPinyinStr.append(pinyin.first!)
+        }
+        return lowercased ? headPinyinStr.lowercased() : headPinyinStr
+    }
+
+    /// 是否是空或空串
+    static func isNullOrEmpty(_ string: String?) -> Bool {
+        if let str = string, !str.isEmpty {
+            return false
+        } else {
+            return true
+        }
+    }
+
+    func createQR() -> UIImage {
+        let stringData = self.data(using: String.Encoding.utf8, allowLossyConversion: false)
+        //创建一个二维码的滤镜
+        let qrFilter = CIFilter(name: "CIQRCodeGenerator")
+        qrFilter?.setValue(stringData, forKey: "inputMessage")
+        qrFilter?.setValue("H", forKey: "inputCorrectionLevel")
+        let qrCIImage = qrFilter?.outputImage
+        // 创建一个颜色滤镜,黑白色
+        let colorFilter = CIFilter(name: "CIFalseColor")!
+        colorFilter.setDefaults()
+        colorFilter.setValue(qrCIImage, forKey: "inputImage")
+        colorFilter.setValue(CIColor(red: 0, green: 0, blue: 0), forKey: "inputColor0")
+        colorFilter.setValue(CIColor(red: 1, green: 1, blue: 1), forKey: "inputColor1")
+        let codeImage = UIImage(ciImage: (colorFilter.outputImage!.transformed(by: CGAffineTransform(scaleX: 200, y: 200))))
+        return codeImage
+    }
+
     /// 获取字符串占据尺寸
     func bounds(_ maxSize: CGSize, attributes : [NSAttributedString.Key: Any]?) -> CGRect {
         return  NSString(string: self).boundingRect(with: maxSize,options: NSStringDrawingOptions.usesLineFragmentOrigin,attributes: attributes,context: nil)
@@ -112,4 +177,12 @@ public extension NSAttributedString {
         }
         return result
     }
+    /// 删除线
+    func deleteLine(_ color: UIColor) -> NSAttributedString {
+        let attributes = [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue]
+        let result = NSMutableAttributedString(attributedString: self)
+        result.addAttributes(attributes, range: NSRange(0..<length))
+        return result
+    }
+
 }

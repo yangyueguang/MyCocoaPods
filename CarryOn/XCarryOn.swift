@@ -6,6 +6,53 @@
 //  Copyright © 2018年 Super. All rights reserved.
 import UIKit
 @objcMembers
+public class APP:NSObject{
+    public let region:String!
+    public let name:String!
+    public let bundle:String!
+    public var icon=UIImage()
+    public let identifier:String!
+    public let infoVersion:String!
+    public let bundleName:String!
+    public let version:String!
+    public let build:Int32
+    public let platVersion:String!
+    public let lessVersion:String!
+    public var allowLoad=false
+    public let launchName:String!
+    public let mainName:String!
+    public let deviceType:UIUserInterfaceIdiom!
+    public let wechatAvalueble:Bool!
+    public let systemVersion: Float!
+    public override init() {
+        let info = Bundle.main.infoDictionary
+        region = info!["CFBundleDevelopmentRegion"] as? String
+        name = info!["CFBundleDisplayName"] as? String
+        bundle = info!["CFBundleExecutable"] as? String
+        identifier = info!["CFBundleIdentifier"] as? String
+        infoVersion = info!["CFBundleInfoDictionaryVersion"] as? String
+        bundleName = info!["CFBundleName"] as? String
+        version = info!["CFBundleShortVersionString"] as? String
+        build = info!["CFBundleVersion"] as! Int32
+        platVersion = info!["DTPlatformVersion"] as? String
+        lessVersion = info!["MinimumOSVersion"] as? String
+        launchName = info!["UILaunchStoryboardName"] as? String
+        mainName = info!["UIMainStoryboardFile"] as? String
+        deviceType = UIDevice.current.userInterfaceIdiom
+        wechatAvalueble = UIApplication.shared.canOpenURL(URL(string: "weixin://")!)
+        systemVersion = Float(UIDevice.current.systemVersion) ?? 8.0
+        super.init()
+        if let transport:[String:Any] = info!["NSAppTransportSecurity"] as? [String : Any]{
+            self.allowLoad = transport["NSAllowsArbitraryLoads"] as! Bool
+        }
+        if let iconDict:[String:Any] = info!["CFBundleIcons"] as? [String : Any]{
+            if let iconfiles:[String:Any] = iconDict["CFBundlePrimaryIcon"] as? [String : Any]{
+                self.icon = UIImage(named:iconfiles["CFBundleIconName"] as! String)!
+            }
+        }
+    }
+}
+@objcMembers
 open class XPageControl: UIPageControl {
     var imagePageStateNormal: UIImage?{
         didSet {
@@ -74,5 +121,18 @@ open class XTextField: UITextField {
     }
     func finishTapped(sender:UIButton){
         self.resignFirstResponder()
+    }
+}
+open class UnderLinTextField: UITextField {
+    override open func draw(_ rect: CGRect) {
+        super.draw(rect)
+        let context = UIGraphicsGetCurrentContext()
+        context?.setStrokeColor(UIColor(white: 0.8, alpha: 1).cgColor)
+        context?.setLineWidth(1.0)
+        context?.beginPath()
+        context?.move(to: CGPoint(x: bounds.origin.x, y: frame.size.height - 1))
+        context?.addLine(to: CGPoint(x: bounds.size.width, y: frame.size.height - 1))
+        context?.closePath()
+        context?.strokePath()
     }
 }

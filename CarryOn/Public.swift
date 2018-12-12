@@ -15,22 +15,7 @@ public var TopHeight:CGFloat {
     }
     return 64.0
 }
-/// 系统路径
-public struct XPath {
-    public let document = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
-    public let library = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first
-    public let caches = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first
-    public let temp = NSTemporaryDirectory()
-    public let home = NSHomeDirectory()
-}
-/// 文件类型
-public enum FileType:String {
-    case video = "video"
-    case gif = "gif"
-    case image = "image"
-    case text = "text"
-    case html = "html"
-}
+
 /// Debug打印
 public func Dlog<T>(_ message: T, file: String = #file,method: String = #function,line: Int = #line){
     #if DEBUG

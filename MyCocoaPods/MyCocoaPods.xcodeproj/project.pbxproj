@@ -13,7 +13,6 @@
 		713FDEF62099A03800C4E69E /* SelectButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEEE2099A03700C4E69E /* SelectButtons.m */; };
 		713FDEF72099A03800C4E69E /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEEF2099A03700C4E69E /* DownloadService.swift */; };
 		713FDEF82099A03800C4E69E /* PreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEF02099A03700C4E69E /* PreViewController.swift */; };
-		713FDEFA2099A03800C4E69E /* MagiNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEF42099A03800C4E69E /* MagiNotice.swift */; };
 		713FDEFC2099A04200C4E69E /* UTI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 713FDEFB2099A04200C4E69E /* UTI.plist */; };
 		7162E67F20A034EA00EF6896 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7162E67D20A034EA00EF6896 /* HTMLParser.m */; };
 		7162E68120A0352F00EF6896 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7162E68020A0352E00EF6896 /* libxml2.tbd */; };
@@ -47,6 +46,11 @@
 		DF0274C021B5328B003038F1 /* XDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0274BF21B5328B003038F1 /* XDataCache.swift */; };
 		DF42322D21872704005E5949 /* UILabel+TapAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF42322C21872704005E5949 /* UILabel+TapAction.swift */; };
 		DFA5BE3E21B6952800CB9223 /* NSObject+Mirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA5BE3D21B6952800CB9223 /* NSObject+Mirror.swift */; };
+		DFC662CA21C0EA9C00B41558 /* XHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC662C921C0EA9C00B41558 /* XHud.swift */; };
+		DFC662CC21C0FCE500B41558 /* PublicStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC662CB21C0FCE500B41558 /* PublicStruct.swift */; };
+		DFC662CE21C1183900B41558 /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC662CD21C1183900B41558 /* SwiftNotice.swift */; };
+		DFC662D021C1199800B41558 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC662CF21C1199800B41558 /* Collection+Extension.swift */; };
+		DFC662D221C11A1D00B41558 /* ReusableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC662D121C11A1D00B41558 /* ReusableView+Extension.swift */; };
 		DFFBF955218990280085B638 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = DFFBF954218990280085B638 /* .gitignore */; };
 		DFFC764C21B55DD7006E75D4 /* OtherExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFC764B21B55DD7006E75D4 /* OtherExtensions.swift */; };
 		DFFC764E21B56021006E75D4 /* Public.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFC764D21B56021006E75D4 /* Public.swift */; };
@@ -62,7 +66,6 @@
 		713FDEEF2099A03700C4E69E /* DownloadService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		713FDEF02099A03700C4E69E /* PreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreViewController.swift; sourceTree = "<group>"; };
 		713FDEF22099A03700C4E69E /* BaseExcelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseExcelView.h; sourceTree = "<group>"; };
-		713FDEF42099A03800C4E69E /* MagiNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagiNotice.swift; sourceTree = "<group>"; };
 		713FDEFB2099A04200C4E69E /* UTI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UTI.plist; sourceTree = "<group>"; };
 		7162E67D20A034EA00EF6896 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
 		7162E67E20A034EA00EF6896 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
@@ -110,6 +113,11 @@
 		DF0274BF21B5328B003038F1 /* XDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDataCache.swift; sourceTree = "<group>"; };
 		DF42322C21872704005E5949 /* UILabel+TapAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+TapAction.swift"; sourceTree = "<group>"; };
 		DFA5BE3D21B6952800CB9223 /* NSObject+Mirror.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Mirror.swift"; sourceTree = "<group>"; };
+		DFC662C921C0EA9C00B41558 /* XHud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XHud.swift; sourceTree = "<group>"; };
+		DFC662CB21C0FCE500B41558 /* PublicStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicStruct.swift; sourceTree = "<group>"; };
+		DFC662CD21C1183900B41558 /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftNotice.swift; sourceTree = "<group>"; };
+		DFC662CF21C1199800B41558 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
+		DFC662D121C11A1D00B41558 /* ReusableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReusableView+Extension.swift"; sourceTree = "<group>"; };
 		DFFBF954218990280085B638 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		DFFC764B21B55DD7006E75D4 /* OtherExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherExtensions.swift; sourceTree = "<group>"; };
 		DFFC764D21B56021006E75D4 /* Public.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Public.swift; sourceTree = "<group>"; };
@@ -131,11 +139,13 @@
 		713FDEDC20999DD500C4E69E /* CarryOn */ = {
 			isa = PBXGroup;
 			children = (
-				713FDEF42099A03800C4E69E /* MagiNotice.swift */,
+				DFC662C921C0EA9C00B41558 /* XHud.swift */,
+				DFC662CD21C1183900B41558 /* SwiftNotice.swift */,
 				71024C35209C289300207E44 /* XCarryOn.swift */,
 				DF0274BF21B5328B003038F1 /* XDataCache.swift */,
 				BF77104D1FB94E4B001F853E /* PublicTools.swift */,
 				DFFC764D21B56021006E75D4 /* Public.swift */,
+				DFC662CB21C0FCE500B41558 /* PublicStruct.swift */,
 			);
 			name = CarryOn;
 			path = ../../CarryOn;
@@ -212,6 +222,8 @@
 				DFA5BE3D21B6952800CB9223 /* NSObject+Mirror.swift */,
 				BF77104E1FB94E4B001F853E /* String+Extension.swift */,
 				BF7710481FB94E4B001F853E /* Date+Extension.swift */,
+				DFC662CF21C1199800B41558 /* Collection+Extension.swift */,
+				DFC662D121C11A1D00B41558 /* ReusableView+Extension.swift */,
 				BF7710541FB94E4B001F853E /* UIImage+Extension.swift */,
 				BF77105B1FB94E4B001F853E /* UIView+Extension.swift */,
 				DFFC764B21B55DD7006E75D4 /* OtherExtensions.swift */,
@@ -425,11 +437,13 @@
 				BF7710C81FB94F6E001F853E /* ApiXml.mm in Sources */,
 				BF7710D51FB94F6F001F853E /* RespForWeChatViewController.mm in Sources */,
 				BF7710CD1FB94F6E001F853E /* XMLDictionary.m in Sources */,
+				DFC662CE21C1183900B41558 /* SwiftNotice.swift in Sources */,
 				BF7710C91FB94F6E001F853E /* MXWechatSignAdaptor.m in Sources */,
 				BF77107E1FB94E4B001F853E /* Date+Extension.swift in Sources */,
 				DFFC764E21B56021006E75D4 /* Public.swift in Sources */,
 				BF7710841FB94E4B001F853E /* String+Extension.swift in Sources */,
 				713FDEF52099A03800C4E69E /* BaseExcelView.m in Sources */,
+				DFC662D021C1199800B41558 /* Collection+Extension.swift in Sources */,
 				BF5B9AA01F66CADE00ECB3EC /* README.md in Sources */,
 				BF4C101F1F62E23500E8234D /* ViewController.swift in Sources */,
 				BF4C101D1F62E23500E8234D /* AppDelegate.swift in Sources */,
@@ -442,8 +456,10 @@
 				BF7710911FB94E4B001F853E /* UIView+Extension.swift in Sources */,
 				BF77108A1FB94E4B001F853E /* UIImage+Extension.swift in Sources */,
 				713FDEF62099A03800C4E69E /* SelectButtons.m in Sources */,
+				DFC662CC21C0FCE500B41558 /* PublicStruct.swift in Sources */,
+				DFC662CA21C0EA9C00B41558 /* XHud.swift in Sources */,
 				7162E67F20A034EA00EF6896 /* HTMLParser.m in Sources */,
-				713FDEFA2099A03800C4E69E /* MagiNotice.swift in Sources */,
+				DFC662D221C11A1D00B41558 /* ReusableView+Extension.swift in Sources */,
 				713FDEF72099A03800C4E69E /* DownloadService.swift in Sources */,
 				BF7710D71FB94F6F001F853E /* WXUtil.mm in Sources */,
 				BF7710CA1FB94F6E001F853E /* WXApiManager.m in Sources */,
