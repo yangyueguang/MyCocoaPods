@@ -11,6 +11,34 @@ public extension NSObject {
     class var nameOfClass: String {
         return NSStringFromClass(self).components(separatedBy: ".").last! as String
     }
+    @objc func deepCopy() -> Self {
+        let model = type(of: self).init()
+        var count: UInt32 = 0
+        let pro = class_copyPropertyList(object_getClass(self), &count)
+        guard let properties = pro else { return model }
+        for i in 0..<Int(count) {
+            let property: objc_property_t = properties[i]
+            let key = String(utf8String: property_getName(property)) ?? ""
+            model.setValue(self.value(forKey: key), forKey: key)
+        }
+        free(properties)
+        return model
+    }
+    @objc func archivedCopy() -> AnyObject {
+        guard let cls = self.classForKeyedArchiver else {
+            return type(of: self).init()
+        }
+        let data = cls.archivedData(withRootObject: self)
+        let obj = cls.unarchiveObject(with: data)
+        return obj as AnyObject
+//        if #available(iOS 11.0, *) {
+//            if let data = try? NSKeyedArchiver.archivedData(withRootObject: self, requiringSecureCoding: false){
+//                let obj = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data)
+//                return obj as AnyObject
+//            }
+//        }
+//        return type(of: self).init()
+    }
 }
 public extension URL {
     var queryParameters: [String: String] {
