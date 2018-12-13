@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "XCarryOn"
-  s.version      = "0.3.8"
+  s.version      = "0.3.9"
   s.summary      = "这是基本的类的继承。"
   s.frameworks   = 'UIKit','Foundation'
   s.requires_arc = true
