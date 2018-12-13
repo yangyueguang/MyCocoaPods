@@ -44,6 +44,7 @@
 		BF7710D61FB94F6F001F853E /* SendMsgToWeChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7710C51FB94F6E001F853E /* SendMsgToWeChatViewController.m */; };
 		BF7710D71FB94F6F001F853E /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF7710C71FB94F6E001F853E /* WXUtil.mm */; };
 		DF0274C021B5328B003038F1 /* XDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0274BF21B5328B003038F1 /* XDataCache.swift */; };
+		DF21F88821C2B2C50007F632 /* XURLNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF21F88721C2B2C50007F632 /* XURLNavigator.swift */; };
 		DF42322D21872704005E5949 /* UILabel+TapAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF42322C21872704005E5949 /* UILabel+TapAction.swift */; };
 		DFA5BE3E21B6952800CB9223 /* NSObject+Mirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA5BE3D21B6952800CB9223 /* NSObject+Mirror.swift */; };
 		DFC662CA21C0EA9C00B41558 /* XHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC662C921C0EA9C00B41558 /* XHud.swift */; };
@@ -111,6 +112,7 @@
 		BF97602C1F7150DC00DE9ABB /* MyCocoaPods-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyCocoaPods-Bridging-Header.h"; sourceTree = "<group>"; };
 		CC2365036460F451E73D4822 /* Pods_MyCocoaPods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyCocoaPods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF0274BF21B5328B003038F1 /* XDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDataCache.swift; sourceTree = "<group>"; };
+		DF21F88721C2B2C50007F632 /* XURLNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XURLNavigator.swift; sourceTree = "<group>"; };
 		DF42322C21872704005E5949 /* UILabel+TapAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+TapAction.swift"; sourceTree = "<group>"; };
 		DFA5BE3D21B6952800CB9223 /* NSObject+Mirror.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Mirror.swift"; sourceTree = "<group>"; };
 		DFC662C921C0EA9C00B41558 /* XHud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XHud.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				DFC662C921C0EA9C00B41558 /* XHud.swift */,
 				DFC662CD21C1183900B41558 /* SwiftNotice.swift */,
 				71024C35209C289300207E44 /* XCarryOn.swift */,
+				DF21F88721C2B2C50007F632 /* XURLNavigator.swift */,
 				DF0274BF21B5328B003038F1 /* XDataCache.swift */,
 				BF77104D1FB94E4B001F853E /* PublicTools.swift */,
 				DFFC764D21B56021006E75D4 /* Public.swift */,
@@ -448,6 +451,7 @@
 				BF4C101F1F62E23500E8234D /* ViewController.swift in Sources */,
 				BF4C101D1F62E23500E8234D /* AppDelegate.swift in Sources */,
 				DF42322D21872704005E5949 /* UILabel+TapAction.swift in Sources */,
+				DF21F88821C2B2C50007F632 /* XURLNavigator.swift in Sources */,
 				DF0274C021B5328B003038F1 /* XDataCache.swift in Sources */,
 				BF7710CB1FB94F6E001F853E /* WXApiRequestHandler.m in Sources */,
 				DFA5BE3E21B6952800CB9223 /* NSObject+Mirror.swift in Sources */,
