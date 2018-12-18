@@ -279,6 +279,16 @@ public extension UIBarButtonItem {
         }
         self.init(customView: btn)
     }
+    convenience init(title: String?, style: UIBarButtonItem.Style = UIBarButtonItem.Style.done, action:@escaping () -> Void) {
+        let wrapper = ClosureWrapper.init(callBack: action)
+        self.init(title: title, style: style, target: wrapper, action: #selector(wrapper.invoke))
+        objc_setAssociatedObject(self, &associatedClosure, wrapper, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+    convenience init(image: UIImage?, style: UIBarButtonItem.Style = UIBarButtonItem.Style.done, action:@escaping () -> Void) {
+        let wrapper = ClosureWrapper.init(callBack: action)
+        self.init(image: image, style: style, target: wrapper, action: #selector(wrapper.invoke))
+        objc_setAssociatedObject(self, &associatedClosure, wrapper, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
 }
 
 public extension UINavigationController  {
