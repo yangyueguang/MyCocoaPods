@@ -59,8 +59,8 @@ public extension UIResponder {
 
 public class SwiftNotice: NSObject {
     static var windows = Array<UIWindow?>()
-    static let rv = UIApplication.shared.keyWindow?.subviews.first as UIView?
-    static var timer: DispatchSource!
+    static let rv: UIView = UIApplication.shared.keyWindow?.subviews.first as UIView? ?? UIView()
+    static var timer: DispatchSource?
     static var timerTimes = 0
     static var degree: Double {
         get {
@@ -69,9 +69,9 @@ public class SwiftNotice: NSObject {
     }
     static func clear() {
         self.cancelPreviousPerformRequests(withTarget: self)
-        if let _ = timer {
+        if let timer = timer {
             timer.cancel()
-            timer = nil
+            self.timer = nil
             timerTimes = 0
         }
         windows.removeAll(keepingCapacity: false)
@@ -132,17 +132,17 @@ public class SwiftNotice: NSObject {
         if imageNames.count > 0 {
             if imageNames.count > timerTimes {
                 let iv = UIImageView(frame: frame)
-                iv.image = imageNames.first!
+                iv.image = imageNames.first
                 iv.contentMode = UIView.ContentMode.scaleAspectFit
                 mainView.addSubview(iv)
-                timer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: UInt(0)), queue: DispatchQueue.main) as! DispatchSource
-                timer.schedule(deadline: DispatchTime.now(), repeating: DispatchTimeInterval.milliseconds(timeInterval))
-                timer.setEventHandler(handler: { () -> Void in
+                timer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: UInt(0)), queue: DispatchQueue.main) as? DispatchSource
+                timer?.schedule(deadline: DispatchTime.now(), repeating: DispatchTimeInterval.milliseconds(timeInterval))
+                timer?.setEventHandler(handler: { () -> Void in
                     let name = imageNames[timerTimes % imageNames.count]
                     iv.image = name
                     timerTimes += 1
                 })
-                timer.resume()
+                timer?.resume()
             }
         } else {
             let ai = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
@@ -152,7 +152,7 @@ public class SwiftNotice: NSObject {
         }
         window.frame = frame
         mainView.frame = frame
-        window.center = rv!.center
+        window.center = rv.center
         if let version = Double(UIDevice.current.systemVersion),
             version < 9.0 {
             window.center = getRealCenter()
@@ -188,7 +188,7 @@ public class SwiftNotice: NSObject {
         window.frame = superFrame
         mainView.frame = superFrame
         label.center = mainView.center
-        window.center = rv!.center
+        window.center = rv.center
         if let version = Double(UIDevice.current.systemVersion),
             version < 9.0 {
             window.center = getRealCenter()
@@ -232,14 +232,14 @@ public class SwiftNotice: NSObject {
         mainView.addSubview(label)
         window.frame = frame
         mainView.frame = frame
-        window.center = rv!.center
+        window.center = rv.center
         if let version = Double(UIDevice.current.systemVersion),
             version < 9.0 {
             window.center = getRealCenter()
             window.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
         }
         window.windowLevel = UIWindow.Level.alert
-        window.center = rv!.center
+        window.center = rv.center
         window.isHidden = false
         window.addSubview(mainView)
         windows.append(window)
@@ -273,9 +273,9 @@ public class SwiftNotice: NSObject {
     }
     static func getRealCenter() -> CGPoint {
         if UIApplication.shared.statusBarOrientation.hashValue >= 3 {
-            return CGPoint(x: rv!.center.y, y: rv!.center.x)
+            return CGPoint(x: rv.center.y, y: rv.center.x)
         } else {
-            return rv!.center
+            return rv.center
         }
     }
 }
@@ -323,8 +323,8 @@ class SwiftNoticeSDK {
         checkmarkShapePath.stroke()
     }
     class var imageOfCheckmark: UIImage {
-        if (Cache.imageOfCheckmark != nil) {
-            return Cache.imageOfCheckmark!
+        if let img = Cache.imageOfCheckmark {
+            return img
         }
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 36, height: 36), false, 0)
         SwiftNoticeSDK.draw(NoticeType.success)
@@ -333,8 +333,8 @@ class SwiftNoticeSDK {
         return Cache.imageOfCheckmark!
     }
     class var imageOfCross: UIImage {
-        if (Cache.imageOfCross != nil) {
-            return Cache.imageOfCross!
+        if let img = Cache.imageOfCross {
+            return img
         }
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 36, height: 36), false, 0)
         SwiftNoticeSDK.draw(NoticeType.error)
@@ -343,8 +343,8 @@ class SwiftNoticeSDK {
         return Cache.imageOfCross!
     }
     class var imageOfInfo: UIImage {
-        if (Cache.imageOfInfo != nil) {
-            return Cache.imageOfInfo!
+        if let img = Cache.imageOfInfo {
+            return img
         }
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 36, height: 36), false, 0)
         SwiftNoticeSDK.draw(NoticeType.info)
