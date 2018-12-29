@@ -9,12 +9,9 @@
 /* Begin PBXBuildFile section */
 		13272FD8E7DF69123BAA2F4B /* Pods_MyCocoaPods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2365036460F451E73D4822 /* Pods_MyCocoaPods.framework */; };
 		71024C36209C289300207E44 /* XCarryOn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71024C35209C289300207E44 /* XCarryOn.swift */; };
-		713FDEF52099A03800C4E69E /* BaseExcelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEEC2099A03600C4E69E /* BaseExcelView.m */; };
-		713FDEF62099A03800C4E69E /* SelectButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEEE2099A03700C4E69E /* SelectButtons.m */; };
 		713FDEF72099A03800C4E69E /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEEF2099A03700C4E69E /* DownloadService.swift */; };
 		713FDEF82099A03800C4E69E /* PreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEF02099A03700C4E69E /* PreViewController.swift */; };
 		713FDEFC2099A04200C4E69E /* UTI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 713FDEFB2099A04200C4E69E /* UTI.plist */; };
-		7162E67F20A034EA00EF6896 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7162E67D20A034EA00EF6896 /* HTMLParser.m */; };
 		7162E68120A0352F00EF6896 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7162E68020A0352E00EF6896 /* libxml2.tbd */; };
 		BF4C101D1F62E23500E8234D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4C101C1F62E23500E8234D /* AppDelegate.swift */; };
 		BF4C101F1F62E23500E8234D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4C101E1F62E23500E8234D /* ViewController.swift */; };
@@ -68,15 +65,9 @@
 		00087E8B0C2CE5586E75AE96 /* Pods-MyCocoaPods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCocoaPods.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods.debug.xcconfig"; sourceTree = "<group>"; };
 		6FB852E20851D3E97FD4AB39 /* Pods-MyCocoaPods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCocoaPods.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods.release.xcconfig"; sourceTree = "<group>"; };
 		71024C35209C289300207E44 /* XCarryOn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCarryOn.swift; sourceTree = "<group>"; };
-		713FDEEC2099A03600C4E69E /* BaseExcelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseExcelView.m; sourceTree = "<group>"; };
-		713FDEED2099A03700C4E69E /* SelectButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectButtons.h; sourceTree = "<group>"; };
-		713FDEEE2099A03700C4E69E /* SelectButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectButtons.m; sourceTree = "<group>"; };
 		713FDEEF2099A03700C4E69E /* DownloadService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		713FDEF02099A03700C4E69E /* PreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreViewController.swift; sourceTree = "<group>"; };
-		713FDEF22099A03700C4E69E /* BaseExcelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseExcelView.h; sourceTree = "<group>"; };
 		713FDEFB2099A04200C4E69E /* UTI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UTI.plist; sourceTree = "<group>"; };
-		7162E67D20A034EA00EF6896 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
-		7162E67E20A034EA00EF6896 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
 		7162E68020A0352E00EF6896 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		BF4C10191F62E23500E8234D /* MyCocoaPods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCocoaPods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF4C101C1F62E23500E8234D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -177,14 +168,8 @@
 		713FDF07209AED6F00C4E69E /* tools */ = {
 			isa = PBXGroup;
 			children = (
-				713FDEEF2099A03700C4E69E /* DownloadService.swift */,
-				713FDEED2099A03700C4E69E /* SelectButtons.h */,
-				713FDEEE2099A03700C4E69E /* SelectButtons.m */,
-				7162E67E20A034EA00EF6896 /* HTMLParser.h */,
-				7162E67D20A034EA00EF6896 /* HTMLParser.m */,
 				713FDEFB2099A04200C4E69E /* UTI.plist */,
-				713FDEF22099A03700C4E69E /* BaseExcelView.h */,
-				713FDEEC2099A03600C4E69E /* BaseExcelView.m */,
+				713FDEEF2099A03700C4E69E /* DownloadService.swift */,
 				713FDEF02099A03700C4E69E /* PreViewController.swift */,
 			);
 			name = tools;
@@ -427,28 +412,22 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -468,7 +447,6 @@
 				DF95CB4321D779BD0049754A /* XImageView.swift in Sources */,
 				DFFC764E21B56021006E75D4 /* Public.swift in Sources */,
 				BF7710841FB94E4B001F853E /* String+Extension.swift in Sources */,
-				713FDEF52099A03800C4E69E /* BaseExcelView.m in Sources */,
 				DFC662D021C1199800B41558 /* Collection+Extension.swift in Sources */,
 				BF5B9AA01F66CADE00ECB3EC /* README.md in Sources */,
 				DF95CB4D21D779D00049754A /* XAlertViewController.swift in Sources */,
@@ -485,10 +463,8 @@
 				BF7710831FB94E4B001F853E /* PublicTools.swift in Sources */,
 				BF7710911FB94E4B001F853E /* UIView+Extension.swift in Sources */,
 				BF77108A1FB94E4B001F853E /* UIImage+Extension.swift in Sources */,
-				713FDEF62099A03800C4E69E /* SelectButtons.m in Sources */,
 				DFC662CC21C0FCE500B41558 /* PublicStruct.swift in Sources */,
 				DFC662CA21C0EA9C00B41558 /* XHud.swift in Sources */,
-				7162E67F20A034EA00EF6896 /* HTMLParser.m in Sources */,
 				DF95CB4C21D779D00049754A /* CircularSlider.swift in Sources */,
 				DFC662D221C11A1D00B41558 /* ReusableView+Extension.swift in Sources */,
 				DF95CB4B21D779D00049754A /* XTip.swift in Sources */,
