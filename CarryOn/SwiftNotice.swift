@@ -2,7 +2,12 @@
 import Foundation
 import UIKit
 private let sn_topBar: Int = 1001
-extension UIResponder {
+public enum NoticeType{
+    case success
+    case error
+    case info
+}
+public extension UIResponder {
     @discardableResult
     func pleaseWaitWithImages(_ imageNames: Array<UIImage>, timeInterval: Int) -> UIWindow{
         return SwiftNotice.wait(imageNames, timeInterval: timeInterval)
@@ -51,11 +56,7 @@ extension UIResponder {
         SwiftNotice.clear()
     }
 }
-enum NoticeType{
-    case success
-    case error
-    case info
-}
+
 public class SwiftNotice: NSObject {
     static var windows = Array<UIWindow?>()
     static let rv = UIApplication.shared.keyWindow?.subviews.first as UIView?
@@ -352,7 +353,7 @@ class SwiftNoticeSDK {
         return Cache.imageOfInfo!
     }
 }
-extension UIWindow{
+public extension UIWindow{
     func hide(){
         SwiftNotice.hideNotice(self)
     }

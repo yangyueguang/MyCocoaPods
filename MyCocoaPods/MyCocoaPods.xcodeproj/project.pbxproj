@@ -46,6 +46,13 @@
 		DF0274C021B5328B003038F1 /* XDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0274BF21B5328B003038F1 /* XDataCache.swift */; };
 		DF21F88821C2B2C50007F632 /* XURLNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF21F88721C2B2C50007F632 /* XURLNavigator.swift */; };
 		DF42322D21872704005E5949 /* UILabel+TapAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF42322C21872704005E5949 /* UILabel+TapAction.swift */; };
+		DF95CB4321D779BD0049754A /* XImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95CB4221D779BD0049754A /* XImageView.swift */; };
+		DF95CB4921D779D00049754A /* XTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95CB4421D779CF0049754A /* XTransitionAnimator.swift */; };
+		DF95CB4A21D779D00049754A /* SwiftWebViewBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95CB4521D779CF0049754A /* SwiftWebViewBridge.swift */; };
+		DF95CB4B21D779D00049754A /* XTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95CB4621D779CF0049754A /* XTip.swift */; };
+		DF95CB4C21D779D00049754A /* CircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95CB4721D779D00049754A /* CircularSlider.swift */; };
+		DF95CB4D21D779D00049754A /* XAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95CB4821D779D00049754A /* XAlertViewController.swift */; };
+		DF95CB4F21D779D90049754A /* XIBExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95CB4E21D779D90049754A /* XIBExtension.swift */; };
 		DFA5BE3E21B6952800CB9223 /* NSObject+Mirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA5BE3D21B6952800CB9223 /* NSObject+Mirror.swift */; };
 		DFC662CA21C0EA9C00B41558 /* XHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC662C921C0EA9C00B41558 /* XHud.swift */; };
 		DFC662CC21C0FCE500B41558 /* PublicStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC662CB21C0FCE500B41558 /* PublicStruct.swift */; };
@@ -114,6 +121,13 @@
 		DF0274BF21B5328B003038F1 /* XDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDataCache.swift; sourceTree = "<group>"; };
 		DF21F88721C2B2C50007F632 /* XURLNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XURLNavigator.swift; sourceTree = "<group>"; };
 		DF42322C21872704005E5949 /* UILabel+TapAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+TapAction.swift"; sourceTree = "<group>"; };
+		DF95CB4221D779BD0049754A /* XImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XImageView.swift; sourceTree = "<group>"; };
+		DF95CB4421D779CF0049754A /* XTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTransitionAnimator.swift; sourceTree = "<group>"; };
+		DF95CB4521D779CF0049754A /* SwiftWebViewBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftWebViewBridge.swift; sourceTree = "<group>"; };
+		DF95CB4621D779CF0049754A /* XTip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTip.swift; sourceTree = "<group>"; };
+		DF95CB4721D779D00049754A /* CircularSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularSlider.swift; sourceTree = "<group>"; };
+		DF95CB4821D779D00049754A /* XAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XAlertViewController.swift; sourceTree = "<group>"; };
+		DF95CB4E21D779D90049754A /* XIBExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XIBExtension.swift; sourceTree = "<group>"; };
 		DFA5BE3D21B6952800CB9223 /* NSObject+Mirror.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Mirror.swift"; sourceTree = "<group>"; };
 		DFC662C921C0EA9C00B41558 /* XHud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XHud.swift; sourceTree = "<group>"; };
 		DFC662CB21C0FCE500B41558 /* PublicStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicStruct.swift; sourceTree = "<group>"; };
@@ -142,7 +156,13 @@
 			isa = PBXGroup;
 			children = (
 				DFC662C921C0EA9C00B41558 /* XHud.swift */,
+				DF95CB4721D779D00049754A /* CircularSlider.swift */,
+				DF95CB4521D779CF0049754A /* SwiftWebViewBridge.swift */,
+				DF95CB4821D779D00049754A /* XAlertViewController.swift */,
+				DF95CB4621D779CF0049754A /* XTip.swift */,
+				DF95CB4421D779CF0049754A /* XTransitionAnimator.swift */,
 				DFC662CD21C1183900B41558 /* SwiftNotice.swift */,
+				DF95CB4221D779BD0049754A /* XImageView.swift */,
 				71024C35209C289300207E44 /* XCarryOn.swift */,
 				DF21F88721C2B2C50007F632 /* XURLNavigator.swift */,
 				DF0274BF21B5328B003038F1 /* XDataCache.swift */,
@@ -221,6 +241,7 @@
 		BF7710461FB94E4B001F853E /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				DF95CB4E21D779D90049754A /* XIBExtension.swift */,
 				DF42322C21872704005E5949 /* UILabel+TapAction.swift */,
 				DFA5BE3D21B6952800CB9223 /* NSObject+Mirror.swift */,
 				BF77104E1FB94E4B001F853E /* String+Extension.swift */,
@@ -440,20 +461,25 @@
 				BF7710C81FB94F6E001F853E /* ApiXml.mm in Sources */,
 				BF7710D51FB94F6F001F853E /* RespForWeChatViewController.mm in Sources */,
 				BF7710CD1FB94F6E001F853E /* XMLDictionary.m in Sources */,
+				DF95CB4F21D779D90049754A /* XIBExtension.swift in Sources */,
 				DFC662CE21C1183900B41558 /* SwiftNotice.swift in Sources */,
 				BF7710C91FB94F6E001F853E /* MXWechatSignAdaptor.m in Sources */,
 				BF77107E1FB94E4B001F853E /* Date+Extension.swift in Sources */,
+				DF95CB4321D779BD0049754A /* XImageView.swift in Sources */,
 				DFFC764E21B56021006E75D4 /* Public.swift in Sources */,
 				BF7710841FB94E4B001F853E /* String+Extension.swift in Sources */,
 				713FDEF52099A03800C4E69E /* BaseExcelView.m in Sources */,
 				DFC662D021C1199800B41558 /* Collection+Extension.swift in Sources */,
 				BF5B9AA01F66CADE00ECB3EC /* README.md in Sources */,
+				DF95CB4D21D779D00049754A /* XAlertViewController.swift in Sources */,
 				BF4C101F1F62E23500E8234D /* ViewController.swift in Sources */,
 				BF4C101D1F62E23500E8234D /* AppDelegate.swift in Sources */,
 				DF42322D21872704005E5949 /* UILabel+TapAction.swift in Sources */,
+				DF95CB4A21D779D00049754A /* SwiftWebViewBridge.swift in Sources */,
 				DF21F88821C2B2C50007F632 /* XURLNavigator.swift in Sources */,
 				DF0274C021B5328B003038F1 /* XDataCache.swift in Sources */,
 				BF7710CB1FB94F6E001F853E /* WXApiRequestHandler.m in Sources */,
+				DF95CB4921D779D00049754A /* XTransitionAnimator.swift in Sources */,
 				DFA5BE3E21B6952800CB9223 /* NSObject+Mirror.swift in Sources */,
 				BF7710CC1FB94F6E001F853E /* WXApiResponseHandler.m in Sources */,
 				BF7710831FB94E4B001F853E /* PublicTools.swift in Sources */,
@@ -463,7 +489,9 @@
 				DFC662CC21C0FCE500B41558 /* PublicStruct.swift in Sources */,
 				DFC662CA21C0EA9C00B41558 /* XHud.swift in Sources */,
 				7162E67F20A034EA00EF6896 /* HTMLParser.m in Sources */,
+				DF95CB4C21D779D00049754A /* CircularSlider.swift in Sources */,
 				DFC662D221C11A1D00B41558 /* ReusableView+Extension.swift in Sources */,
+				DF95CB4B21D779D00049754A /* XTip.swift in Sources */,
 				713FDEF72099A03800C4E69E /* DownloadService.swift in Sources */,
 				BF7710D71FB94F6F001F853E /* WXUtil.mm in Sources */,
 				BF7710CA1FB94F6E001F853E /* WXApiManager.m in Sources */,
