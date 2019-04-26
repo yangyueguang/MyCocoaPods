@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
     s.source_files  = "Extension"
     s.summary      = "这是Swift的类的拓展集合."
     s.frameworks   = 'UIKit','Foundation'
-    s.description  = "这是Swift的类的拓展集合"
+    s.description  = "这是Swift的类的拓展集合，这个字段一般比summary长"
     s.author       = { "yangyueguang" => "2829969299@qq.com" }
     s.social_media_url = 'https://www.github.com/yangyueguang'
     s.documentation_url = 'https://www.github.com/yangyueguang'
