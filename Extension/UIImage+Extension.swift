@@ -1,30 +1,37 @@
 //
 //  UIImage+Extension.swift
 import UIKit
+
 public extension UIImage {
+
     /// 返回不渲染的图片
     var original: UIImage {
         return self.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
     }
+
     /// 拉伸图片使用
     var resizableImage: UIImage {
         let w = self.size.width/2
         let h = self.size.height/2
         return self.resizableImage(withCapInsets: UIEdgeInsets(top: h, left: w, bottom: h, right: w), resizingMode: .stretch)
     }
+
     var stretchableImage: UIImage {
         return self.stretchableImage(withLeftCapWidth: Int(self.size.width/2), topCapHeight: Int(self.size.height/2))
     }
+
     /// 裁剪图片
     func imageInRect(_ rect: CGRect) -> UIImage {
         return UIImage(cgImage: (self.cgImage?.cropping(to: rect))!)
     }
+
     /// 从网络生成图片
     class func imageFromURL(_ imgSrc: String) -> UIImage? {
         let url = URL(string: imgSrc)
         let data = try! Data(contentsOf: url!)
         return UIImage(data: data)
     }
+
     /// 根据颜色生成图片
     class func imageWithColor(_ color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
@@ -35,6 +42,7 @@ public extension UIImage {
         UIGraphicsEndImageContext()
         return image
     }
+
     /// 重设图片尺寸
     func resetSize(_ newWidth: CGFloat) -> UIImage {
         let scale = newWidth / self.size.width
@@ -45,6 +53,7 @@ public extension UIImage {
         UIGraphicsEndImageContext()
         return newImage!
     }
+
     /// 重设图片透明度
     func resetAlpha(_ alpha: CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(self.size, false, 0)
@@ -59,6 +68,7 @@ public extension UIImage {
         UIGraphicsEndImageContext()
         return newImage!
     }
+    
     /// 裁剪成圆形图片
     func circle(insets: CGFloat, borderColor: UIColor, _ lineWidth: CGFloat = 0) -> UIImage {
         let ctxWH: CGFloat = self.size.width - 2 * insets

@@ -2,12 +2,14 @@
 //  XURLNavigator.swift
 import UIKit
 import Foundation
+
 public enum XNavigationMode : Int {
     case push = 0
     case present
     case share
     case presentNotInNav
 }
+
 @objcMembers
 public class XURLInfo: NSObject {
     var url = ""
@@ -18,23 +20,29 @@ public class XURLInfo: NSObject {
     var bundlePath = ""
     var navigationMode = XNavigationMode.push
 }
+
 protocol XURLProtocol: NSObjectProtocol {
 //    func doWithUrlInfo(_ vc:Self, urlInfo: XURLInfo) -> UIViewController
     func doWithUrlInfo(_ vc:UIViewController, urlInfo: XURLInfo) -> UIViewController
 }
+
 private var urlDic: [String : XURLInfo] = [:]
+
 @objcMembers
 public class XURLNavigator: NSObject {
-    static let shared = XURLNavigator()
+    public static let shared = XURLNavigator()
+
     /// 当前控制器
     func currentViewController() -> UIViewController {
         let viewController = UIApplication.shared.keyWindow?.rootViewController
         return self.findBestViewController(viewController)
     }
+
     /// 注册控制器地址
     func registerURLObject(_ urlInfo: XURLInfo) {
         urlDic[urlInfo.url] = urlInfo
     }
+
     /// 跳转控制器
     func openURL(_ url: String, parameters: [String : Any] = [:], completion: @escaping (Bool) -> Void) {
         guard let urlInfo = urlInfoForURL(url),
@@ -53,6 +61,7 @@ public class XURLNavigator: NSObject {
         self.showVC(vc, routeMode: urlInfo.navigationMode)
         completion(true)
     }
+
     /// 根据url查找urlInfo对象
     func urlInfoForURL(_ urlString: String) -> XURLInfo? {
         guard let url = URL(string: urlString) else { return nil }
@@ -70,6 +79,7 @@ public class XURLNavigator: NSObject {
         }
         return nil
     }
+
     /// 根据urlInfo对象找对应的控制器
     func viewController(for urlInfo: XURLInfo) -> UIViewController? {
         guard let cls = self.getControllerWithBundle(urlInfo.bundlePath, name: urlInfo.className) else { return nil }
@@ -94,6 +104,7 @@ public class XURLNavigator: NSObject {
         }
         return vc
     }
+
     /// 正式推出控制器
     private func showVC(_ vc: UIViewController, routeMode: XNavigationMode) {
         switch routeMode {
@@ -126,6 +137,7 @@ public class XURLNavigator: NSObject {
         let bundleClassName = bundle + "." + name
         return (NSClassFromString(bundleClassName) as? UIViewController.Type)
     }
+    
     private func findBestViewController(_ vc: UIViewController?) -> UIViewController {
         if let pre = vc?.presentedViewController {
             return self.findBestViewController(pre)

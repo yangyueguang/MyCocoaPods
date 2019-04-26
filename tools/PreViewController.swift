@@ -16,32 +16,37 @@ open class PreviewItem: NSObject,QLPreviewItem {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
 @objcMembers
 open class PreviewController: QLPreviewController,UIDocumentInteractionControllerDelegate ,QLPreviewControllerDataSource,QLPreviewControllerDelegate,UIWebViewDelegate{
     let documentController = UIDocumentInteractionController()
     let webView = UIWebView()
     var containerVC :UIViewController!
     var previewRecorces = [CRResource]()
-    static let service = PreviewController()
+    public static let service = PreviewController()
     override open func viewDidLoad() {
         super.viewDidLoad()
     }
     deinit {
         print("销毁预览")
     }
+
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let res = previewRecorces.first{
             self.title = res.name
         }
     }
+
     override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         clearAllNotice()
     }
+
     @objc private func tapGesture(){
         self.navigationController?.isNavigationBarHidden = !(self.navigationController?.isNavigationBarHidden)!
     }
+
     ///除了quickView，其它的都只能打开一个文件
     func preView(_ sources:[CRResource],_ vc:UIViewController,quickView isQuick:Bool,inMenu isInMenu:Bool){
         self.previewRecorces = sources
@@ -99,56 +104,74 @@ open class PreviewController: QLPreviewController,UIDocumentInteractionControlle
             }
         }
     }
+
     ///FIXME: QuickViewDelegate
     public func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
         return previewRecorces.count
     }
+
     public func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
         let res = previewRecorces[index]
         return PreviewItem(url:URL(fileURLWithPath: res.path), title: res.name)
     }
+
     public func previewController(_ controller: QLPreviewController, frameFor item: QLPreviewItem, inSourceView view: AutoreleasingUnsafeMutablePointer<UIView?>) -> CGRect {
         return CGRect(x: 0, y: 0, width: APPW, height: 200)
     }
+
     ///FIXME: UIDocumentDelegate
     public func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
         return containerVC
     }
+
     public func documentInteractionControllerViewForPreview(_ controller: UIDocumentInteractionController) -> UIView? {
         return containerVC.view
     }
+
     public func documentInteractionControllerRectForPreview(_ controller: UIDocumentInteractionController) -> CGRect {
         return containerVC.view.frame
     }
+
     public func documentInteractionControllerWillBeginPreview(_ controller: UIDocumentInteractionController) {
     }
+
     public func documentInteractionControllerDidEndPreview(_ controller: UIDocumentInteractionController) {
     }
+
     public func documentInteractionControllerWillPresentOpenInMenu(_ controller: UIDocumentInteractionController) {
     }
+
     public func documentInteractionControllerDidDismissOpenInMenu(_ controller: UIDocumentInteractionController) {
     }
+
     public func documentInteractionControllerWillPresentOptionsMenu(_ controller: UIDocumentInteractionController) {
     }
+
     public func documentInteractionControllerDidDismissOptionsMenu(_ controller: UIDocumentInteractionController) {
     }
+
     public func documentInteractionController(_ controller: UIDocumentInteractionController, willBeginSendingToApplication application: String?) {
         noticeInfo("正在加载...")
     }
+
     public func documentInteractionController(_ controller: UIDocumentInteractionController, didEndSendingToApplication application: String?) {
         clearAllNotice()
     }
+
     ///FIXME: webViewDelegate
     public func webViewDidStartLoad(_ webView: UIWebView) {
         noticeInfo("正在加载...")
     }
+
     public func webViewDidFinishLoad(_ webView: UIWebView) {
         self.webView.isHidden = false
         clearAllNotice()
     }
+
     public func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         noticeInfo("加载失败，请稍后重试")
     }
+    
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard self.containerVC.navigationController != nil else {
             self.dismiss(animated: true) {}

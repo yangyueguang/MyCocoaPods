@@ -1,12 +1,14 @@
 
-import Foundation
 import UIKit
+import Foundation
+
 private let sn_topBar: Int = 1001
 public enum NoticeType{
     case success
     case error
     case info
 }
+
 public extension UIResponder {
     @discardableResult
     func pleaseWaitWithImages(_ imageNames: Array<UIImage>, timeInterval: Int) -> UIWindow{
@@ -76,6 +78,7 @@ public class SwiftNotice: NSObject {
         }
         windows.removeAll(keepingCapacity: false)
     }
+
     @discardableResult
     static func noticeOnStatusBar(_ text: String, autoClear: Bool, autoClearTime: Int) -> UIWindow{
         let frame = UIApplication.shared.statusBarFrame
@@ -121,6 +124,7 @@ public class SwiftNotice: NSObject {
         })
       return window
     }
+
     @discardableResult
     static func wait(_ imageNames: Array<UIImage> = Array<UIImage>(), timeInterval: Int = 0) -> UIWindow {
         let frame = CGRect(x: 0, y: 0, width: 78, height: 78)
@@ -168,6 +172,7 @@ public class SwiftNotice: NSObject {
         })
         return window
     }
+
     @discardableResult
     static func showText(_ text: String, autoClear: Bool=true, autoClearTime: Int=2) -> UIWindow {
         let window = UIWindow()
@@ -204,6 +209,7 @@ public class SwiftNotice: NSObject {
         }
         return window
     }
+
     @discardableResult
     static func showNoticeWithText(_ type: NoticeType,text: String, autoClear: Bool, autoClearTime: Int) -> UIWindow {
         let frame = CGRect(x: 0, y: 0, width: 90, height: 90)
@@ -253,6 +259,7 @@ public class SwiftNotice: NSObject {
         }
         return window
     }
+
     @objc static func hideNotice(_ sender: AnyObject) {
         if let window = sender as? UIWindow {
           if let v = window.subviews.first {
@@ -271,6 +278,7 @@ public class SwiftNotice: NSObject {
           }
         }
     }
+
     static func getRealCenter() -> CGPoint {
         if UIApplication.shared.statusBarOrientation.hashValue >= 3 {
             return CGPoint(x: rv.center.y, y: rv.center.x)
@@ -279,12 +287,14 @@ public class SwiftNotice: NSObject {
         }
     }
 }
+
 class SwiftNoticeSDK {
     struct Cache {
         static var imageOfCheckmark: UIImage?
         static var imageOfCross: UIImage?
         static var imageOfInfo: UIImage?
     }
+
     class func draw(_ type: NoticeType) {
         let checkmarkShapePath = UIBezierPath()
         // draw circle
@@ -322,6 +332,7 @@ class SwiftNoticeSDK {
         UIColor.white.setStroke()
         checkmarkShapePath.stroke()
     }
+
     class var imageOfCheckmark: UIImage {
         if let img = Cache.imageOfCheckmark {
             return img
@@ -332,6 +343,7 @@ class SwiftNoticeSDK {
         UIGraphicsEndImageContext()
         return Cache.imageOfCheckmark!
     }
+
     class var imageOfCross: UIImage {
         if let img = Cache.imageOfCross {
             return img
@@ -342,6 +354,7 @@ class SwiftNoticeSDK {
         UIGraphicsEndImageContext()
         return Cache.imageOfCross!
     }
+
     class var imageOfInfo: UIImage {
         if let img = Cache.imageOfInfo {
             return img
@@ -353,6 +366,7 @@ class SwiftNoticeSDK {
         return Cache.imageOfInfo!
     }
 }
+
 public extension UIWindow{
     func hide(){
         SwiftNotice.hideNotice(self)

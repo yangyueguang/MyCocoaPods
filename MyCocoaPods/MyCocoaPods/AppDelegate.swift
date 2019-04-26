@@ -1,8 +1,9 @@
+
 import UIKit
 import AVFoundation
 //import Bugly
 import CoreSpotlight
-import Realm
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {//WXApiDelegate
     var window: UIWindow?
@@ -43,15 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {//WXApiDelegate
         NotificationCenter.default.addObserver(self, selector:#selector(test), name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(test), name: UIApplication.didBecomeActiveNotification, object: nil)
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
-        let config = RLMRealmConfiguration.default()
-        config.schemaVersion = 1
-        config.migrationBlock = {(_ migration: RLMMigration, _ oldSchemaVersion: UInt64) -> Void in
-            if oldSchemaVersion < 1 {
-                // 什么都不要做！Realm 会自行检测新增和需要移除的属性，然后自动更新硬盘上的数据库架构
-            }
-        }
-        RLMRealmConfiguration.setDefault(config)
-        RLMRealm.default()
     }
     
     class func backgroundPlayerID(_ backTaskId: UIBackgroundTaskIdentifier) -> UIBackgroundTaskIdentifier {

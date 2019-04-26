@@ -24,6 +24,7 @@ public class APP:NSObject{
     public let deviceType:UIUserInterfaceIdiom!
     public let wechatAvalueble:Bool!
     public let systemVersion: Float!
+
     public override init() {
         let info = Bundle.main.infoDictionary
         region = info!["CFBundleDevelopmentRegion"] as? String
@@ -52,9 +53,10 @@ public class APP:NSObject{
         }
     }
 }
+
 @objcMembers
 open class XPageControl: UIPageControl {
-    var imagePageStateNormal: UIImage?{
+    public var imagePageStateNormal: UIImage?{
         didSet {
             updateDots()
         }
@@ -80,6 +82,7 @@ open class XPageControl: UIPageControl {
         super.endTracking(touch, with: event)
         updateDots()
     }
+
     private func updateDots() {
         // 更新显示所有的点按钮
         if let highlightedImage = imagePageStateHighlighted{
@@ -101,6 +104,7 @@ open class XPageControl: UIPageControl {
         }
     }
 }
+
 ///让键盘右上角加个完成按钮// 键盘完成按钮
 @objcMembers
 open class XTextField: UITextField {
@@ -119,10 +123,12 @@ open class XTextField: UITextField {
         toolBar.setItems([item,item2], animated: true)
         self.inputAccessoryView = toolBar
     }
+
     func finishTapped(sender:UIButton){
         self.resignFirstResponder()
     }
 }
+
 open class UnderLinTextField: UITextField {
     override open func draw(_ rect: CGRect) {
         super.draw(rect)

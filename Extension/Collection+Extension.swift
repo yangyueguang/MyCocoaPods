@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 public extension Array{
     /// 返回对象数组对应的json数组 前提element一定是AnyObject类型
     func jsonArray() -> [[String: Any]] {
@@ -18,11 +19,13 @@ public extension Array{
         }
         return jsonObjects
     }
+
     /// 安全的取值
     public func item(at index: Int) -> Element? {
         guard startIndex..<endIndex ~= index else { return nil }
         return self[index]
     }
+
     /// 交换
     public mutating func swap(from index: Int, to: Int) {
         guard index != to,
@@ -101,6 +104,7 @@ public extension Array{
         }
         return (matching, nonMatching)
     }
+
     /// 排序
     public func sorted<T: Comparable>(by path: KeyPath<Element, T?>, ascending: Bool = true) -> [Element] {
         return sorted(by: { (lhs, rhs) -> Bool in
@@ -126,11 +130,13 @@ public extension Array where Element: Equatable {
         }
         return found
     }
+
     /// 删除
     public mutating func removeAll(_ items: [Element]) {
         guard !items.isEmpty else { return }
         self = filter { !items.contains($0) }
     }
+
     /// 去重
     public mutating func removeDuplicates() {
         self = reduce(into: [Element]()) {
@@ -139,11 +145,19 @@ public extension Array where Element: Equatable {
             }
         }
     }
+    
+    func index(_ e: Element) -> Int? {
+        for (index, value) in lazy.enumerated() where value == e {
+            return index
+        }
+        return nil
+    }
 
 }
 
 
 public extension Dictionary{
+
     func jsonString(prettify: Bool = false) -> String {
         guard JSONSerialization.isValidJSONObject(self) else {
             return ""
@@ -176,9 +190,11 @@ public extension Dictionary{
     public static func -= (lhs: inout [Key: Value], keys: [Key]) {
         lhs.removeAll(keys: keys)
     }
+
     public mutating func removeAll(keys: [Key]) {
         keys.forEach({ removeValue(forKey: $0)})
     }
+    
     public func count(where condition: @escaping ((key: Key, value: Value)) throws -> Bool) rethrows -> Int {
         var count: Int = 0
         try self.forEach {

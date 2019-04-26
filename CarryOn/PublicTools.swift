@@ -6,7 +6,7 @@
 //  Created by Super on 2017/9/8.
 //  Copyright © 2017年 Super. All rights reserved.
 //
-import QuartzCore
+import UIKit
 import StoreKit
 import AudioToolbox
 import Foundation
@@ -14,10 +14,10 @@ import LocalAuthentication
 import CoreSpotlight
 import CoreLocation
 import MobileCoreServices
-
 @objcMembers
 public class PublicTools:NSObject{
     public let app = APP()
+
     /// 弹出指纹验证的视图
     class func showTouchID(desc:String="",_ block: @escaping (_ error:LAError?,_ m:String?) -> Void){
         if NSFoundationVersionNumber < NSFoundationVersionNumber_iOS_8_0 {
@@ -67,8 +67,9 @@ public class PublicTools:NSObject{
             }
         }
     }
+
     /// 打开系统的设置
-    static func openSettings(_ closure: @escaping (Bool) -> Void) {
+    public static func openSettings(_ closure: @escaping (Bool) -> Void) {
         if NSFoundationVersionNumber < NSFoundationVersionNumber_iOS_8_0 {
             closure(false)
         } else {
@@ -84,6 +85,7 @@ public class PublicTools:NSObject{
             }
         }
     }
+
     /// 添加系统层面的搜索
     class func addSearchItem(title:String?,des:String?,thumURL:URL?,identifier:String?,keywords:[String]?){
         let sias = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
@@ -94,6 +96,7 @@ public class PublicTools:NSObject{
         let searchableItem = CSSearchableItem(uniqueIdentifier:identifier,domainIdentifier:"items",attributeSet:sias)
         addSearchItems([searchableItem])
     }
+
     ///批量添加系统层面的搜索
     class func addSearchItems(_ searchItems:[CSSearchableItem]){
         let searchIndex = CSSearchableIndex.default()
@@ -103,6 +106,7 @@ public class PublicTools:NSObject{
             }
         }
     }
+
     ///删除系统层面的搜索
     class func deleteSearchItem(identifiers:[String],closure:((Error?) -> Swift.Void)? = nil){
         let searchIndex = CSSearchableIndex.default()
@@ -148,6 +152,7 @@ public class PublicTools:NSObject{
             }
         }
     }
+
     /// json转Data
     class func jsonToData(_ jsonResponse: AnyObject) -> Data? {
         do{
@@ -157,6 +162,7 @@ public class PublicTools:NSObject{
             return nil
         }
     }
+
     /// data转json
     class func dataToJson(_ data: Data) -> AnyObject? {
         do{
@@ -183,6 +189,7 @@ public class PublicTools:NSObject{
             return "-"
         }
     }
+
     /// 变成decimalNumber
     func decimalNumber(_ s:Any)->NSDecimalNumber{
         if s is String{
@@ -195,6 +202,7 @@ public class PublicTools:NSObject{
             return NSDecimalNumber(value:0.0)
         }
     }
+
     /// 计算方位角,正北向为0度，以顺时针方向递增
     func computeAzimuthCLL(_ la1: CLLocationCoordinate2D, la2: CLLocationCoordinate2D) -> Double {
         var lat1: Double = la1.latitude
@@ -231,6 +239,7 @@ public class PublicTools:NSObject{
         }
         return result
     }
+
     /// 联合各个异步请求信号量
     public func combineAsyncRequest(count:Int, requestClosure: @escaping ((Int, DispatchSemaphore) -> DispatchWorkItem), completion: (() -> Void)? = nil) {
         let semaphore = DispatchSemaphore(value: 0)
@@ -248,6 +257,7 @@ public class PublicTools:NSObject{
 
     }
 }
+
 extension PublicTools: SKStoreProductViewControllerDelegate {
     /// 根据appid打开AppStore
     func openAppStore(_ appId: String) {
@@ -266,6 +276,7 @@ extension PublicTools: SKStoreProductViewControllerDelegate {
             }
         })
     }
+    
     private func productViewControllerDidFinish(_ viewController: SKStoreProductViewController) {
         viewController.dismiss(animated: true) {}
     }

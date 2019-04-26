@@ -7,6 +7,7 @@
 //  给NSObject添加字典模型转换功能的扩展 需要设置模型为OC类型，即class前加objcMembers。属性里int,float,double要设置默认值
 
 import Foundation
+
 // 字段类型模型
 private class NSObjectType {
     var isArray: Bool = false
@@ -23,6 +24,7 @@ private class NSObjectType {
         self.belongType = belongType
         parseBegin()
     }
+
     func parseBegin(){
         let subjectTypeName = "\(propertyMirrorType.subjectType)"
         typeName = subjectTypeName
@@ -188,6 +190,7 @@ public extension NSObject{
         }
         return printStr
     }
+
     /// 是否打开点击效果，默认是打开
     private var mirror: Mirror {
         set { }
@@ -234,6 +237,7 @@ public extension NSObject{
         let unarchivedDictionary = NSKeyedUnarchiver.unarchiveObject(withFile: path) as? NSDictionary
         return self.parse(unarchivedDictionary ?? [:])
     }
+    
     private static var cachesFolder: String? {
         let cacheRootPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last
         let cache_NSObject_path = cacheRootPath! + "/" + "NSObject"

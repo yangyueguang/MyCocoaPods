@@ -10,37 +10,47 @@ public enum XHudStyle {
     case custom(contentView: UIView)
     case withDetail(message: String)
 }
+
 public final class XHud {
+
     /// 是否显示灰色背景蒙层，true 显示，false(default) 不显示
     public static var dimsBackground: Bool {
         get { return XHudManager.sharedHUD.dimsBackground }
         set { XHudManager.sharedHUD.dimsBackground = newValue }
     }
+
     /// 是否允许用户交互穿透，true 允许，false(default) 不允许
     public static var allowsInteraction: Bool {
         get { return XHudManager.sharedHUD.userInteractionOnUnderlyingViewsEnabled  }
         set { XHudManager.sharedHUD.userInteractionOnUnderlyingViewsEnabled = newValue }
     }
+
     /// (只读) 返回 Hud 是否可见
     public static var isVisible: Bool { return XHudManager.sharedHUD.isVisible }
+
     public static func show(_ style: XHudStyle = XHudStyle.vomProgress, onView view: UIView? = nil) {
         XHudManager.sharedHUD.contentView = contentView(with: style)
         XHudManager.sharedHUD.show(onView: view)
     }
+
     public static func hide(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
         XHudManager.sharedHUD.hide(animated: animated, completion: completion)
     }
+
     public static func hide(afterDelay delay: TimeInterval, completion: ((Bool) -> Void)? = nil) {
         XHudManager.sharedHUD.hide(afterDelay: delay, completion: completion)
     }
+
     public static func flash(_ style: XHudStyle, onView view: UIView? = nil) {
         XHud.show(style, onView: view)
         XHud.hide(completion: nil)
     }
+
     public static func flash(_ style: XHudStyle, onView view: UIView? = nil, delay: TimeInterval, completion: ((Bool) -> Void)? = nil) {
         XHud.show(style, onView: view)
         XHud.hide(afterDelay: delay, completion: completion)
     }
+
     private static func contentView(with style: XHudStyle) -> UIView {
         switch style {
         case .vomProgress:
@@ -64,6 +74,7 @@ internal class FrameView: UIView {
         super.init(frame: frame)
         commonInit()
     }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
@@ -98,9 +109,11 @@ internal class FrameView: UIView {
 }
 
 internal class XHudManager: NSObject {
+
     fileprivate struct Constants {
         static let sharedHUD = XHudManager()
     }
+
     internal var viewToPresentOn: UIView?
     fileprivate let container = ContainerView()
     fileprivate var hideTimer: Timer?
@@ -120,6 +133,7 @@ internal class XHudManager: NSObject {
     internal class var sharedHUD: XHudManager {
         return Constants.sharedHUD
     }
+
     internal override init () {
         super.init()
         NotificationCenter.default.addObserver(self, selector: #selector(XHudManager.willEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -129,13 +143,16 @@ internal class XHudManager: NSObject {
         self.container.isAccessibilityElement = true
         self.container.accessibilityIdentifier = "XHudManager"
     }
+
     internal convenience init(viewToPresentOn view: UIView) {
         self.init()
         viewToPresentOn = view
     }
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
+
     internal var dimsBackground = false
     internal var userInteractionOnUnderlyingViewsEnabled: Bool {
         get {
@@ -145,9 +162,11 @@ internal class XHudManager: NSObject {
             container.isUserInteractionEnabled = !newValue
         }
     }
+
     internal var isVisible: Bool {
         return !container.isHidden
     }
+
     internal var contentView: UIView {
         get { return container.frameView.content }
         set { container.frameView.content = newValue }
@@ -199,9 +218,11 @@ internal class XHudManager: NSObject {
         hideTimer?.invalidate()
         hideTimer = Timer.scheduledTimer(timeInterval: delay, target: self, selector: #selector(XHudManager.performDelayedHide(_:)), userInfo: userInfo, repeats: false)
     }
+
     @objc internal func willEnterForeground(_ notification: Notification?) {
         self.startAnimatingContentView()
     }
+
     internal func startAnimatingContentView() {
         if let animatingContentView = contentView as? XHudAnimating, isVisible {
             animatingContentView.startAnimation()
@@ -209,6 +230,7 @@ internal class XHudManager: NSObject {
             print("未遵循协议startAnimation()")
         }
     }
+
     internal func stopAnimatingContentView() {
         if let animatingContentView = contentView as? XHudAnimating {
             animatingContentView.stopAnimation?()
@@ -216,6 +238,7 @@ internal class XHudManager: NSObject {
             print("未遵循协议stopAnimation()")
         }
     }
+
     @objc internal func performDelayedHide(_ timer: Timer? = nil) {
         let userInfo = timer?.userInfo as? [String:AnyObject]
         let key = userInfo?["timerActionKey"] as? String
@@ -226,6 +249,7 @@ internal class XHudManager: NSObject {
         }
         hide(animated: true, completion: completion)
     }
+
     @objc internal func handleGraceTimer(_ timer: Timer? = nil) {
         if (graceTimer?.isValid)! {
             showContent()
@@ -235,34 +259,41 @@ internal class XHudManager: NSObject {
 
 internal class ContainerView: UIView {
     internal let frameView: FrameView
+
     internal init(frameView: FrameView = FrameView()) {
         self.frameView = frameView
         super.init(frame: CGRect.zero)
         commonInit()
     }
+
     required init?(coder aDecoder: NSCoder) {
         frameView = FrameView()
         super.init(coder: aDecoder)
         commonInit()
     }
+
     fileprivate func commonInit() {
         backgroundColor = UIColor.clear
         isHidden = true
         addSubview(backgroundView)
         addSubview(frameView)
     }
+
     internal override func layoutSubviews() {
         super.layoutSubviews()
         frameView.center = center
         backgroundView.frame = bounds
     }
+
     internal func showFrameView() {
         layer.removeAllAnimations()
         frameView.center = center
         frameView.alpha = 1.0
         isHidden = false
     }
+
     fileprivate var willHide = false
+
     internal func hideFrameView(animated anim: Bool, completion: ((Bool) -> Void)? = nil) {
         let finalize: (_ finished: Bool) -> Void = { finished in
             self.isHidden = true
@@ -292,6 +323,7 @@ internal class ContainerView: UIView {
         view.alpha = 0.0
         return view
     }()
+
     internal func showBackground(animated anim: Bool) {
         if anim {
             UIView.animate(withDuration: 0.175, animations: {
@@ -301,6 +333,7 @@ internal class ContainerView: UIView {
             backgroundView.alpha = 1.0
         }
     }
+
     internal func hideBackground(animated anim: Bool) {
         if anim {
             UIView.animate(withDuration: 0.65, animations: {
@@ -316,6 +349,7 @@ internal class XHudVomProgressView: UIView, XHudAnimating {
     let ballWidth:CGFloat = 10
     var showText: String = ""
     static let defaultFrame = CGRect(x: 0, y: 0, width: 156, height: 156)
+
     init(frame: CGRect = .zero, message: String = "") {
         super.init(frame: XHudVomProgressView.defaultFrame)
         showText = message
@@ -328,9 +362,11 @@ internal class XHudVomProgressView: UIView, XHudAnimating {
 //            backgroundColor = UIColor.lightGray
         }
     }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+
     private lazy var firstView: UIView = {
         let halfWidth = CGFloat(ceilf(CFloat(bounds.size.width / 2.0)))
         let view = UIView(frame: CGRect(x: halfWidth-16, y: bounds.size.height / 2, width: self.ballWidth, height: self.ballWidth))
@@ -340,6 +376,7 @@ internal class XHudVomProgressView: UIView, XHudAnimating {
         view.backgroundColor = UIColor.green
         return view
     }()
+
     private lazy var secondView: UIView = {
         let halfWidth = CGFloat(ceilf(CFloat(bounds.size.width / 2.0)))
         let view = UIView(frame: CGRect(x: halfWidth+8, y: bounds.size.height / 2, width: ballWidth, height: ballWidth))
@@ -349,6 +386,7 @@ internal class XHudVomProgressView: UIView, XHudAnimating {
         view.backgroundColor = UIColor.red
         return view
     }()
+
     private lazy var label: UILabel = {
         let label = UILabel()
         label.text = showText
@@ -358,6 +396,7 @@ internal class XHudVomProgressView: UIView, XHudAnimating {
         label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
+    
     func startAnimation() {
         let animation = CAKeyframeAnimation(keyPath: "position")
         let x = firstView.frame.origin.x
@@ -376,6 +415,7 @@ internal class XHudVomProgressView: UIView, XHudAnimating {
         secondAnimation.isRemovedOnCompletion = false
         secondView.layer.add(secondAnimation, forKey: "crossAnimation")
     }
+    
     func stopAnimation() {
     }
 }

@@ -2,6 +2,7 @@
 //
 //  Date+Extension.swift
 import Foundation
+
 private var moren :TimeInterval = Foundation.Date().timeIntervalSince1970
 public extension Date {
     var timeInterval:TimeInterval {
@@ -15,10 +16,12 @@ public extension Date {
             objc_setAssociatedObject(self, &moren, newValue, .OBJC_ASSOCIATION_ASSIGN)
         }
     }
+
     /// 获取当前时间戳
     var timeStamp: Int64 {
         return Int64(floor(Date().timeIntervalSince1970 * 1000))
     }
+
     /// 获取年月日时分秒对象
     var components: DateComponents {
         return Calendar.current.dateComponents([.year, .month, .weekday, .day, .hour, .minute, .second, .nanosecond], from: self)
@@ -35,6 +38,7 @@ public extension Date {
     mutating func addSecond(_ second:Int) {
         timeInterval += Double(second)
     }
+
     mutating func addMonth(month m:Int) {
         let (year, month, day) = getDay()
         let (hour, minute, second) = getTime()
@@ -44,6 +48,7 @@ public extension Date {
             timeInterval += Double(m) * 30 * 24 * 3600
         }
     }
+
     mutating func addYear(year y:Int) {
         let (year, month, day) = getDay()
         let (hour, minute, second) = getTime()
@@ -53,6 +58,7 @@ public extension Date {
             timeInterval += Double(y) * 365 * 24 * 3600
         }
     }
+
     /// 日期加减
     func adding(_ component: Calendar.Component, value: Int) -> Date {
         return Calendar.current.date(byAdding: component, value: value, to: self)!
@@ -65,6 +71,7 @@ public extension Date {
         (Calendar.current as NSCalendar).getEra(nil, year: &year, month: &month, day: &day, from: date)
         return (year, month, day)
     }
+
     /// let (hour, minute, second) = date.getTime()
     func getTime() -> (hour:Int, minute:Int, second:Int) {
         var hour:Int = 0, minute:Int = 0, second:Int = 0
@@ -78,6 +85,7 @@ public extension Date {
         let components = Calendar.current.dateComponents([.year, .month], from: self)
         return Calendar.current.date(from: components)!
     }
+
     /// 本月结束日期
     func endOfMonth(returnEndTime:Bool = false) -> Date {
         let components = NSDateComponents()
@@ -89,6 +97,7 @@ public extension Date {
         }
         return Calendar.current.date(byAdding: components as DateComponents, to: startOfMonth())!
     }
+
     /// 这个月有多少天
     func numberOfDaysInMonth() -> Int {
         return (Calendar.current.range(of: .day, in: .month, for: self)?.count)!
@@ -100,12 +109,14 @@ public extension Date {
         dateFormatter.dateFormat = format
         return dateFormatter.date(from: string)
     }
+
     /// NSDate转NSString
     func stringFrom(_ date: Date, format: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         return dateFormatter.string(from: date)
     }
+
     /// 日期之间的距离
     func distanceWithDate(_ date: Date) -> DateComponents {
         let calendar = Calendar(identifier: .gregorian)
@@ -127,6 +138,7 @@ public extension Date {
         }
         return str_week
     }
+    
     func timeToNow() -> String {
         var timeString = ""
         let late = TimeInterval(timeIntervalSince1970 * 1)

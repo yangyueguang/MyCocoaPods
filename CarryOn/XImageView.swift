@@ -8,10 +8,12 @@ imageview.add(image: image!)
 imageview.play = true
 imageview.play = false
 ********************* Demo *********************/
-import ImageIO
 import UIKit
+import ImageIO
+
 public class XImageView: UIView {
     public var play: Bool = false
+
     public func add(image: AImage, limit: Int = 20){
         clear()
         self.aImage = image
@@ -29,9 +31,11 @@ public class XImageView: UIView {
         }
         timer?.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
     }
+
     deinit {
         timer?.invalidate()
     }
+
     private var aImage:AImage?
     private var indexAt:Int = 0
     private var timer:CADisplayLink?
@@ -109,12 +113,14 @@ public class AImage {
     fileprivate var framePerSecond:Int
     fileprivate var displayIndex:[Int]
     fileprivate var loopCount:Int
+
     public convenience init?(url: URL, quality: Float = 1.0, loop: Int = -1) {
         guard let src = CGImageSourceCreateWithURL(url as CFURL, nil) else {
             return nil
         }
         self.init(source: src, quality, loop)
     }
+
     public convenience init?(data: Data, quality: Float = 1.0, loop: Int = -1) {
         guard let src = CGImageSourceCreateWithData(data as CFData, nil),
             CGImageSourceGetCount(src) > 0 else {
@@ -122,12 +128,14 @@ public class AImage {
         }
         self.init(source: src, quality, loop)
     }
+
     private init(source: CGImageSource, _ quality: Float, _ loop: Int) {
         self.imageSource = source
         var frameDelays = AImage.calcuDelayTimes(imageSource:source)
         (self.framePerSecond,self.displayIndex) = AImage.calculateFrameDelay(&frameDelays, quality)
         self.loopCount = loop
     }
+
     private class func calcuDelayTimes(imageSource: CGImageSource) -> [Float] {
         let frameCount = CGImageSourceGetCount(imageSource)
         var imageProperties = [CFDictionary]()
@@ -192,11 +200,14 @@ public class AImage {
         return (fps,order)
     }
 }
+
 private class myDisplayLinkProxyObject {
     weak var myListener: XImageView?
+    
     init(listener: XImageView) {
         myListener = listener
     }
+
     @objc func proxyUpdateAnimation(link: CADisplayLink) {
         myListener?.timerFired()
     }

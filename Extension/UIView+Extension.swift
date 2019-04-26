@@ -3,6 +3,7 @@
 import UIKit
 import Foundation
 public extension UIView  {
+
     var x: CGFloat {
         set {
             self.frame = CGRect(x: x, y: frame.origin.y, width: frame.size.width, height: frame.size.height)
@@ -11,6 +12,7 @@ public extension UIView  {
             return frame.origin.x
         }
     }
+
     var y: CGFloat {
         set {
             self.frame = CGRect(x: frame.origin.x, y: y, width: frame.size.width, height: frame.size.height)
@@ -19,6 +21,7 @@ public extension UIView  {
             return frame.origin.y
         }
     }
+
     var width: CGFloat {
         set {
             self.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: width, height: frame.size.height)
@@ -27,6 +30,7 @@ public extension UIView  {
             return frame.size.width
         }
     }
+
     var height: CGFloat {
         set {
             self.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: height)
@@ -35,6 +39,7 @@ public extension UIView  {
             return frame.size.height
         }
     }
+
     var right: CGFloat {
         get {
             return frame.origin.x + frame.size.width
@@ -43,6 +48,7 @@ public extension UIView  {
             self.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: right - frame.origin.x, height: frame.size.height)
         }
     }
+
     var bottom: CGFloat {
         get {
             return frame.origin.y + frame.size.height
@@ -51,6 +57,7 @@ public extension UIView  {
             self.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: bottom - frame.origin.y)
         }
     }
+
     var size: CGSize {
         set {
             self.frame.size = size
@@ -63,26 +70,33 @@ public extension UIView  {
     func alignmentLeft(_ view: UIView, _ offset: CGFloat = 0) {
         self.frame = CGRect(x: view.x + offset, y: frame.origin.y, width: frame.size.width, height: frame.size.height)
     }
+
     func alignmentRight(_ view: UIView, _ offset: CGFloat = 0) {
         self.frame = CGRect(x: view.right - self.width + offset, y: frame.origin.y, width: frame.size.width, height: frame.size.height)
     }
+
     func alignmentTop(_ view: UIView, _ offset: CGFloat = 0) {
         self.frame = CGRect(x: frame.origin.x, y: view.y + offset, width: frame.size.width, height: frame.size.height)
     }
+
     func alignmentBottom(_ view: UIView, _ offset: CGFloat = 0) {
         self.frame = CGRect(x: frame.origin.x, y: view.bottom - frame.size.height + offset, width: frame.size.width, height: frame.size.height)
     }
+
     func alignmentHorizontal(_ view: UIView) {
         self.center = CGPoint(x: view.center.x, y: center.y)
     }
+    
     func alignmentVertical(_ view: UIView) {
         self.center = CGPoint(x: center.x, y: view.center.y)
     }
+
     /// 变圆
     func round() {
         layer.masksToBounds = true
         layer.cornerRadius = size.width / 2
     }
+
     // MARK:- 裁剪圆角
     func clipCorner(direction: UIRectCorner, radius: CGFloat) {
         let cornerSize = CGSize(width: radius, height: radius)
@@ -93,18 +107,21 @@ public extension UIView  {
         layer.addSublayer(maskLayer)
         layer.mask = maskLayer
     }
+
     /// 批量添加子视图
     func addSubviews(_ views:[UIView]) {
         for v in views {
             self.addSubview(v)
         }
     }
+
     /// 添加点击响应
     func add(_ target: AnyObject, action: Selector) {
         let tap = UITapGestureRecognizer(target: target, action: action)
         self.isUserInteractionEnabled = true
         self.addGestureRecognizer(tap)
     }
+
     /// 类似qq聊天窗口的抖动效果
     func shakeAnimation() {
         let t: CGFloat = 5.0
@@ -130,6 +147,7 @@ public extension UIView  {
             }
         }
     }
+
     /// 左右抖动
     func leftRightAnimation() {
         let t: CGFloat = 5.0
@@ -147,6 +165,7 @@ public extension UIView  {
             }
         }
     }
+
     func imageFromView() -> UIImage? {
         UIGraphicsBeginImageContext(frame.size)
         let context = UIGraphicsGetCurrentContext()
@@ -157,6 +176,7 @@ public extension UIView  {
         UIGraphicsEndImageContext()
         return theImage
     }
+
     func bestRoundCorner() {
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: .allCorners, cornerRadii: bounds.size)
         let layer = CAShapeLayer()
@@ -164,6 +184,7 @@ public extension UIView  {
         layer.path = path.cgPath
         self.layer.mask = layer
     }
+
     /// 是否包含视图类型或指定视图
     func contains(_ subView: UIView?, typeClass: AnyClass?) -> Bool {
         for view in subviews {
@@ -178,6 +199,7 @@ public extension UIView  {
         }
         return false
     }
+
     func linearColorFromcolors(_ colors: [UIColor], isHorizantal hor: Bool = true) {
         if colors.count < 2 {
             backgroundColor = colors.first
@@ -205,6 +227,7 @@ public extension UIView  {
         gradientLayer.locations = locations
         layer.addSublayer(gradientLayer)
     }
+
     func gotCircleLinear(fromColors colors: [UIColor]) -> UIImage? {
         let rect: CGRect = bounds
         var ra = CGAffineTransform(scaleX: 1, y: 1)
@@ -230,6 +253,7 @@ public extension UIView  {
         UIGraphicsEndImageContext()
         return img
     }
+    
     func linearTextColor(fromSuperView bgView: UIView, colors: [UIColor]) {
         var cgColors: [CGColor] = []
         for co in colors {
@@ -244,4 +268,11 @@ public extension UIView  {
         gradientLayer1.mask = layer
         frame = gradientLayer1.bounds
     }
+
+    public static func xibView() -> Self? {
+        let nib = UINib(nibName: nameOfClass, bundle: Bundle.main)
+        let view = nib.instantiate(withOwner: self, options: [:]).first as? UIView
+        return view?.toType()
+    }
+    
 }

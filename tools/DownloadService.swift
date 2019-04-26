@@ -209,6 +209,7 @@ open class ResourceDownloader : NSObject {
     deinit {
         print("deinit ResourceDownloader")
     }
+
     private func copyResourceToRecorce(res:CRResource)->CRResource{
         let newRes = CRResource()
         newRes.url = res.url
@@ -222,6 +223,7 @@ open class ResourceDownloader : NSObject {
         newRes.status = res.status
         return newRes
     }
+
     fileprivate init(resource:CRResource,_ manager: AFURLSessionManager) {
         sessionManager = manager
         super.init()
@@ -234,9 +236,11 @@ open class ResourceDownloader : NSObject {
             self.resource = resource
         }
     }
+
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) 没打算支持序列化")
     }
+
     // MARK: - 公开函数
     func subscribe(observer:AnyHashable, updateBlock: @escaping TaskObserverBlock) {
         observers.removeAll()
@@ -245,24 +249,29 @@ open class ResourceDownloader : NSObject {
             updateBlock(self.resource.status,self.progress, self)
         }
     }
-    func desubscribe(observer:AnyHashable) {
+
+    public func desubscribe(observer:AnyHashable) {
         observers.removeValue(forKey: observer.hashValue)
     }
+
     /// 开始下载
-    func begin() {
+    public func begin() {
         update(status: .downloading, progress: 0)
         self.insideDownloadTask?.resume()
     }
-    func pause() {
+
+    public func pause() {
         self.insideDownloadTask?.cancel(byProducingResumeData: { [unowned self] resumeData in
             self.resource.resumeData = resumeData! as NSData
             self.update(status:.pause,progress: self.progress)
         })
     }
-    func cancel() {
+
+    public func cancel() {
         self.insideDownloadTask?.cancel()
         self.update(status: .failed, progress: 0)
     }
+
     // MARK: - 私有函数
     fileprivate func buildDownloadTask(resumeData:Data?) -> URLSessionDownloadTask {
         let progressBlock = {[unowned self] (downloadProgress : Progress) -> Void in
@@ -297,6 +306,7 @@ destination: destinationBlock,completionHandler: completionHandler)
             completionHandler:completionHandler)
         }
     }
+
     private func update(status:ResourceStatus, progress:Float) {
         self.progress = progress
         for updateBlock in observers.values {
@@ -313,6 +323,7 @@ destination: destinationBlock,completionHandler: completionHandler)
             }catch {}
         }
     }
+    
     private func handleDownloadFinish(filePath:URL) {
         DispatchQueue.global().async {
             // path = /resource/checkCode

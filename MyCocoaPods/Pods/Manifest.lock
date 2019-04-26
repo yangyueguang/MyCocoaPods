@@ -15,9 +15,9 @@ PODS:
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
   - MJRefresh (3.1.15.7)
-  - Realm (3.13.0):
-    - Realm/Headers (= 3.13.0)
-  - Realm/Headers (3.13.0)
+  - Realm (3.14.1):
+    - Realm/Headers (= 3.14.1)
+  - Realm/Headers (3.14.1)
   - SnapKit (4.2.0)
   - WechatOpenSDK (1.8.3)
 
@@ -39,7 +39,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
-  Realm: 5edd2ee65406aef591a4f9895de5a3440e51b3d8
+  Realm: e12c9c2387d05c5bba3a9c394838f5870e85763b
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   WechatOpenSDK: 3117412f8aafde4758cac1e8d20b93c67cafcfef
 

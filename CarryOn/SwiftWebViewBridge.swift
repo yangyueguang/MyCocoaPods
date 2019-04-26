@@ -4,12 +4,14 @@
 //
 //  Github: https://github.com/ShawnFoo/SwiftWebViewBridge
 import UIKit
+
 public typealias SWVBResponseCallBack = (NSDictionary) -> Void
 public typealias SWVBHandler = (AnyObject, @escaping SWVBResponseCallBack) -> Void
 public typealias SWVBHandlerDic = [String: SWVBHandler]
 public typealias SWVBCallbackDic = [String: SWVBResponseCallBack]
 public typealias SWVBMessage = [String: AnyObject]
 public typealias SWVBData = [String: Any]
+
 open class SwiftWebViewBridge: NSObject {
     fileprivate var kCustomProtocolScheme: String {
         return "swvbscheme" //lowercase!
@@ -31,6 +33,7 @@ open class SwiftWebViewBridge: NSObject {
     fileprivate lazy var startupMessageQueue: [SWVBMessage]? = {
         return [SWVBMessage]()
     }()
+    
     fileprivate var defaultHandler: SWVBHandler? {
         get {
             return self.messageHandlers["__kDefaultHandler__"]
@@ -44,6 +47,7 @@ open class SwiftWebViewBridge: NSObject {
     fileprivate lazy var jsCallbacks: SWVBCallbackDic = SWVBCallbackDic()
     // handlers for JS calling
     fileprivate lazy var messageHandlers: SWVBHandlerDic = SWVBHandlerDic()
+
     public class func bridge(_ webView: UIWebView, defaultHandler handler: SWVBHandler?) -> SwiftWebViewBridge {
         let bridge = SwiftWebViewBridge.init(webView: webView)
         bridge.oriDelegate = webView.delegate
@@ -61,6 +65,7 @@ open class SwiftWebViewBridge: NSObject {
         self.webView = webView
     }
 }
+
 // MARK: - SwiftWebViewBridge + Message Manage
 extension SwiftWebViewBridge {
     fileprivate func addToMessageQueue(_ msg: SWVBMessage) {
@@ -71,6 +76,7 @@ extension SwiftWebViewBridge {
             self.dispatchMessage(msg)
         }
     }
+
     fileprivate func dispatchStartupMessageQueue() {
         if let queue = self.startupMessageQueue {
             for message in queue {
@@ -79,6 +85,7 @@ extension SwiftWebViewBridge {
             self.startupMessageQueue = nil
         }
     }
+
     fileprivate func dispatchMessage(_ msg: SWVBMessage) {
         
         if let jsonMsg: String = self.javascriptStylizedJSON(msg as AnyObject),
@@ -100,6 +107,7 @@ extension SwiftWebViewBridge {
             self.swvb_printLog(.ERROR("Swift Object Serialization Failed: \(msg)"))
         }
     }
+
     fileprivate func handleMessagesFromJS(_ jsonMessages: String) {
         guard let messages = self.deserilizeMessage(jsonMessages) as? Array<SWVBMessage> else {
             self.swvb_printLog(.ERROR("Failed to deserilize received msg from JS: \(jsonMessages)"))
@@ -152,12 +160,15 @@ extension SwiftWebViewBridge {
             }// else end
         }// for end
     }// func end
+
     public func sendDataToJS(_ data: SWVBData) {
         self.callJSHandler(nil, params: data, responseCallback: nil)
     }
+
     public func sendDataToJS(_ data: SWVBData, responseCallback: SWVBResponseCallBack?) {
         self.callJSHandler(nil, params: data, responseCallback: responseCallback)
     }
+
     public func callJSHandler(_ handlerName: String?, params: SWVBData?, responseCallback: SWVBResponseCallBack?) {
         
         var message = SWVBMessage()
@@ -174,9 +185,9 @@ extension SwiftWebViewBridge {
             self.jsCallbacks[callbackId] = callback
             message["callbackId"] = callbackId as AnyObject?
         }
-        
         self.addToMessageQueue(message)
     }
+
     public func registerHandlerForJS(handlerName name: String, handler:@escaping SWVBHandler) {
         self.messageHandlers[name] = handler
     }
@@ -237,6 +248,7 @@ extension SwiftWebViewBridge: UIWebViewDelegate {
             oriDelegate.webView?(webView, didFailLoadWithError: error)
         }
     }
+
     fileprivate func isSchemeCorrect(_ url: URL) -> Bool {
         return url.scheme == self.kCustomProtocolScheme;
     }
@@ -261,6 +273,7 @@ extension SwiftWebViewBridge {
             }
         }
     }
+
     fileprivate func swvb_printLog(_ logType: LogType) {
         if SwiftWebViewBridge.logging {
             print(logType.description)
@@ -269,6 +282,7 @@ extension SwiftWebViewBridge {
 }
 // MARK: - SwiftWebViewBridge + JSON Serilization
 extension SwiftWebViewBridge {
+
     fileprivate func javascriptStylizedJSON(_ message: AnyObject) -> String? {
         if let jsonMsg = self.serilizeMessage(message) {
             let jsonStr = jsonMsg.replacingOccurrences(of: "\\", with: "\\\\")
@@ -283,6 +297,7 @@ extension SwiftWebViewBridge {
         }
         return nil
     }
+
     fileprivate func serilizeMessage(_ message: AnyObject) -> String? {
         let jsonData: Data
         do {
@@ -309,6 +324,7 @@ extension SwiftWebViewBridge {
         return nil
     }
 }
+
 // MARK: - SwiftWebViewBridge + JS Loading
 extension SwiftWebViewBridge {
     fileprivate func loadMinifiedJS() -> String {

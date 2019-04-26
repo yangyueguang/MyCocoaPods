@@ -40,6 +40,7 @@ public enum XTransitionType {
            return XScaleNavAnimation(operation: operation)
         }
     }
+
     func dismissAnimation() -> UIViewControllerAnimatedTransitioning {
         switch self {
         case .brokenAnim: return XGLAnimator()
@@ -67,12 +68,14 @@ private struct TexturedVertex {
     var geometryVertex = Vector2()
     var textureVertex = Vector2()
 }
+
 private struct TexturedQuad {
     var bl = TexturedVertex()
     var br = TexturedVertex()
     var tl = TexturedVertex()
     var tr = TexturedVertex()
 }
+
 private struct Vector2: CustomStringConvertible, Equatable {
     var x : CGFloat = 0.0
     var y : CGFloat = 0.0
@@ -86,6 +89,7 @@ private struct Vector2: CustomStringConvertible, Equatable {
         return Vector2(x:left.x + right.x, y:left.y + right.y)
     }
 }
+
 private struct Sprite {
     var quad = TexturedQuad()
     var moveVelocity = Vector2()
@@ -109,6 +113,7 @@ private struct Sprite {
             quad.tr.geometryVertex = quad.tr.geometryVertex + diff
         }
     }
+
     mutating func update(_ tick: TimeInterval) {
         position =  Vector2(x:position.x + moveVelocity.x * CGFloat(tick),y:position.y + moveVelocity.y * CGFloat(tick))
     }
@@ -121,6 +126,7 @@ private class SpriteRender {
         self.texture = texture
         self.effect = effect
     }
+
     func render(_ sprites: [Sprite]) {
         effect.texture2d0.name = self.texture.name
         effect.texture2d0.enabled = 1
@@ -137,6 +143,7 @@ private class SpriteRender {
         glDrawArrays(GLenum(GL_TRIANGLES), 0, GLsizei(vertex.count * 6))
     }
 }
+
 private class ViewTexture {
     var name: GLuint = 0
     var width: GLsizei = 0
@@ -150,11 +157,13 @@ private class ViewTexture {
         glTexParameteri(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_WRAP_T), GLint(GL_CLAMP_TO_EDGE))
         glBindTexture(GLenum(GL_TEXTURE_2D), 0);
     }
+
     deinit {
         if name != 0 {
             glDeleteTextures(1, &name)
         }
     }
+
     func render(view: UIView) {
         let scale = UIScreen.main.scale
         width = GLsizei(view.layer.bounds.size.width * scale)
@@ -189,9 +198,11 @@ public class XGLAnimator: NSObject, UIViewControllerAnimatedTransitioning, GLKVi
     fileprivate var startTransitionTime: TimeInterval!
     fileprivate var transitionContext: UIViewControllerContextTransitioning!
     fileprivate var render: SpriteRender!
+
     open func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
     }
+
     open func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView
         let fromView = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!.view
@@ -236,10 +247,12 @@ public class XGLAnimator: NSObject, UIViewControllerAnimatedTransitioning, GLKVi
         displayLink.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
         self.startTransitionTime = Date.timeIntervalSinceReferenceDate
     }
+
     open func animationEnded(_ transitionCompleted: Bool) {
         displayLink.invalidate()
         displayLink = nil
     }
+
     @objc func displayLinkTick(_ displayLink: CADisplayLink) {
         if let lastUpdateTime = lastUpdateTime {
             let timeSinceLastUpdate = Date.timeIntervalSinceReferenceDate - lastUpdateTime
@@ -255,6 +268,7 @@ public class XGLAnimator: NSObject, UIViewControllerAnimatedTransitioning, GLKVi
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }
+
     public func glkView(_ view: GLKView, drawIn rect: CGRect) {
         glClearColor(0, 0, 0, 0)
         glClear(UInt32(GL_COLOR_BUFFER_BIT))
@@ -263,15 +277,19 @@ public class XGLAnimator: NSObject, UIViewControllerAnimatedTransitioning, GLKVi
         render.render(self.sprites)
     }
 }
+
 //vc.transitioningDelegate = self
 public class XUIDynamicAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     open var duration: TimeInterval = 2
     open var spriteWidth: CGFloat = 20
     var transitionContext: UIViewControllerContextTransitioning!
+
     open func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
     }
+
     var animator: UIDynamicAnimator!
+
     open func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView
         let fromView = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!.view
@@ -308,6 +326,7 @@ public class XUIDynamicAnimator: NSObject, UIViewControllerAnimatedTransitioning
         Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(XUIDynamicAnimator.completeTransition), userInfo: nil, repeats: false)
         self.transitionContext = transitionContext
     }
+
     @objc func completeTransition() {
         transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
     }
@@ -320,6 +339,7 @@ public class XUIViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     open func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
     }
+
     open func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView
         let fromView = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!.view
@@ -368,9 +388,11 @@ public class XScaleAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     var originFrame = CGRect.zero
     /// 展示或消失
     var presenting = false
+
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.5
     }
+
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         var fromView: UIView?
         var toView: UIView?
@@ -421,13 +443,16 @@ public class XScaleAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 //vc.transitioningDelegate = self
 public class XAlertAnimatedTransition: NSObject, UIViewControllerAnimatedTransitioning {
     public var isPresent:Bool = true
+
     required public init(isPresent:Bool){
         self.isPresent = isPresent
         super.init()
     }
+
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.25
     }
+
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         if isPresent {
             presentAnimateTransition(using: transitionContext)
@@ -435,6 +460,7 @@ public class XAlertAnimatedTransition: NSObject, UIViewControllerAnimatedTransit
             dismissAnimateTransition(using: transitionContext)
         }
     }
+
     open func dismissAnimateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let from = transitionContext.viewController(forKey: .from) else { return }
         UIView.animate(withDuration: 0.25, delay: 0.0, options:.curveEaseInOut, animations: {
@@ -444,6 +470,7 @@ public class XAlertAnimatedTransition: NSObject, UIViewControllerAnimatedTransit
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }
+
     public func presentAnimateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let to = transitionContext.viewController(forKey: .to) else { return }
         let containerView = transitionContext.containerView
@@ -461,6 +488,7 @@ public class XAlertAnimatedTransition: NSObject, UIViewControllerAnimatedTransit
         }
     }
 }
+
 //vc.transitioningDelegate = self
 public class XAlertDropDownAnimatedTransition: NSObject, UIViewControllerAnimatedTransitioning {
     public var isPresent:Bool = true
@@ -468,9 +496,11 @@ public class XAlertDropDownAnimatedTransition: NSObject, UIViewControllerAnimate
         self.isPresent = isPresent
         super.init()
     }
+
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.25
     }
+
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         if isPresent {
             presentAnimateTransition(using: transitionContext)
@@ -478,6 +508,7 @@ public class XAlertDropDownAnimatedTransition: NSObject, UIViewControllerAnimate
             dismissAnimateTransition(using: transitionContext)
         }
     }
+
     open func dismissAnimateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let from = transitionContext.viewController(forKey: .from) else { return }
         UIView.animate(withDuration: 0.25, delay: 0.0, options:.curveEaseInOut, animations: {
@@ -487,6 +518,7 @@ public class XAlertDropDownAnimatedTransition: NSObject, UIViewControllerAnimate
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }
+
     public func presentAnimateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let to = transitionContext.viewController(forKey: .to) else { return }
         let containerView = transitionContext.containerView
@@ -500,15 +532,18 @@ public class XAlertDropDownAnimatedTransition: NSObject, UIViewControllerAnimate
         }
     }
 }
+
 //vc.transitioningDelegate = self
 public class XActionSheetAnimatedTransition: NSObject, UIViewControllerAnimatedTransitioning {
     public var isPresent:Bool = true
     required public init(isPresent:Bool){
         super.init()
     }
+
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.25
     }
+
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         if isPresent {
             presentAnimateTransition(using: transitionContext)
@@ -516,6 +551,7 @@ public class XActionSheetAnimatedTransition: NSObject, UIViewControllerAnimatedT
             dismissAnimateTransition(using: transitionContext)
         }
     }
+
     open func dismissAnimateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let from = transitionContext.viewController(forKey: .from) else { return }
         UIView.animate(withDuration: 0.25, delay: 0.0, options:.curveEaseInOut, animations: {
@@ -525,6 +561,7 @@ public class XActionSheetAnimatedTransition: NSObject, UIViewControllerAnimatedT
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }
+
     public func presentAnimateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard var from = transitionContext.viewController(forKey: .from),
             var to = transitionContext.viewController(forKey: .to)
@@ -556,6 +593,7 @@ public class XActionSheetAnimatedTransition: NSObject, UIViewControllerAnimatedT
 @objc protocol Animatable {
     var containerView: UIView? { get }
     var childView: UIView? { get }
+
     @available(iOS 10.0, *)
     @objc optional func presentingView(
         sizeAnimator: UIViewPropertyAnimator,
@@ -563,6 +601,7 @@ public class XActionSheetAnimatedTransition: NSObject, UIViewControllerAnimatedT
         fromFrame: CGRect,
         toFrame: CGRect
     )
+
     @available(iOS 10.0, *)
     @objc optional func dismissingView(
         sizeAnimator: UIViewPropertyAnimator,
@@ -576,9 +615,11 @@ public class XScaleNavAnimation: NSObject {
     fileprivate let operationType: UINavigationController.Operation
     fileprivate let positioningDuration: TimeInterval = 1
     fileprivate let resizingDuration: TimeInterval = 0.5
+
     init(operation: UINavigationController.Operation) {
         self.operationType = operation
     }
+
     internal func presentTransition(_ transitionContext: UIViewControllerContextTransitioning) {
         let container = transitionContext.containerView
         guard let fromVC = transitionContext.viewController(forKey: .from) as? Animatable, let fromContainer = fromVC.containerView,
@@ -629,6 +670,7 @@ public class XScaleNavAnimation: NSObject {
         } else {
         }
     }
+
     internal func dismissTransition(_ transitionContext: UIViewControllerContextTransitioning) {
         let container = transitionContext.containerView
         guard
@@ -685,10 +727,13 @@ public class XScaleNavAnimation: NSObject {
         }
     }
 }
+
 extension XScaleNavAnimation: UIViewControllerAnimatedTransitioning {
+    
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return max(self.resizingDuration, self.positioningDuration)
     }
+    
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         if self.operationType == .push {
             self.presentTransition(transitionContext)

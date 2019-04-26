@@ -7,10 +7,17 @@
 //
 import UIKit
 import Foundation
+
 public extension NSObject {
+
     class var nameOfClass: String {
         return NSStringFromClass(self).components(separatedBy: ".").last! as String
     }
+
+    func toType<T>(_ type: T.Type = T.self) -> T {
+        return self as! T
+    }
+
     @objc func deepCopy() -> Self {
         let model = type(of: self).init()
         var count: UInt32 = 0
@@ -24,6 +31,7 @@ public extension NSObject {
         free(properties)
         return model
     }
+
     @objc func archivedCopy() -> AnyObject {
         guard let cls = self.classForKeyedArchiver else {
             return type(of: self).init()
@@ -40,6 +48,7 @@ public extension NSObject {
 //        return type(of: self).init()
     }
 }
+
 public extension URL {
     var queryParameters: [String: String] {
         guard let components = URLComponents(url: self, resolvingAgainstBaseURL: false), let queryItems = components.queryItems else { return [:] }
@@ -50,18 +59,23 @@ public extension URL {
         return items
     }
 }
+
 public extension FileManager {
+
     class func url(for dictionary: FileManager.SearchPathDirectory) -> URL?{
         return self.default.urls(for: dictionary, in: .userDomainMask).last
     }
+
     class func path(for directory: FileManager.SearchPathDirectory) -> String?{
         return NSSearchPathForDirectoriesInDomains(directory, .userDomainMask, true).first
     }
+
     /// 清理缓存
     class func clearCache() {
         let domain = Bundle.main.bundleIdentifier
         UserDefaults.standard.removePersistentDomain(forName: domain!)
     }
+
     /// 获取文件大小
     class func fileSizeAtPath(_ filePath:String) -> Double{
         let manager = FileManager.default
@@ -72,6 +86,7 @@ public extension FileManager {
             return 0
         }
     }
+
     /// 获取文件夹大小
     class func folderSizeAtPath(_ folderPath:String) -> Double{
         let manager = FileManager.default
@@ -90,6 +105,30 @@ public extension FileManager {
         }
         return folderSize
     }
+
+    public static func readJson2Array(fileName:String) -> [Any] {
+        let path = Bundle.main.path(forResource: fileName, ofType: "json") ?? ""
+        var list = [Any]()
+        do{
+            let data = try Data.init(contentsOf: URL.init(fileURLWithPath: path))
+            list = try JSONSerialization.jsonObject(with: data, options:[]) as! [Any]
+        }catch {
+            print(error.localizedDescription)
+        }
+        return list
+    }
+
+    public static func readJson2Dict(fileName:String) -> [String:Any] {
+        let path = Bundle.main.path(forResource: fileName, ofType: "json") ?? ""
+        var dict = [String:Any]()
+        do{
+            let data = try Data.init(contentsOf: URL.init(fileURLWithPath: path))
+            dict = try JSONSerialization.jsonObject(with: data, options:[]) as! [String : Any]
+        }catch {
+            print(error.localizedDescription)
+        }
+        return dict
+    }
 }
 
 public extension UIFont {
@@ -97,21 +136,25 @@ public extension UIFont {
 }
 
 public extension UIColor {
+
     convenience init(hex: Int, alpha: CGFloat = 1) {
         let red = (hex >> 16) & 0xff
         let green = (hex >> 8) & 0xff
         let blue = hex & 0xff
         self.init(CGFloat(red), CGFloat(green), CGFloat(blue), alpha)
     }
+
     convenience init(_ R: CGFloat,_ G: CGFloat,_ B: CGFloat,_ A: CGFloat = 1) {
         self.init(red: R / 255.0, green: G / 255.0, blue: B / 255.0, alpha: A)
     }
+
     class var random: UIColor {
         let red = CGFloat(arc4random()%256)/255.0
         let green = CGFloat(arc4random()%256)/255.0
         let blue = CGFloat(arc4random()%256)/255.0
         return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
     }
+
     var hexString: String {
         let components: [Int] = {
             let c = cgColor.components!
@@ -123,10 +166,13 @@ public extension UIColor {
 }
 
 class ClosureWrapper: NSObject {
+
     let closureCallBack: () -> Void
+
     init(callBack: @escaping () -> Void) {
         closureCallBack = callBack
     }
+
     @objc open func invoke() {
         closureCallBack()
     }
@@ -140,6 +186,7 @@ public extension UIControl {
         objc_setAssociatedObject(self, &associatedClosure, wrapper, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
 }
+
 //FIXME: 以下是UIKit的扩展
 public extension UILabel {
     convenience init(frame: CGRect, font: UIFont, color: UIColor, text: String?, lineSpace: CGFloat = -1, alignment: NSTextAlignment = .left, lines: Int = 0, shadowColor: UIColor = UIColor.clear) {
@@ -158,10 +205,12 @@ public extension UILabel {
             self.attributedText = attributedString
         }
     }
+
     /// 复制文字到剪贴板
     @objc func txtCopy(_ item: Any) {
         UIPasteboard.general.string = text
     }
+
     /// 添加长按复制的响应
     func labelLongPress(_ longPress: UILongPressGestureRecognizer) {
         self.becomeFirstResponder()
@@ -189,6 +238,7 @@ public extension UIButton {
         }
         addTarget(target, action: action, for: .touchUpInside)
     }
+
     func centerTextAndImage(spacing: CGFloat) {
         let insetAmount = spacing / 2
         imageEdgeInsets = UIEdgeInsets(top: 0, left: -insetAmount, bottom: 0, right: insetAmount)
@@ -198,9 +248,11 @@ public extension UIButton {
 }
 
 public extension UITextField {
+
     func placeholderColor(_ color : UIColor) {
         self.setValue(color, forKeyPath: "_placeholderLabel.textColor")
     }
+
     convenience init(frame: CGRect, font: UIFont?, color: UIColor?, holder: String?, text: String?) {
         self.init(frame: frame)
         keyboardType = .default
@@ -279,11 +331,13 @@ public extension UIBarButtonItem {
         }
         self.init(customView: btn)
     }
+
     convenience init(title: String?, style: UIBarButtonItem.Style = UIBarButtonItem.Style.done, action:@escaping () -> Void) {
         let wrapper = ClosureWrapper.init(callBack: action)
         self.init(title: title, style: style, target: wrapper, action: #selector(wrapper.invoke))
         objc_setAssociatedObject(self, &associatedClosure, wrapper, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
+
     convenience init(image: UIImage?, style: UIBarButtonItem.Style = UIBarButtonItem.Style.done, action:@escaping () -> Void) {
         let wrapper = ClosureWrapper.init(callBack: action)
         self.init(image: image, style: style, target: wrapper, action: #selector(wrapper.invoke))
@@ -307,6 +361,7 @@ public extension UINavigationController  {
 }
 
 public extension UIViewController{
+
     var rootController: UIViewController? {
         var topVC = UIApplication.shared.keyWindow?.rootViewController
         while topVC?.presentedViewController != nil {
@@ -314,6 +369,7 @@ public extension UIViewController{
         }
         return topVC
     }
+
     class func initFromNib() -> UIViewController {
         let nib = Bundle(for: self)
         return self.init(nibName: self.nameOfClass, bundle: nib)
@@ -323,6 +379,7 @@ public extension UIViewController{
     func setBackGestureEnable(_ enable: Bool) {
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = enable
     }
+
     /// 导航栏下的横线是否隐藏
     func setNaviLineHidden(_ hidden: Bool) {
         guard let list = self.navigationController?.navigationBar.subviews else { return }
@@ -332,6 +389,7 @@ public extension UIViewController{
             }
         }
     }
+
     /// 导航栏是否透明
     func setNavBarClear(_ clear: Bool) {
         if clear{
@@ -344,5 +402,32 @@ public extension UIViewController{
                 , for: UIBarMetrics.default)
             self.navigationController?.navigationBar.isTranslucent = false;
         }
+    }
+
+    public static func storyVC(_ name: String) -> Self {
+        let story = UIStoryboard(name: name, bundle: nil)
+        let vc = story.instantiateViewController(withIdentifier: self.nameOfClass)
+        return vc.toType()
+    }
+}
+
+public extension Notification {
+    func keyBoardHeight() -> CGFloat {
+        if let userInfo = self.userInfo {
+            if let value = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+                let size = value.cgRectValue.size
+                return UIInterfaceOrientation.portrait.isLandscape ? size.width : size.height
+            }
+        }
+        return 0
+    }
+}
+
+public extension UIApplication {
+    var statusBarView: UIView? {
+        if responds(to: Selector(("statusBar"))) {
+            return value(forKey: "statusBar") as? UIView
+        }
+        return nil
     }
 }

@@ -1,8 +1,9 @@
 //
 //  ViewController.swift
 import UIKit
+
 import CoreSpotlight
-import MobileCoreServices
+//import MobileCoreServices
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -10,4 +11,3 @@ class ViewController: UIViewController {
         PublicTools.addSearchItem(title: "这是第二种", des:nil, thumURL: nil, identifier: "i222", keywords: ["sss","ddd","asd"])
     }
 }
-

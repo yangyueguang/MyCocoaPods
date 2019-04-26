@@ -1,15 +1,18 @@
 
 //
 //  String+Extension.swift
-import Foundation
 import UIKit
+import Foundation
+
 public extension String {
+
     /// 随机码
-    static var seqNo: String{
+    public static var seqNo: String{
         return  String(arc4random()%89999999+10000000)
     }
+
     /// UUID
-    static var uuid: String {
+    public static var uuid: String {
         let uuid : UUID = UIDevice.current.identifierForVendor!
         let uu :String = "\(uuid)"
         let array = uu.components(separatedBy: ">")
@@ -17,6 +20,14 @@ public extension String {
         let lastArray = "\((arrayNext[0] )+(arrayNext[1] )+(arrayNext[2] )+(arrayNext[3] )+(arrayNext[4] ))".components(separatedBy: " ")
         return "\((lastArray[0] )+(lastArray[1] ))"
     }
+    
+    var image: UIImage {return UIImage(named: self) ?? UIImage()}
+    var url: URL? {return URL(string: self) ?? URL(string: "https://www.baidu.com")}
+    var intValue: Int {return Int((self as NSString).intValue)}
+    var floatValue: Float {return (self as NSString).floatValue}
+    var doubleValue: Double {return (self as NSString).doubleValue}
+    var oc: NSString { return self as NSString }
+
     /// 判断字符串中是否有中文
     func isHaveChinese() -> Bool {
         for ch in self.unicodeScalars {
@@ -24,6 +35,7 @@ public extension String {
         }
         return false
     }
+
     public var isEmoji: Bool {
         let scalarValue = unicodeScalars.first!.value
         switch scalarValue {
@@ -37,6 +49,7 @@ public extension String {
             return false
         }
     }
+
     /// 将中文字符串转换为拼音
     func pinyin(hasBlank: Bool = false) -> String {
         let stringRef = NSMutableString(string: self) as CFMutableString
@@ -57,7 +70,7 @@ public extension String {
     }
 
     /// 是否是空或空串
-    static func isNullOrEmpty(_ string: String?) -> Bool {
+    public static func isNullOrEmpty(_ string: String?) -> Bool {
         if let str = string, !str.isEmpty {
             return false
         } else {
@@ -86,41 +99,27 @@ public extension String {
     func bounds(_ maxSize: CGSize, attributes : [NSAttributedString.Key: Any]?) -> CGRect {
         return  NSString(string: self).boundingRect(with: maxSize,options: NSStringDrawingOptions.usesLineFragmentOrigin,attributes: attributes,context: nil)
     }
+
     /// 给字符串进行base64加密：
     func base64Encoded() -> String{
         let data:Data! = self.data(using: .utf8)
         let base64Str = data.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: UInt(0)))
         return base64Str
     }
+
     /// 给字符串进行base64解密：
     func base64Decoded() -> String {
         let data:Data! = Data.init(base64Encoded: self)
         let decodedStr = String.init(data: data!, encoding: .utf8)
         return decodedStr!
     }
+
     /// 是否是手机号
     func isPhone()->Bool{
         let regex = try! NSRegularExpression(pattern: "^1[0-9]{10}$",options: [.caseInsensitive])
         return regex.firstMatch(in: self, options:[],range: NSMakeRange(0, utf16.count)) != nil
     }
 
-    //    //给字符串进行MD5加密  返回小写 32位
-//    var md5OfString :String {
-//        let cString = self.cString(using: String.Encoding.utf8)
-//        let length = CUnsignedInt(
-//            self.lengthOfBytes(using: String.Encoding.utf8)
-//        )
-//        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(
-//            capacity: Int(CC_MD5_DIGEST_LENGTH)
-//        )
-//        CC_MD5(cString!, length, result)
-//        return String(format:
-//            "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
-//                      result[0], result[1], result[2], result[3],
-//                      result[4], result[5], result[6], result[7],
-//                      result[8], result[9], result[10], result[11],
-//                      result[12], result[13], result[14], result[15])
-//    }
     /// 替换控制字符
     func replaceControlString() -> String {
         var tempStr: String = self
@@ -143,6 +142,7 @@ public extension String {
             return ""
         }
     }
+
     /// 查找多个匹配方案结果
     func matches(_ pattern: String) -> [Any] {
         let error: Error? = nil
@@ -151,6 +151,54 @@ public extension String {
             return []
         }
         return (regex?.matches(in: self, range: NSRange(location: 0, length: pattern.utf8.count)))!
+    }
+
+    func substring(from index: Int) -> String {
+        guard count > index else { return "" }
+        return (self as NSString).substring(from:index)
+    }
+
+    func substring(location index:Int, length:Int) -> String {
+        if self.count > index {
+            let startIndex = self.index(self.startIndex, offsetBy: index)
+            let endIndex = self.index(self.startIndex, offsetBy: index + length)
+            let subString = self[startIndex..<endIndex]
+            return String(subString)
+        } else {
+            return self
+        }
+    }
+
+    func substring(range:NSRange) -> String {
+        if self.count > range.location {
+            let startIndex = self.index(self.startIndex, offsetBy: range.location)
+            let endIndex = self.index(self.startIndex, offsetBy: range.location + range.length)
+            let subString = self[startIndex..<endIndex]
+            return String(subString)
+        } else {
+            return self
+        }
+    }
+
+//    func md5() -> String {
+//        let cStrl = cString(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue));
+//        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: 16);
+//        CC_MD5(cStrl, CC_LONG(strlen(cStrl!)), buffer);
+//        var md5String = "";
+//        for idx in 0...15 {
+//            let obcStrl = String.init(format: "%02x", buffer[idx]);
+//            md5String.append(obcStrl);
+//        }
+//        free(buffer);
+//        return md5String;
+//    }
+
+    public static func format(decimal:Float, _ maximumDigits:Int = 1, _ minimumDigits:Int = 1) ->String? {
+        let number = NSNumber(value: decimal)
+        let numberFormatter = NumberFormatter()
+        numberFormatter.maximumFractionDigits = maximumDigits //设置小数点后最多2位
+        numberFormatter.minimumFractionDigits = minimumDigits //设置小数点后最少2位（不足补0）
+        return numberFormatter.string(from: number)
     }
 }
 
@@ -165,6 +213,7 @@ public extension NSAttributedString {
         }
         return result
     }
+
     /// 下划线
     func bottomLine(_ color: UIColor, match pattern: String) -> NSAttributedString {
         guard let pattern = try? NSRegularExpression(pattern: pattern, options: []) else { return self }
@@ -177,6 +226,7 @@ public extension NSAttributedString {
         }
         return result
     }
+
     /// 删除线
     func deleteLine(_ color: UIColor) -> NSAttributedString {
         let attributes = [NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue]

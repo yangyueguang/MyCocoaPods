@@ -7,6 +7,7 @@
 //
 import UIKit
 import Foundation
+
 public let APPW = UIScreen.main.bounds.width
 public let APPH = UIScreen.main.bounds.height
 public var TopHeight:CGFloat {
@@ -37,6 +38,7 @@ public func jsonToModelPrint(_ dict:[String:Any], name:String, space: String = "
         }
         return s
     }
+
     let firstUppercase = {(name: String) -> String in
         return name.prefix(1).uppercased() + name.suffix(from: name.index(name.startIndex, offsetBy: 1))
     }

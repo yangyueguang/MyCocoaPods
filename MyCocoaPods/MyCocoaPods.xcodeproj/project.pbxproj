@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		13272FD8E7DF69123BAA2F4B /* Pods_MyCocoaPods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2365036460F451E73D4822 /* Pods_MyCocoaPods.framework */; };
 		71024C36209C289300207E44 /* XCarryOn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71024C35209C289300207E44 /* XCarryOn.swift */; };
-		713FDEF72099A03800C4E69E /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEEF2099A03700C4E69E /* DownloadService.swift */; };
-		713FDEF82099A03800C4E69E /* PreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FDEF02099A03700C4E69E /* PreViewController.swift */; };
 		713FDEFC2099A04200C4E69E /* UTI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 713FDEFB2099A04200C4E69E /* UTI.plist */; };
 		7162E68120A0352F00EF6896 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7162E68020A0352E00EF6896 /* libxml2.tbd */; };
 		BF4C101D1F62E23500E8234D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4C101C1F62E23500E8234D /* AppDelegate.swift */; };
@@ -41,8 +39,15 @@
 		BF7710D61FB94F6F001F853E /* SendMsgToWeChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7710C51FB94F6E001F853E /* SendMsgToWeChatViewController.m */; };
 		BF7710D71FB94F6F001F853E /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF7710C71FB94F6E001F853E /* WXUtil.mm */; };
 		DF0274C021B5328B003038F1 /* XDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0274BF21B5328B003038F1 /* XDataCache.swift */; };
+		DF1BEC442272B263005A0ADA /* Circular3DStarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1BEC422272B262005A0ADA /* Circular3DStarView.swift */; };
+		DF1BEC452272B263005A0ADA /* XUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1BEC432272B263005A0ADA /* XUIKit.swift */; };
+		DF1BEC492272D197005A0ADA /* XExtension.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DF1BEC462272D197005A0ADA /* XExtension.podspec */; };
+		DF1BEC4A2272D197005A0ADA /* XWechartSDK.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DF1BEC472272D197005A0ADA /* XWechartSDK.podspec */; };
+		DF1BEC4B2272D197005A0ADA /* XCarryOn.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DF1BEC482272D197005A0ADA /* XCarryOn.podspec */; };
 		DF21F88821C2B2C50007F632 /* XURLNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF21F88721C2B2C50007F632 /* XURLNavigator.swift */; };
 		DF42322D21872704005E5949 /* UILabel+TapAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF42322C21872704005E5949 /* UILabel+TapAction.swift */; };
+		DF524C1D2272F11600099FE6 /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524C1B2272F11600099FE6 /* DownloadService.swift */; };
+		DF524C1E2272F11600099FE6 /* PreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524C1C2272F11600099FE6 /* PreViewController.swift */; };
 		DF95CB4321D779BD0049754A /* XImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95CB4221D779BD0049754A /* XImageView.swift */; };
 		DF95CB4921D779D00049754A /* XTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95CB4421D779CF0049754A /* XTransitionAnimator.swift */; };
 		DF95CB4A21D779D00049754A /* SwiftWebViewBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95CB4521D779CF0049754A /* SwiftWebViewBridge.swift */; };
@@ -65,8 +70,6 @@
 		00087E8B0C2CE5586E75AE96 /* Pods-MyCocoaPods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCocoaPods.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods.debug.xcconfig"; sourceTree = "<group>"; };
 		6FB852E20851D3E97FD4AB39 /* Pods-MyCocoaPods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCocoaPods.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods.release.xcconfig"; sourceTree = "<group>"; };
 		71024C35209C289300207E44 /* XCarryOn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCarryOn.swift; sourceTree = "<group>"; };
-		713FDEEF2099A03700C4E69E /* DownloadService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
-		713FDEF02099A03700C4E69E /* PreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreViewController.swift; sourceTree = "<group>"; };
 		713FDEFB2099A04200C4E69E /* UTI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UTI.plist; sourceTree = "<group>"; };
 		7162E68020A0352E00EF6896 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		BF4C10191F62E23500E8234D /* MyCocoaPods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCocoaPods.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,8 +113,15 @@
 		BF97602C1F7150DC00DE9ABB /* MyCocoaPods-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyCocoaPods-Bridging-Header.h"; sourceTree = "<group>"; };
 		CC2365036460F451E73D4822 /* Pods_MyCocoaPods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyCocoaPods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF0274BF21B5328B003038F1 /* XDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDataCache.swift; sourceTree = "<group>"; };
+		DF1BEC422272B262005A0ADA /* Circular3DStarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circular3DStarView.swift; sourceTree = "<group>"; };
+		DF1BEC432272B263005A0ADA /* XUIKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUIKit.swift; sourceTree = "<group>"; };
+		DF1BEC462272D197005A0ADA /* XExtension.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = XExtension.podspec; path = ../../XExtension.podspec; sourceTree = "<group>"; };
+		DF1BEC472272D197005A0ADA /* XWechartSDK.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = XWechartSDK.podspec; path = ../../XWechartSDK.podspec; sourceTree = "<group>"; };
+		DF1BEC482272D197005A0ADA /* XCarryOn.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = XCarryOn.podspec; path = ../../XCarryOn.podspec; sourceTree = "<group>"; };
 		DF21F88721C2B2C50007F632 /* XURLNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XURLNavigator.swift; sourceTree = "<group>"; };
 		DF42322C21872704005E5949 /* UILabel+TapAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+TapAction.swift"; sourceTree = "<group>"; };
+		DF524C1B2272F11600099FE6 /* DownloadService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
+		DF524C1C2272F11600099FE6 /* PreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreViewController.swift; sourceTree = "<group>"; };
 		DF95CB4221D779BD0049754A /* XImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XImageView.swift; sourceTree = "<group>"; };
 		DF95CB4421D779CF0049754A /* XTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTransitionAnimator.swift; sourceTree = "<group>"; };
 		DF95CB4521D779CF0049754A /* SwiftWebViewBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftWebViewBridge.swift; sourceTree = "<group>"; };
@@ -146,7 +156,9 @@
 		713FDEDC20999DD500C4E69E /* CarryOn */ = {
 			isa = PBXGroup;
 			children = (
+				DF1BEC432272B263005A0ADA /* XUIKit.swift */,
 				DFC662C921C0EA9C00B41558 /* XHud.swift */,
+				DF1BEC422272B262005A0ADA /* Circular3DStarView.swift */,
 				DF95CB4721D779D00049754A /* CircularSlider.swift */,
 				DF95CB4521D779CF0049754A /* SwiftWebViewBridge.swift */,
 				DF95CB4821D779D00049754A /* XAlertViewController.swift */,
@@ -169,8 +181,8 @@
 			isa = PBXGroup;
 			children = (
 				713FDEFB2099A04200C4E69E /* UTI.plist */,
-				713FDEEF2099A03700C4E69E /* DownloadService.swift */,
-				713FDEF02099A03700C4E69E /* PreViewController.swift */,
+				DF524C1B2272F11600099FE6 /* DownloadService.swift */,
+				DF524C1C2272F11600099FE6 /* PreViewController.swift */,
 			);
 			name = tools;
 			path = ../../tools;
@@ -212,6 +224,9 @@
 				BF7710461FB94E4B001F853E /* Extension */,
 				BF4C101C1F62E23500E8234D /* AppDelegate.swift */,
 				BF4C101E1F62E23500E8234D /* ViewController.swift */,
+				DF1BEC482272D197005A0ADA /* XCarryOn.podspec */,
+				DF1BEC462272D197005A0ADA /* XExtension.podspec */,
+				DF1BEC472272D197005A0ADA /* XWechartSDK.podspec */,
 				BF5B9A9F1F66CADE00ECB3EC /* README.md */,
 				DFFBF954218990280085B638 /* .gitignore */,
 				BF4C10201F62E23500E8234D /* Main.storyboard */,
@@ -370,16 +385,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF1BEC492272D197005A0ADA /* XExtension.podspec in Resources */,
 				BF7710D41FB94F6F001F853E /* thumb.png in Resources */,
 				BF7710D11FB94F6F001F853E /* micro_messenger.png in Resources */,
 				BF7710CF1FB94F6E001F853E /* dynamicthumb.png in Resources */,
 				BF7710CE1FB94F6E001F853E /* dynamic.gif in Resources */,
 				DFFBF955218990280085B638 /* .gitignore in Resources */,
+				DF1BEC4B2272D197005A0ADA /* XCarryOn.podspec in Resources */,
 				BF4C10271F62E23500E8234D /* LaunchScreen.storyboard in Resources */,
 				BF7710D31FB94F6F001F853E /* test.jpg in Resources */,
 				BF4C10241F62E23500E8234D /* Assets.xcassets in Resources */,
 				BF7710D01FB94F6F001F853E /* iphone4.pdf in Resources */,
 				713FDEFC2099A04200C4E69E /* UTI.plist in Resources */,
+				DF1BEC4A2272D197005A0ADA /* XWechartSDK.podspec in Resources */,
 				BF4C10221F62E23500E8234D /* Main.storyboard in Resources */,
 				BF7710D21FB94F6F001F853E /* ML.pdf in Resources */,
 			);
@@ -444,12 +462,14 @@
 				DFC662CE21C1183900B41558 /* SwiftNotice.swift in Sources */,
 				BF7710C91FB94F6E001F853E /* MXWechatSignAdaptor.m in Sources */,
 				BF77107E1FB94E4B001F853E /* Date+Extension.swift in Sources */,
+				DF524C1E2272F11600099FE6 /* PreViewController.swift in Sources */,
 				DF95CB4321D779BD0049754A /* XImageView.swift in Sources */,
 				DFFC764E21B56021006E75D4 /* Public.swift in Sources */,
 				BF7710841FB94E4B001F853E /* String+Extension.swift in Sources */,
 				DFC662D021C1199800B41558 /* Collection+Extension.swift in Sources */,
 				BF5B9AA01F66CADE00ECB3EC /* README.md in Sources */,
 				DF95CB4D21D779D00049754A /* XAlertViewController.swift in Sources */,
+				DF1BEC452272B263005A0ADA /* XUIKit.swift in Sources */,
 				BF4C101F1F62E23500E8234D /* ViewController.swift in Sources */,
 				BF4C101D1F62E23500E8234D /* AppDelegate.swift in Sources */,
 				DF42322D21872704005E5949 /* UILabel+TapAction.swift in Sources */,
@@ -460,6 +480,7 @@
 				DF95CB4921D779D00049754A /* XTransitionAnimator.swift in Sources */,
 				DFA5BE3E21B6952800CB9223 /* NSObject+Mirror.swift in Sources */,
 				BF7710CC1FB94F6E001F853E /* WXApiResponseHandler.m in Sources */,
+				DF524C1D2272F11600099FE6 /* DownloadService.swift in Sources */,
 				BF7710831FB94E4B001F853E /* PublicTools.swift in Sources */,
 				BF7710911FB94E4B001F853E /* UIView+Extension.swift in Sources */,
 				BF77108A1FB94E4B001F853E /* UIImage+Extension.swift in Sources */,
@@ -468,11 +489,10 @@
 				DF95CB4C21D779D00049754A /* CircularSlider.swift in Sources */,
 				DFC662D221C11A1D00B41558 /* ReusableView+Extension.swift in Sources */,
 				DF95CB4B21D779D00049754A /* XTip.swift in Sources */,
-				713FDEF72099A03800C4E69E /* DownloadService.swift in Sources */,
 				BF7710D71FB94F6F001F853E /* WXUtil.mm in Sources */,
 				BF7710CA1FB94F6E001F853E /* WXApiManager.m in Sources */,
 				BF7710D61FB94F6F001F853E /* SendMsgToWeChatViewController.m in Sources */,
-				713FDEF82099A03800C4E69E /* PreViewController.swift in Sources */,
+				DF1BEC442272B263005A0ADA /* Circular3DStarView.swift in Sources */,
 				DFFC764C21B55DD7006E75D4 /* OtherExtensions.swift in Sources */,
 				71024C36209C289300207E44 /* XCarryOn.swift in Sources */,
 			);
@@ -614,6 +634,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.freedom.MyCocoaPods;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyCocoaPods/MyCocoaPods-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -639,6 +660,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.freedom.MyCocoaPods;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyCocoaPods/MyCocoaPods-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 			};

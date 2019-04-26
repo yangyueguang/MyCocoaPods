@@ -7,9 +7,11 @@
 //
 import UIKit
 import QuartzCore
+
 @objcMembers
 public class TipView: UIView {
     var clipRect = CGRect.zero
+
     init(clipRect rect: CGRect, tip trect: CGRect, direction: Int, percent p: CGFloat, text: String) {
         super.init(frame: UIScreen.main.bounds)
         clipRect = rect
@@ -48,6 +50,7 @@ public class TipView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     override public func draw(_ rect: CGRect) {
         let context: CGContext = UIGraphicsGetCurrentContext()!
         let backgroundimage: CGImage = context.makeImage()!
@@ -72,6 +75,7 @@ public class TipView: UIView {
         context.draw(masked, in: rect)
     }
 }
+
 @objcMembers
 public class XTip: UIViewController {
     var index: Int = 0
@@ -85,16 +89,19 @@ public class XTip: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     override public func viewDidLoad() {
         super.viewDidLoad()
         index = 0
         show()
     }
+
     func show() {
         let modalState: TipView = tipViewBlock!(index)
         view.addSubview(modalState)
         modalState.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapAction(_:))))
     }
+    
     func tapAction(_ sender:UITapGestureRecognizer){
         index += 1
         if self.didClickedOverBlock!(self.index) {

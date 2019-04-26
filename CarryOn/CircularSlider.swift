@@ -2,11 +2,13 @@
 //  RangeCircularSlider.swift
 //  Pods
 import UIKit
+
 struct Interval {
     var min: CGFloat = 0.0
     var max: CGFloat = 0.0
     var rounds: Int = 1
 }
+
 ///🔘按钮
 struct CircleRing {
     var ocWidth: CGFloat = 4 //外环宽度
@@ -16,6 +18,7 @@ struct CircleRing {
     var ooColor: UIColor = .red//内环颜色
     var image: UIImage?//图片
 }
+
 @IBDesignable
 open class CircularSlider: UIControl {
     private let circleMinValue: CGFloat = 0
@@ -93,6 +96,7 @@ open class CircularSlider: UIControl {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+
     override open func draw(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else { return }
         drawCircularSlider(inContext: context)
@@ -108,10 +112,12 @@ open class CircularSlider: UIControl {
         }
         drawThumb(withImage: image, angle: endAngle, inContext: context)
     }
+
     override open func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         sendActions(for: .editingDidBegin)
         return true
     }
+
     override open func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let touchPosition = touch.location(in: self)
         let startPoint = CGPoint(x: bounds.midX, y: 0)
@@ -119,6 +125,7 @@ open class CircularSlider: UIControl {
         sendActions(for: .valueChanged)
         return true
     }
+
     open override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         sendActions(for: .editingDidEnd)
     }
@@ -149,6 +156,7 @@ open class CircularSlider: UIControl {
         }
         return newValue
     }
+
     private func scaleValue(_ value: CGFloat, fromInterval source: Interval, toInterval destination: Interval) -> CGFloat {
         let sourceRange = (source.max - source.min) / CGFloat(source.rounds)
         let destinationRange = (destination.max - destination.min) / CGFloat(destination.rounds)
@@ -156,6 +164,7 @@ open class CircularSlider: UIControl {
         let newValue =  (((scaledValue - source.min) * destinationRange) / sourceRange) + destination.min
         return  newValue
     }
+
     // 画外环
     private static func drawArc(withArc arc: Arc, lineWidth: CGFloat = 2, mode: CGPathDrawingMode = .fillStroke, inContext context: CGContext) {
         let circle = arc.circle
@@ -169,6 +178,7 @@ open class CircularSlider: UIControl {
         context.drawPath(using: mode)
         UIGraphicsPopContext()
     }
+
     // 画内环
     private static func drawDisk(withArc arc: Arc, inContext context: CGContext) {
         let circle = arc.circle
@@ -181,6 +191,7 @@ open class CircularSlider: UIControl {
         context.drawPath(using: .fill)
         UIGraphicsPopContext()
     }
+
     // 画轨道
     private func drawCircularSlider(inContext context: CGContext) {
         fillColor.setFill()
@@ -189,6 +200,7 @@ open class CircularSlider: UIControl {
         let sliderArc = Arc(circle: circle, startAngle: circleMinValue, endAngle: circleMaxValue)
         CircularSlider.drawArc(withArc: sliderArc, lineWidth: trackWidth, inContext: context)
     }
+
     /// 画外环选中轨道
     private func drawFilledArc(fromAngle startAngle: CGFloat, toAngle endAngle: CGFloat, inContext context: CGContext) {
         fillSelectColor.setFill()
@@ -198,6 +210,7 @@ open class CircularSlider: UIControl {
         CircularSlider.drawDisk(withArc: arc, inContext: context)
         CircularSlider.drawArc(withArc: arc, lineWidth: lineWidth, mode: .stroke, inContext: context)
     }
+
     // 画外环未选中轨道
     private func drawShadowArc(fromAngle startAngle: CGFloat, toAngle endAngle: CGFloat, inContext context: CGContext) {
         let origin = CGPoint(x: bounds.midX, y: bounds.midY)
@@ -206,6 +219,7 @@ open class CircularSlider: UIControl {
         // stroke Arc
         CircularSlider.drawArc(withArc: arc, lineWidth: lineWidth, mode: .stroke, inContext: context)
     }
+
     // 画🔘颜色
     @discardableResult
     private func drawThumb(withAngle angle: CGFloat, inContext context: CGContext) -> CGPoint {
@@ -218,6 +232,7 @@ open class CircularSlider: UIControl {
         CircularSlider.drawArc(withArc: thumbArc, lineWidth: circleRadiu.ocWidth, inContext: context)
         return thumbOrigin
     }
+    
     // 画🔘图片
     @discardableResult
     private func drawThumb(withImage image: UIImage, angle: CGFloat, inContext context: CGContext) -> CGPoint {

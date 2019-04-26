@@ -99,12 +99,9 @@ pod search name
 ```
 # 更新内容
 ```
-pod 'BaseFile'
-pod 'XCategory'
 pod 'XExtension'
 pod 'XCarryOn'
 pod 'XWechartSDK'
-#pod 'XAlipaySDK'
 ```
 # RepositoryBranch
 ## 这是只克隆一个仓库中的某个文件夹或某个分支到本地进行修改并上传的说明。
