@@ -174,7 +174,7 @@ open class CRResource: RLMObject {
     dynamic var password=""//密码
     dynamic var checkCode=""//唯一标识
 //    dynamic var type : ResourceType = .unknown//文件类型
-    dynamic var type:ResourceType{
+    var type:ResourceType{
         get {
             let exten = (self.name as NSString).pathExtension
             if let type = ResourceType(rawValue: exten.lowercased()){

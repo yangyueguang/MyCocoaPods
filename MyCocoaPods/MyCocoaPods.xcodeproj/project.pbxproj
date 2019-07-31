@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		13272FD8E7DF69123BAA2F4B /* Pods_MyCocoaPods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2365036460F451E73D4822 /* Pods_MyCocoaPods.framework */; };
 		71024C36209C289300207E44 /* XCarryOn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71024C35209C289300207E44 /* XCarryOn.swift */; };
-		713FDEFC2099A04200C4E69E /* UTI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 713FDEFB2099A04200C4E69E /* UTI.plist */; };
 		7162E68120A0352F00EF6896 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7162E68020A0352E00EF6896 /* libxml2.tbd */; };
 		BF4C101D1F62E23500E8234D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4C101C1F62E23500E8234D /* AppDelegate.swift */; };
 		BF4C101F1F62E23500E8234D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4C101E1F62E23500E8234D /* ViewController.swift */; };
@@ -22,32 +21,13 @@
 		BF7710841FB94E4B001F853E /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF77104E1FB94E4B001F853E /* String+Extension.swift */; };
 		BF77108A1FB94E4B001F853E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7710541FB94E4B001F853E /* UIImage+Extension.swift */; };
 		BF7710911FB94E4B001F853E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF77105B1FB94E4B001F853E /* UIView+Extension.swift */; };
-		BF7710C81FB94F6E001F853E /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF7710AD1FB94F6E001F853E /* ApiXml.mm */; };
-		BF7710C91FB94F6E001F853E /* MXWechatSignAdaptor.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7710B01FB94F6E001F853E /* MXWechatSignAdaptor.m */; };
-		BF7710CA1FB94F6E001F853E /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7710B21FB94F6E001F853E /* WXApiManager.m */; };
-		BF7710CB1FB94F6E001F853E /* WXApiRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7710B41FB94F6E001F853E /* WXApiRequestHandler.m */; };
-		BF7710CC1FB94F6E001F853E /* WXApiResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7710B61FB94F6E001F853E /* WXApiResponseHandler.m */; };
-		BF7710CD1FB94F6E001F853E /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7710B81FB94F6E001F853E /* XMLDictionary.m */; };
-		BF7710CE1FB94F6E001F853E /* dynamic.gif in Resources */ = {isa = PBXBuildFile; fileRef = BF7710BA1FB94F6E001F853E /* dynamic.gif */; };
-		BF7710CF1FB94F6E001F853E /* dynamicthumb.png in Resources */ = {isa = PBXBuildFile; fileRef = BF7710BB1FB94F6E001F853E /* dynamicthumb.png */; };
-		BF7710D01FB94F6F001F853E /* iphone4.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BF7710BC1FB94F6E001F853E /* iphone4.pdf */; };
-		BF7710D11FB94F6F001F853E /* micro_messenger.png in Resources */ = {isa = PBXBuildFile; fileRef = BF7710BD1FB94F6E001F853E /* micro_messenger.png */; };
-		BF7710D21FB94F6F001F853E /* ML.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BF7710BE1FB94F6E001F853E /* ML.pdf */; };
-		BF7710D31FB94F6F001F853E /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BF7710BF1FB94F6E001F853E /* test.jpg */; };
-		BF7710D41FB94F6F001F853E /* thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = BF7710C01FB94F6E001F853E /* thumb.png */; };
-		BF7710D51FB94F6F001F853E /* RespForWeChatViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF7710C31FB94F6E001F853E /* RespForWeChatViewController.mm */; };
-		BF7710D61FB94F6F001F853E /* SendMsgToWeChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7710C51FB94F6E001F853E /* SendMsgToWeChatViewController.m */; };
-		BF7710D71FB94F6F001F853E /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF7710C71FB94F6E001F853E /* WXUtil.mm */; };
 		DF0274C021B5328B003038F1 /* XDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0274BF21B5328B003038F1 /* XDataCache.swift */; };
 		DF1BEC442272B263005A0ADA /* Circular3DStarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1BEC422272B262005A0ADA /* Circular3DStarView.swift */; };
 		DF1BEC452272B263005A0ADA /* XUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1BEC432272B263005A0ADA /* XUIKit.swift */; };
 		DF1BEC492272D197005A0ADA /* XExtension.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DF1BEC462272D197005A0ADA /* XExtension.podspec */; };
-		DF1BEC4A2272D197005A0ADA /* XWechartSDK.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DF1BEC472272D197005A0ADA /* XWechartSDK.podspec */; };
 		DF1BEC4B2272D197005A0ADA /* XCarryOn.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DF1BEC482272D197005A0ADA /* XCarryOn.podspec */; };
 		DF21F88821C2B2C50007F632 /* XURLNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF21F88721C2B2C50007F632 /* XURLNavigator.swift */; };
 		DF42322D21872704005E5949 /* UILabel+TapAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF42322C21872704005E5949 /* UILabel+TapAction.swift */; };
-		DF524C1D2272F11600099FE6 /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524C1B2272F11600099FE6 /* DownloadService.swift */; };
-		DF524C1E2272F11600099FE6 /* PreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF524C1C2272F11600099FE6 /* PreViewController.swift */; };
 		DF95CB4321D779BD0049754A /* XImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95CB4221D779BD0049754A /* XImageView.swift */; };
 		DF95CB4921D779D00049754A /* XTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95CB4421D779CF0049754A /* XTransitionAnimator.swift */; };
 		DF95CB4A21D779D00049754A /* SwiftWebViewBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF95CB4521D779CF0049754A /* SwiftWebViewBridge.swift */; };
@@ -70,7 +50,6 @@
 		00087E8B0C2CE5586E75AE96 /* Pods-MyCocoaPods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCocoaPods.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods.debug.xcconfig"; sourceTree = "<group>"; };
 		6FB852E20851D3E97FD4AB39 /* Pods-MyCocoaPods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCocoaPods.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods.release.xcconfig"; sourceTree = "<group>"; };
 		71024C35209C289300207E44 /* XCarryOn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCarryOn.swift; sourceTree = "<group>"; };
-		713FDEFB2099A04200C4E69E /* UTI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UTI.plist; sourceTree = "<group>"; };
 		7162E68020A0352E00EF6896 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		BF4C10191F62E23500E8234D /* MyCocoaPods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCocoaPods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF4C101C1F62E23500E8234D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,43 +64,15 @@
 		BF77104E1FB94E4B001F853E /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		BF7710541FB94E4B001F853E /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		BF77105B1FB94E4B001F853E /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		BF7710AC1FB94F6E001F853E /* ApiXml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiXml.h; sourceTree = "<group>"; };
-		BF7710AD1FB94F6E001F853E /* ApiXml.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApiXml.mm; sourceTree = "<group>"; };
-		BF7710AF1FB94F6E001F853E /* MXWechatSignAdaptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXWechatSignAdaptor.h; sourceTree = "<group>"; };
-		BF7710B01FB94F6E001F853E /* MXWechatSignAdaptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXWechatSignAdaptor.m; sourceTree = "<group>"; };
-		BF7710B11FB94F6E001F853E /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
-		BF7710B21FB94F6E001F853E /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
-		BF7710B31FB94F6E001F853E /* WXApiRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiRequestHandler.h; sourceTree = "<group>"; };
-		BF7710B41FB94F6E001F853E /* WXApiRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiRequestHandler.m; sourceTree = "<group>"; };
-		BF7710B51FB94F6E001F853E /* WXApiResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiResponseHandler.h; sourceTree = "<group>"; };
-		BF7710B61FB94F6E001F853E /* WXApiResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiResponseHandler.m; sourceTree = "<group>"; };
-		BF7710B71FB94F6E001F853E /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
-		BF7710B81FB94F6E001F853E /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
-		BF7710BA1FB94F6E001F853E /* dynamic.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = dynamic.gif; sourceTree = "<group>"; };
-		BF7710BB1FB94F6E001F853E /* dynamicthumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dynamicthumb.png; sourceTree = "<group>"; };
-		BF7710BC1FB94F6E001F853E /* iphone4.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = iphone4.pdf; sourceTree = "<group>"; };
-		BF7710BD1FB94F6E001F853E /* micro_messenger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = micro_messenger.png; sourceTree = "<group>"; };
-		BF7710BE1FB94F6E001F853E /* ML.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ML.pdf; sourceTree = "<group>"; };
-		BF7710BF1FB94F6E001F853E /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
-		BF7710C01FB94F6E001F853E /* thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumb.png; sourceTree = "<group>"; };
-		BF7710C21FB94F6E001F853E /* RespForWeChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RespForWeChatViewController.h; sourceTree = "<group>"; };
-		BF7710C31FB94F6E001F853E /* RespForWeChatViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RespForWeChatViewController.mm; sourceTree = "<group>"; };
-		BF7710C41FB94F6E001F853E /* SendMsgToWeChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendMsgToWeChatViewController.h; sourceTree = "<group>"; };
-		BF7710C51FB94F6E001F853E /* SendMsgToWeChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendMsgToWeChatViewController.m; sourceTree = "<group>"; };
-		BF7710C61FB94F6E001F853E /* WXUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUtil.h; sourceTree = "<group>"; };
-		BF7710C71FB94F6E001F853E /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
 		BF97602C1F7150DC00DE9ABB /* MyCocoaPods-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyCocoaPods-Bridging-Header.h"; sourceTree = "<group>"; };
 		CC2365036460F451E73D4822 /* Pods_MyCocoaPods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyCocoaPods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF0274BF21B5328B003038F1 /* XDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDataCache.swift; sourceTree = "<group>"; };
 		DF1BEC422272B262005A0ADA /* Circular3DStarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circular3DStarView.swift; sourceTree = "<group>"; };
 		DF1BEC432272B263005A0ADA /* XUIKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XUIKit.swift; sourceTree = "<group>"; };
 		DF1BEC462272D197005A0ADA /* XExtension.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = XExtension.podspec; path = ../../XExtension.podspec; sourceTree = "<group>"; };
-		DF1BEC472272D197005A0ADA /* XWechartSDK.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = XWechartSDK.podspec; path = ../../XWechartSDK.podspec; sourceTree = "<group>"; };
 		DF1BEC482272D197005A0ADA /* XCarryOn.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = XCarryOn.podspec; path = ../../XCarryOn.podspec; sourceTree = "<group>"; };
 		DF21F88721C2B2C50007F632 /* XURLNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XURLNavigator.swift; sourceTree = "<group>"; };
 		DF42322C21872704005E5949 /* UILabel+TapAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+TapAction.swift"; sourceTree = "<group>"; };
-		DF524C1B2272F11600099FE6 /* DownloadService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
-		DF524C1C2272F11600099FE6 /* PreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreViewController.swift; sourceTree = "<group>"; };
 		DF95CB4221D779BD0049754A /* XImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XImageView.swift; sourceTree = "<group>"; };
 		DF95CB4421D779CF0049754A /* XTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTransitionAnimator.swift; sourceTree = "<group>"; };
 		DF95CB4521D779CF0049754A /* SwiftWebViewBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftWebViewBridge.swift; sourceTree = "<group>"; };
@@ -177,17 +128,6 @@
 			path = ../../CarryOn;
 			sourceTree = "<group>";
 		};
-		713FDF07209AED6F00C4E69E /* tools */ = {
-			isa = PBXGroup;
-			children = (
-				713FDEFB2099A04200C4E69E /* UTI.plist */,
-				DF524C1B2272F11600099FE6 /* DownloadService.swift */,
-				DF524C1C2272F11600099FE6 /* PreViewController.swift */,
-			);
-			name = tools;
-			path = ../../tools;
-			sourceTree = "<group>";
-		};
 		9288D709AF3A9304559AAABB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,15 +158,12 @@
 		BF4C101B1F62E23500E8234D /* MyCocoaPods */ = {
 			isa = PBXGroup;
 			children = (
-				713FDF07209AED6F00C4E69E /* tools */,
 				713FDEDC20999DD500C4E69E /* CarryOn */,
-				BF7710AB1FB94F6E001F853E /* XWechartSDK */,
 				BF7710461FB94E4B001F853E /* Extension */,
 				BF4C101C1F62E23500E8234D /* AppDelegate.swift */,
 				BF4C101E1F62E23500E8234D /* ViewController.swift */,
 				DF1BEC482272D197005A0ADA /* XCarryOn.podspec */,
 				DF1BEC462272D197005A0ADA /* XExtension.podspec */,
-				DF1BEC472272D197005A0ADA /* XWechartSDK.podspec */,
 				BF5B9A9F1F66CADE00ECB3EC /* README.md */,
 				DFFBF954218990280085B638 /* .gitignore */,
 				BF4C10201F62E23500E8234D /* Main.storyboard */,
@@ -256,63 +193,6 @@
 			path = ../../Extension;
 			sourceTree = "<group>";
 		};
-		BF7710AB1FB94F6E001F853E /* XWechartSDK */ = {
-			isa = PBXGroup;
-			children = (
-				BF7710AC1FB94F6E001F853E /* ApiXml.h */,
-				BF7710AD1FB94F6E001F853E /* ApiXml.mm */,
-				BF7710AE1FB94F6E001F853E /* Control */,
-				BF7710B91FB94F6E001F853E /* resource */,
-				BF7710C11FB94F6E001F853E /* ViewController */,
-				BF7710C61FB94F6E001F853E /* WXUtil.h */,
-				BF7710C71FB94F6E001F853E /* WXUtil.mm */,
-			);
-			name = XWechartSDK;
-			path = ../../XWechartSDK;
-			sourceTree = "<group>";
-		};
-		BF7710AE1FB94F6E001F853E /* Control */ = {
-			isa = PBXGroup;
-			children = (
-				BF7710AF1FB94F6E001F853E /* MXWechatSignAdaptor.h */,
-				BF7710B01FB94F6E001F853E /* MXWechatSignAdaptor.m */,
-				BF7710B11FB94F6E001F853E /* WXApiManager.h */,
-				BF7710B21FB94F6E001F853E /* WXApiManager.m */,
-				BF7710B31FB94F6E001F853E /* WXApiRequestHandler.h */,
-				BF7710B41FB94F6E001F853E /* WXApiRequestHandler.m */,
-				BF7710B51FB94F6E001F853E /* WXApiResponseHandler.h */,
-				BF7710B61FB94F6E001F853E /* WXApiResponseHandler.m */,
-				BF7710B71FB94F6E001F853E /* XMLDictionary.h */,
-				BF7710B81FB94F6E001F853E /* XMLDictionary.m */,
-			);
-			path = Control;
-			sourceTree = "<group>";
-		};
-		BF7710B91FB94F6E001F853E /* resource */ = {
-			isa = PBXGroup;
-			children = (
-				BF7710BA1FB94F6E001F853E /* dynamic.gif */,
-				BF7710BB1FB94F6E001F853E /* dynamicthumb.png */,
-				BF7710BC1FB94F6E001F853E /* iphone4.pdf */,
-				BF7710BD1FB94F6E001F853E /* micro_messenger.png */,
-				BF7710BE1FB94F6E001F853E /* ML.pdf */,
-				BF7710BF1FB94F6E001F853E /* test.jpg */,
-				BF7710C01FB94F6E001F853E /* thumb.png */,
-			);
-			path = resource;
-			sourceTree = "<group>";
-		};
-		BF7710C11FB94F6E001F853E /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				BF7710C21FB94F6E001F853E /* RespForWeChatViewController.h */,
-				BF7710C31FB94F6E001F853E /* RespForWeChatViewController.mm */,
-				BF7710C41FB94F6E001F853E /* SendMsgToWeChatViewController.h */,
-				BF7710C51FB94F6E001F853E /* SendMsgToWeChatViewController.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		E9D68D9BEC1C3806859F6C0D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,7 +213,6 @@
 				BF4C10151F62E23500E8234D /* Sources */,
 				BF4C10161F62E23500E8234D /* Frameworks */,
 				BF4C10171F62E23500E8234D /* Resources */,
-				28BE07E740D64EC98425DACF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -367,6 +246,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -386,20 +266,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF1BEC492272D197005A0ADA /* XExtension.podspec in Resources */,
-				BF7710D41FB94F6F001F853E /* thumb.png in Resources */,
-				BF7710D11FB94F6F001F853E /* micro_messenger.png in Resources */,
-				BF7710CF1FB94F6E001F853E /* dynamicthumb.png in Resources */,
-				BF7710CE1FB94F6E001F853E /* dynamic.gif in Resources */,
 				DFFBF955218990280085B638 /* .gitignore in Resources */,
 				DF1BEC4B2272D197005A0ADA /* XCarryOn.podspec in Resources */,
 				BF4C10271F62E23500E8234D /* LaunchScreen.storyboard in Resources */,
-				BF7710D31FB94F6F001F853E /* test.jpg in Resources */,
 				BF4C10241F62E23500E8234D /* Assets.xcassets in Resources */,
-				BF7710D01FB94F6F001F853E /* iphone4.pdf in Resources */,
-				713FDEFC2099A04200C4E69E /* UTI.plist in Resources */,
-				DF1BEC4A2272D197005A0ADA /* XWechartSDK.podspec in Resources */,
 				BF4C10221F62E23500E8234D /* Main.storyboard in Resources */,
-				BF7710D21FB94F6F001F853E /* ML.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,30 +295,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		28BE07E740D64EC98425DACF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyCocoaPods/Pods-MyCocoaPods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -455,14 +302,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF7710C81FB94F6E001F853E /* ApiXml.mm in Sources */,
-				BF7710D51FB94F6F001F853E /* RespForWeChatViewController.mm in Sources */,
-				BF7710CD1FB94F6E001F853E /* XMLDictionary.m in Sources */,
 				DF95CB4F21D779D90049754A /* XIBExtension.swift in Sources */,
 				DFC662CE21C1183900B41558 /* SwiftNotice.swift in Sources */,
-				BF7710C91FB94F6E001F853E /* MXWechatSignAdaptor.m in Sources */,
 				BF77107E1FB94E4B001F853E /* Date+Extension.swift in Sources */,
-				DF524C1E2272F11600099FE6 /* PreViewController.swift in Sources */,
 				DF95CB4321D779BD0049754A /* XImageView.swift in Sources */,
 				DFFC764E21B56021006E75D4 /* Public.swift in Sources */,
 				BF7710841FB94E4B001F853E /* String+Extension.swift in Sources */,
@@ -476,11 +318,8 @@
 				DF95CB4A21D779D00049754A /* SwiftWebViewBridge.swift in Sources */,
 				DF21F88821C2B2C50007F632 /* XURLNavigator.swift in Sources */,
 				DF0274C021B5328B003038F1 /* XDataCache.swift in Sources */,
-				BF7710CB1FB94F6E001F853E /* WXApiRequestHandler.m in Sources */,
 				DF95CB4921D779D00049754A /* XTransitionAnimator.swift in Sources */,
 				DFA5BE3E21B6952800CB9223 /* NSObject+Mirror.swift in Sources */,
-				BF7710CC1FB94F6E001F853E /* WXApiResponseHandler.m in Sources */,
-				DF524C1D2272F11600099FE6 /* DownloadService.swift in Sources */,
 				BF7710831FB94E4B001F853E /* PublicTools.swift in Sources */,
 				BF7710911FB94E4B001F853E /* UIView+Extension.swift in Sources */,
 				BF77108A1FB94E4B001F853E /* UIImage+Extension.swift in Sources */,
@@ -489,9 +328,6 @@
 				DF95CB4C21D779D00049754A /* CircularSlider.swift in Sources */,
 				DFC662D221C11A1D00B41558 /* ReusableView+Extension.swift in Sources */,
 				DF95CB4B21D779D00049754A /* XTip.swift in Sources */,
-				BF7710D71FB94F6F001F853E /* WXUtil.mm in Sources */,
-				BF7710CA1FB94F6E001F853E /* WXApiManager.m in Sources */,
-				BF7710D61FB94F6F001F853E /* SendMsgToWeChatViewController.m in Sources */,
 				DF1BEC442272B263005A0ADA /* Circular3DStarView.swift in Sources */,
 				DFFC764C21B55DD7006E75D4 /* OtherExtensions.swift in Sources */,
 				71024C36209C289300207E44 /* XCarryOn.swift in Sources */,

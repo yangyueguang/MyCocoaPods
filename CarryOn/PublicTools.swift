@@ -277,7 +277,7 @@ extension PublicTools: SKStoreProductViewControllerDelegate {
         })
     }
     
-    private func productViewControllerDidFinish(_ viewController: SKStoreProductViewController) {
+    public func productViewControllerDidFinish(_ viewController: SKStoreProductViewController) {
         viewController.dismiss(animated: true) {}
     }
 }

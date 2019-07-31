@@ -8,42 +8,10 @@ import CoreSpotlight
 class AppDelegate: UIResponder, UIApplicationDelegate {//WXApiDelegate
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        initshardSDK()
-        chushihua()
-        return true
-    }
-    func initshardSDK() {
-//Bugly.start(withAppId: "3d0b6abc27")
-//ShareSDK.registerApp("10704ee49bab2")
-////facebook
-//ShareSDK.connectFacebook(withAppKey: "108289966550307", appSecret: "1a4e9e758b0cc716b5fe8e216d425bb0")
-////新浪微博
-//ShareSDK.connectSinaWeibo(withAppKey: "3338320077", appSecret: "c8d9a43d9312189f6cecc89f5d8086e6", redirectUri: "http://www.baidu.com", weiboSDKCls: WeiboSDK.self)
-////微信登陆的时候需要初始化
-//ShareSDK.connectWeChat(withAppId: "wx3ea1e6ebce6a1838", appSecret: "d4624c36b6795d1d99dcf0547af5443d", wechatCls: WXApi.self)
-//WXApi.registerApp("wx1e84e84a6e551aff", withDescription: "demo 2.0")
-////添加新浪微博应用 注册网址 http://open.weibo.com
-//ShareSDK.connectSinaWeibo(withAppKey: "571351833", appSecret: "fb98e3d5efd5b958d29348eafae566a7", redirectUri: "https://www.baidu.com")
-////当使用新浪微博客户端分享的时候需要按照下面的方法来初始化新浪的平台
-//ShareSDK.connectSinaWeibo(withAppKey: "a8eb86c84ef0", appSecret: "fb98e3d5efd5b958d29348eafae566a7", redirectUri: "https://www.baidu.com", weiboSDKCls: WeiboSDK.self)
-////添加腾讯微博应用 注册网址 http://dev.t.qq.com
-//ShareSDK.connectTencentWeibo(withAppKey: "801307650", appSecret: "ae36f4ee3946e1cbb98d6965b0b2ff5c", redirectUri: "http://www.sharesdk.cn")
-////添加QQ空间应用  注册网址  http://connect.qq.com/intro/login/
-//ShareSDK.connectQZone(withAppKey: "1104787027", appSecret: "Lrewt7n2neNt5Wa0", qqApiInterfaceCls: QQApiInterface.self, tencentOAuthCls: TencentOAuth.self)
-////添加QQ应用  注册网址   http://mobile.qq.com/api/
-//ShareSDK.connectQQ(withQZoneAppKey: "QQ41d9b653", qqApiInterfaceCls: QQApiInterface.self, tencentOAuthCls: TencentOAuth.self)
-//ShareSDK.connectQQ(withQZoneAppKey: "QQ41dd4913", qqApiInterfaceCls: QQApiInterface.self, tencentOAuthCls: TencentOAuth.self)
-//ShareSDK.importQQClass(QQApiInterface.self, tencentOAuthCls: TencentOAuth.self)
-////QQ空间
-//ShareSDK.connectQZone(withAppKey: "1105021203", appSecret: "4suavakVdRqawzLI", qqApiInterfaceCls: QQApiInterface.self, tencentOAuthCls: TencentOAuth.self)
-//AMapServices.shared().apiKey = AMapKey
-//GMSServices.provideAPIKey(GoogleMapKey)
-//GMSPlacesClient.provideAPIKey(GoogleMapKey)
-    }
-    func chushihua() {
         NotificationCenter.default.addObserver(self, selector:#selector(test), name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(test), name: UIApplication.didBecomeActiveNotification, object: nil)
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
+        return true
     }
     
     class func backgroundPlayerID(_ backTaskId: UIBackgroundTaskIdentifier) -> UIBackgroundTaskIdentifier {

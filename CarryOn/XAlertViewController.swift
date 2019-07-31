@@ -196,11 +196,11 @@ public class XAlertViewController: UIViewController ,UIViewControllerTransitioni
         })
     }
 
-    private func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return XAlertAnimation(isPresenting: true)
     }
     
-    private func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return XAlertAnimation(isPresenting: false)
     }
 }

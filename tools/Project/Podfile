@@ -1,0 +1,45 @@
+platform:ios, '10.0'
+target 'project' do
+    use_frameworks!
+#    pod 'XExtension'
+#    pod 'XCarryOn'
+#    pod 'Bugly'
+#    pod 'SnapKit'
+#    pod 'RxSwift'
+#    pod 'RxCocoa'
+#    pod 'Alamofire'
+#    pod 'MJRefresh'
+#    pod 'Kingfisher'
+#    pod 'RealmSwift'
+#    pod 'AFNetworking'
+#    pod 'IQKeyboardManager'
+#    pod 'PayMaxLib'
+#    pod 'Realm'
+#    pod 'Moya',
+#    pod 'ViewDeck'
+#    pod 'AVOSCloud'
+#    pod 'BlocksKit'
+#    pod 'CalendarLib'
+#    pod 'iOS-Echarts'
+#    pod 'SystemServices'
+#    pod 'UMengAnalytics'
+#    pod 'MWPhotoBrowser'
+
+#    pod 'BaiduMapKit'
+#    pod 'GoogleMaps'
+#    pod 'GooglePlaces'
+#    pod 'AMapNavi'
+#    pod 'AMap3DMap'
+#    pod 'AMap2DMap' #(2D和3D不能同时使⽤用)
+#    pod 'AMapSearch'
+#    pod 'AMapLocation'
+#    pod 'MOBFoundation'          # 公共库(必须)
+#    pod 'ShareSDK2'              # 主模块(必须)
+#    pod 'ShareSDK2/Connection'   # 分享&登录链接模块(含所有平台,可选)
+#    pod 'ShareSDK2/Connection/WeChat'# 微信(可选)
+#    pod 'Pingpp', '~> 2.1.0' #支付集成接口，包括支付宝，微信，银联和苹果
+#    pod 'Pingpp/Alipay', '~> 2.1.0'
+#    pod 'Pingpp/Wx', '~> 2.1.0'
+#    pod 'Pingpp/UnionPay', '~> 2.1.0'
+#    pod 'Pingpp/ApplePay', '~> 2.1.0'
+end
