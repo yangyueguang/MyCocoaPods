@@ -17,6 +17,28 @@ public var TopHeight:CGFloat {
     return 64.0
 }
 
+infix operator .. : AdditionPrecedence
+func ..<T>(souce: T,closure:((T)->Void)) -> T {
+    closure(souce)
+    return souce
+}
+
+
+extension Optional {
+    var o: Wrapped {
+        var d: Any
+        switch Wrapped.self {
+        case is Bool.Type: d = false
+        case is String.Type: d = ""
+        case is Int.Type: d = 0
+        case is Float.Type: d = Float(0)
+        case is Double.Type: d = 0.0
+        default: d = (Wrapped.self as? NSObject.Type)?.init() ?? 0
+        }
+        return self ?? d as! Wrapped
+    }
+}
+
 /// Debug打印
 public func Dlog<T>(_ message: T, file: String = #file,method: String = #function,line: Int = #line){
     #if DEBUG

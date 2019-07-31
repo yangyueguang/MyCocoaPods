@@ -8,16 +8,43 @@
 import UIKit
 import Foundation
 
+public extension Encodable {
+    /// 将 model 编码成参数字典
+    func toDic() -> [String: Any] {
+        var result: [String: Any] = [:]
+        do {
+            let data = try JSONEncoder().encode(self)
+            if let dic = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] {
+                result = dic
+            }
+        } catch {
+        }
+        return result
+    }
+}
+
+public extension Decodable {
+    // 将字典解码成 model
+    static func fromDic(dic: [String: Any?]) throws -> Self {
+        let jsonData = try JSONSerialization.data(withJSONObject: dic)
+        let model = try JSONDecoder().decode(Self.self, from: jsonData)
+        return model
+    }
+}
+
 public extension NSObject {
 
+    /// 类名字
     class var nameOfClass: String {
         return NSStringFromClass(self).components(separatedBy: ".").last! as String
     }
 
+    /// 转换为什么类型
     func toType<T>(_ type: T.Type = T.self) -> T {
         return self as! T
     }
 
+    /// 深拷贝
     @objc func deepCopy() -> Self {
         let model = type(of: self).init()
         var count: UInt32 = 0
@@ -32,6 +59,7 @@ public extension NSObject {
         return model
     }
 
+    /// 深拷贝
     @objc func archivedCopy() -> AnyObject {
         guard let cls = self.classForKeyedArchiver else {
             return type(of: self).init()
@@ -50,6 +78,7 @@ public extension NSObject {
 }
 
 public extension URL {
+    /// 获取参数字典
     var queryParameters: [String: String] {
         guard let components = URLComponents(url: self, resolvingAgainstBaseURL: false), let queryItems = components.queryItems else { return [:] }
         var items: [String: String] = [:]
@@ -106,7 +135,8 @@ public extension FileManager {
         return folderSize
     }
 
-    public static func readJson2Array(fileName:String) -> [Any] {
+    /// jsonToArray
+    static func readJson2Array(fileName:String) -> [Any] {
         let path = Bundle.main.path(forResource: fileName, ofType: "json") ?? ""
         var list = [Any]()
         do{
@@ -118,7 +148,8 @@ public extension FileManager {
         return list
     }
 
-    public static func readJson2Dict(fileName:String) -> [String:Any] {
+    /// jsonToDict
+    static func readJson2Dict(fileName:String) -> [String:Any] {
         let path = Bundle.main.path(forResource: fileName, ofType: "json") ?? ""
         var dict = [String:Any]()
         do{
@@ -148,6 +179,7 @@ public extension UIColor {
         self.init(red: R / 255.0, green: G / 255.0, blue: B / 255.0, alpha: A)
     }
 
+    /// 随机色
     class var random: UIColor {
         let red = CGFloat(arc4random()%256)/255.0
         let green = CGFloat(arc4random()%256)/255.0
@@ -155,6 +187,7 @@ public extension UIColor {
         return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
     }
 
+    /// 获取hex字符
     var hexString: String {
         let components: [Int] = {
             let c = cgColor.components!
@@ -404,7 +437,8 @@ public extension UIViewController{
         }
     }
 
-    public static func storyVC(_ name: String) -> Self {
+    /// 从Story创建
+    static func storyVC(_ name: String) -> Self {
         let story = UIStoryboard(name: name, bundle: nil)
         let vc = story.instantiateViewController(withIdentifier: self.nameOfClass)
         return vc.toType()

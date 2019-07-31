@@ -269,7 +269,7 @@ public extension UIView  {
         frame = gradientLayer1.bounds
     }
 
-    public static func xibView() -> Self? {
+    static func xibView() -> Self? {
         let nib = UINib(nibName: nameOfClass, bundle: Bundle.main)
         let view = nib.instantiate(withOwner: self, options: [:]).first as? UIView
         return view?.toType()

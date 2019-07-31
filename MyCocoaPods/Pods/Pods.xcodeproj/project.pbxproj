@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		304DF54F17D3E1591C5671C2800F1D8A /* Pods-MyCocoaPods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 06C61A2734C252381375A69FB34E0506 /* Pods-MyCocoaPods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		41D89125507F2B6A27032475AF62AF45 /* Pods-MyCocoaPods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B29EB90B2F1CE3DD3A94F2D3245CCB /* Pods-MyCocoaPods-dummy.m */; };
-		702605F792320E09187A0B722323507F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		14CF650607EDDD584329780FB90CD281 /* Pods-MyCocoaPods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B29EB90B2F1CE3DD3A94F2D3245CCB /* Pods-MyCocoaPods-dummy.m */; };
+		46F03854471CA39E9812628164A65BBF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		DC9A7D0AA64132647F1D8261BB6288D7 /* Pods-MyCocoaPods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 06C61A2734C252381375A69FB34E0506 /* Pods-MyCocoaPods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,11 +27,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AB5B1CCC23C857E4A27876182A2E1BAB /* Frameworks */ = {
+		F15842692CB7354AAC163AED54453B9B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				702605F792320E09187A0B722323507F /* Foundation.framework in Frameworks */,
+				46F03854471CA39E9812628164A65BBF /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,11 +99,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		3BF774085C8B4CE7B949122EE0AB1B73 /* Headers */ = {
+		79807BC2C23FACAC1D201E7C53BE7EFA /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				304DF54F17D3E1591C5671C2800F1D8A /* Pods-MyCocoaPods-umbrella.h in Headers */,
+				DC9A7D0AA64132647F1D8261BB6288D7 /* Pods-MyCocoaPods-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,12 +112,12 @@
 /* Begin PBXNativeTarget section */
 		6482995409F603C86B0D41750C7BAA1B /* Pods-MyCocoaPods */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EF8062B018BE51EA37006566DE94D699 /* Build configuration list for PBXNativeTarget "Pods-MyCocoaPods" */;
+			buildConfigurationList = 4B76C9CFD9FD1E16304CF5A912F0906C /* Build configuration list for PBXNativeTarget "Pods-MyCocoaPods" */;
 			buildPhases = (
-				3BF774085C8B4CE7B949122EE0AB1B73 /* Headers */,
-				1EAEF017F7D89E45634E218556B3D2A7 /* Sources */,
-				AB5B1CCC23C857E4A27876182A2E1BAB /* Frameworks */,
-				F3434DAA026AC1362A8D327D5B0BEEDA /* Resources */,
+				79807BC2C23FACAC1D201E7C53BE7EFA /* Headers */,
+				C8E03115146A1E8FAD85E83AAC8A7AFF /* Sources */,
+				F15842692CB7354AAC163AED54453B9B /* Frameworks */,
+				2258F4D42602A37D82D89D79BCA4594F /* Resources */,
 			);
 			buildRules = (
 			);
@@ -134,8 +134,8 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1020;
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -155,7 +155,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F3434DAA026AC1362A8D327D5B0BEEDA /* Resources */ = {
+		2258F4D42602A37D82D89D79BCA4594F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -165,11 +165,11 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1EAEF017F7D89E45634E218556B3D2A7 /* Sources */ = {
+		C8E03115146A1E8FAD85E83AAC8A7AFF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41D89125507F2B6A27032475AF62AF45 /* Pods-MyCocoaPods-dummy.m in Sources */,
+				14CF650607EDDD584329780FB90CD281 /* Pods-MyCocoaPods-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,7 +300,7 @@
 			};
 			name = Release;
 		};
-		B0ED6FC106753D2CBCCF4C2543575D71 /* Release */ = {
+		D2A90410837E42B31985021EC8392930 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E6D6B540A5C49AC82E3AC84003E9B2B1 /* Pods-MyCocoaPods.release.xcconfig */;
 			buildSettings = {
@@ -335,7 +335,7 @@
 			};
 			name = Release;
 		};
-		B93888376661F845F07DD2B5E82AF83C /* Debug */ = {
+		E78A55647590087DF6E6018F4D44A65D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E442D33732A90FFEC7515725E58418A8 /* Pods-MyCocoaPods.debug.xcconfig */;
 			buildSettings = {
@@ -381,11 +381,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EF8062B018BE51EA37006566DE94D699 /* Build configuration list for PBXNativeTarget "Pods-MyCocoaPods" */ = {
+		4B76C9CFD9FD1E16304CF5A912F0906C /* Build configuration list for PBXNativeTarget "Pods-MyCocoaPods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B93888376661F845F07DD2B5E82AF83C /* Debug */,
-				B0ED6FC106753D2CBCCF4C2543575D71 /* Release */,
+				E78A55647590087DF6E6018F4D44A65D /* Debug */,
+				D2A90410837E42B31985021EC8392930 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

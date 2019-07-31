@@ -3,16 +3,17 @@
 //  String+Extension.swift
 import UIKit
 import Foundation
+import AVFoundation
 
 public extension String {
 
     /// 随机码
-    public static var seqNo: String{
+    static var seqNo: String{
         return  String(arc4random()%89999999+10000000)
     }
 
     /// UUID
-    public static var uuid: String {
+    static var uuid: String {
         let uuid : UUID = UIDevice.current.identifierForVendor!
         let uu :String = "\(uuid)"
         let array = uu.components(separatedBy: ">")
@@ -36,7 +37,8 @@ public extension String {
         return false
     }
 
-    public var isEmoji: Bool {
+    /// 是不是表情
+    var isEmoji: Bool {
         let scalarValue = unicodeScalars.first!.value
         switch scalarValue {
         case 0x3030, 0x00AE, 0x00A9, // Special Characters
@@ -69,15 +71,7 @@ public extension String {
         return lowercased ? headPinyinStr.lowercased() : headPinyinStr
     }
 
-    /// 是否是空或空串
-    public static func isNullOrEmpty(_ string: String?) -> Bool {
-        if let str = string, !str.isEmpty {
-            return false
-        } else {
-            return true
-        }
-    }
-
+    /// 创建二维码
     func createQR() -> UIImage {
         let stringData = self.data(using: String.Encoding.utf8, allowLossyConversion: false)
         //创建一个二维码的滤镜
@@ -153,11 +147,13 @@ public extension String {
         return (regex?.matches(in: self, range: NSRange(location: 0, length: pattern.utf8.count)))!
     }
 
+    /// 截取字符串
     func substring(from index: Int) -> String {
         guard count > index else { return "" }
         return (self as NSString).substring(from:index)
     }
 
+    /// 截取字符串
     func substring(location index:Int, length:Int) -> String {
         if self.count > index {
             let startIndex = self.index(self.startIndex, offsetBy: index)
@@ -169,6 +165,7 @@ public extension String {
         }
     }
 
+    /// 截取字符串
     func substring(range:NSRange) -> String {
         if self.count > range.location {
             let startIndex = self.index(self.startIndex, offsetBy: range.location)
@@ -193,13 +190,43 @@ public extension String {
 //        return md5String;
 //    }
 
-    public static func format(decimal:Float, _ maximumDigits:Int = 1, _ minimumDigits:Int = 1) ->String? {
+    /// 格式化字符串
+    static func format(decimal:Float, _ maximumDigits:Int = 1, _ minimumDigits:Int = 1) ->String? {
         let number = NSNumber(value: decimal)
         let numberFormatter = NumberFormatter()
         numberFormatter.maximumFractionDigits = maximumDigits //设置小数点后最多2位
         numberFormatter.minimumFractionDigits = minimumDigits //设置小数点后最少2位（不足补0）
         return numberFormatter.string(from: number)
     }
+
+    /// 首字母
+    var first: String {
+        return String(prefix(1))
+    }
+
+    /// 尾字母
+    var last: String {
+        return String(suffix(1))
+    }
+
+    /// 首字母大写
+    var uppercaseFirst: String {
+        return first.uppercased() + String(dropFirst())
+    }
+
+    /// 朗读
+    func speak() -> AVSpeechSynthesizer {
+        let audioSession = AVAudioSession.sharedInstance()
+        try! audioSession.setCategory(AVAudioSession.Category.playback)
+        try! audioSession.setActive(true)
+        let speechSynthesizer = AVSpeechSynthesizer()
+        let speechUtterance = AVSpeechUtterance(string: self)
+        let defaultVoice = AVSpeechSynthesisVoice(language: "en-US")
+        speechUtterance.voice = defaultVoice
+        speechSynthesizer.speak(speechUtterance)
+        return speechSynthesizer
+    }
+
 }
 
 public extension NSAttributedString {
