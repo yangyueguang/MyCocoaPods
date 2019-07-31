@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
     s.name         = "XExtension"
-    s.version      = "0.4.3"
+    s.version      = "0.4.5"
     s.license      = "MIT"
-    s.swift_version = '4.2'
+    s.swift_version = '5.0'
     s.requires_arc = true
     s.source_files  = "Extension"
     s.summary      = "这是Swift的类的拓展集合."
