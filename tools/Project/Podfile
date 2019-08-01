@@ -1,4 +1,8 @@
+source 'https://github.com/CocoaPods/Specs.git'
 platform:ios, '10.0'
+
+use_frameworks!
+inhibit_all_warnings!
 target 'project' do
     use_frameworks!
 #    pod 'XExtension'
@@ -42,4 +46,21 @@ target 'project' do
 #    pod 'Pingpp/Wx', '~> 2.1.0'
 #    pod 'Pingpp/UnionPay', '~> 2.1.0'
 #    pod 'Pingpp/ApplePay', '~> 2.1.0'
+end
+
+# Swift 版本声明
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if ['LightRoute', 'CoreNavigation', 'Kakapo'].include? target.name
+      target.build_configurations.each do |config|
+        config.build_settings['SWIFT_VERSION'] = '4.0'
+        config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+      end
+      else
+      target.build_configurations.each do |config|
+        config.build_settings['SWIFT_VERSION'] = '5.0'
+        config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+      end
+    end
+  end
 end
