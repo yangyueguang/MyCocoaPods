@@ -8,6 +8,7 @@ target 'project' do
 #    pod 'XExtension'
 #    pod 'XCarryOn'
 #    pod 'Bugly'
+#    pod 'GVRSDK'
 #    pod 'SnapKit'
 #    pod 'RxSwift'
 #    pod 'RxCocoa'
@@ -72,4 +73,4 @@ post_install do |installer|
             config.build_settings['ENABLE_BITCODE'] = 'NO'
         end
     end
-end  
+end
