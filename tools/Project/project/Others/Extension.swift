@@ -10,3 +10,8 @@ import Foundation
 extension UITableView {
 
 }
+extension Collection {
+    subscript (i index: Index) -> Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
+}
